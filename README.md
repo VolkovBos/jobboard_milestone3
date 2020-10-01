@@ -131,6 +131,7 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <p>Admin Edit User</p>
 
 ![Users Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_user_admin.html.png?raw=true)
+
 </details>
 
 <details>
@@ -141,6 +142,7 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 ![Contact Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/contact_visitor.html.png?raw=true)
 
 </details>
+
 <details>
 <summary>Register</summary>
 <br>
@@ -149,6 +151,8 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 ![Register Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/register_visitor.html.png?raw=true)
 
 </details>
+
+<details>
 <summary>Login</summary>
 <br>
 <p>Visitor</p>
