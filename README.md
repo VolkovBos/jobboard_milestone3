@@ -112,7 +112,7 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <details>
 <summary>Users</summary>
 <br>
-<p>User</p>
+<p>User Profile</p>
 
 ![Profile Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/profile_user.html.png?raw=true)
 
@@ -160,3 +160,13 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 ![Login Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/login_visitor.html.png?raw=true)
 
 </details>
+
+## Features
+
+## Technologies Used
+
+## Testing
+
+## Deployment
+
+## Credits
