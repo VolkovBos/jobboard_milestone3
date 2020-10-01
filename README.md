@@ -45,10 +45,14 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <details>
 <summary>Home Page</summary>
 <br>
-<p></p>
+<p>Visitor</p>
 
-![Home Page Vistor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_visitor.html.png?raw=true)
-![Home Page Tablet](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_user.html.png?raw=true)
-![Home Page Phone](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_admin.html.png?raw=true)
+![Home Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_visitor.html.png?raw=true)
+<p>User</p>
+
+![Home Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_user.html.png?raw=true)
+<p>Admin</p>
+
+![Home Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_admin.html.png?raw=true)
 
 </details>
