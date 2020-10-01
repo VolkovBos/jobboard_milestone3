@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOS UP</title>
+</head>
+	
+<body>
+<!--    Header      -->
+    <header>
+    </header>
+<!--    Content section      -->
+    <section class="container main">
+		{% block content %}
+		{% endblock %}
+	</section>
+<!--    Footer      -->
+    <footer class="blue darken-4">
+		© 2020 Copyright: Robbert Bos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="{{ url_for('contact') }}">Contact</a>
+	</footer>
+</body>
+</html>
