@@ -40,3 +40,15 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
     - As the admin, I want to be able to approve new registrations so no one can get access without permission/controle
     - As the admin, I want to be able to delete user so that they cannot login anymore
     - As the admin, I don't want other people to be able to use pages from where changes to the database can be made.
+
+### WireFrames
+<details>
+<summary>Home Page</summary>
+<br>
+<p></p>
+
+![Home Page Vistor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_visitor.html.png?raw=true)
+![Home Page Tablet](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_user.html.png?raw=true)
+![Home Page Phone](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_admin.html.png?raw=true)
+
+</details>
