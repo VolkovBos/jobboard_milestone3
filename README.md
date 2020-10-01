@@ -45,14 +45,110 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <details>
 <summary>Home Page</summary>
 <br>
+
 <p>Visitor</p>
 
 ![Home Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_visitor.html.png?raw=true)
+
 <p>User</p>
 
 ![Home Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_user.html.png?raw=true)
+
 <p>Admin</p>
 
 ![Home Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/index_admin.html.png?raw=true)
+
+</details>
+
+<details>
+<summary>Vacancies</summary>
+<br>
+
+<p>Visitor</p>
+
+![Vacancies Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/vacancies_visitor.html.png?raw=true)
+
+<p>User</p>
+
+![Vacancies Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/vacancies_user.html.png?raw=true)
+
+<p>Admin</p>
+
+![Vacancies Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/vacancies_admin.html.png?raw=true)
+
+<p>Admin add vacancy</p>
+
+![Add Vacancy Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/add_vacancy_admin.html.png?raw=true)
+
+<p>Admin edit vacancy</p>
+
+![Edit Vacancy Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_vacancy_admin.html.png?raw=true)
+</details>
+
+<details>
+<summary>Applications</summary>
+<br>
+<p>User</p>
+
+![Applications Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/applications_user.html.png?raw=true)
+
+<p>User Add Application</p>
+
+![Applications Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/add_application_user.html.png?raw=true)
+
+<p>Admin</p>
+
+![Applications Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/applications_admin.html.png?raw=true)
+
+<p>Admin Add Application</p>
+
+![Applications Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/add_application_admin.html.png?raw=true)
+
+<p>Admin Edit Application</p>
+
+![Applications Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_application_admin.html.png?raw=true)
+
+</details>
+<details>
+<summary>Users</summary>
+<br>
+<p>Admin</p>
+
+![Users Page Admin](link)
+
+</details>
+<details>
+<summary>Profile</summary>
+<br>
+<p>User</p>
+
+![Profile Page User](link)
+
+<p>Admin</p>
+
+![Profile Page Admin](link)
+
+</details>
+<details>
+<summary>Contact</summary>
+<br>
+<p>All</p>
+
+![Contact Page All](link)
+
+</details>
+<details>
+<summary>Register</summary>
+<br>
+<p>Visitor</p>
+
+![Register Page Visitor](link)
+
+</details>
+<summary>Login</summary>
+<br>
+<p>Visitor</p>
+
+![Login Page Visitor](link)
 
 </details>
