@@ -1,5 +1,5 @@
 import os
-from flask, render_template import Flask
+from flask import Flask, render_template
 
 #in Heroku plaatsen
 app = Flask(__name__)
