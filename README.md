@@ -112,29 +112,33 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <details>
 <summary>Users</summary>
 <br>
-<p>Admin</p>
-
-![Users Page Admin](link)
-
-</details>
-<details>
-<summary>Profile</summary>
-<br>
 <p>User</p>
 
-![Profile Page User](link)
+![Profile Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/profile_user.html.png?raw=true)
+
+<p>User Add Edit User</p>
+
+![Edit User Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_user_user.html.png?raw=true)
 
 <p>Admin</p>
 
-![Profile Page Admin](link)
+![Users Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/users_admin.html.png?raw=true)
 
+<p>Admin Add User</p>
+
+![Users Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/add_user_admin.html.png?raw=true)
+
+<p>Admin Edit User</p>
+
+![Users Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_user_admin.html.png?raw=true)
 </details>
+
 <details>
 <summary>Contact</summary>
 <br>
 <p>All</p>
 
-![Contact Page All](link)
+![Contact Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/contact_visitor.html.png?raw=true)
 
 </details>
 <details>
@@ -142,13 +146,13 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 <br>
 <p>Visitor</p>
 
-![Register Page Visitor](link)
+![Register Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/register_visitor.html.png?raw=true)
 
 </details>
 <summary>Login</summary>
 <br>
 <p>Visitor</p>
 
-![Login Page Visitor](link)
+![Login Page Visitor](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/login_visitor.html.png?raw=true)
 
 </details>
