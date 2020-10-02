@@ -1,7 +1,7 @@
 # BOS UP jobboard - Milestone Project 3
 
 ## Introduction
-Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was created to get more interactive with our candidate and give them insights in the status of our vacancies and ongoing applications.
+Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was created to get more interactive with our candidate and give them insights in the status of our vacancies and ongoing applications.
 
 ## Contents
 1. [UX](#UX)
