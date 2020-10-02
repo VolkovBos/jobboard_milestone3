@@ -163,6 +163,10 @@ Welcome to [BOS UP](https://bosup_jobboard.herokuapp.com/)! This site was create
 
 ## Features
 
+### Existing Features
+
+### Features Left to Implement
+
 ## Technologies Used
 
 ## Testing
