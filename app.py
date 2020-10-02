@@ -28,6 +28,12 @@ def index():
     return render_template("index.html")
 
 
+# Login page for candidates and admin to login
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
 # Contact page in case of any problems
 @app.route("/contact")
 def contact():
