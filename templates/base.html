@@ -8,12 +8,12 @@
 <!--    Materialize Icons -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!--    Personalized Styling -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-
 <!--    Compiled and minified Materialize CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+<!--    Personalized Styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+    
 <!--    EmailJS API, sends email to owner of site -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
 	<script type="text/javascript">
@@ -31,17 +31,19 @@
     <header>
 
 <!--    Navbar      -->
-        <nav class="blue darken-4">
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">BOS UP</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Vacancies</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                </ul>
-            </div>
-        </nav>
+        <div class="navbar navbar-fixed">
+            <nav class="blue darken-4">
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">BOS UP</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Vacancies</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
 
 <!--    Content section      -->
@@ -53,7 +55,7 @@
 <!--    Footer      -->
     <footer class="blue darken-4">
 		© 2020 Copyright: Robbert Bos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">Contact us</a>
+		<a href="{{ url_for('contact') }}">Contact us</a>
 	</footer>
 
 <!--    jQuery -->
@@ -65,5 +67,6 @@
 
 <!--    EmailJS API, sends email to owner of site -->
 	<script type="text/javascript" src="{{ url_for('static', filename='js/contactMail.js') }}"></script>
+
 </body>
 </html>

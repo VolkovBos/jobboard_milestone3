@@ -28,6 +28,11 @@ def index():
     return render_template("index.html")
 
 
+# Contact page in case of any problems
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 # To run the app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
