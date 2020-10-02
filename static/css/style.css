@@ -1,3 +1,4 @@
+
 /*      Footer      */
 footer {
     height: 3rem;
@@ -8,4 +9,33 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+/*      Forms       */
+.btn {
+    margin: 20px;
+}
+
+.card {
+    padding: 20px;
+}
+
+label {
+    margin-left: 10px;
+}
+
+/* overrule Materialize css */
+    /* Size of textarea */
+textarea{
+    min-height: inherit;
+    height: auto !important;
+}
+
+    /* Button shown behind footer when scrolling */
+.waves-effect {
+    z-index: 0;
 }
