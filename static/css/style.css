@@ -16,6 +16,11 @@ h1 {
 }
 
 /*      Forms       */
+.dropdown-content li>a, 
+.dropdown-content li>span {
+    color: #0D47A1;
+}
+
 .btn {
     margin: 20px;
 }

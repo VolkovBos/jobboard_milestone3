@@ -68,5 +68,11 @@
 <!--    EmailJS API, sends email to owner of site -->
 	<script type="text/javascript" src="{{ url_for('static', filename='js/contactMail.js') }}"></script>
 
+    <script type="text/javascript">
+		$(document).ready(function(){
+            // For select fields
+            $('select').formSelect();
+        });
+    </script>
 </body>
 </html>
