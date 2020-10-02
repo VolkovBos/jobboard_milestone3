@@ -14,6 +14,14 @@
 <!--    Compiled and minified Materialize CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+<!--    EmailJS API, sends email to owner of site -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+	<script type="text/javascript">
+		(function(){
+            emailjs.init("user_VWTMl2a56d4w3kUKpKAyq");
+        })();
+	</script>
+
     <title>BOS UP</title>
 </head>
 	
@@ -44,7 +52,8 @@
 
 <!--    Footer      -->
     <footer class="blue darken-4">
-		© 2020 Copyright: Robbert Bos
+		© 2020 Copyright: Robbert Bos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#">Contact us</a>
 	</footer>
 
 <!--    jQuery -->
@@ -53,5 +62,8 @@
 
 <!--    Compiled and minified Materialize JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!--    EmailJS API, sends email to owner of site -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/contactMail.js') }}"></script>
 </body>
 </html>
