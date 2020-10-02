@@ -34,6 +34,12 @@ def login():
     return render_template('login.html')
 
 
+# Registration page for new users
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+
 # Contact page in case of any problems
 @app.route("/contact")
 def contact():
