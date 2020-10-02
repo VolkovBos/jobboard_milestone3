@@ -1,4 +1,8 @@
 
+.container {
+    background-color: #bbdefb;
+}
+
 /*      Footer      */
 footer {
     height: 3rem;
