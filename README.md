@@ -172,9 +172,10 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was c
 ## Testing
 
 ## Deployment
-03-10-2020  : I had an issue with my credentials appearing in cached Python files/folders. So I had to remove the <span>__ Pycache __</span> folder and all history. I did this with:<br>
+03-10-2020 :<br>
+I had an issue with my credentials appearing in cached Python files/folders. So I had to remove the <span>__ Pycache __</span> folder and all history. I did this with:
 ```
-git filter-branch --tree-filter 'rm -f __Pycache__/*' -- --all<br>
+git filter-branch --tree-filter 'rm -f __Pycache__/*' -- --all
 git push force
 ```
 
