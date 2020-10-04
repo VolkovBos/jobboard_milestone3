@@ -182,7 +182,7 @@ Because the company is a startup there are no images available just yet. And als
 ## Testing
 
 
-### Issues fount
+### Issues found
 When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution here:<br>
 https://github.com/Dogfalo/materialize/issues/3844
 
