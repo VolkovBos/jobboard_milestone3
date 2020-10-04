@@ -11,7 +11,7 @@ if os.path.exists("env.py"):
 
 # App instance
 app = Flask(__name__)
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 app.secret_key = SECRET_KEY
 
 
