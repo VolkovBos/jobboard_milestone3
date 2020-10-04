@@ -86,6 +86,18 @@ def login():
 
     return render_template('login.html')
 
+
+# Navbar link to clear session -> to logout
+@app.route('/logout')
+def logout():
+    if not g.user:
+        return redirect(url_for('index'))
+
+    # Clear session
+    session.pop('user_id', None)
+    return redirect(url_for('index'))
+
+
 # Registration page for new users
 @app.route('/register')
 def register():

@@ -40,8 +40,13 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('index') }}">Home</a></li>
                         <li><a href="{{ url_for('vacancies') }}">Vacancies</a></li>
+                    {% if not g.user %}
                         <li><a href="{{ url_for('login') }}">Login</a></li>
                         <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% else %}
+                        <li><a href="#">{{ g.user["user_name"] }}</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
                     </ul>
                 </div>
             </nav>
@@ -49,8 +54,13 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('vacancies') }}">Vacancies</a></li>
+        {% if not g.user %}
             <li><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% else %}
+            <li><a href="#">{{ g.user["user_name"] }}</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
         </ul>
     </header>
 
