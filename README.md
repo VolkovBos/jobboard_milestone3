@@ -161,6 +161,16 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was c
 
 </details>
 
+### Design
+<ins>Color Scheme</ins><br/>
+The color scheme is chosen because of the corporate identity of BOS UP, which contains a blue pallet of colors.
+
+<ins>Typography</ins><br/>
+The font Barrio is chosen in the corporate identity so I used this on the logo. To get a nice contrast with this I chose for Montserrat for the main font on the website. The font is simple but yet adds some character.
+
+<ins>Images</ins><br/>
+Because the company is a startup there are no images available just yet. And also the goal of the site is more for recruitment processes and connection with the candidates then a global PR of the company. Maybe in the near future this can be adjusted due to growth.
+
 ## Features
 
 ### Existing Features

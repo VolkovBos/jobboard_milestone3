@@ -1,6 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Barrio&family=Montserrat&display=swap');
+
 /*      General      */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .container {
     background-color: #bbdefb;
+}
+
+/*      Navbar      */
+nav {
+    padding: 0 2em;
+}
+
+nav .brand-logo {
+    font-family: 'Barrio', cursive;
+}
+
+nav ul a {
+    font-size: 1.4rem;
+    text-transform: uppercase;
 }
 
 /*      Footer      */
