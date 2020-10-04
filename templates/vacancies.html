@@ -1,4 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!--    A page for open vacancies -->
+    <div class="container">
+<!--    Title      -->
+        <div class="row">
+            <h1>Open Vacancies</h1>
+        </div>
+
+<!--    List of vacancies      -->
+        <div class="row">
+            <ul class="collapsible vacancies" data-collapsible="accordion">
+            {% for vac in vacancies_open %}
+                <li>
+                    <div class="row collapsible-header blue lighten-3 vacancy-row">
+<!--    Collapsible button      -->
+                        <div class="col s1">
+                            <i class="material-icons">expand_more</i>
+                        </div>
+<!--    Front text      -->
+                        <div class="col s11">
+                            <span class="item-title">{{vac.vacancy_name}}</span><br>
+                            <span>Closing: {{vac.end_date}}</span>
+                        </div>
+                    </div>
+<!--    Collapsible text      -->
+                    <div class="collapsible-body blue lighten-4">
+                        <p>{{vac.vacancy_text}}</p>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}

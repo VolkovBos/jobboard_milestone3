@@ -45,6 +45,15 @@ def register():
 def contact():
     return render_template("contact.html")
 
+# Vacancies page for overview of open vacancies
+@app.route('/vacancies')
+def vacancies():
+    vacancies_open = mongo.db.vacancies.find({'vacancy_status': 'open'})
+
+    return render_template("vacancies.html", 
+        vacancies_open=vacancies_open )
+
+
 # To run the app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
