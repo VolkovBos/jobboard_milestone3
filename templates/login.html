@@ -7,7 +7,18 @@
         <div class="row">
             <h1>Login page</h1>
         </div>
-
+<!--    Error messages       -->
+        <div class="row">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <p class="blink_me center">{{ message }}</p>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+        </div>
 <!--    Form      -->
         <div class="row">
             <form method="POST">

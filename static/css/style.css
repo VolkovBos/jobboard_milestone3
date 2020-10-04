@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barrio&family=Montserrat&display=swap');
 
-/*      General      */
+/*-----      General      -----*/
 body {
     font-family: 'Montserrat', sans-serif;
 }
@@ -9,7 +9,11 @@ body {
     background-color: #bbdefb;
 }
 
-/*      Navbar      */
+h1 {
+    text-align: center;
+}
+
+/*-----      Navbar      -----*/
 nav {
     padding: 0 2em;
 }
@@ -23,7 +27,7 @@ nav ul a {
     text-transform: uppercase;
 }
 
-/*      Footer      */
+/*-----      Footer      -----*/
 footer {
     height: 3rem;
     line-height: 3rem;
@@ -35,11 +39,7 @@ footer {
     width: 100%;
 }
 
-h1 {
-    text-align: center;
-}
-
-/*      Forms       */
+/*-----      Forms       -----*/
 .dropdown-content li>a, 
 .dropdown-content li>span {
     color: #0D47A1;
@@ -57,25 +57,36 @@ label {
     margin-left: 10px;
 }
 
-/* overrule Materialize css */
-    /* Size of textarea */
+/*-----      Error messages      -----*/
+.blink_me {
+    animation: blinker 2s;
+    animation-iteration-count: 2;
+    color: red;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+/*-----     overrule Materialize css    -----*/
+    /*-----     Size of textarea    -----*/
 textarea{
     min-height: inherit;
     height: auto !important;
 }
 
-    /* Button shown behind footer when scrolling */
+    /*-----     Button shown behind footer when scrolling       -----*/
 .waves-effect {
     z-index: 0;
 }
 
 @media only screen and (max-width: 768px) {
-    /*      General      */
+    /*-----      General      -----*/
     h1 {
         font-size: 3em;
     }
     
-    /*      Footer      */
+    /*-----      Footer      -----*/
     footer {
         height: 2rem;
         line-height: 2rem;
@@ -89,12 +100,12 @@ textarea{
 }
 
 @media only screen and (max-width: 600px) {
-    /*      General      */
+    /*-----      General      -----*/
     h1 {
         font-size: 2em;
     }
     
-    /*      Footer      */
+    /*-----      Footer      -----*/
     footer {
         height: 1.5rem;
         line-height: 1.5rem;
