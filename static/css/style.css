@@ -68,3 +68,41 @@ textarea{
 .waves-effect {
     z-index: 0;
 }
+
+@media only screen and (max-width: 768px) {
+    /*      General      */
+    h1 {
+        font-size: 3em;
+    }
+    
+    /*      Footer      */
+    footer {
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 1.3rem;
+        text-align: center;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /*      General      */
+    h1 {
+        font-size: 2em;
+    }
+    
+    /*      Footer      */
+    footer {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: 1rem;
+        text-align: center;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}

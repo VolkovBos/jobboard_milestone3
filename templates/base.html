@@ -35,6 +35,8 @@
             <nav class="blue darken-4">
                 <div class="nav-wrapper">
                     <a href="{{ url_for('index') }}" class="brand-logo">BOS UP</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('index') }}">Home</a></li>
                         <li><a href="#">Vacancies</a></li>
@@ -44,6 +46,12 @@
                 </div>
             </nav>
         </div>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="#">Vacancies</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        </ul>
     </header>
 
 <!--    Content section      -->
@@ -70,8 +78,8 @@
 
     <script type="text/javascript">
 		$(document).ready(function(){
-            // For select fields
-            $('select').formSelect();
+            $('select').formSelect();   // For select fields
+            $('.sidenav').sidenav();    // For sidebar mobile
         });
     </script>
 </body>
