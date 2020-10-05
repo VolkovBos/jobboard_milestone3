@@ -57,10 +57,67 @@ def index():
     return render_template("index.html")
 
 
+# Registration route
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # Check if user is not logged in already
+    if g.user:
+        return redirect(url_for('index'))
+
+    # If the button is called for an action
+    if request.method == 'POST':
+        form = request.form.to_dict()
+
+        # Check if the password and password actually match
+        if form['user_password1'] == form['user_password2']:
+            user = mongo.db.candidates.find_one({"user_name": form['username']})
+            
+            # Check if the user exist in the database
+            if user:
+                flash(f"{form['username']} already exists!")
+                return redirect(url_for('register'))
+
+            # If user does not exist register new user
+            else:
+                # Create new user with hashed password
+                mongo.db.candidates.insert_one(
+                    {
+                        'user_name': form['username'],
+                        'email': form['email'],
+                        'password': form[user_password1],
+                        'approved': False
+                    }
+                )
+                # Check if user is actually saved
+                user_in_db = mongo.db.candidates.find_one({"user_name": form['username']})
+
+                # if saved message that the registration is being processed
+                if user_in_db:
+                    flash("Your registration is saved, we will get in touch with you.")
+                    return redirect(url_for('register'))
+
+                # if not saved refer to the contact page
+                else:
+                    flash("There was a problem saving your registration. If this happens again, please use the contactform to contact the administrator of the website.")
+                    return redirect(url_for('contact'))
+        
+        # If the passwords don't match
+        else:
+            flash("Passwords dont match!")
+            return redirect(url_for('register'))
+
+    return render_template("register.html")
+
+
 # Login page for candidates and admin to login
 # I used a tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U for the login/session sections.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Check if user is not logged in already
+    if g.user:
+        return redirect(url_for('index'))
+        
+    # If the button is called for an action
     if request.method == 'POST':
         session.pop('user_id', None)
 
@@ -96,12 +153,6 @@ def logout():
     # Clear session
     session.pop('user_id', None)
     return redirect(url_for('index'))
-
-
-# Registration page for new users
-@app.route('/register')
-def register():
-    return render_template('register.html')
 
 
 # Contact page in case of any problems
