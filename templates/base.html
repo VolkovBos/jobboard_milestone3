@@ -26,25 +26,43 @@
 </head>
 	
 <body class="blue lighten-5">
-
 <!--    Header      -->
     <header>
-
 <!--    Navbar      -->
         <div class="navbar navbar-fixed">
             <nav class="blue darken-4">
                 <div class="nav-wrapper">
                     <a href="{{ url_for('index') }}" class="brand-logo">BOS UP</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a title="Home" href="{{ url_for('index') }}">Home</a></li>
-                        <li><a title="Vacancies" href="{{ url_for('vacancies') }}">Vacancies</a></li>
+                        <li>
+                            <a title="Home" href="{{ url_for('index') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a title= {% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %} href="{{ url_for('vacancies') }}">
+                                Vacancies
+                            </a>
+                        </li>
                     {% if not g.user %}
-                        <li><a title="Login" href="{{ url_for('login') }}">Login</a></li>
-                        <li><a title="Register" href="{{ url_for('register') }}">Register</a></li>
+                        <li>
+                            <a title="Login with your credentials" href="{{ url_for('login') }}">
+                                Login
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Register to get an user account" href="{{ url_for('register') }}">
+                                Register
+                            </a>
+                        </li>
                     {% else %}
-                        <li><a title="Profile" href="#">{{ g.user["user_name"] }}</a></li>
+                        <li>
+                            <a title="Profile" href="#">{{ g.user["user_name"] }}
+                            </a>
+                        </li>
                         <li>
                             <a title="Logout" href="{{ url_for('logout') }}">
                                 <i class="material-icons right">exit_to_app</i>
