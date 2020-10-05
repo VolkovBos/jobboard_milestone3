@@ -66,10 +66,33 @@
                                 Register
                             </a>
                         </li>
+                    {% elif g.user['profile'] != 'admin' %}
+                        <li>
+                            <a  class="{% if 'myapplications' in request.path %} active {% endif %}"
+                                title="See which applications you have" 
+                                href="#" >
+                                My Applications
+                            </a>
+                        </li>
                     {% else %}
                         <li>
+                            <a  class="{% if 'applications' in request.path %} active {% endif %}"
+                                title="Manage applications" 
+                                href="#" >
+                                Applications
+                            </a>
+                        </li>
+                        <li>
+                            <a  class="{% if 'users' in request.path %} active {% endif %}"
+                                title="Manage users"
+                                href="">
+                                Users
+                            </a>
+                        </li>
+                    {% endif %}
+                        <li>
                             <a  class="{% if 'profile' in request.path %} active {% endif %}"
-                                title="Profile" 
+                                title="Go to your userprofile" 
                                 href="#">
                                 {{ g.user["user_name"] }}
                             </a>
@@ -79,7 +102,6 @@
                                 <i class="material-icons right">exit_to_app</i>
                             </a>
                         </li>
-                    {% endif %}
                     </ul>
                 </div>
             </nav>
