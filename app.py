@@ -71,10 +71,10 @@ def register():
         # Check if the password and password actually match
         if form['user_password1'] == form['user_password2']:
             user = mongo.db.candidates.find_one({"user_name": form['username']})
-            
+
             # Check if the user exist in the database
             if user:
-                flash(f"{form['username']} already exists!")
+                flash(f"{form['username']} already exists! Please choose a different username.")
                 return redirect(url_for('register'))
 
             # If user does not exist register new user
@@ -84,7 +84,7 @@ def register():
                     {
                         'user_name': form['username'],
                         'email': form['email'],
-                        'password': form[user_password1],
+                        'password': form["user_password1"],
                         'approved': False
                     }
                 )
@@ -103,7 +103,7 @@ def register():
         
         # If the passwords don't match
         else:
-            flash("Passwords dont match!")
+            flash("Passwords are not identical.\n please try again.")
             return redirect(url_for('register'))
 
     return render_template("register.html")
