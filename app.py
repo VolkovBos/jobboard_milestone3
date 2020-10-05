@@ -186,7 +186,9 @@ def vacancies():
 # Applications page for overview and management of Applications
 @app.route('/applications')
 def applications():
-    return render_template("applications.html")
+    return render_template("applications.html", 
+        applications_open=mongo.db.applications.find({'status': 'open' }),
+        applications_closed=mongo.db.applications.find({'status': {'$ne': 'open'} }))
 
 
 # To run the app
