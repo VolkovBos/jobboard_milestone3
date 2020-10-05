@@ -66,42 +66,44 @@
                                 Register
                             </a>
                         </li>
-                    {% elif g.user['profile'] != 'admin' %}
-                        <li>
-                            <a  class="{% if 'myapplications' in request.path %} active {% endif %}"
-                                title="See which applications you have" 
-                                href="#" >
-                                My Applications
-                            </a>
-                        </li>
                     {% else %}
-                        <li>
-                            <a  class="{% if 'applications' in request.path %} active {% endif %}"
-                                title="Manage applications" 
-                                href="#" >
-                                Applications
-                            </a>
-                        </li>
-                        <li>
-                            <a  class="{% if 'users' in request.path %} active {% endif %}"
-                                title="Manage users"
-                                href="">
-                                Users
-                            </a>
-                        </li>
+                        {% if g.user['profile'] != 'admin' %}
+                            <li>
+                                <a  class="{% if 'myapplications' in request.path %} active {% endif %}"
+                                    title="See which applications you have" 
+                                    href="#" >
+                                    My Applications
+                                </a>
+                            </li>
+                        {% elif g.user['profile'] == 'admin' %}
+                            <li>
+                                <a  class="{% if 'applications' in request.path %} active {% endif %}"
+                                    title="Manage applications" 
+                                    href="#" >
+                                    Applications
+                                </a>
+                            </li>
+                            <li>
+                                <a  class="{% if 'users' in request.path %} active {% endif %}"
+                                    title="Manage users"
+                                    href="">
+                                    Users
+                                </a>
+                            </li>
+                        {% endif %}
+                            <li>
+                                <a  class="{% if 'profile' in request.path %} active {% endif %}"
+                                    title="Go to your userprofile" 
+                                    href="#">
+                                    {{ g.user["user_name"] }}
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Logout" href="{{ url_for('logout') }}">
+                                    <i class="material-icons right">exit_to_app</i>
+                                </a>
+                            </li>
                     {% endif %}
-                        <li>
-                            <a  class="{% if 'profile' in request.path %} active {% endif %}"
-                                title="Go to your userprofile" 
-                                href="#">
-                                {{ g.user["user_name"] }}
-                            </a>
-                        </li>
-                        <li>
-                            <a title="Logout" href="{{ url_for('logout') }}">
-                                <i class="material-icons right">exit_to_app</i>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -143,19 +145,40 @@
                 </a>
             </li>
         {% else %}
-            <li>
-                <a href="#">
-                    Profile
-                    <i class="material-icons right">person</i>
-                </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="{{ url_for('logout') }}">
-                    Logout
-                    <i class="material-icons right">exit_to_app</i>
-                </a>
-            </li>
+            {% if g.user['profile'] != 'admin' %}
+                <li>
+                    <a href="#" >
+                        My Applications
+                        <i class="material-icons right">transfer_within_a_station</i>
+                    </a>
+                </li>
+            {% elif g.user['profile'] == 'admin' %}
+                <li>
+                    <a  href="#" >
+                        Applications
+                        <i class="material-icons right">transfer_within_a_station</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        Users
+                        <i class="material-icons right">supervisor_account</i>
+                    </a>
+                </li>
+            {% endif %}
+                <li>
+                    <a href="#">
+                        Profile
+                        <i class="material-icons right">person</i>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="{{ url_for('logout') }}">
+                        Logout
+                        <i class="material-icons right">exit_to_app</i>
+                    </a>
+                </li>
         {% endif %}
         </ul>
     </header>
