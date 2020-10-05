@@ -11,6 +11,7 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 3rem;
 }
 
 /*-----      Navbar      -----*/
@@ -49,13 +50,27 @@ footer {
 .dropdown-content li>span {
     color: #0D47A1;
 }
-
+/*
 .btn {
     margin: 20px;
-}
+}*/
 
 .card {
     padding: 20px;
+}
+    /*-----     overrule Materialize css    -----*/
+        /*-----     Size of textarea    -----*/
+textarea{
+    min-height: inherit;
+    height: auto !important;
+}
+        /*-----     Padding of list area    -----*/
+.collapsible-header {
+    padding: 0;
+}
+        /*-----     Button shown behind footer when scrolling       -----*/
+.waves-effect {
+    z-index: 0;
 }
 
 label {
@@ -71,18 +86,6 @@ label {
 
 @keyframes blinker {  
   50% { opacity: 0; }
-}
-
-/*-----     overrule Materialize css    -----*/
-    /*-----     Size of textarea    -----*/
-textarea{
-    min-height: inherit;
-    height: auto !important;
-}
-
-    /*-----     Button shown behind footer when scrolling       -----*/
-.waves-effect {
-    z-index: 0;
 }
 
 @media only screen and (max-width: 768px) {

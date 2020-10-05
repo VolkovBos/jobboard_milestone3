@@ -1,10 +1,83 @@
 {% extends 'base.html' %}
 {% block content %}
-    
-<div class="container">
+
+<!--    Applications page      -->
+<div class="row col s12">
+<!--    Title Open     -->
     <div class="row">
         <h1>Open Applications</h1>
+    
+<!--    Button to add application, only available for admin    -->
+    {%  if g.user['profile'] == 'admin' %}
+        <div class="col s12 center">
+            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add Application</a>
+        </div></div>
+    {% endif %}
+<!--    Application list with open status    -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for apl in applications_open %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+                <div class="col s1">
+                    <i class="material-icons">expand_more</i>
+                </div>
+                <div class="col s8">
+                    <span class="item-title">{{apl.vacancy_name}} : {{apl.candidate_name}} ({{apl.candidate_email}})</span><br>
+                    {{apl.status}}
+                </div>
+<!--    Button to edit application, only available for admin    -->
+                <div class="col s3">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                {% endif %}
+                </div>
+            </div>
+            <div class="collapsible-body blue lighten-4">
+                <p>{{apl.vacancy_text}}</p>
+                <div class="center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small">Close</a>
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                {% endif %}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+<!--    Title Closed     -->
+    <div class="row">
+        <h1>Closed Applications</h1>
     </div>
+<!--    Application list with closed status    -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for apl in applications_closed %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+                <div class="col s1">
+                    <i class="material-icons">expand_more</i>
+                </div>
+                <div class="col s8">
+                    <span class="item-title">{{apl.vacancy_name}} : {{apl.candidate_name}} ({{apl.candidate_email}})</span><br>
+                    {{apl.status}} - {{apl.reason_lost}}
+                </div>
+<!--    Button to edit application, only available for admin    -->
+                <div class="col s3">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                {% endif %}
+                </div>
+            </div>
+            <div class="collapsible-body blue lighten-4">
+                <p>{{apl.vacancy_text}}</p>
+                <div class="center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}
