@@ -151,6 +151,12 @@ def login():
     return render_template('login.html')
 
 
+# User page for management of users
+@app.route('/users')
+def users():
+    return render_template("users.html")
+
+
 # Navbar link to clear session -> to logout
 @app.route('/logout')
 def logout():

@@ -86,7 +86,7 @@
                             <li>
                                 <a  class="{% if 'users' in request.path %} active {% endif %}"
                                     title="Manage users"
-                                    href="">
+                                    href="{{ url_for('users') }}">
                                     Users
                                 </a>
                             </li>
@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ url_for('users') }}">
                         Users
                         <i class="material-icons right">supervisor_account</i>
                     </a>
