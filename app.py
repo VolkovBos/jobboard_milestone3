@@ -12,6 +12,8 @@ from flask import (
 )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 # Import my env.py that's ignored by git
 if os.path.exists("env.py"):
@@ -66,30 +68,36 @@ def register():
 
     # If the button is called for an action
     if request.method == 'POST':
-        form = request.form.to_dict()
+        username = request.form['username']
+        email = request.form['email']
+        user_password1 = request.form['user_password1']
+        user_password2 = request.form['user_password2']
 
         # Check if the password and password actually match
-        if form['user_password1'] == form['user_password2']:
-            user = mongo.db.candidates.find_one({"user_name": form['username']})
+        if user_password1 == user_password2:
+            user = mongo.db.candidates.find_one({'user_name': username})
 
             # Check if the user exist in the database
             if user:
-                flash(f"{form['username']} already exists! Please choose a different username.")
+                flash(f"{username} already exists! Please choose a different username.")
                 return redirect(url_for('register'))
 
-            # If user does not exist register new user
+            # If the user does not exist register new user
             else:
+                # Hash password
+                hash_pass = generate_password_hash(user_password1)
+
                 # Create new user with hashed password
                 mongo.db.candidates.insert_one(
                     {
-                        'user_name': form['username'],
-                        'email': form['email'],
-                        'password': form["user_password1"],
-                        'approved': False
+                        'user_name': username,
+                        'email': email,
+                        'password': hash_pass,
+                        'approved':False
                     }
                 )
                 # Check if user is actually saved
-                user_in_db = mongo.db.candidates.find_one({"user_name": form['username']})
+                user_in_db = mongo.db.candidates.find_one({"user_name": username})
 
                 # if saved message that the registration is being processed
                 if user_in_db:
@@ -103,7 +111,7 @@ def register():
         
         # If the passwords don't match
         else:
-            flash("Passwords are not identical.\n please try again.")
+            flash("Passwords are not identical. Please try again.")
             return redirect(url_for('register'))
 
     return render_template("register.html")
@@ -123,13 +131,12 @@ def login():
 
         username = request.form['username']
         password = request.form['password']
-
-        users = mongo.db.candidates.find_one({'user_name': username})
+        users    = mongo.db.candidates.find_one({'user_name': username})
 
         # Check if the username exists in the database
         if bool(users):
             # Check if the password is correct
-            if users["password"] ==  password:
+            if check_password_hash(users["password"], password ):
                 session['user_id'] = users["user_id"] 
                 return redirect(url_for('index'))
 
