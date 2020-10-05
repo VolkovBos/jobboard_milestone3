@@ -168,13 +168,19 @@ def contact():
     return render_template("contact.html")
 
 
-# Vacancies page for overview of open vacancies
+# Vacancies page for overview and management of vacancies
 @app.route('/vacancies')
 def vacancies():
     vacancies_open = mongo.db.vacancies.find({'vacancy_status': 'open'})
 
     return render_template("vacancies.html", 
         vacancies_open=vacancies_open )
+
+
+# Applications page for overview and management of Applications
+@app.route('/applications')
+def applications():
+    return render_template("applications.html")
 
 
 # To run the app
