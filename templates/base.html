@@ -38,29 +38,40 @@
                     </a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
-                            <a title="Home" href="{{ url_for('index') }}">
+                            <a  class="{% if 'index' in request.path %} active {% endif %}"
+                                title="Home" 
+                                href="{{ url_for('index') }}">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a title= {% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %} href="{{ url_for('vacancies') }}">
+                            <a  class="{% if 'vacancies' in request.path %} active {% endif %}"
+                                title= {% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %} 
+                                href="{{ url_for('vacancies') }}">
                                 Vacancies
                             </a>
                         </li>
                     {% if not g.user %}
                         <li>
-                            <a title="Login with your credentials" href="{{ url_for('login') }}">
+                            <a  class="{% if 'login' in request.path %} active {% endif %}"
+                                title="Login with your credentials" 
+                                href="{{ url_for('login') }}">
                                 Login
                             </a>
                         </li>
                         <li>
-                            <a title="Register to get an user account" href="{{ url_for('register') }}">
+                            <a  class="{% if 'register' in request.path %} active {% endif %}" 
+                                title="Register to get an user account" 
+                                href="{{ url_for('register') }}">
                                 Register
                             </a>
                         </li>
                     {% else %}
                         <li>
-                            <a title="Profile" href="#">{{ g.user["user_name"] }}
+                            <a  class="{% if 'profile' in request.path %} active {% endif %}"
+                                title="Profile" 
+                                href="#">
+                                {{ g.user["user_name"] }}
                             </a>
                         </li>
                         <li>
