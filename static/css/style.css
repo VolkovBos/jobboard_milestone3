@@ -50,31 +50,71 @@ footer {
 .dropdown-content li>span {
     color: #0D47A1;
 }
-/*
-.btn {
-    margin: 20px;
-}*/
-
-.card {
-    padding: 20px;
-}
-    /*-----     overrule Materialize css    -----*/
-        /*-----     Size of textarea    -----*/
-textarea{
+        
+textarea {
+    /* Size of textarea */
     min-height: inherit;
     height: auto !important;
 }
-        /*-----     Padding of list area    -----*/
-.collapsible-header {
-    padding: 0;
-}
-        /*-----     Button shown behind footer when scrolling       -----*/
+    
 .waves-effect {
+    /* Button shown behind footer when scrolling */
     z-index: 0;
 }
 
 label {
     margin-left: 10px;
+}
+
+/*-----      List views       -----*/
+.collapsible-header {
+    padding: 0;
+}
+
+.collapsible-header i {
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.card {
+    padding: 20px;
+}
+
+td {
+    padding:0;
+}
+
+table {
+    border-collapse: inherit;
+    margin: 10px;
+}
+
+.first_col {
+    width: 60px;
+    font-weight: 600;
+}
+
+.mid_col {
+    width: 10px;
+}
+
+.last_col {
+    width: 100px;
+}
+
+.item-title {
+    font-weight: 600;
+}
+
+.listpages {
+    margin-bottom: 100px;
 }
 
 /*-----      Error messages      -----*/
@@ -88,6 +128,7 @@ label {
   50% { opacity: 0; }
 }
 
+/*-----      Smaller Devices      -----*/
 @media only screen and (max-width: 768px) {
     /*-----      General      -----*/
     h1 {
@@ -111,6 +152,15 @@ label {
     /*-----      General      -----*/
     h1 {
         font-size: 2em;
+    }
+
+    /*-----      Forms      -----*/
+    .collapsible-header i {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: smaller;
     }
     
     /*-----      Footer      -----*/

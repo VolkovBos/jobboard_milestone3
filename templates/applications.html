@@ -2,7 +2,7 @@
 {% block content %}
 
 <!--    Applications page      -->
-<div class="row col s12">
+<div class="row col s12 listpages">
 <!--    Title Open     -->
     <div class="row">
         <h1>Open Applications</h1>
@@ -18,15 +18,30 @@
     {% for apl in applications_open %}
         <li>
             <div class="row collapsible-header blue lighten-3">
-                <div class="col s1">
-                    <i class="material-icons">expand_more</i>
-                </div>
-                <div class="col s8">
-                    <span class="item-title">{{apl.vacancy_name}} : {{apl.candidate_name}} ({{apl.candidate_email}})</span><br>
-                    {{apl.status}}
+                <div class="col s9">    
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="first_col">Vacancy</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{apl.vacancy_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="mid_col"><i class="medium material-icons">expand_more</i></td>
+                            <td class="first_col">Candidate</td>
+                            <td>:</td>
+                            <td>{{apl.candidate_name}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="first_col">Status</td>
+                            <td>:</td>
+                            <td>{{apl.status}}</td>
+                        </tr>
+                    </table>
                 </div>
 <!--    Button to edit application, only available for admin    -->
-                <div class="col s3">
+                <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
                     <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
                 {% endif %}
@@ -53,15 +68,30 @@
     {% for apl in applications_closed %}
         <li>
             <div class="row collapsible-header blue lighten-3">
-                <div class="col s1">
-                    <i class="material-icons">expand_more</i>
-                </div>
-                <div class="col s8">
-                    <span class="item-title">{{apl.vacancy_name}} : {{apl.candidate_name}} ({{apl.candidate_email}})</span><br>
-                    {{apl.status}} - {{apl.reason_lost}}
+                <div class="col s9">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="first_col">Vacancy</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{apl.vacancy_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="mid_col"><i class="medium material-icons">expand_more</i></td>
+                            <td class="first_col">Candidate</td>
+                            <td>:</td>
+                            <td>{{apl.candidate_name}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="first_col">Status</td>
+                            <td>:</td>
+                            <td>{{apl.status}}</td>
+                        </tr>
+                    </table>
                 </div>
 <!--    Button to edit application, only available for admin    -->
-                <div class="col s3">
+                <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
                     <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
                 {% endif %}
