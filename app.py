@@ -151,12 +151,6 @@ def login():
     return render_template('login.html')
 
 
-# User page for management of users
-@app.route('/users')
-def users():
-    return render_template("users.html")
-
-
 # Navbar link to clear session -> to logout
 @app.route('/logout')
 def logout():
@@ -166,6 +160,14 @@ def logout():
     # Clear session
     session.pop('user_id', None)
     return redirect(url_for('index'))
+
+
+# User page for management of users
+@app.route('/users')
+def users():
+    return render_template("users.html", 
+        users=mongo.db.candidates.find({'approved': True}),
+        users_to_approve=mongo.db.candidates.find({'approved': False}) )
 
 
 # Contact page in case of any problems
