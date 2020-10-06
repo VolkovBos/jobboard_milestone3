@@ -11,7 +11,10 @@
 <!--    Button to add vacancy, only available for admin    -->
     {%  if g.user['profile'] == 'admin' %}
         <div class="col s12 center">
-            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add Vacancy</a>
+            <a href="" class="btn waves-effect waves-light">
+                <i class="material-icons right">add</i>
+                Add Vacancy
+            </a>
         </div>
     {% endif %}
     </div>
@@ -49,7 +52,7 @@
 <!--    Button to edit application, only available for admin    -->
                 <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                    <a href="" class="btn waves-effect waves-light blue">Edit</a>
                 {% endif %}
                 </div>
             </div>
@@ -61,7 +64,7 @@
 <!--    Admin buttons      -->
                 <div class="center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="" class="waves-effect waves-light btn btn_small">Close</a>
+                    <a href="" class="btn waves-effect waves-light">Close</a>
                     <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
                 {% endif %}
                 </div>
@@ -109,7 +112,7 @@
 <!--    Button to edit application, only available for admin    -->
                 <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                    <a href="" class="btn waves-effect waves-light blue">Edit</a>
                 {% endif %}
                 </div>
             </div>

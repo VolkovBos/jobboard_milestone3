@@ -1,10 +1,98 @@
 {% extends 'base.html' %}
 {% block content %}
-    
-<div class="container">
+
+<!--    Users page      -->
+<div class="row col s12 listpages">
+
+<!--    Title open section     -->
     <div class="row">
         <h1>Users</h1>
+
+<!--    Button to add application, only available for admin    -->
+    {%  if g.user['profile'] == 'admin' %}
+        <div class="col s12 center">
+            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add Application</a>
+        </div>
+    {% endif %}
     </div>
+
+<!--    Application list with open status    -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for user in users_to_approve %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+
+<!--    Front card text      -->
+                <div class="col s7">    
+                    <table>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Username</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.user_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"><i class="material-icons">expand_more</i></td>
+                            <td class="first_col">Candidate</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Email</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.email}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+<!--    Button to edit application, only available for admin    -->
+                <div class="col s3 center">
+                    <a href="" class="waves-effect waves-light btn btn_small blue">Approve</a>
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                </div>
+            </div>
+
+            <div class="collapsible-body blue lighten-4">
+
+                <table>
+                    <tr>
+                        <td class="first_col">Username</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.user_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Userprofile</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.profile}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Email</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Street + nr</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.street}} {{user.house_nr}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">ZIP code</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.zip_code}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">City</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.city}}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </li>
+    {% endfor %}
+    </ul>
+
 </div>
 
 {% endblock %}
