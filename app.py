@@ -189,7 +189,9 @@ def vacancies():
 # Route to go to the add vacancy page
 @app.route('/add_vacancy')
 def add_vacancy():
-    return render_template('addvacancy.html')
+    vacancy_status=mongo.db.status.find({'type': 'vacancy'})
+    return render_template('addvacancy.html', 
+        status=vacancy_status)
 
 
 # Insert a new vacancy

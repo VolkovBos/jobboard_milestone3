@@ -33,6 +33,9 @@
                 <i class="material-icons prefix">show_chart</i>
                     <select id="status" name="status">
                         <option value="" disabled selected>Choose Status</option>
+                    {% for stat in status %}
+                        <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
+                    {% endfor %}
                     </select>
                 <label for="status">Status</label>
             </div>
