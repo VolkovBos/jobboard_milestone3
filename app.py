@@ -202,6 +202,30 @@ def insert_vacancy():
     return redirect(url_for('vacancies'))
 
 
+# Route to go to the edit vacancy page
+@app.route('/edit_vacancy/<vacancy_id>')
+def edit_vacancy(vacancy_id):
+    the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
+    vacancy_status=mongo.db.status.find({'type': 'vacancy'})
+    return render_template('editvacancy.html', 
+        vacancy=the_vacancy, 
+        status=vacancy_status)
+
+
+# Edit a vacancy
+@app.route('/update_vacancy/<vacancy_id>', methods=['POST'])
+def update_vacancy(vacancy_id):
+    vacancies = mongo.db.vacancies
+    vacancies.update( {'_id': ObjectId(vacancy_id)},
+        {
+            'vacancy_name':request.form.get('vacancy_name'),
+            'vacancy_status':request.form.get('vacancy_status'),
+            'start_date': request.form.get('start_date'),
+            'end_date': request.form.get('end_date'),
+            'vacancy_text':request.form.get('vacancy_text')
+        })
+    return redirect(url_for('vacancies'))
+
 # Applications page for overview and management of Applications
 @app.route('/applications')
 def applications():
