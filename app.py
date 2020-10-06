@@ -178,9 +178,10 @@ def contact():
 @app.route('/vacancies')
 def vacancies():
     vacancies_open = mongo.db.vacancies.find({'vacancy_status': 'open'})
-
+    vacancies_closed=mongo.db.vacancies.find({'vacancy_status': {'$ne': 'open'}})
     return render_template("vacancies.html", 
-        vacancies_open=vacancies_open )
+        vacancies_open=vacancies_open, 
+        vacancies_closed=vacancies_closed )
 
 
 # Applications page for overview and management of Applications

@@ -2,36 +2,131 @@
 {% block content %}
 
 <!--    A page for open vacancies -->
-<div class="container">
-<!--    Title      -->
+<div class="row col s12 listpages">
+
+<!--    Title open section     -->
     <div class="row">
         <h1>Open Vacancies</h1>
+
+<!--    Button to add vacancy, only available for admin    -->
+    {%  if g.user['profile'] == 'admin' %}
+        <div class="col s12 center">
+            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add Vacancy</a>
+        </div>
+    {% endif %}
     </div>
 
 <!--    List of vacancies      -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for vac in vacancies_open %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+
+<!--    Front card text      -->
+                <div class="col s9">    
+                    <table>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Vacancy</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.vacancy_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"><i class="medium material-icons">expand_more</i></td>
+                            <td class="first_col">Closing</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.end_date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Status</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.vacancy_status}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+<!--    Button to edit application, only available for admin    -->
+                <div class="col s3 center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                {% endif %}
+                </div>
+            </div>
+
+<!--    Collapsible card text      -->
+            <div class="collapsible-body blue lighten-4">
+                <p>{{vac.vacancy_text}}</p>
+
+<!--    Admin buttons      -->
+                <div class="center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small">Close</a>
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                {% endif %}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+<!--    Title Closed     -->
     <div class="row">
-        <ul class="collapsible vacancies" data-collapsible="accordion">
-        {% for vac in vacancies_open %}
-            <li>
-                <div class="row collapsible-header blue lighten-3 vacancy-row">
-<!--    Collapsible button      -->
-                    <div class="col s1">
-                        <i class="material-icons">expand_more</i>
-                    </div>
-<!--    Front text      -->
-                    <div class="col s11">
-                        <span class="item-title">{{vac.vacancy_name}}</span><br>
-                        <span>Closing: {{vac.end_date}}</span>
-                    </div>
-                </div>
-<!--    Collapsible text      -->
-                <div class="collapsible-body blue lighten-4">
-                    <p>{{vac.vacancy_text}}</p>
-                </div>
-            </li>
-        {% endfor %}
-        </ul>
+        <h1>Closed Vacancies</h1>
     </div>
+
+<!--    Application list with closed status    -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for vac in vacancies_closed %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+
+<!--    Front card text      -->
+                <div class="col s9">
+                    <table>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Vacancy</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.vacancy_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"><i class="material-icons">expand_more</i></td>
+                            <td class="first_col">Closing</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.end_date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Status</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{vac.vacancy_status}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+<!--    Button to edit application, only available for admin    -->
+                <div class="col s3 center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                {% endif %}
+                </div>
+            </div>
+
+<!--    Collapsible card text      -->
+            <div class="collapsible-body blue lighten-4">
+                <p>{{vac.vacancy_text}}</p>
+
+<!--    Delete button     -->
+                <div class="center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

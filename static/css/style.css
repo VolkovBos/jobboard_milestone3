@@ -96,17 +96,21 @@ table {
     margin: 10px;
 }
 
+.icon_col {
+    width: 10%;
+}
+
 .first_col {
-    width: 60px;
+    width: 20%;
     font-weight: 600;
 }
 
 .mid_col {
-    width: 10px;
+    width: 5%;
 }
 
 .last_col {
-    width: 100px;
+    width: 30%;
 }
 
 .item-title {
