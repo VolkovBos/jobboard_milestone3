@@ -4,16 +4,14 @@
 <!--    Users page      -->
 <div class="row col s12 listpages">
 
-<!--    Title open section     -->
+<!--    Title approve section     -->
     <div class="row">
         <h1>Users to approve</h1>
 
 <!--    Button to add users   -->
-    {%  if g.user['profile'] == 'admin' %}
         <div class="col s12 center">
             <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add User</a>
         </div>
-    {% endif %}
     </div>
 
 <!--    User list with approve status    -->
@@ -53,8 +51,89 @@
                 </div>
             </div>
 
+<!--    Collapsible card text      -->
             <div class="collapsible-body blue lighten-4">
+                <table>
+                    <tr>
+                        <td class="first_col">Username</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.user_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Userprofile</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.profile}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Email</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">Street + nr</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.street}} {{user.house_nr}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">ZIP code</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.zip_code}}</td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">City</td>
+                        <td class="mid_col">:</td>
+                        <td class="last_col">{{user.city}}</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
 
+<!--    Title users section     -->
+    <div class="row">
+        <h1>Active users</h1>
+    </div>
+
+<!--    User list     -->
+    <ul class="collapsible" data-collapsible="accordion">
+    {% for user in users %}
+        <li>
+            <div class="row collapsible-header blue lighten-3">
+
+<!--    Front card text      -->
+                <div class="col s7">    
+                    <table>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Username</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.user_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"><i class="material-icons">expand_more</i></td>
+                            <td class="first_col">Candidate</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="icon_col"></td>
+                            <td class="first_col">Email</td>
+                            <td class="mid_col">:</td>
+                            <td class="last_col">{{user.email}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+<!--    Button to approve or delete new user    -->
+                <div class="col s3 center">
+                    <a href="" class="btn waves-effect waves-light blue">Edit</a>
+                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                </div>
+            </div>
+
+<!--    Collapsible card text      -->
+            <div class="collapsible-body blue lighten-4">
                 <table>
                     <tr>
                         <td class="first_col">Username</td>
