@@ -31,13 +31,13 @@
 <!--    Vacancy status     -->
             <div class="input-field col s5">
                 <i class="material-icons prefix">show_chart</i>
-                    <select id="status" name="status">
+                    <select id="vacancy_status" name="vacancy_status">
                         <option value="" disabled selected>Choose Status</option>
                     {% for stat in status %}
                         <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
                     {% endfor %}
                     </select>
-                <label for="status">Status</label>
+                <label for="vacancy_status">Status</label>
             </div>
         </div>
 
