@@ -70,6 +70,7 @@
     {% endfor %}
     </ul>
 
+{%  if g.user['profile'] == 'admin' %}
 <!--    Title Closed     -->
     <div class="row">
         <h1>Closed Vacancies</h1>
@@ -128,5 +129,5 @@
         {% endfor %}
     </ul>
 </div>
-
+{% endif %}
 {% endblock %}
