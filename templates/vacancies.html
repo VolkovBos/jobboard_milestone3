@@ -11,7 +11,7 @@
 <!--    Button to add vacancy, only available for admin    -->
     {%  if g.user['profile'] == 'admin' %}
         <div class="col s12 center">
-            <a href="" class="btn waves-effect waves-light">
+            <a href="{{url_for('add_vacancy')}}" class="btn waves-effect waves-light">
                 <i class="material-icons right">add</i>
                 Add Vacancy
             </a>

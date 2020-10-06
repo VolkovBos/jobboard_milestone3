@@ -186,6 +186,20 @@ def vacancies():
         vacancies_closed=vacancies_closed )
 
 
+# Route to go to the add vacancy page
+@app.route('/add_vacancy')
+def add_vacancy():
+    return render_template('addvacancy.html')
+
+
+# Insert a new vacancy
+@app.route('/insert_vacancy', methods=['POST'])
+def insert_vacancy():
+    vacancies = mongo.db.vacancies
+    vacancies.insert_one(request.form.to_dict())
+    return redirect(url_for('vacancies'))
+
+
 # Applications page for overview and management of Applications
 @app.route('/applications')
 def applications():
