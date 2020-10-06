@@ -226,6 +226,25 @@ def update_vacancy(vacancy_id):
         })
     return redirect(url_for('vacancies'))
 
+
+# Close a vacancy, set status on done
+@app.route('/close_vacancy/<vacancy_id>')
+def close_vacancy(vacancy_id):
+    vacancies = mongo.db.vacancies
+    vacancies.update( {'_id': ObjectId(vacancy_id)}, 
+        {'$set':{
+            'vacancy_status': 'closed'
+        }})
+    return redirect(url_for('vacancies'))
+
+
+# Delete a vacancy
+@app.route('/delete_vacancy/<vacancy_id>')
+def delete_vacancy(vacancy_id):
+    mongo.db.vacancies.remove({'_id': ObjectId(vacancy_id)})
+    return redirect(url_for('vacancies'))
+
+
 # Applications page for overview and management of Applications
 @app.route('/applications')
 def applications():
