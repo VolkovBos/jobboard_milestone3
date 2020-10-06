@@ -6,17 +6,17 @@
 
 <!--    Title open section     -->
     <div class="row">
-        <h1>Users</h1>
+        <h1>Users to approve</h1>
 
-<!--    Button to add application, only available for admin    -->
+<!--    Button to add users   -->
     {%  if g.user['profile'] == 'admin' %}
         <div class="col s12 center">
-            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add Application</a>
+            <a href="" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Add User</a>
         </div>
     {% endif %}
     </div>
 
-<!--    Application list with open status    -->
+<!--    User list with approve status    -->
     <ul class="collapsible" data-collapsible="accordion">
     {% for user in users_to_approve %}
         <li>
@@ -46,7 +46,7 @@
                     </table>
                 </div>
 
-<!--    Button to edit application, only available for admin    -->
+<!--    Button to approve or delete new user    -->
                 <div class="col s3 center">
                     <a href="" class="waves-effect waves-light btn btn_small blue">Approve</a>
                     <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
@@ -88,11 +88,9 @@
                     </tr>
                 </table>
             </div>
-
         </li>
     {% endfor %}
     </ul>
-
 </div>
 
 {% endblock %}
