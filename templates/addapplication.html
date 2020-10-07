@@ -6,7 +6,7 @@
 
 <!--    Title     -->
     <div class="row">
-    {%  if g.user['profile'] != 'admin' %}
+    {%  if g.user['profile'] == 'admin' %}
         <h1>Add Application</h1>
     {% else %}
         <h1>Application</h1>
