@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!--    A form to add a new vacancy -->
+<!--    A form to add a new user -->
 <div class="row col s12 listpages">
 
 <!--    Title     -->
@@ -20,6 +20,7 @@
             </button>
         </div>
 
+<!--    User Title    -->
         <div class="blue lighten-3 center">
             <h6><i class="material-icons prefix">verified_user</i> User data</h6>
         </div>
@@ -70,6 +71,7 @@
             </div>
         </div>
 
+<!--    Candidate Title    -->
         <div class="blue lighten-3 center">
             <h6><i class="material-icons prefix">account_circle</i> Candidate data</h6>
         </div>
@@ -85,7 +87,8 @@
                 <label for="last_name">Candidate last name</label>
             </div>
         </div>
-            
+
+<!--    Address Title    -->
         <div class="blue lighten-3 center">
             <h6><i class="material-icons prefix">home</i> Address</h6>
         </div>
@@ -101,7 +104,6 @@
                 <label for="house_nr">Nr</label>
             </div>
         </div>
-
         <div class="row">
             <div class="input-field col s5">
                 <input id="zip_code" name="zip_code" type="text" class="validate" />
