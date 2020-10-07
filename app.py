@@ -277,7 +277,7 @@ def insert_application():
     applications = mongo.db.applications
     applications.insert_one(request.form.to_dict())
 
-    if g.user.profile == 'admin':
+    if g.user['profile'] == 'admin':
         return redirect(url_for('applications'))
     else:
         return redirect(url_for('myapplications'))
