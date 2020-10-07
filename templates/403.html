@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<!--    Error page      -->
+<div class="row col s12">
+
+<!--    Image section    -->
+    <div class="row">
+        <div class="col-12 no-pad">
+            <div class="card">
+                <img alt="Upset Person on Computer" class="main-image"
+                     src="{{ url_for('static', filename='img/error.jpg') }}">
+            </div>
+        </div>
+    </div>
+
+<!--    Message section    -->
+    <div class="row">
+        <div class="col-12 text-center no-pad">
+            <h1 class="error-header"><span>403</span>Seems you got lost</h1>
+            <h1 class="error-direction">Use the menu to get back to home page</h1>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
