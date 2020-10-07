@@ -253,7 +253,7 @@ def applications():
         applications_closed=mongo.db.applications.find({'status': {'$ne': 'open'} }))
 
 
-# Route to go to the edit application page
+# Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 def add_application(vacancy_id):
     all_candidates=mongo.db.candidates.find()
@@ -282,6 +282,36 @@ def insert_application():
     else:
         return redirect(url_for('myapplications'))
 
+
+# Route to go to the edit application page
+@app.route('/edit_application/<application_id>')
+def edit_application(application_id):
+    the_application = mongo.db.applications.find_one({"_id": ObjectId(application_id)})
+    all_candidates=mongo.db.candidates.find()
+    open_vacancies=mongo.db.vacancies.find({'vacancy_status': 'open'})
+    application_status=mongo.db.status.find({'type': 'application'})
+
+    return render_template('editapplication.html', 
+        application=the_application,
+        candidates=all_candidates,
+        vacancies=open_vacancies,
+        status=application_status)
+
+
+# Update an application
+@app.route('/update_application/<application_id>', methods=['POST'])
+def update_application(application_id):
+    applications = mongo.db.applications
+    applications.update( {'_id': ObjectId(application_id)},
+        {
+            'vacancy_name':request.form.get('vacancy_name'),
+            'status':request.form.get('status'),
+            'candidate_name':request.form.get('candidate_name'),
+            'start_date': request.form.get('start_date'),
+            'comments': request.form.get('comments'),
+            'vacancy_text':request.form.get('vacancy_text')
+        })
+    return redirect(url_for('applications'))
 
 # To run the app
 if __name__ == '__main__':
