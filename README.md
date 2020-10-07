@@ -177,8 +177,28 @@ Add vacancy form is a different style to the login, register and contact pages. 
 ## Features
 
 ### Existing Features
+- [x] Vacancies on site
+- [x] Registration form
+- [x] Login form
+- [x] Hashed passwords
+- [x] Contact form
+- [x] Login for candidates
+- [x] Admin environment
+- [x] CRUD Vacancies
+- [x] CRUD Applications
+- [x] Approve new registrated users
+- [x] Close Vacancies and/or Applications
+
 
 ### Features Left to Implement
+- [ ] CRUD Users/candidates
+- [ ] Change password
+- [ ] Profile section
+- [ ] Quick action menu
+- [ ] Trashbin
+- [ ] CRUD Status and profiles
+- [ ] Manual search option
+- [ ] 403, 404, 500 Error handling (and pages)
 
 ## Technologies Used
 
