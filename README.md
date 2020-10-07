@@ -118,7 +118,7 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was c
 
 ![Profile Page User](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/profile_user.html.png?raw=true)
 
-<p>User Add Edit User</p>
+<p>User Edit User</p>
 
 ![Edit User Page Admin](https://github.com/VolkovBos/milestone3_jobboard/blob/master/wireframes/edit_user_user.html.png?raw=true)
 
