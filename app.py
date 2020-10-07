@@ -170,6 +170,41 @@ def users():
         users_to_approve=mongo.db.candidates.find({'approved': False}) )
 
 
+# Add user/candidate page
+@app.route('/add_user')
+def add_user():
+    user_status=mongo.db.status.find({'type': 'user'})
+    user_profiles=mongo.db.profiles.find()
+    return render_template('adduser.html',
+        status=user_status,
+        profiles=user_profiles)
+
+
+# Insert a new user/candidate
+@app.route('/insert_user', methods=['POST'])
+def insert_user():
+    users = mongo.db.candidates
+    hash_pass = generate_password_hash(request.form.get('password'))
+
+    users.insert_one(
+        {
+            'user_name':request.form.get('user_name'),
+            'email':request.form.get('email'),
+            'profile': request.form.get('profile'),
+            'password': hash_pass,
+            'status':request.form.get('status'),
+            'user_id':request.form.get('user_id'),
+            'first_name':request.form.get('first_name'),
+            'last_name': request.form.get('last_name'),
+            'street': request.form.get('street'),
+            'house_nr':request.form.get('house_nr'),
+            'zip_code': request.form.get('zip_code'),
+            'city':request.form.get('city'),
+            'approved': True
+        })
+    return redirect(url_for('users'))
+
+
 # Contact page in case of any problems
 @app.route("/contact")
 def contact():
