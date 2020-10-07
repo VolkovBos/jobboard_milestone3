@@ -253,6 +253,36 @@ def applications():
         applications_closed=mongo.db.applications.find({'status': {'$ne': 'open'} }))
 
 
+# Route to go to the edit application page
+@app.route('/add_application/<vacancy_id>')
+def add_application(vacancy_id):
+    all_candidates=mongo.db.candidates.find()
+    open_vacancies=mongo.db.vacancies.find({'vacancy_status': 'open'})
+    application_status=mongo.db.status.find({'type': 'application'})
+
+    if vacancy_id != 'admin':
+        the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
+    else:
+        the_vacancy = ''
+    return render_template('addapplication.html', 
+        vacancy=the_vacancy, 
+        candidates=all_candidates,
+        vacancies=open_vacancies,
+        status=application_status )
+
+
+# Insert a new application, from application page or from a vacancy
+@app.route('/insert_application', methods=['POST'])
+def insert_application():
+    applications = mongo.db.applications
+    applications.insert_one(request.form.to_dict())
+
+    if g.user.profile == 'admin':
+        return redirect(url_for('applications'))
+    else:
+        return redirect(url_for('myapplications'))
+
+
 # To run the app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
