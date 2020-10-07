@@ -205,6 +205,23 @@ def insert_user():
     return redirect(url_for('users'))
 
 
+# Approving a new registrated user
+@app.route('/approve_user/<user_id>')
+def approve_user(user_id):
+    users = mongo.db.candidates
+    users.update( {'_id': ObjectId(user_id)},
+        {'$set':{
+            'approved': True
+        }})
+    return redirect(url_for('users'))
+
+
+# Delete a user
+@app.route('/delete_user/<user_id>')
+def delete_user(user_id):
+    mongo.db.candidates.remove({'_id': ObjectId(user_id)})
+    return redirect(url_for('users'))
+
 # Contact page in case of any problems
 @app.route("/contact")
 def contact():
