@@ -199,6 +199,7 @@ Because the company is a startup there are no images available just yet. And als
 - [ ] CRUD Status and profiles
 - [ ] Manual search option
 - [ ] 403, 404, 500 Error handling (and pages)
+- [ ] Cloning of records
 
 ## Technologies Used
 I have used the following technologys for this project:
