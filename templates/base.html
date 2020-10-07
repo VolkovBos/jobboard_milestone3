@@ -190,7 +190,7 @@
 	</section>
 
 <!--    Floating menu     -->
-{% if  g.user %}
+{% if g.user %}
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
@@ -246,5 +246,14 @@
             $('.datepicker').datepicker();                      // For date fields
         });
     </script>
+
+<!-- Script to prevent autoprefill of browser on forms -->
+{% if g.user['profile'] == 'admin' or 'register' in request.path or 'login' in request.path %}
+    <script>
+        $("input").click(function(){
+            $(this).removeAttr("readonly");
+        });
+    </script>
+{% endif %}
 </body>
 </html>
