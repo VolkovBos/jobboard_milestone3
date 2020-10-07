@@ -6,7 +6,11 @@
 
 <!--    Title open section     -->
     <div class="row">
+    {% if g.user['profile'] == 'admin' %}
         <h1>Open Applications</h1>
+    {% else %}
+        <h1>My Applications</h1>
+    {% endif %}
 
 <!--    Button to add application, only available for admin    -->
     {%  if g.user['profile'] == 'admin' %}

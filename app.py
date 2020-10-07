@@ -305,6 +305,14 @@ def applications():
         applications_closed=mongo.db.applications.find({'status': {'$ne': 'open'} }))
 
 
+# Applications page for overview of applications for a user
+@app.route('/myapplications')
+def myapplications():
+    return render_template("applications.html", 
+        applications_open=mongo.db.applications.find({'candidate_name': g.user['user_name'], 'status': 'open'}),
+        applications_closed=mongo.db.applications.find({'candidate_name': g.user['user_name'], 'status': {'$ne': 'open'} }))
+
+
 # Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 def add_application(vacancy_id):
