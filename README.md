@@ -201,6 +201,25 @@ Because the company is a startup there are no images available just yet. And als
 - [ ] 403, 404, 500 Error handling (and pages)
 
 ## Technologies Used
+I have used the following technologys for this project:
+* [HTML5](https://en.wikipedia.org/wiki/HTML5), Semantic markup language as the shell of the site
+* [CSS3](https://en.wikipedia.org/wiki/CSS), Cascading Style Sheets as the design of the site
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript), for the contact form and preventing prefilled forms
+* [jQuery](https://jquery.com/), for some initializing and support of [Materialize](https://materializecss.com/)
+* [Python](https://www.python.org), for the backend
+    - Flask, for custom functions
+    - Pymongo, for connection to my [MongoDB](https://www.mongodb.com)
+    - bson.objectid
+    - werkzeug.security, for hashed passwords
+* [MongoDB](https://www.mongodb.com), for my database
+* [BSON](https://en.wikipedia.org/wiki/BSON), to store my data
+* [Heroku](https://heroku.com), to deploy my app
+* [Gitpod](https://gitpod.io), for development
+* [Github](https://github.com), for version control
+* [Materialize](https://materializecss.com/), to make my website responsive, mobile-first and have some out-of-the-box functionalities
+* [Google Fonts](https://fonts.google.com/), to choose and combine my fonts
+* [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
+* [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
 
 ## Testing
 
