@@ -398,7 +398,13 @@ def delete_application(application_id):
 @app.errorhandler(403)
 def page_not_found(e):
     return render_template('403.html'), 403
-    
+
+
+# Error 404 handler route
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 
 # To run the app
 if __name__ == '__main__':
