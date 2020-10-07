@@ -188,17 +188,16 @@ Because the company is a startup there are no images available just yet. And als
 - [x] CRUD Applications
 - [x] Approve new registrated users
 - [x] Close Vacancies and/or Applications
-
+- [x] Change password
+- [x] Profile section
+- [x] Quick action menu
+- [x] 403, 404, 500 Error handling (and pages)
+- [x] CRUD Users/candidates
 
 ### Features Left to Implement
-- [ ] CRUD Users/candidates
-- [ ] Change password
-- [ ] Profile section
-- [ ] Quick action menu
 - [ ] Trashbin
 - [ ] CRUD Status and profiles
 - [ ] Manual search option
-- [ ] 403, 404, 500 Error handling (and pages)
 - [ ] Cloning of records
 
 ## Technologies Used

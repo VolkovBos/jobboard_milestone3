@@ -135,15 +135,26 @@ def login():
 
         # Check if the username exists in the database
         if bool(users):
-            # Check if the password is correct
-            if check_password_hash(users["password"], password ):
-                session['user_id'] = users["user_id"] 
-                return redirect(url_for('index'))
 
+            # Check if the user is active
+            if users['status'] == 'active':
+
+                # Check if the password is correct
+                if check_password_hash(users['password'], password ):
+                    session['user_id'] = users['user_id'] 
+                    return redirect(url_for('index'))
+
+                # Incorrect password
+                else:
+                    flash('Your password is incorrect')
+                    return redirect(url_for('login'))
+
+            # Inactive user
             else:
-                flash('Your password is incorrect')
+                flash('This user is inactive, please contact the administrator')
                 return redirect(url_for('login'))
 
+        # Unknown user
         else:
             flash('The username provided is not known')
             return redirect(url_for('login'))
@@ -170,6 +181,49 @@ def profile(candidate_id):
 
     return render_template("profile.html", 
         candidate=mongo.db.candidates.find_one({"_id": ObjectId(candidate_id)}))
+
+
+# Change password page for users
+@app.route('/change_password/<user_id>')
+def change_password(user_id):
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+    return render_template('changepassword.html', 
+        user=the_user)
+
+
+# Change the password in MongoDB
+@app.route('/update_password/<user_id>', methods=['POST'])
+def update_password(user_id):
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+
+    if request.method == 'POST':
+        users = mongo.db.candidates
+        form = request.form.to_dict()
+        hash_pass = generate_password_hash(form['password_new'])
+        print(form)
+
+        # Check if the password and password actually match
+        if form['password_new'] == form['password_new_confirm']:
+
+            if check_password_hash(the_user["password"], form["password_old"] ):
+
+                users.update( {'_id': ObjectId(user_id)},
+                    {'$set':{
+                        'password': hash_pass
+                    }})
+
+            else:
+                flash("Your current password is incorrect")
+                return render_template('changepassword.html', 
+                    user=the_user)
+
+        else:
+            flash("The new passwords do not match")
+            return render_template('changepassword.html', 
+                user=the_user)
+
+    return render_template('changepassword.html', 
+        user=the_user)
 
 
 # User page for management of users
