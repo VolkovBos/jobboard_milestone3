@@ -3,6 +3,8 @@
 ## Introduction
 Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was created to get more interactive with our candidate and give them insights in the status of our vacancies and ongoing applications.
 
+![alt text](static/img/responsive.jpg)
+
 ## Contents
 1. [UX](#UX)
 2. [Features](#Features)
@@ -171,8 +173,6 @@ The font Barrio is chosen in the corporate identity so I used this on the logo. 
 <ins>Images</ins><br/>
 Because the company is a startup there are no images available just yet. And also the goal of the site is more for recruitment processes and connection with the candidates then a global PR of the company. Maybe in the near future this can be adjusted due to growth.
 
-### Notes
-Add vacancy form is a different style to the login, register and contact pages. Have to determine which I shall use where. Makes more sence to switch the syles cause of the icons.
 
 ## Features
 
