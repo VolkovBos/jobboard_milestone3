@@ -94,7 +94,7 @@
                             <li>
                                 <a  class="{% if 'profile' in request.path %} active {% endif %}"
                                     title="Go to your userprofile" 
-                                    href="#">
+                                    href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
                                     {{ g.user["user_name"] }}
                                 </a>
                             </li>
@@ -167,7 +167,7 @@
                 </li>
             {% endif %}
                 <li>
-                    <a href="#">
+                    <a href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
                         Profile
                         <i class="material-icons right">person</i>
                     </a>
@@ -239,6 +239,7 @@
             $('.collapsible').collapsible();                    // For collapsible list ex: vacancies
             $('.fixed-action-btn').floatingActionButton();      // For floating menu
             $('.datepicker').datepicker();                      // For date fields
+            $('.tabs').tabs();                                  // For tabs in userprofile
         });
     </script>
 

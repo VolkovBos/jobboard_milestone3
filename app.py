@@ -162,6 +162,16 @@ def logout():
     return redirect(url_for('index'))
 
 
+# Profile page for users
+@app.route('/profile/<candidate_id>')
+def profile(candidate_id):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    return render_template("profile.html", 
+        candidate=mongo.db.candidates.find_one({"_id": ObjectId(candidate_id)}))
+
+
 # User page for management of users
 @app.route('/users')
 def users():
