@@ -199,6 +199,8 @@ Because the company is a startup there are no images available just yet. And als
 - [ ] CRUD Status and profiles
 - [ ] Manual search option
 - [ ] Cloning of records
+- [ ] Forgot password
+- [ ] Userprofile: office employee
 
 ## Technologies Used
 I have used the following technologys for this project:
