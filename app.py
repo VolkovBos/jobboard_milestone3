@@ -204,6 +204,38 @@ def insert_user():
         })
     return redirect(url_for('users'))
 
+# Edit user/candidate page
+@app.route('/edit_user/<user_id>')
+def edit_user(user_id):
+    user_status=mongo.db.status.find({'type': 'user'})
+    user_profiles=mongo.db.profiles.find()
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+    return render_template('edituser.html', 
+        user=the_user,
+        status=user_status,
+        profiles=user_profiles)
+
+
+# Edit a user/candidate
+@app.route('/update_user/<user_id>', methods=['POST'])
+def update_user(user_id):
+    users = mongo.db.candidates
+    users.update( {'_id': ObjectId(user_id)},
+        {'$set':{
+            'user_name':request.form.get('user_name'),
+            'email':request.form.get('email'),
+            'profile': request.form.get('profile'),
+            'status':request.form.get('status'),
+            'user_id':request.form.get('user_id'),
+            'first_name':request.form.get('first_name'),
+            'last_name': request.form.get('last_name'),
+            'street': request.form.get('street'),
+            'house_nr':request.form.get('house_nr'),
+            'zip_code': request.form.get('zip_code'),
+            'city':request.form.get('city')
+        }})
+    return redirect(url_for('users'))
+
 
 # Approving a new registrated user
 @app.route('/approve_user/<user_id>')
@@ -221,6 +253,7 @@ def approve_user(user_id):
 def delete_user(user_id):
     mongo.db.candidates.remove({'_id': ObjectId(user_id)})
     return redirect(url_for('users'))
+
 
 # Contact page in case of any problems
 @app.route("/contact")
