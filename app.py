@@ -316,6 +316,24 @@ def update_application(application_id):
     return redirect(url_for('applications'))
 
 
+# Close an application
+@app.route('/close_application/<application_id>')
+def close_application(application_id):
+    applications = mongo.db.applications
+    applications.update( {'_id': ObjectId(application_id)}, 
+        {'$set':{
+            'status': 'closed'
+        }})
+    return redirect(url_for('applications'))
+
+
+# Delete an application
+@app.route('/delete_application/<application_id>')
+def delete_application(application_id):
+    mongo.db.applications.remove({'_id': ObjectId(application_id)})
+    return redirect(url_for('applications'))
+
+
 # To run the app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

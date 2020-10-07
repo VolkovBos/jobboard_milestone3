@@ -52,7 +52,9 @@
 <!--    Button to edit application, only available for admin    -->
                 <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">Edit</a>
+                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">
+                        Edit
+                    </a>
                 {% endif %}
                 </div>
             </div>
@@ -64,8 +66,12 @@
 <!--    Admin buttons      -->
                 <div class="center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="" class="btn waves-effect waves-light">Close</a>
-                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                    <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn waves-effect waves-light">
+                        Close
+                    </a>
+                    <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn waves-effect waves-light red lighten-2">
+                        Delete
+                    </a>
                 {% endif %}
                 </div>
             </div>
@@ -111,7 +117,9 @@
 <!--    Button to edit application, only available for admin    -->
                 <div class="col s3 center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">Edit</a>
+                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">
+                        Edit
+                    </a>
                 {% endif %}
                 </div>
             </div>
@@ -123,7 +131,9 @@
 <!--    Delete button     -->
                 <div class="center">
                 {%  if g.user['profile'] == 'admin' %}
-                    <a href="" class="btn waves-effect waves-light red lighten-2">Delete</a>
+                    <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn waves-effect waves-light red lighten-2">
+                        Delete
+                    </a>
                 {% endif %}
                 </div>
             </div>
