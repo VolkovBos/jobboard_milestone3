@@ -289,13 +289,15 @@ def edit_application(application_id):
     the_application = mongo.db.applications.find_one({"_id": ObjectId(application_id)})
     all_candidates=mongo.db.candidates.find()
     open_vacancies=mongo.db.vacancies.find({'vacancy_status': 'open'})
+    closed_vacancies=mongo.db.vacancies.find({'vacancy_status': {'$ne': 'open'}})
     application_status=mongo.db.status.find({'type': 'application'})
 
     return render_template('editapplication.html', 
         application=the_application,
         candidates=all_candidates,
-        vacancies=open_vacancies,
-        status=application_status)
+        open_vacancies=open_vacancies,
+        closed_vacancies=closed_vacancies,
+        status=application_status )
 
 
 # Update an application
@@ -312,6 +314,7 @@ def update_application(application_id):
             'vacancy_text':request.form.get('vacancy_text')
         })
     return redirect(url_for('applications'))
+
 
 # To run the app
 if __name__ == '__main__':

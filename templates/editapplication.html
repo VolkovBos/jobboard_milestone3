@@ -26,7 +26,19 @@
                 <i class="material-icons prefix">assignment</i>
                 <select id="vacancy_name" name="vacancy_name">
                     <option value="" disabled selected>Choose Vacancy</option>
-                    {% for vac in vacancies %}
+                    {% for vac in open_vacancies %}
+                        {% if vac.vacancy_name == application.vacancy_name %}
+                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
+                                {{ vac.vacancy_name }} - {{ vac.end_date }}
+                            </option>
+                        {% else %}
+                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                {{ vac.vacancy_name }}- {{ vac.end_date }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                    <option value="" disabled selected>Closed vacancies</option>
+                    {% for vac in closed_vacancies %}
                         {% if vac.vacancy_name == application.vacancy_name %}
                             <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
                                 {{ vac.vacancy_name }} - {{ vac.end_date }}
