@@ -224,6 +224,8 @@ I have used the following technologys for this project:
 
 ## Testing
 
+### Error pages
+I tested the 404 error with [seositecheckup](https://seositecheckup.com/seo-audit/custom-404-error-page-test/jobboard-milestone3.herokuapp.com)
 
 ### Issues found
 When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution here:<br>
