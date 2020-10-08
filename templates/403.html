@@ -3,25 +3,25 @@
 
 <!--    Error page      -->
 <!--    Idea from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/  -->
-<div class="row col s12">
+        <div class="row col s12">
 
 <!--    Image section    -->
-    <div class="row">
-        <div class="col-12">
-            <div class="center">
-                <img alt="Upset Person on Computer" class="main-image"
-                     src="{{ url_for('static', filename='img/error.jpg') }}">
+            <div class="row">
+                <div class="col-12">
+                    <div class="center">
+                        <img alt="Upset Person on Computer" class="main-image"
+                            src="{{ url_for('static', filename='img/error.jpg') }}">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 <!--    Message section    -->
-    <div class="row">
-        <div class="col-12 text-center">
-            <h1>404 Seems you got lost</h1>
-            <h1>Use the menu to get back to home page</h1>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>404 Seems you got lost</h1>
+                    <h1>Use the menu to get back to home page</h1>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 {% endblock %}
