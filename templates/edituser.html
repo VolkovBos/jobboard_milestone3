@@ -2,139 +2,139 @@
 {% block content %}
 
 <!--    A form to edit a user -->
-<div class="row col s12 listpages">
+        <div class="row col s12 listpages">
 
 <!--    Title     -->
-    <div class="row">
-        <h1>Edit User</h1>
-    </div>
+            <div class="row">
+                <h1>Edit User</h1>
+            </div>
 
 <!--    Form     -->
-    <form class="col s12" action="{{url_for('update_user', user_id=user._id)}}" method="POST" >
+            <form class="col s12" action="{{url_for('update_user', user_id=user._id)}}" method="POST" >
 
 <!--    Save button     -->
-        <div class="row center">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-                Update
-                <i class="material-icons right">person_add</i>
-            </button>
-        </div>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Update
+                        <i class="material-icons right">person_add</i>
+                    </button>
+                </div>
 
 <!--    User Title    -->
-        <div class="blue lighten-3 center">
-            <h6><i class="material-icons prefix">verified_user</i> User data</h6>
-        </div>
+                <div class="blue lighten-3 center">
+                    <h6><i class="material-icons prefix">verified_user</i> User data</h6>
+                </div>
 
 <!--    User name & Email     -->
-        <div class="row">
-            <div class="input-field col s6">
-                <input value="{{ user.user_name }}" id="user_name" name="user_name" type="text" class="validate" readonly/>
-                <label for="user_name">User name</label>
-            </div>
-            <div class="input-field col s6">
-                <input value="{{ user.email }}" id="email" name="email" type="text" class="validate" readonly/>
-                <label for="email">Email</label>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{ user.user_name }}" id="user_name" name="user_name" type="text" class="validate" readonly/>
+                        <label for="user_name">User name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{ user.email }}" id="email" name="email" type="text" class="validate" readonly/>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
 
 <!--    Profile & Password     -->
-        <div class="row">
-            <div class="input-field col s6">
-            {%  if g.user['profile'] == 'admin' %}
-                <select id="profile" name="profile">
-                    <option disabled selected>Choose Profile</option>
-                    {% for prof in profiles %}
-                        {% if prof.name == user.profile %}
-                            <option value="{{ prof.name }}" selected>{{ prof.name }}</option>
-                        {% else %}
-                            <option value="{{ prof.name }}">{{ prof.name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-            {% else %}
-                <input value="{{ user.profile }}" id="profile" name="profile" type="text" class="validate" readonly />
-            {% endif %}
-                <label for="profile">User Profile</label>
-            </div>
-            <div class="input-field col s6">
-                <input id="password" name="password" type="password" class="validate" readonly/>
-                <label for="password">Password</label>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                    {%  if g.user['profile'] == 'admin' %}
+                        <select id="profile" name="profile">
+                            <option disabled selected>Choose Profile</option>
+                            {% for prof in profiles %}
+                                {% if prof.name == user.profile %}
+                                    <option value="{{ prof.name }}" selected>{{ prof.name }}</option>
+                                {% else %}
+                                    <option value="{{ prof.name }}">{{ prof.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <input value="{{ user.profile }}" id="profile" name="profile" type="text" class="validate" readonly />
+                    {% endif %}
+                        <label for="profile">User Profile</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password" name="password" type="password" class="validate" readonly/>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
 
 <!--    Status & user_id     -->
-        <div class="row">
-            <div class="input-field col s8">
-            {%  if g.user['profile'] == 'admin' %}
-                <select id="status" name="status">
-                    <option value="" disabled selected>Choose Status</option>
-                    {% for stat in status %}
-                        {% if stat.status_name == user.status %}
-                            <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
-                        {% else %}
-                            <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-            {% else %}
-                <input value="{{ user.status }}" id="status" name="status" type="text" class="validate" readonly />
-            {% endif %}
-                <label for="status">Status</label>
-            </div>
-            <div class="input-field col s4">
-            {%  if g.user['profile'] == 'admin' %}
-                <input value="{{ user.user_id }}" id="user_id" name="user_id" type="text" class="validate" />
-            {% else %}
-                <input value="{{ user.user_id }}" id="user_id" name="user_id" type="text" class="validate" readonly />
-            {% endif %}
-                <label for="user_id">user_id</label>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                    {%  if g.user['profile'] == 'admin' %}
+                        <select id="status" name="status">
+                            <option value="" disabled selected>Choose Status</option>
+                            {% for stat in status %}
+                                {% if stat.status_name == user.status %}
+                                    <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
+                                {% else %}
+                                    <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <input value="{{ user.status }}" id="status" name="status" type="text" class="validate" readonly />
+                    {% endif %}
+                        <label for="status">Status</label>
+                    </div>
+                    <div class="input-field col s4">
+                    {%  if g.user['profile'] == 'admin' %}
+                        <input value="{{ user.user_id }}" id="user_id" name="user_id" type="text" class="validate" />
+                    {% else %}
+                        <input value="{{ user.user_id }}" id="user_id" name="user_id" type="text" class="validate" readonly />
+                    {% endif %}
+                        <label for="user_id">user_id</label>
+                    </div>
+                </div>
 
 <!--    Candidate Title    -->
-        <div class="blue lighten-3 center">
-            <h6><i class="material-icons prefix">account_circle</i> Candidate data</h6>
-        </div>
+                <div class="blue lighten-3 center">
+                    <h6><i class="material-icons prefix">account_circle</i> Candidate data</h6>
+                </div>
 
 <!--    First & Last name     -->
-        <div class="row">
-            <div class="input-field col s6">
-                <input value="{{ user.first_name }}" id="first_name" name="first_name" type="text" class="validate" />
-                <label for="first_name">Candidate first name</label>
-            </div>
-            <div class="input-field col s6">
-                <input value="{{ user.last_name }}" id="last_name" name="last_name" type="text" class="validate" />
-                <label for="last_name">Candidate last name</label>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{ user.first_name }}" id="first_name" name="first_name" type="text" class="validate" />
+                        <label for="first_name">Candidate first name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{ user.last_name }}" id="last_name" name="last_name" type="text" class="validate" />
+                        <label for="last_name">Candidate last name</label>
+                    </div>
+                </div>
 
 <!--    Address Title    -->
-        <div class="blue lighten-3 center">
-            <h6><i class="material-icons prefix">home</i> Address</h6>
-        </div>
+                <div class="blue lighten-3 center">
+                    <h6><i class="material-icons prefix">home</i> Address</h6>
+                </div>
 
-<!--    Address     -->
-        <div class="row">
-            <div class="input-field col s8">
-                <input value="{{ user.street }}" id="street" name="street" type="text" class="validate" />
-                <label for="street">Street</label>
-            </div>
-            <div class="input-field col s4">
-                <input value="{{ user.house_nr }}" id="house_nr" name="house_nr" type="text" class="validate" />
-                <label for="house_nr">Nr</label>
-            </div>
+<!--    Address of the candidate    -->
+                <div class="row">
+                    <div class="input-field col s8">
+                        <input value="{{ user.street }}" id="street" name="street" type="text" class="validate" />
+                        <label for="street">Street</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input value="{{ user.house_nr }}" id="house_nr" name="house_nr" type="text" class="validate" />
+                        <label for="house_nr">Nr</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <input value="{{ user.zip_code }}" id="zip_code" name="zip_code" type="text" class="validate" />
+                        <label for="zip_code">ZIP Code</label>
+                    </div>
+                    <div class="input-field col s7">
+                        <input value="{{ user.city }}" id="city" name="city" type="text" class="validate" />
+                        <label for="city">City</label>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <div class="input-field col s5">
-                <input value="{{ user.zip_code }}" id="zip_code" name="zip_code" type="text" class="validate" />
-                <label for="zip_code">ZIP Code</label>
-            </div>
-            <div class="input-field col s7">
-                <input value="{{ user.city }}" id="city" name="city" type="text" class="validate" />
-                <label for="city">City</label>
-            </div>
-        </div>
-    </form>
-</div>
 
 {% endblock %}
