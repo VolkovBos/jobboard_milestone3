@@ -1,6 +1,7 @@
 # General imports for this project
 import os
 from flask import (
+    abort,
     flash,
     Flask,
     g,
@@ -188,21 +189,26 @@ def logout():
 @app.route('/profile/<candidate_id>')
 def profile(candidate_id):
     if not g.user:
-        return redirect(url_for('login'))
+        abort(404)
 
-    return render_template(
-        "profile.html",
-        candidate=mongo.db.candidates.find_one(
-            {"_id": ObjectId(candidate_id)}))
+    else:
+        return render_template(
+            "profile.html",
+            candidate=mongo.db.candidates.find_one(
+                {"_id": ObjectId(candidate_id)}))
 
 
 # Change password page for users
 @app.route('/change_password/<user_id>')
 def change_password(user_id):
-    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
-    return render_template(
-        'changepassword.html',
-        user=the_user)
+    if not g.user:
+        abort(404)
+
+    else:
+        the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+        return render_template(
+            'changepassword.html',
+            user=the_user)
 
 
 # Change the password in MongoDB
@@ -244,21 +250,27 @@ def update_password(user_id):
 # User page for management of users
 @app.route('/users')
 def users():
-    return render_template(
-        "users.html",
-        users=mongo.db.candidates.find({'approved': True}),
-        users_to_approve=mongo.db.candidates.find({'approved': False}))
+    if g.user['profile'] == 'admin':
+        return render_template(
+            "users.html",
+            users=mongo.db.candidates.find({'approved': True}),
+            users_to_approve=mongo.db.candidates.find({'approved': False}))
+    else:
+        abort(403)
 
 
 # Add user/candidate page
 @app.route('/add_user')
 def add_user():
-    user_status = mongo.db.status.find({'type': 'user'})
-    user_profiles = mongo.db.profiles.find()
-    return render_template(
-        'adduser.html',
-        status=user_status,
-        profiles=user_profiles)
+    if g.user['profile'] == 'admin':
+            user_status = mongo.db.status.find({'type': 'user'})
+            user_profiles = mongo.db.profiles.find()
+            return render_template(
+                'adduser.html',
+                status=user_status,
+                profiles=user_profiles)
+    else:
+        abort(403)
 
 
 # Insert a new user/candidate
