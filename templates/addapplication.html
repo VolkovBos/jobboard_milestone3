@@ -2,130 +2,130 @@
 {% block content %}
 
 <!--    A page for a new application -->
-<div class="row col s12 listpages">
+        <div class="row col s12 listpages">
 
 <!--    Title     -->
-    <div class="row">
-    {%  if g.user['profile'] == 'admin' %}
-        <h1>Add Application</h1>
-    {% else %}
-        <h1>Application</h1>
-    {% endif %}
-    </div>
+            <div class="row">
+            {%  if g.user['profile'] == 'admin' %}
+                <h1>Add Application</h1>
+            {% else %}
+                <h1>Application</h1>
+            {% endif %}
+            </div>
 
 <!--    Form     -->
-    <form class="col s12" action="{{url_for('insert_application')}}" method="POST" >
+            <form class="col s12" action="{{url_for('insert_application')}}" method="POST" >
 
 <!--    Save button     -->
-        <div class="row center">
-        {%  if g.user['profile'] == 'admin' %}
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-            Save
-        {% else %}
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-            Apply
-        {% endif %}
-                <i class="material-icons right">add_box</i>
-            </button>
-        </div>
+                <div class="row center">
+                {%  if g.user['profile'] == 'admin' %}
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Save
+                {% else %}
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Apply
+                {% endif %}
+                        <i class="material-icons right">add_box</i>
+                    </button>
+                </div>
 
 <!--    Vacancy name, prefilled when admin is creating an application     -->
-        <div class="row">
-            <div class="input-field col s7">
-                <i class="material-icons prefix">assignment</i>
-            {%  if g.user['profile'] != 'admin' %}
-                <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="validate" readonly />
-            {% else %}
-                <select id="vacancy_name" name="vacancy_name">
-                    <option value="" disabled selected>Choose Vacancy</option>
-                    {% for vac in vacancies %}
-                        {% if vac.vacancy_name == vacancy.vacancy_name %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}" selected>
-                                {{ vac.vacancy_name }} - {{ vac.end_date }}
-                            </option>
-                        {% else %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                {{ vac.vacancy_name }}- {{ vac.end_date }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-            {% endif %}
-                <label for="vacancy_name">Vacancy name</label>
-            </div>
+                <div class="row">
+                    <div class="input-field col s7">
+                        <i class="material-icons prefix">assignment</i>
+                    {%  if g.user['profile'] != 'admin' %}
+                        <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="validate" readonly />
+                    {% else %}
+                        <select id="vacancy_name" name="vacancy_name">
+                            <option value="" disabled selected>Choose Vacancy</option>
+                            {% for vac in vacancies %}
+                                {% if vac.vacancy_name == vacancy.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}" selected>
+                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                        <label for="vacancy_name">Vacancy name</label>
+                    </div>
 
-<!--    Application  status     -->
-            <div class="input-field col s4">
-                <i class="material-icons prefix">show_chart</i>
-            {%  if g.user['profile'] != 'admin' %}
-                <input value="open" id="status" name="status" type="text" class="validate" readonly/>
-            {% else %}
-                <select id="status" name="status">
-                    <option value="" disabled selected>
-                        Choose Status
-                    </option>
-                    {% for stat in status %}
-                        <option value="{{ stat.status_name }}">
-                            {{ stat.status_name }}
-                        </option>
-                    {% endfor %}
-                </select>
-            {% endif %}
-                <label for="status">Status</label>
-            </div>
-        </div>
+<!--    Application status     -->
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">show_chart</i>
+                    {%  if g.user['profile'] != 'admin' %}
+                        <input value="open" id="status" name="status" type="text" class="validate" readonly/>
+                    {% else %}
+                        <select id="status" name="status">
+                            <option value="" disabled selected>
+                                Choose Status
+                            </option>
+                            {% for stat in status %}
+                                <option value="{{ stat.status_name }}">
+                                    {{ stat.status_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                        <label for="status">Status</label>
+                    </div>
+                </div>
 
 <!--    Candidate     -->
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">person</i>
-            {%  if g.user['profile'] != 'admin' %}
-                <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="validate" readonly />
-            {% else %}
-                <select id="candidate_name" name="candidate_name">
-                    <option value="" disabled selected>Choose Candidate</option>
-                    {% for can in candidates %}
-                        <option value="{{ can.user_name }}">{{ can.user_name }}</option>
-                    {% endfor %}
-                </select>
-            {% endif %}
-                <label for="candidate_name">Candidate name</label>
-            </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                    {%  if g.user['profile'] != 'admin' %}
+                        <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="validate" readonly />
+                    {% else %}
+                        <select id="candidate_name" name="candidate_name">
+                            <option value="" disabled selected>Choose Candidate</option>
+                            {% for can in candidates %}
+                                <option value="{{ can.user_name }}">{{ can.user_name }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                        <label for="candidate_name">Candidate name</label>
+                    </div>
 
-<!--    Availability     -->
-            <div class="input-field col s6">
-                <i class="material-icons prefix">today</i>
-                <input id="start_date" name="start_date" type="text" class="datepicker"/>
-                <label for="start_date">Available from</label>
-            </div>
-        </div>
+<!--    Availability of the candidate    -->
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">today</i>
+                        <input id="start_date" name="start_date" type="text" class="datepicker"/>
+                        <label for="start_date">Available from</label>
+                    </div>
+                </div>
 
-<!--    Comments     -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea id="comments" name="comments" type="textarea" class="materialize-textarea"></textarea>
-                <label for="comments">Comments</label>
-            </div>
-        </div>
+<!--    Comments on the appication or candidate    -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subject</i>
+                        <textarea id="comments" name="comments" type="textarea" class="materialize-textarea"></textarea>
+                        <label for="comments">Comments</label>
+                    </div>
+                </div>
 
 <!--    Vacancy text     -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-            {%  if g.user['profile'] != 'admin' %}
-                <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" readonly rows="30">
-                    {{ vacancy.vacancy_text }}
-                </textarea>
-            {% else %}
-                <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" rows="30">
-                    {{ vacancy.vacancy_text }}
-                </textarea>
-            {% endif %}
-                <label for="vacancy_text">Vacancy text</label>
-            </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subject</i>
+                    {%  if g.user['profile'] != 'admin' %}
+                        <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" readonly rows="30">
+                            {{ vacancy.vacancy_text }}
+                        </textarea>
+                    {% else %}
+                        <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" rows="30">
+                            {{ vacancy.vacancy_text }}
+                        </textarea>
+                    {% endif %}
+                        <label for="vacancy_text">Vacancy text</label>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
 {% endblock %}
