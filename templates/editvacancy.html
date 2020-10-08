@@ -32,14 +32,14 @@
                     <div class="input-field col s5">
                         <i class="material-icons prefix">show_chart</i>
                             <select id="vacancy_status" name="vacancy_status">
-                                <option value="" disabled selected>Choose Status</option>
-                            {% for stat in status %}
-                                {% if stat.status_name == vacancy.vacancy_status %}
-                                    <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
-                                {% else %}
-                                    <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
-                                {% endif %}
-                            {% endfor %}
+                                <option disabled>Choose Status</option>
+                        {% for stat in status %}
+                            {% if stat.status_name == vacancy.vacancy_status %}
+                                <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
+                            {% else %}
+                                <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
+                            {% endif %}
+                        {% endfor %}
                             </select>
                         <label for="vacancy_status">Status</label>
                     </div>
