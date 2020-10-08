@@ -550,6 +550,12 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
+# Error 500 handler route
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html'), 500
+
+
 # To run the app
 # debug uitzetten aan het eind
 if __name__ == '__main__':
