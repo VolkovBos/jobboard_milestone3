@@ -273,6 +273,16 @@ To make sure there where nog syntax errors, I've used the following validators o
 * [CSS validator](https://jigsaw.w3.org/css-validator/)
 * [PEP8](http://pep8online.com/checkresult)
 
+### Testing User Stories
+
+
+### Further testing
+* Tested this website on laptop and mobile.
+* Tested this website on Google Chrome, Firefox and Safari browsers.
+* I've asked colleagues and friends to give feedback.
+* I've asked for peer reviews on Slack.
+* During testing I used "inspect" function on different OS, devices and browsers.
+
 
 ### Issues found
 When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution here:<br>

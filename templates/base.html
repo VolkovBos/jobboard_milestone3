@@ -15,8 +15,10 @@
 <!--    Personalized Styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
     
-<!--    EmailJS API, sends email to owner of site -->
+<!--    EmailJS API, sends email to owner of site-->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    
+<!--    This section must be in the head section to work EmailJS -->
 	<script>
 		(function(){
             emailjs.init("user_VWTMl2a56d4w3kUKpKAyq");
