@@ -208,7 +208,7 @@ def update_password(user_id):
             if check_password_hash(the_user["password"], form["password_old"] ):
 
                 users.update( {'_id': ObjectId(user_id)},
-                    {'$set':{
+                    {'$set': {
                         'password': hash_pass
                     }})
 
@@ -252,18 +252,18 @@ def insert_user():
 
     users.insert_one(
         {
-            'user_name':request.form.get('user_name'),
-            'email':request.form.get('email'),
+            'user_name': request.form.get('user_name'),
+            'email': request.form.get('email'),
             'profile': request.form.get('profile'),
             'password': hash_pass,
-            'status':request.form.get('status'),
-            'user_id':request.form.get('user_id'),
-            'first_name':request.form.get('first_name'),
+            'status': request.form.get('status'),
+            'user_id': request.form.get('user_id'),
+            'first_name': request.form.get('first_name'),
             'last_name': request.form.get('last_name'),
             'street': request.form.get('street'),
-            'house_nr':request.form.get('house_nr'),
+            'house_nr': request.form.get('house_nr'),
             'zip_code': request.form.get('zip_code'),
-            'city':request.form.get('city'),
+            'city': request.form.get('city'),
             'approved': True
         })
     return redirect(url_for('users'))
@@ -286,17 +286,17 @@ def update_user(user_id):
     users = mongo.db.candidates
     users.update( {'_id': ObjectId(user_id)},
         {'$set':{
-            'user_name':request.form.get('user_name'),
-            'email':request.form.get('email'),
+            'user_name': request.form.get('user_name'),
+            'email': request.form.get('email'),
             'profile': request.form.get('profile'),
-            'status':request.form.get('status'),
-            'user_id':request.form.get('user_id'),
-            'first_name':request.form.get('first_name'),
+            'status': request.form.get('status'),
+            'user_id': request.form.get('user_id'),
+            'first_name': request.form.get('first_name'),
             'last_name': request.form.get('last_name'),
             'street': request.form.get('street'),
-            'house_nr':request.form.get('house_nr'),
+            'house_nr': request.form.get('house_nr'),
             'zip_code': request.form.get('zip_code'),
-            'city':request.form.get('city')
+            'city': request.form.get('city')
         }})
     return redirect(url_for('users'))
 
@@ -306,7 +306,7 @@ def update_user(user_id):
 def approve_user(user_id):
     users = mongo.db.candidates
     users.update( {'_id': ObjectId(user_id)},
-        {'$set':{
+        {'$set': {
             'approved': True
         }})
     return redirect(url_for('users'))
@@ -367,11 +367,11 @@ def update_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
     vacancies.update( {'_id': ObjectId(vacancy_id)},
         {
-            'vacancy_name':request.form.get('vacancy_name'),
-            'vacancy_status':request.form.get('vacancy_status'),
+            'vacancy_name': request.form.get('vacancy_name'),
+            'vacancy_status': request.form.get('vacancy_status'),
             'start_date': request.form.get('start_date'),
             'end_date': request.form.get('end_date'),
-            'vacancy_text':request.form.get('vacancy_text')
+            'vacancy_text': request.form.get('vacancy_text')
         })
     return redirect(url_for('vacancies'))
 
@@ -381,7 +381,7 @@ def update_vacancy(vacancy_id):
 def close_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
     vacancies.update( {'_id': ObjectId(vacancy_id)},
-        {'$set':{
+        {'$set': {
             'vacancy_status': 'closed'
         }})
     return redirect(url_for('vacancies'))
@@ -463,12 +463,12 @@ def update_application(application_id):
     applications = mongo.db.applications
     applications.update( {'_id': ObjectId(application_id)},
         {
-            'vacancy_name':request.form.get('vacancy_name'),
-            'status':request.form.get('status'),
-            'candidate_name':request.form.get('candidate_name'),
+            'vacancy_name': request.form.get('vacancy_name'),
+            'status': request.form.get('status'),
+            'candidate_name': request.form.get('candidate_name'),
             'start_date': request.form.get('start_date'),
             'comments': request.form.get('comments'),
-            'vacancy_text':request.form.get('vacancy_text')
+            'vacancy_text': request.form.get('vacancy_text')
         })
     return redirect(url_for('applications'))
 
@@ -478,7 +478,7 @@ def update_application(application_id):
 def close_application(application_id):
     applications = mongo.db.applications
     applications.update( {'_id': ObjectId(application_id)},
-        {'$set':{
+        {'$set': {
             'status': 'closed'
         }})
     return redirect(url_for('applications'))
