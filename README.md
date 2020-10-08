@@ -177,6 +177,9 @@ Because the company is a startup there are no images available just yet. And als
 This website has a MongoDb databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used MongoDb on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.
 
 #### Tables
+The most tables are self explanatory, but I consciously chose to use one table for candidates and users due to the size of the project and the simplicity of the current business processes. I allready created a profiles table, this simplifies editing or creating a new user by the admin and prevents a typo but also this anticipates on the possibility of implementing new user profiles. 
+
+#### Tables design
 <details>
 <summary>Vacancies</summary>
 <br>
