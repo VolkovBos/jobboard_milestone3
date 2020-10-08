@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row">
 <!--    Title      -->
     <div>
         <h1>Welcome to BOS UP</h1>
@@ -19,9 +18,9 @@
         </p>
         <h2>Sustainable relationship</h2>
         <p class="center">
-            BOS UP wants to achieve a lot with you and within the team. We try to find the right people for our customers problems and we take in account the development path in which our employees are currently on. We map the challenges within an organisation accurately and from an experienced point of view. This means we always match the right professional to the right job. Do you want to join us ? <a href="{{ url_for('vacancies') }}">Check our vacancies!</a>
+            BOS UP wants to achieve a lot with you and within the team. We try to find the right people for our customers problems and we take in account the development path in which our employees are currently on. We map the challenges within an organisation accurately and from an experienced point of view. This means we always match the right professional to the right job. Do you want to join us ? 
         </p>
+        <a class="shortcut center" href="{{ url_for('vacancies') }}">Check our vacancies!</a>
     </div>
-</div>
 
 {% endblock %}

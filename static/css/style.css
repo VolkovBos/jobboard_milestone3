@@ -7,6 +7,7 @@ body {
 
 .container {
     background-color: #bbdefb;
+    margin-bottom: 150px;
 }
 
 h1 {
@@ -21,6 +22,9 @@ h2 {
     text-decoration: underline;
 }
 
+.shortcut {
+    font-size: 150%;
+}
 
 /*-----      Navbar      -----*/
 nav {
