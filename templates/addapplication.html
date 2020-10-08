@@ -37,17 +37,17 @@
                         <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="validate" readonly />
                     {% else %}
                         <select id="vacancy_name" name="vacancy_name">
-                            <option value="" disabled selected>Choose Vacancy</option>
-                            {% for vac in vacancies %}
-                                {% if vac.vacancy_name == vacancy.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}" selected>
-                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
-                                    </option>
-                                {% else %}
-                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
-                                    </option>
-                                {% endif %}
+                            <option disabled>Choose Vacancy</option>
+                    {% for vac in vacancies %}
+                        {% if vac.vacancy_name == vacancy.vacancy_name %}
+                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}" selected>
+                                {{ vac.vacancy_name }} - {{ vac.end_date }}
+                            </option>
+                        {% else %}
+                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                {{ vac.vacancy_name }}- {{ vac.end_date }}
+                            </option>
+                        {% endif %}
                             {% endfor %}
                         </select>
                     {% endif %}
@@ -61,14 +61,10 @@
                         <input value="open" id="status" name="status" type="text" class="validate" readonly/>
                     {% else %}
                         <select id="status" name="status">
-                            <option value="" disabled selected>
-                                Choose Status
-                            </option>
-                            {% for stat in status %}
-                                <option value="{{ stat.status_name }}">
-                                    {{ stat.status_name }}
-                                </option>
-                            {% endfor %}
+                            <option disabled selected>Choose Status</option>
+                        {% for stat in status %}
+                            <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
+                        {% endfor %}
                         </select>
                     {% endif %}
                         <label for="status">Status</label>
