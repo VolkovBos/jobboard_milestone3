@@ -56,6 +56,7 @@ def before_request():
         g.user = mongo.db.candidates.find_one({'user_id': session['user_id']})
 
 
+# General index route
 @app.route('/')
 @app.route('/index')
 def index():
