@@ -7,8 +7,8 @@ from flask import (
     redirect,
     render_template,
     request,
-    session, 
-    url_for 
+    session,
+    url_for
 )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -44,7 +44,7 @@ class User:
         return f'<User: {self.username}>'
 
 
-# Set g.user at login to show the correct navbar and buttons 
+# Set g.user at login to show the correct navbar and buttons
 @app.before_request
 def before_request():
     g.user = None
@@ -93,7 +93,7 @@ def register():
                         'user_name': username,
                         'email': email,
                         'password': hash_pass,
-                        'approved':False
+                        'approved': False
                     }
                 )
                 # Check if user is actually saved
@@ -141,7 +141,7 @@ def login():
 
                 # Check if the password is correct
                 if check_password_hash(users['password'], password ):
-                    session['user_id'] = users['user_id'] 
+                    session['user_id'] = users['user_id']
                     return redirect(url_for('index'))
 
                 # Incorrect password
@@ -179,7 +179,7 @@ def profile(candidate_id):
     if not g.user:
         return redirect(url_for('login'))
 
-    return render_template("profile.html", 
+    return render_template("profile.html",
         candidate=mongo.db.candidates.find_one({"_id": ObjectId(candidate_id)}))
 
 
@@ -187,7 +187,7 @@ def profile(candidate_id):
 @app.route('/change_password/<user_id>')
 def change_password(user_id):
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
-    return render_template('changepassword.html', 
+    return render_template('changepassword.html',
         user=the_user)
 
 
@@ -214,22 +214,22 @@ def update_password(user_id):
 
             else:
                 flash("Your current password is incorrect")
-                return render_template('changepassword.html', 
+                return render_template('changepassword.html',
                     user=the_user)
 
         else:
             flash("The new passwords do not match")
-            return render_template('changepassword.html', 
+            return render_template('changepassword.html',
                 user=the_user)
 
-    return render_template('changepassword.html', 
+    return render_template('changepassword.html',
         user=the_user)
 
 
 # User page for management of users
 @app.route('/users')
 def users():
-    return render_template("users.html", 
+    return render_template("users.html",
         users=mongo.db.candidates.find({'approved': True}),
         users_to_approve=mongo.db.candidates.find({'approved': False}) )
 
@@ -274,7 +274,7 @@ def edit_user(user_id):
     user_status=mongo.db.status.find({'type': 'user'})
     user_profiles=mongo.db.profiles.find()
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
-    return render_template('edituser.html', 
+    return render_template('edituser.html',
         user=the_user,
         status=user_status,
         profiles=user_profiles)
@@ -330,8 +330,8 @@ def contact():
 def vacancies():
     vacancies_open = mongo.db.vacancies.find({'vacancy_status': 'open'})
     vacancies_closed=mongo.db.vacancies.find({'vacancy_status': {'$ne': 'open'}})
-    return render_template("vacancies.html", 
-        vacancies_open=vacancies_open, 
+    return render_template("vacancies.html",
+        vacancies_open=vacancies_open,
         vacancies_closed=vacancies_closed )
 
 
@@ -339,7 +339,7 @@ def vacancies():
 @app.route('/add_vacancy')
 def add_vacancy():
     vacancy_status=mongo.db.status.find({'type': 'vacancy'})
-    return render_template('addvacancy.html', 
+    return render_template('addvacancy.html',
         status=vacancy_status)
 
 
@@ -356,8 +356,8 @@ def insert_vacancy():
 def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     vacancy_status=mongo.db.status.find({'type': 'vacancy'})
-    return render_template('editvacancy.html', 
-        vacancy=the_vacancy, 
+    return render_template('editvacancy.html',
+        vacancy=the_vacancy,
         status=vacancy_status)
 
 
@@ -380,7 +380,7 @@ def update_vacancy(vacancy_id):
 @app.route('/close_vacancy/<vacancy_id>')
 def close_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
-    vacancies.update( {'_id': ObjectId(vacancy_id)}, 
+    vacancies.update( {'_id': ObjectId(vacancy_id)},
         {'$set':{
             'vacancy_status': 'closed'
         }})
@@ -397,7 +397,7 @@ def delete_vacancy(vacancy_id):
 # Applications page for overview and management of Applications
 @app.route('/applications')
 def applications():
-    return render_template("applications.html", 
+    return render_template("applications.html",
         applications_open=mongo.db.applications.find({'status': 'open' }),
         applications_closed=mongo.db.applications.find({'status': {'$ne': 'open'} }))
 
@@ -405,7 +405,7 @@ def applications():
 # Applications page for overview of applications for a user
 @app.route('/myapplications')
 def myapplications():
-    return render_template("applications.html", 
+    return render_template("applications.html",
         applications_open=mongo.db.applications.find({'candidate_name': g.user['user_name'], 'status': 'open'}),
         applications_closed=mongo.db.applications.find({'candidate_name': g.user['user_name'], 'status': {'$ne': 'open'} }))
 
@@ -421,11 +421,11 @@ def add_application(vacancy_id):
         the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     else:
         the_vacancy = ''
-    return render_template('addapplication.html', 
-        vacancy=the_vacancy, 
+    return render_template('addapplication.html',
+        vacancy=the_vacancy,
         candidates=all_candidates,
         vacancies=open_vacancies,
-        status=application_status )
+        status=application_status)
 
 
 # Insert a new application, from application page or from a vacancy
@@ -449,12 +449,12 @@ def edit_application(application_id):
     closed_vacancies=mongo.db.vacancies.find({'vacancy_status': {'$ne': 'open'}})
     application_status=mongo.db.status.find({'type': 'application'})
 
-    return render_template('editapplication.html', 
+    return render_template('editapplication.html',
         application=the_application,
         candidates=all_candidates,
         open_vacancies=open_vacancies,
         closed_vacancies=closed_vacancies,
-        status=application_status )
+        status=application_status)
 
 
 # Update an application
@@ -477,7 +477,7 @@ def update_application(application_id):
 @app.route('/close_application/<application_id>')
 def close_application(application_id):
     applications = mongo.db.applications
-    applications.update( {'_id': ObjectId(application_id)}, 
+    applications.update( {'_id': ObjectId(application_id)},
         {'$set':{
             'status': 'closed'
         }})
