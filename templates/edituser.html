@@ -42,7 +42,7 @@
                     <div class="input-field col s6">
                     {%  if g.user['profile'] == 'admin' %}
                         <select id="profile" name="profile">
-                            <option disabled selected>Choose Profile</option>
+                            <option disabled>Choose Profile</option>
                             {% for prof in profiles %}
                                 {% if prof.name == user.profile %}
                                     <option value="{{ prof.name }}" selected>{{ prof.name }}</option>
@@ -67,7 +67,7 @@
                     <div class="input-field col s8">
                     {%  if g.user['profile'] == 'admin' %}
                         <select id="status" name="status">
-                            <option value="" disabled selected>Choose Status</option>
+                            <option disabled>Choose Status</option>
                             {% for stat in status %}
                                 {% if stat.status_name == user.status %}
                                     <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
