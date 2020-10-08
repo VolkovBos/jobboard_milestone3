@@ -173,6 +173,11 @@ The font Barrio is chosen in the corporate identity so I used this on the logo. 
 <ins>Images</ins><br/>
 Because the company is a startup there are no images available just yet. And also the goal of the site is more for recruitment processes and connection with the candidates then a global PR of the company. Maybe in the near future this can be adjusted due to growth.
 
+### Database
+This website has a MongoDb databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used MongoDb on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.
+
+
+1 for users and 1 for recipes, these are both being used to connect with each other as well being used to store various calculations, and store all general information on the page. All the content on the page is generated from these 2 databases.
 
 ## Features
 
