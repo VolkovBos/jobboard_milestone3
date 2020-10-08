@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
     
 <!--    EmailJS API, sends email to owner of site -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-	<script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+	<script>
 		(function(){
             emailjs.init("user_VWTMl2a56d4w3kUKpKAyq");
         })();
@@ -230,9 +230,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <!--    EmailJS API, sends email to owner of site -->
-	<script type="text/javascript" src="{{ url_for('static', filename='js/contactMail.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/contactMail.js') }}"></script>
 
-    <script type="text/javascript">
+    <script>
 		$(document).ready(function(){
             $('select').formSelect();                           // For select fields
             $('.sidenav').sidenav();                            // For sidebar mobile
