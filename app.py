@@ -252,8 +252,8 @@ def users():
 # Add user/candidate page
 @app.route('/add_user')
 def add_user():
-    user_status=mongo.db.status.find({'type': 'user'})
-    user_profiles=mongo.db.profiles.find()
+    user_status = mongo.db.status.find({'type': 'user'})
+    user_profiles = mongo.db.profiles.find()
     return render_template(
         'adduser.html',
         status=user_status,
@@ -287,8 +287,8 @@ def insert_user():
 # Edit user/candidate page
 @app.route('/edit_user/<user_id>')
 def edit_user(user_id):
-    user_status=mongo.db.status.find({'type': 'user'})
-    user_profiles=mongo.db.profiles.find()
+    user_status = mongo.db.status.find({'type': 'user'})
+    user_profiles = mongo.db.profiles.find()
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
     return render_template(
         'edituser.html',
@@ -350,7 +350,7 @@ def contact():
 def vacancies():
     vacancies_open = mongo.db.vacancies.find(
         {'vacancy_status': 'open'})
-    vacancies_closed=mongo.db.vacancies.find(
+    vacancies_closed = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'open'}})
     return render_template(
         "vacancies.html",
@@ -362,7 +362,7 @@ def vacancies():
 # Route to go to the add vacancy page
 @app.route('/add_vacancy')
 def add_vacancy():
-    vacancy_status=mongo.db.status.find({'type': 'vacancy'})
+    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
     return render_template(
         'addvacancy.html',
         status=vacancy_status)
@@ -380,7 +380,7 @@ def insert_vacancy():
 @app.route('/edit_vacancy/<vacancy_id>')
 def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
-    vacancy_status=mongo.db.status.find({'type': 'vacancy'})
+    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
     return render_template(
         'editvacancy.html',
         vacancy=the_vacancy,
@@ -453,9 +453,9 @@ def myapplications():
 # Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 def add_application(vacancy_id):
-    all_candidates=mongo.db.candidates.find()
-    open_vacancies=mongo.db.vacancies.find({'vacancy_status': 'open'})
-    application_status=mongo.db.status.find({'type': 'application'})
+    all_candidates = mongo.db.candidates.find()
+    open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
+    application_status = mongo.db.status.find({'type': 'application'})
 
     if vacancy_id != 'admin':
         the_vacancy = mongo.db.vacancies.find_one(
@@ -487,12 +487,12 @@ def insert_application():
 def edit_application(application_id):
     the_application = mongo.db.applications.find_one(
         {"_id": ObjectId(application_id)})
-    all_candidates=mongo.db.candidates.find()
-    open_vacancies=mongo.db.vacancies.find(
+    all_candidates = mongo.db.candidates.find()
+    open_vacancies = mongo.db.vacancies.find(
         {'vacancy_status': 'open'})
-    closed_vacancies=mongo.db.vacancies.find(
+    closed_vacancies = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'open'}})
-    application_status=mongo.db.status.find(
+    application_status = mongo.db.status.find(
         {'type': 'application'})
 
     return render_template(
