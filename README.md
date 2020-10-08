@@ -176,8 +176,39 @@ Because the company is a startup there are no images available just yet. And als
 ### Database
 This website has a MongoDb databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used MongoDb on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.
 
+#### Tables
+<details>
+<summary>Vacancies</summary>
+<br>
 
-1 for users and 1 for recipes, these are both being used to connect with each other as well being used to store various calculations, and store all general information on the page. All the content on the page is generated from these 2 databases.
+![Vacancies](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Vacancy_table.jpg?raw=true)
+
+</details>
+<details>
+<summary>Candidates/users</summary>
+<br>
+
+![Candidates/users](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Candidate_table.jpg?raw=true)
+
+</details><details>
+<summary>Application</summary>
+<br>
+
+![Application](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Application_table.jpg?raw=true)
+
+</details><details>
+<summary>Statusses</summary>
+<br>
+
+![Statusses](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Statusses_table.jpg?raw=true)
+
+</details><details>
+<summary>Profiles</summary>
+<br>
+
+![Profiles](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Profiles_table.jpg?raw=true)
+
+</details>
 
 ## Features
 
