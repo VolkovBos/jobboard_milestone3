@@ -2,130 +2,130 @@
 {% block content %}
 
 <!--    A page to edit an application -->
-<div class="row col s12 listpages">
+        <div class="row col s12 listpages">
 
 <!--    Title     -->
-    <div class="row">
-        <h1>Edit Application</h1>
-    </div>
+            <div class="row">
+                <h1>Edit Application</h1>
+            </div>
 
 <!--    Form     -->
-    <form class="col s12" action="{{url_for('insert_application')}}" method="POST" >
+            <form class="col s12" action="{{url_for('insert_application')}}" method="POST" >
 
 <!--    Save button     -->
-        <div class="row center">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-                Update
-                <i class="material-icons right">add_box</i>
-            </button>
-        </div>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Update
+                        <i class="material-icons right">add_box</i>
+                    </button>
+                </div>
 
 <!--    Vacancy name, prefilled when admin is creating an application     -->
-        <div class="row">
-            <div class="input-field col s7">
-                <i class="material-icons prefix">assignment</i>
-                <select id="vacancy_name" name="vacancy_name">
-                    <option value="" disabled selected>Choose Vacancy</option>
-                    {% for vac in open_vacancies %}
-                        {% if vac.vacancy_name == application.vacancy_name %}
-                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                {{ vac.vacancy_name }} - {{ vac.end_date }}
-                            </option>
-                        {% else %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                {{ vac.vacancy_name }}- {{ vac.end_date }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                    <option value="" disabled selected>Closed vacancies</option>
-                    {% for vac in closed_vacancies %}
-                        {% if vac.vacancy_name == application.vacancy_name %}
-                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                {{ vac.vacancy_name }} - {{ vac.end_date }}
-                            </option>
-                        {% else %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                {{ vac.vacancy_name }}- {{ vac.end_date }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-                <label for="vacancy_name">Vacancy name</label>
-            </div>
+                <div class="row">
+                    <div class="input-field col s7">
+                        <i class="material-icons prefix">assignment</i>
+                        <select id="vacancy_name" name="vacancy_name">
+                            <option value="" disabled selected>Choose Vacancy</option>
+                            {% for vac in open_vacancies %}
+                                {% if vac.vacancy_name == application.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
+                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                            <option value="" disabled selected>Closed vacancies</option>
+                            {% for vac in closed_vacancies %}
+                                {% if vac.vacancy_name == application.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
+                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="vacancy_name">Vacancy name</label>
+                    </div>
 
 <!--    Application  status     -->
-            <div class="input-field col s4">
-                <i class="material-icons prefix">show_chart</i>
-                <select id="status" name="status">
-                    <option value="" disabled selected>Choose Status</option>
-            {% for stat in status %}
-                {% if stat.status_name == application.status %}
-                    <option value="{{ stat.status_name }}" selected>
-                        {{ stat.status_name }}
-                    </option>
-                {% else %}
-                    <option value="{{ stat.status_name }}">
-                        {{ stat.status_name }}
-                    </option>
-                {% endif %}
-            {% endfor %}
-                </select>
-                <label for="status">Status</label>
-            </div>
-        </div>
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">show_chart</i>
+                        <select id="status" name="status">
+                            <option value="" disabled selected>Choose Status</option>
+                    {% for stat in status %}
+                        {% if stat.status_name == application.status %}
+                            <option value="{{ stat.status_name }}" selected>
+                                {{ stat.status_name }}
+                            </option>
+                        {% else %}
+                            <option value="{{ stat.status_name }}">
+                                {{ stat.status_name }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                        </select>
+                        <label for="status">Status</label>
+                    </div>
+                </div>
 
 <!--    Candidate     -->
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">person</i>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
 
-                <select id="candidate_name" name="candidate_name">
-                    <option value="" disabled selected>Choose Candidate</option>
-            {% for can in candidates %}
-                {% if can.user_name == application.candidate_name %}
-                    <option value="{{ can.user_name }}" selected>
-                        {{ can.user_name }}
-                    </option>
-                {% else %}
-                    <option value="{{ can.user_name }}">
-                        {{ can.user_name }}
-                    </option>
-                {% endif %}
-            {% endfor %}
-                </select>
-                <label for="candidate_name">Candidate name</label>
-            </div>
+                        <select id="candidate_name" name="candidate_name">
+                            <option value="" disabled selected>Choose Candidate</option>
+                    {% for can in candidates %}
+                        {% if can.user_name == application.candidate_name %}
+                            <option value="{{ can.user_name }}" selected>
+                                {{ can.user_name }}
+                            </option>
+                        {% else %}
+                            <option value="{{ can.user_name }}">
+                                {{ can.user_name }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                        </select>
+                        <label for="candidate_name">Candidate name</label>
+                    </div>
 
-<!--    Availability     -->
-            <div class="input-field col s6">
-                <i class="material-icons prefix">today</i>
-                <input value="{{ application.start_date }}" id="start_date" name="start_date" type="text" class="datepicker"/>
-                <label for="start_date">Available from</label>
-            </div>
-        </div>
+<!--    Availability of the candidate    -->
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">today</i>
+                        <input value="{{ application.start_date }}" id="start_date" name="start_date" type="text" class="datepicker"/>
+                        <label for="start_date">Available from</label>
+                    </div>
+                </div>
 
-<!--    Comments     -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea id="comments" name="comments" type="textarea" class="materialize-textarea">
-                    {{ application.comments }}
-                </textarea>
-                <label for="comments">Comments</label>
-            </div>
-        </div>
+<!--    Comments on application and/or candidate     -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subject</i>
+                        <textarea id="comments" name="comments" type="textarea" class="materialize-textarea">
+                            {{ application.comments }}
+                        </textarea>
+                        <label for="comments">Comments</label>
+                    </div>
+                </div>
 
 <!--    Vacancy text     -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" rows="30">
-                    {{ application.vacancy_text }}
-                </textarea>
-                <label for="vacancy_text">Vacancy text</label>
-            </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">subject</i>
+                        <textarea id="vacancy_text" name="vacancy_text" type="textarea" class="materialize-textarea" rows="30">
+                            {{ application.vacancy_text }}
+                        </textarea>
+                        <label for="vacancy_text">Vacancy text</label>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
 {% endblock %}
