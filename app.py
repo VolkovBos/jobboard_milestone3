@@ -130,14 +130,14 @@ def login():
     # Check if user is not logged in already
     if g.user:
         return redirect(url_for('index'))
-        
+
     # If the button is called for an action
     if request.method == 'POST':
         session.pop('user_id', None)
 
         username = request.form['username']
         password = request.form['password']
-        users    = mongo.db.candidates.find_one({'user_name': username})
+        users = mongo.db.candidates.find_one({'user_name': username})
 
         # Check if the username exists in the database
         if bool(users):
@@ -146,7 +146,7 @@ def login():
             if users['status'] == 'active':
 
                 # Check if the password is correct
-                if check_password_hash(users['password'], password ):
+                if check_password_hash(users['password'], password):
                     session['user_id'] = users['user_id']
                     return redirect(url_for('index'))
 
@@ -215,13 +215,10 @@ def update_password(user_id):
         # Check if the password and password actually match
         if form['password_new'] == form['password_new_confirm']:
 
-            if check_password_hash(the_user["password"], form["password_old"]):
+            if check_password_hash(the_user['password'], form['password_old']):
                 users.update(
                     {'_id': ObjectId(user_id)},
-                    {'$set':
-                        {'password': hash_pass}
-                    }
-                )
+                    {'$set': {'password': hash_pass}})
 
             else:
                 flash("Your current password is incorrect")
@@ -246,7 +243,7 @@ def users():
     return render_template(
         "users.html",
         users=mongo.db.candidates.find({'approved': True}),
-        users_to_approve=mongo.db.candidates.find({'approved': False}) )
+        users_to_approve=mongo.db.candidates.find({'approved': False}))
 
 
 # Add user/candidate page
@@ -283,6 +280,7 @@ def insert_user():
             'approved': True
         })
     return redirect(url_for('users'))
+
 
 # Edit user/candidate page
 @app.route('/edit_user/<user_id>')
@@ -428,9 +426,9 @@ def applications():
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
-            {'status': 'open' }),
+            {'status': 'open'}),
         applications_closed=mongo.db.applications.find(
-            {'status': {'$ne': 'open'} })
+            {'status': {'$ne': 'open'}})
     )
 
 
@@ -553,9 +551,9 @@ def page_not_found(e):
 
 
 # To run the app
-#debug uitzetten aan het eind
+# debug uitzetten aan het eind
 if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=True)                     
+        debug=True)
