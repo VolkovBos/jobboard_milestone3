@@ -25,30 +25,30 @@
                     <div class="input-field col s7">
                         <i class="material-icons prefix">assignment</i>
                         <select id="vacancy_name" name="vacancy_name">
-                            <option value="" disabled selected>Choose Vacancy</option>
-                            {% for vac in open_vacancies %}
-                                {% if vac.vacancy_name == application.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
-                                    </option>
-                                {% else %}
-                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
-                                    </option>
-                                {% endif %}
-                            {% endfor %}
-                            <option value="" disabled selected>Closed vacancies</option>
-                            {% for vac in closed_vacancies %}
-                                {% if vac.vacancy_name == application.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                        {{ vac.vacancy_name }} - {{ vac.end_date }}
-                                    </option>
-                                {% else %}
-                                    <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                        {{ vac.vacancy_name }}- {{ vac.end_date }}
-                                    </option>
-                                {% endif %}
-                            {% endfor %}
+                            <option disabled>Choose Vacancy</option>
+                    {% for vac in open_vacancies %}
+                        {% if vac.vacancy_name == application.vacancy_name %}
+                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
+                                {{ vac.vacancy_name }} - {{ vac.end_date }}
+                            </option>
+                        {% else %}
+                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                {{ vac.vacancy_name }}- {{ vac.end_date }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                            <option disabled>Closed vacancies</option>
+                    {% for vac in closed_vacancies %}
+                        {% if vac.vacancy_name == application.vacancy_name %}
+                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
+                                {{ vac.vacancy_name }} - {{ vac.end_date }}
+                            </option>
+                        {% else %}
+                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
+                                {{ vac.vacancy_name }}- {{ vac.end_date }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
                         </select>
                         <label for="vacancy_name">Vacancy name</label>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="input-field col s4">
                         <i class="material-icons prefix">show_chart</i>
                         <select id="status" name="status">
-                            <option value="" disabled selected>Choose Status</option>
+                            <option disabled>Choose Status</option>
                     {% for stat in status %}
                         {% if stat.status_name == application.status %}
                             <option value="{{ stat.status_name }}" selected>
@@ -80,7 +80,7 @@
                         <i class="material-icons prefix">person</i>
 
                         <select id="candidate_name" name="candidate_name">
-                            <option value="" disabled selected>Choose Candidate</option>
+                            <option disabled>Choose Candidate</option>
                     {% for can in candidates %}
                         {% if can.user_name == application.candidate_name %}
                             <option value="{{ can.user_name }}" selected>
