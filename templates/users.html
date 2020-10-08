@@ -2,184 +2,184 @@
 {% block content %}
 
 <!--    Users page      -->
-<div class="row col s12 listpages">
+        <div class="row col s12 listpages">
 
 <!--    Title approve section     -->
-    <div class="row">
-        <h1>Users to approve</h1>
+            <div class="row">
+                <h1>Users to approve</h1>
 
 <!--    Button to add users   -->
-        <div class="col s12 center">
-            <a href="{{url_for('add_user')}}" class="waves-effect waves-light btn"><i class="material-icons right">add</i>
-                Add User
-            </a>
-        </div>
-    </div>
+                <div class="col s12 center">
+                    <a href="{{url_for('add_user')}}" class="waves-effect waves-light btn"><i class="material-icons right">add</i>
+                        Add User
+                    </a>
+                </div>
+            </div>
 
 <!--    User list with approve status    -->
-    <ul class="collapsible" data-collapsible="accordion">
-    {% for user in users_to_approve %}
-        <li>
-            <div class="row collapsible-header blue lighten-3">
+            <ul class="collapsible" data-collapsible="accordion">
+            {% for user in users_to_approve %}
+                <li>
+                    <div class="row collapsible-header blue lighten-3">
 
 <!--    Front card text      -->
-                <div class="col s7">    
-                    <table>
-                        <tr>
-                            <td class="icon_col"></td>
-                            <td class="first_col">Username</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.user_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="icon_col"><i class="material-icons">expand_more</i></td>
-                            <td class="first_col">Candidate</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="icon_col"></td>
-                            <td class="first_col">Email</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.email}}</td>
-                        </tr>
-                    </table>
-                </div>
+                        <div class="col s7">    
+                            <table>
+                                <tr>
+                                    <td class="icon_col"></td>
+                                    <td class="first_col">Username</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.user_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="icon_col"><i class="material-icons">expand_more</i></td>
+                                    <td class="first_col">Candidate</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="icon_col"></td>
+                                    <td class="first_col">Email</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.email}}</td>
+                                </tr>
+                            </table>
+                        </div>
 
 <!--    Button to approve or delete new user    -->
-                <div class="col s3 center">
-                    <a href="{{url_for('approve_user', user_id=user._id)}}" class="waves-effect waves-light btn btn_small blue">
-                        Approve
-                    </a>
-                    <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn waves-effect waves-light red lighten-2">
-                        Delete
-                    </a>
-                </div>
-            </div>
+                        <div class="col s3 center">
+                            <a href="{{url_for('approve_user', user_id=user._id)}}" class="waves-effect waves-light btn btn_small blue">
+                                Approve
+                            </a>
+                            <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn waves-effect waves-light red lighten-2">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
 
 <!--    Collapsible card text      -->
-            <div class="collapsible-body blue lighten-4">
-                <table>
-                    <tr>
-                        <td class="first_col">Username</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.user_name}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Userprofile</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.profile}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Email</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.email}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Street + nr</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.street}} {{user.house_nr}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">ZIP code</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.zip_code}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">City</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.city}}</td>
-                    </tr>
-                </table>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
+                    <div class="collapsible-body blue lighten-4">
+                        <table>
+                            <tr>
+                                <td class="first_col">Username</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.user_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Userprofile</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.profile}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Email</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Street + nr</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.street}} {{user.house_nr}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">ZIP code</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.zip_code}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">City</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.city}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
 
 <!--    Title users section     -->
-    <div class="row">
-        <h1>Active users</h1>
-    </div>
+            <div class="row">
+                <h1>Active users</h1>
+            </div>
 
 <!--    User list     -->
-    <ul class="collapsible" data-collapsible="accordion">
-    {% for user in users %}
-        <li>
-            <div class="row collapsible-header blue lighten-3">
+            <ul class="collapsible" data-collapsible="accordion">
+            {% for user in users %}
+                <li>
+                    <div class="row collapsible-header blue lighten-3">
 
 <!--    Front card text      -->
-                <div class="col s7">    
-                    <table>
-                        <tr>
-                            <td class="icon_col"></td>
-                            <td class="first_col">Username</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.user_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="icon_col"><i class="material-icons">expand_more</i></td>
-                            <td class="first_col">Candidate</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="icon_col"></td>
-                            <td class="first_col">Email</td>
-                            <td class="mid_col">:</td>
-                            <td class="last_col">{{user.email}}</td>
-                        </tr>
-                    </table>
-                </div>
+                        <div class="col s7">    
+                            <table>
+                                <tr>
+                                    <td class="icon_col"></td>
+                                    <td class="first_col">Username</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.user_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="icon_col"><i class="material-icons">expand_more</i></td>
+                                    <td class="first_col">Candidate</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.first_name}} {{user.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="icon_col"></td>
+                                    <td class="first_col">Email</td>
+                                    <td class="mid_col">:</td>
+                                    <td class="last_col">{{user.email}}</td>
+                                </tr>
+                            </table>
+                        </div>
 
 <!--    Button to approve or delete new user    -->
-                <div class="col s3 center">
-                    <a href="{{url_for('edit_user', user_id=user._id)}}" class="btn waves-effect waves-light blue">
-                        Edit
-                    </a>
-                    <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn waves-effect waves-light red lighten-2">
-                        Delete
-                    </a>
-                </div>
-            </div>
+                        <div class="col s3 center">
+                            <a href="{{url_for('edit_user', user_id=user._id)}}" class="btn waves-effect waves-light blue">
+                                Edit
+                            </a>
+                            <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn waves-effect waves-light red lighten-2">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
 
 <!--    Collapsible card text      -->
-            <div class="collapsible-body blue lighten-4">
-                <table>
-                    <tr>
-                        <td class="first_col">Username</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.user_name}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Userprofile</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.profile}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Email</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.email}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">Street + nr</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.street}} {{user.house_nr}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">ZIP code</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.zip_code}}</td>
-                    </tr>
-                    <tr>
-                        <td class="first_col">City</td>
-                        <td class="mid_col">:</td>
-                        <td class="last_col">{{user.city}}</td>
-                    </tr>
-                </table>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
+                    <div class="collapsible-body blue lighten-4">
+                        <table>
+                            <tr>
+                                <td class="first_col">Username</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.user_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Userprofile</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.profile}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Email</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">Street + nr</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.street}} {{user.house_nr}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">ZIP code</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.zip_code}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first_col">City</td>
+                                <td class="mid_col">:</td>
+                                <td class="last_col">{{user.city}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
 
 {% endblock %}
