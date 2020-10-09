@@ -263,12 +263,12 @@ def users():
 @app.route('/add_user')
 def add_user():
     if g.user['profile'] == 'admin':
-            user_status = mongo.db.status.find({'type': 'user'})
-            user_profiles = mongo.db.profiles.find()
-            return render_template(
-                'adduser.html',
-                status=user_status,
-                profiles=user_profiles)
+        user_status = mongo.db.status.find({'type': 'user'})
+        user_profiles = mongo.db.profiles.find()
+        return render_template(
+            'adduser.html',
+            status=user_status,
+            profiles=user_profiles)
     else:
         abort(403)
 
