@@ -23,7 +23,13 @@ class RoutesVisitor(unittest.TestCase):
         response = tester.get('/vacancies', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-        
+    # Ensure that route opens login page
+    def test_login(self):
+        tester = app.test_client(self)
+        response = tester.get('/login', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
