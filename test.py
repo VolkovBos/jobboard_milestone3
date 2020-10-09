@@ -155,6 +155,15 @@ class RoutesVisitor(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 '''
 
+
+class FlaskTestCasesLoadsVisitor(unittest.TestCase):
+    # Ensure that the index page loads correctly
+    def test_index_loads(self):
+        tester = app.test_client(self)
+        response = tester.get('/index', content_type='html/text')
+        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
