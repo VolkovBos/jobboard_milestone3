@@ -175,6 +175,16 @@ class FlaskTestCasesLoadsVisitor(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
 
+    # Ensure that the login page loads correctly
+    def test_login_loads(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/login',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Login Page</h1>' in response.data)
+
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
