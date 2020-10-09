@@ -160,9 +160,20 @@ class FlaskTestCasesLoadsVisitor(unittest.TestCase):
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client(self)
-        response = tester.get('/index', content_type='html/text')
+        response = tester.get(
+            '/index',
+            content_type='html/text'
+        )
         self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
 
+    # Ensure that the vacancies page loads correctly
+    def test_vacancies_loads(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/vacancies',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
 
 # To run the test app
 if __name__ == "__main__":
