@@ -247,6 +247,15 @@ class FlaskTestCasesLoadsVisitor(unittest.TestCase):
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
+    # Ensure that the error page loads correctly
+    def test_changepassword(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/change_password/abcdefg',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
