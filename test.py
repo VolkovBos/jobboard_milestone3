@@ -184,6 +184,14 @@ class FlaskTestCasesLoadsVisitor(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Login Page</h1>' in response.data)
 
+    # Ensure that the register page loads correctly
+    def test_register_loads(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/register',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Registration</h1>' in response.data)
 
 # To run the test app
 if __name__ == "__main__":
