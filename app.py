@@ -376,10 +376,13 @@ def vacancies():
 # Route to go to the add vacancy page
 @app.route('/add_vacancy')
 def add_vacancy():
-    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
-    return render_template(
-        'addvacancy.html',
-        status=vacancy_status)
+    if g.user['profile'] == 'admin':
+        vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+        return render_template(
+            'addvacancy.html',
+            status=vacancy_status)
+    else:
+        abort(404)
 
 
 # Insert a new vacancy
@@ -467,21 +470,24 @@ def myapplications():
 # Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 def add_application(vacancy_id):
-    all_candidates = mongo.db.candidates.find()
-    open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
-    application_status = mongo.db.status.find({'type': 'application'})
+    if g.user['profile'] == 'admin':
+        all_candidates = mongo.db.candidates.find()
+        open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
+        application_status = mongo.db.status.find({'type': 'application'})
 
-    if vacancy_id != 'admin':
-        the_vacancy = mongo.db.vacancies.find_one(
-            {"_id": ObjectId(vacancy_id)})
+        if vacancy_id != 'admin':
+            the_vacancy = mongo.db.vacancies.find_one(
+                {"_id": ObjectId(vacancy_id)})
+        else:
+            the_vacancy = ''
+        return render_template(
+            'addapplication.html',
+            vacancy=the_vacancy,
+            candidates=all_candidates,
+            vacancies=open_vacancies,
+            status=application_status)
     else:
-        the_vacancy = ''
-    return render_template(
-        'addapplication.html',
-        vacancy=the_vacancy,
-        candidates=all_candidates,
-        vacancies=open_vacancies,
-        status=application_status)
+        abort(404)
 
 
 # Insert a new application, from application page or from a vacancy

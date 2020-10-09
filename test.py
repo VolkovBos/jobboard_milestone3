@@ -43,7 +43,7 @@ class RoutesVisitor(unittest.TestCase):
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplication(self):
         tester = app.test_client(self)
-        response = tester.get('/addapplication', content_type='html/text')
+        response = tester.get('/add_application', content_type='html/text')
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
