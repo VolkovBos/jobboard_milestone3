@@ -33,8 +33,8 @@ class RoutesVisitor(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get(
             '/login',
-            content_type='html/text
-        ')
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens register page
@@ -56,10 +56,19 @@ class RoutesVisitor(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     # Ensure that a visitor gets the message that this page cannot be found
-    def test_addapplication(self):
+    def test_addapplicationFromVacancie(self):
         tester = app.test_client(self)
         response = tester.get(
-            '/add_application/adsfadsfasf',
+            '/add_application/abcdefg',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_addapplicationFromApplicationPage(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/add_application/admin',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
@@ -91,6 +100,23 @@ class RoutesVisitor(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_changepassword(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/change_password/abcdefg',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_editapplications(self):
+        tester = app.test_client(self)
+        response = tester.get(
+            '/edit_application',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
 
 # To run the test app
 if __name__ == "__main__":
