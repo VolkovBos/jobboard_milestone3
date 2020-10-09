@@ -28,6 +28,12 @@ class RoutesVisitor(unittest.TestCase):
         response = tester.get('/login', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens register page
+    def test_register(self):
+        tester = app.test_client(self)
+        response = tester.get('/register', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
 
 # To run the test app
 if __name__ == "__main__":
