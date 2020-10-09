@@ -10,59 +10,85 @@ if os.path.exists("env.py"):
 
 
 class RoutesVisitor(unittest.TestCase):
-
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client(self)
-        response = tester.get('/index', content_type='html/text')
+        response = tester.get(
+            '/index',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens vacancies page
     def test_vacancies(self):
         tester = app.test_client(self)
-        response = tester.get('/vacancies', content_type='html/text')
+        response = tester.get(
+            '/vacancies',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens login page
     def test_login(self):
         tester = app.test_client(self)
-        response = tester.get('/login', content_type='html/text')
+        response = tester.get(
+            '/login',
+            content_type='html/text
+        ')
         self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens register page
     def test_register(self):
         tester = app.test_client(self)
-        response = tester.get('/register', content_type='html/text')
+        response = tester.get(
+            '/register',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens contact page
     def test_contact(self):
         tester = app.test_client(self)
-        response = tester.get('/contact', content_type='html/text')
+        response = tester.get(
+            '/contact',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 200)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplication(self):
         tester = app.test_client(self)
-        response = tester.get('/add_application', content_type='html/text')
+        response = tester.get(
+            '/add_application/adsfadsfasf',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_adduser(self):
         tester = app.test_client(self)
-        response = tester.get('/add_user', content_type='html/text')
+        response = tester.get(
+            '/add_user',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addvacancy(self):
         tester = app.test_client(self)
-        response = tester.get('/add_vacancy', content_type='html/text')
+        response = tester.get(
+            '/add_vacancy',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_applications(self):
         tester = app.test_client(self)
-        response = tester.get('/applications', content_type='html/text')
+        response = tester.get(
+            '/applications',
+            content_type='html/text'
+        )
         self.assertEqual(response.status_code, 404)
 
 
