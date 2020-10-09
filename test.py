@@ -34,6 +34,12 @@ class RoutesVisitor(unittest.TestCase):
         response = tester.get('/register', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens contact page
+    def test_contact(self):
+        tester = app.test_client(self)
+        response = tester.get('/contact', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
 
 # To run the test app
 if __name__ == "__main__":
