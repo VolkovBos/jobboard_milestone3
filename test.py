@@ -16,7 +16,6 @@ class RoutesVisitor(unittest.TestCase):
         response = tester.get('/index', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-
     # Ensure that route opens vacancies page
     def test_vacancies(self):
         tester = app.test_client(self)
