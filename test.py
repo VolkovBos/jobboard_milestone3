@@ -496,15 +496,14 @@ class RoutesUserAvailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancy(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         tester.post(
             '/login',
             data=dict(username=USERNAME_USER, password=SPW_TWO),
             follow_redirects=True
         )
         response = tester.get(
-            '/add_application/',
-            data={'vacancy_id': VACANCY_ID},
+            f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
         print()
