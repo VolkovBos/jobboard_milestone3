@@ -22,11 +22,12 @@ mongo = PyMongo(app)
 vacancy = mongo.db.vacancies.find_one()
 candidate_user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
 candidate_admin = mongo.db.candidates.find_one({'user_name': USERNAME_ADMIN})
+application = mongo.db.applications.find_one()
 
 VACANCY_ID = vacancy['_id']
 CANDIDATE_ID_USER = candidate_user['_id']
 CANDIDATE_ID_ADMIN = candidate_admin['_id']
-
+APPLICATION_ID = application['_id']
 
 class RoutesVisitorAvailable(unittest.TestCase):
     '''
@@ -158,10 +159,28 @@ class RoutesVisitorUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
+    def test_editapplicationId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/edit_application/{APPLICATION_ID}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
     def test_editapplication(self):
         tester = app.test_client()
         response = tester.get(
             '/edit_application',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_editapplicationRandomId(self):
+        tester = app.test_client()
+        response = tester.get(
+            '/edit_application/abcdef',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
