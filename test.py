@@ -25,7 +25,7 @@ which are available for a visitor
 class RoutesVisitorAvailable(unittest.TestCase):
     # Ensure that route opens index page
     def test_index(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/index',
             content_type='html/text'
@@ -34,7 +34,7 @@ class RoutesVisitorAvailable(unittest.TestCase):
 
     # Ensure that route opens vacancies page
     def test_vacancies(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/vacancies',
             content_type='html/text'
@@ -43,7 +43,7 @@ class RoutesVisitorAvailable(unittest.TestCase):
 
     # Ensure that route opens login page
     def test_login(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/login',
             content_type='html/text'
@@ -52,7 +52,7 @@ class RoutesVisitorAvailable(unittest.TestCase):
 
     # Ensure that route opens register page
     def test_register(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/register',
             content_type='html/text'
@@ -61,7 +61,7 @@ class RoutesVisitorAvailable(unittest.TestCase):
 
     # Ensure that route opens contact page
     def test_contact(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/contact',
             content_type='html/text'
@@ -78,7 +78,7 @@ which are unavailable for a visitor
 class RoutesVisitorUnavailable(unittest.TestCase):
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancie(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_application/abcdefg',
             content_type='html/text'
@@ -87,7 +87,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromApplicationPage(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_application/admin',
             content_type='html/text'
@@ -96,7 +96,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_adduser(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_user',
             content_type='html/text'
@@ -105,7 +105,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addvacancy(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_vacancy',
             content_type='html/text'
@@ -114,7 +114,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_applications(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/applications',
             content_type='html/text'
@@ -123,7 +123,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_changepassword(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/change_password/abcdefg',
             content_type='html/text'
@@ -132,7 +132,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_editapplication(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_application',
             content_type='html/text'
@@ -141,7 +141,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_editapplicationId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_application/abcdef',
             content_type='html/text'
@@ -150,7 +150,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_edituser(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_user',
             content_type='html/text'
@@ -159,7 +159,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_edituserId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_user/abcdef',
             content_type='html/text'
@@ -168,7 +168,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_editvacancy(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_vacancy',
             content_type='html/text'
@@ -177,7 +177,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_editvacancyId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_vacancy/abcdef',
             content_type='html/text'
@@ -186,7 +186,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_profile(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/profile',
             content_type='html/text'
@@ -195,7 +195,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_users(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/users',
             content_type='html/text'
@@ -213,7 +213,7 @@ which are available for a visitor
 class loadsVisitorAvailable(unittest.TestCase):
     # Ensure that the index page loads correctly
     def test_index_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/index',
             content_type='html/text'
@@ -222,7 +222,7 @@ class loadsVisitorAvailable(unittest.TestCase):
 
     # Ensure that the vacancies page loads correctly
     def test_vacancies_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/vacancies',
             content_type='html/text'
@@ -231,7 +231,7 @@ class loadsVisitorAvailable(unittest.TestCase):
 
     # Ensure that the login page loads correctly
     def test_login_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/login',
             content_type='html/text'
@@ -240,7 +240,7 @@ class loadsVisitorAvailable(unittest.TestCase):
 
     # Ensure that the register page loads correctly
     def test_register_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/register',
             content_type='html/text'
@@ -249,7 +249,7 @@ class loadsVisitorAvailable(unittest.TestCase):
 
     # Ensure that the contact page loads correctly
     def test_contact_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/contact',
             content_type='html/text'
@@ -266,7 +266,7 @@ which are unavailable for a visitor
 class loadsVisitorUnvailable(unittest.TestCase):
     # Ensure that the error page loads correctly
     def test_addapplication_loads(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_application/abcdefg',
             content_type='html/text'
@@ -275,7 +275,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_addapplicationFromApplicationPage(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_application/admin',
             content_type='html/text'
@@ -284,7 +284,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_adduser(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_user',
             content_type='html/text'
@@ -293,7 +293,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_addvacancy(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/add_vacancy',
             content_type='html/text'
@@ -302,7 +302,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_applications(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/applications',
             content_type='html/text'
@@ -311,7 +311,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_changepassword(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/change_password/abcdefg',
             content_type='html/text'
@@ -320,7 +320,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_editapplication(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_application',
             content_type='html/text'
@@ -329,7 +329,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_editapplicationId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_application/abcdef',
             content_type='html/text'
@@ -338,7 +338,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_edituser(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_user',
             content_type='html/text'
@@ -347,7 +347,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_edituserId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_user/abcdef',
             content_type='html/text'
@@ -356,7 +356,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_editvacancy(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_vacancy',
             content_type='html/text'
@@ -365,7 +365,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_editvacancyId(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/edit_vacancy/abcdef',
             content_type='html/text'
@@ -374,7 +374,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_profile(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/profile',
             content_type='html/text'
@@ -383,7 +383,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
 
     # Ensure that the error page loads correctly
     def test_users(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.get(
             '/users',
             content_type='html/text'
@@ -400,7 +400,7 @@ testClass for all login functionality
 class loginTests(unittest.TestCase):
     # Test for login by user with correct credentials
     def test_correct_credentials_user(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username=USERNAME_USER, password=SPW_TWO),
@@ -410,7 +410,7 @@ class loginTests(unittest.TestCase):
 
     # Test for login by user with incorrect username
     def test_incorrect_username_user(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username='randomusername', password=SPW_TWO),
@@ -420,7 +420,7 @@ class loginTests(unittest.TestCase):
 
     # Test for login by user with incorrect password
     def test_incorrect_password_user(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username=USERNAME_USER, password='randompassword'),
@@ -430,7 +430,7 @@ class loginTests(unittest.TestCase):
 
     # Test for login by admin with correct credentials
     def test_correct_credentials_admin(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
@@ -440,7 +440,7 @@ class loginTests(unittest.TestCase):
 
     # Test for login by admin with incorrect username
     def test_incorrect_username_admin(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username='randomusername', password=SPW_ONE),
@@ -450,7 +450,7 @@ class loginTests(unittest.TestCase):
 
     # Test for login by admin with incorrect password
     def test_incorrect_password_admin(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         response = tester.post(
             '/login',
             data=dict(username=USERNAME_ADMIN, password='randompassword'),
@@ -468,7 +468,7 @@ which are available for a user
 class RoutesUserAvailable(unittest.TestCase):
     # Ensure that route opens index page
     def test_index(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         tester.post(
             '/login',
             data=dict(username=USERNAME_USER, password=SPW_TWO),
@@ -482,7 +482,7 @@ class RoutesUserAvailable(unittest.TestCase):
 
     # Ensure that route opens vacancies page
     def test_vacancies(self):
-        tester = app.test_client(self)
+        tester = app.test_client()
         tester.post(
             '/login',
             data=dict(username=USERNAME_USER, password=SPW_TWO),
