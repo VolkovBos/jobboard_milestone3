@@ -470,24 +470,21 @@ def myapplications():
 # Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 def add_application(vacancy_id):
-    if g.user['profile'] == 'admin':
-        all_candidates = mongo.db.candidates.find()
-        open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
-        application_status = mongo.db.status.find({'type': 'application'})
+    all_candidates = mongo.db.candidates.find()
+    open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
+    application_status = mongo.db.status.find({'type': 'application'})
 
-        if vacancy_id != 'admin':
-            the_vacancy = mongo.db.vacancies.find_one(
-                {"_id": ObjectId(vacancy_id)})
-        else:
-            the_vacancy = ''
-        return render_template(
-            'addapplication.html',
-            vacancy=the_vacancy,
-            candidates=all_candidates,
-            vacancies=open_vacancies,
-            status=application_status)
+    if vacancy_id != 'admin':
+        the_vacancy = mongo.db.vacancies.find_one(
+            {"_id": ObjectId(vacancy_id)})
     else:
-        abort(404)
+        the_vacancy = ''
+    return render_template(
+        'addapplication.html',
+        vacancy=the_vacancy,
+        candidates=all_candidates,
+        vacancies=open_vacancies,
+        status=application_status)
 
 
 # Insert a new application, from application page or from a vacancy
