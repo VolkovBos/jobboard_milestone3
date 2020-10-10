@@ -16,8 +16,11 @@ SPW_ONE = os.environ.get('SPW_ONE')
 SPW_TWO = os.environ.get('SPW_TWO')
 
 
-# testClass for all routes for a visitor of the site
-class RoutesVisitor(unittest.TestCase):
+'''
+testClass for all routes for a visitor of the site
+which are available for a visitor
+'''
+class RoutesVisitorAvailable(unittest.TestCase):
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client(self)
@@ -62,7 +65,14 @@ class RoutesVisitor(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
+
+
 '''
+testClass for all routes for a visitor of the site
+which are unavailable for a visitor
+'''
+'''
+class RoutesVisitorUnavailable(unittest.TestCase):
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancie(self):
         tester = app.test_client(self)
