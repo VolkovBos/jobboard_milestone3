@@ -27,13 +27,13 @@ VACANCY_ID = vacancy['_id']
 CANDIDATE_ID_USER = candidate_user['_id']
 CANDIDATE_ID_ADMIN = candidate_admin['_id']
 
-'''
-testClass for all routes for a visitor of the site
-which are available for a visitor
-'''
-
 
 class RoutesVisitorAvailable(unittest.TestCase):
+    '''
+    testClass for all routes for a visitor of the site
+    which are available for a visitor
+    '''
+
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client()
@@ -80,13 +80,11 @@ class RoutesVisitorAvailable(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-'''
-testClass for all routes for a visitor of the site
-which are unavailable for a visitor
-'''
-
-
 class RoutesVisitorUnavailable(unittest.TestCase):
+    '''
+    testClass for all routes for a visitor of the site
+    which are unavailable for a visitor
+    '''
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancie(self):
         tester = app.test_client()
@@ -101,6 +99,15 @@ class RoutesVisitorUnavailable(unittest.TestCase):
         tester = app.test_client()
         response = tester.get(
             '/add_application/admin',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_addapplicationFromApplicationPageId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
@@ -214,14 +221,11 @@ class RoutesVisitorUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-
-'''
-testClass for all page loads for a visitor of the site
-which are available for a visitor
-'''
-
-
 class loadsVisitorAvailable(unittest.TestCase):
+    '''
+    testClass for all page loads for a visitor of the site
+    which are available for a visitor
+    '''
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client()
@@ -268,13 +272,11 @@ class loadsVisitorAvailable(unittest.TestCase):
         self.assertTrue(b'<h1>Contact Us</h1>' in response.data)
 
 
-'''
-testClass for all page loads for a visitor of the site
-which are unavailable for a visitor
-'''
-
-'''
 class loadsVisitorUnvailable(unittest.TestCase):
+    '''
+    testClass for all page loads for a visitor of the site
+    which are unavailable for a visitor
+    '''
     # Ensure that the error page loads correctly
     def test_addapplication_loads(self):
         tester = app.test_client()
@@ -400,15 +402,12 @@ class loadsVisitorUnvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-'''
-
-
-'''
-testClass for all login functionality
-'''
 
 
 class loginTests(unittest.TestCase):
+    '''
+    testClass for all login functionality
+    '''
     # Test for login by user with correct credentials
     def test_correct_credentials_user(self):
         tester = app.test_client()
@@ -470,13 +469,11 @@ class loginTests(unittest.TestCase):
         self.assertIn(b'Your password is incorrect', response.data)
 
 
-'''
-testClass for all routes for a user of the site
-which are available for a user
-'''
-
-
 class RoutesUserAvailable(unittest.TestCase):
+    '''
+    testClass for all routes for a user of the site
+    which are available for a user
+    '''
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client()
