@@ -1,6 +1,9 @@
 # Imports needed
 import os
-from flask_pymongo import PyMongo
+from flask_pymongo import (
+    abort,
+    PyMongo
+)
 from app import app
 import unittest
 
@@ -33,6 +36,15 @@ class RoutesVisitorAvailable(unittest.TestCase):
     testClass for all routes for a visitor of the site
     which are available for a visitor
     '''
+
+    # Ensure that route opens 403 error page
+    def test_403(self):
+        tester = app.test_client()
+        response = tester.get(
+            abort(403),
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens index page
     def test_index(self):
