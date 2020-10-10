@@ -344,6 +344,16 @@ class loginTests(unittest.TestCase):
         )
         self.assertIn(b'Your password is incorrect', response.data)
 
+    # Test for login by admin with correct credentials
+    def test_correct_credentials_admin(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
