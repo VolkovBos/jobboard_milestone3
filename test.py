@@ -19,9 +19,13 @@ SPW_TWO = os.environ.get('SPW_TWO')
 
 # MongoDB configuration
 mongo = PyMongo(app)
-the_vacancy = mongo.db.vacancies.find_one()
-VACANCY_ID = the_vacancy['_id']
+vacancy = mongo.db.vacancies.find_one()
+candidate_user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
+candidate_admin = mongo.db.candidates.find_one({'user_name': USERNAME_ADMIN})
 
+VACANCY_ID = vacancy['_id']
+CANDIDATE_ID_USER = candidate_user['_id']
+CANDIDATE_ID_ADMIN = candidate_admin['_id']
 
 '''
 testClass for all routes for a visitor of the site
@@ -538,7 +542,7 @@ class RoutesUserAvailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            '/profile',
+            f'/profile/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
