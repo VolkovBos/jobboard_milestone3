@@ -598,7 +598,7 @@ class loginUserTests(unittest.TestCase):
 
 class loginAdminTests(unittest.TestCase):
     '''
-    testClass for user login functionality
+    testClass for admin login functionality
     '''
     # Test for login by admin with correct credentials
     def test_correct_credentials_admin(self):
