@@ -366,6 +366,15 @@ class loadsVisitorUnvailable(unittest.TestCase):
     def test_addapplication_loads(self):
         tester = app.test_client()
         response = tester.get(
+            '/add_application/',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that the error page loads correctly
+    def test_addapplicationRandomId_loads(self):
+        tester = app.test_client()
+        response = tester.get(
             '/add_application/abcdefg',
             content_type='html/text'
         )
