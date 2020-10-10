@@ -1,6 +1,6 @@
 # Imports needed
 import os
-from flask_pymongo import PyMongo, g
+from flask_pymongo import PyMongo
 from app import app
 import unittest
 
@@ -23,7 +23,7 @@ vacancy = mongo.db.vacancies.find_one()
 candidate_user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
 candidate_admin = mongo.db.candidates.find_one({'user_name': USERNAME_ADMIN})
 application = mongo.db.applications.find_one()
-g.user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
+
 
 VACANCY_ID = vacancy['_id']
 CANDIDATE_ID_USER = candidate_user['_id']
