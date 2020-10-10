@@ -264,8 +264,8 @@ I have used the following technologys for this project:
 
 ## Testing
 
-### Error page
-I tested the 404 error with [seositecheckup](https://seositecheckup.com/seo-audit/custom-404-error-page-test/jobboard-milestone3.herokuapp.com)
+### Error pages
+I tested the 404 error with [seositecheckup](https://seositecheckup.com/seo-audit/custom-404-error-page-test/jobboard-milestone3.herokuapp.com). Further more I tested these page by temporary using abort(nr) in a view to see if it would redirect correctly.
 
 ### Validators
 To make sure there where nog syntax errors, I've used the following validators on my pages:
@@ -288,6 +288,7 @@ To make sure there where nog syntax errors, I've used the following validators o
 When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution here:<br>
 https://github.com/Dogfalo/materialize/issues/3844
 
+Visitors and users can see urls from which they should have no access rights. I wouldn't want to solve this with several if-else statements in every route/view. So I asked arround and with a little help I created my own decorator for this. 
 
 
 ## Deployment
@@ -299,3 +300,8 @@ git push force
 ```
 
 ## Credits
+Thanks to [Tim (Justim)](https://github.com/justim) for some deeper explanation about Python views and decorators. Helped me with the login view decorator.
+
+And a thanks to my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) who gave me honest and good feedback on my site/code and helped me te complete this project.
+
+[w3schools](https://www.w3schools.com/) and [StackOverflow](https://stackoverflow.com/) for research.
