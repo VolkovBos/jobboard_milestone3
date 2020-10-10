@@ -85,7 +85,7 @@ testClass for all routes for a visitor of the site
 which are unavailable for a visitor
 '''
 
-'''
+
 class RoutesVisitorUnavailable(unittest.TestCase):
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancie(self):
@@ -212,7 +212,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-'''
+
 
 
 '''
