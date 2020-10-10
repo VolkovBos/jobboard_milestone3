@@ -138,7 +138,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-    
+
     # Ensure that a visitor gets the message that this page cannot be found
     def test_editapplicationId(self):
         tester = app.test_client(self)
@@ -362,7 +362,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-    
+
     # Ensure that the error page loads correctly
     def test_editvacancyId(self):
         tester = app.test_client(self)
