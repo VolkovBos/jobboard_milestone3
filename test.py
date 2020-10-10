@@ -529,6 +529,20 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens profile page
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
 
 # To run the test app
 if __name__ == "__main__":
