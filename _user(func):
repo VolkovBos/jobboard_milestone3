@@ -1,0 +1,12 @@
+[1mdiff --git a/app.py b/app.py[m
+[1mindex cf94315..25b3ab0 100644[m
+[1m--- a/app.py[m
+[1m+++ b/app.py[m
+[36m@@ -11,6 +11,7 @@[m [mfrom flask import ([m
+     session,[m
+     url_for[m
+ )[m
+[32m+[m[32mfrom functools import wraps[m
+ from flask_pymongo import PyMongo[m
+ from bson.objectid import ObjectId[m
+ from werkzeug.security import ([m

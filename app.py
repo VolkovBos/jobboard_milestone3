@@ -11,6 +11,7 @@ from flask import (
     session,
     url_for
 )
+from functools import wraps
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import (
