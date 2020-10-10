@@ -501,7 +501,7 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a visitor gets the message that this page cannot be found
+    # Ensure that route opens add application page
     def test_addapplicationFromVacancy(self):
         tester = app.test_client()
         tester.post(
