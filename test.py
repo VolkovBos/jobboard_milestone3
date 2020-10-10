@@ -392,7 +392,11 @@ class loadsVisitorUnvailable(unittest.TestCase):
 '''
 
 
-# testClass for all login functionality
+'''
+testClass for all login functionality
+'''
+
+
 class loginTests(unittest.TestCase):
     # Test for login by user with correct credentials
     def test_correct_credentials_user(self):
