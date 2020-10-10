@@ -314,7 +314,15 @@ class loadsVisitor(unittest.TestCase):
 
 # testClass for all login functionality
 class loginTests(unittest.TestCase):
-
+    # Test for login by user with correct credentials
+    def test_correct_credentials_user(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
 
 
 # To run the test app
