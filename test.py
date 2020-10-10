@@ -420,11 +420,29 @@ class loadsVisitorUnvailable(unittest.TestCase):
     def test_changepassword(self):
         tester = app.test_client()
         response = tester.get(
+            '/change_password/',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that the error page loads correctly
+    def test_changepasswordRandomId(self):
+        tester = app.test_client()
+        response = tester.get(
             '/change_password/abcdefg',
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
+    # Ensure that the error page loads correctly
+    def test_changepasswordId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/change_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+ 
     # Ensure that the error page loads correctly
     def test_editapplication(self):
         tester = app.test_client()
