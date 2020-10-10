@@ -9,6 +9,14 @@ if os.path.exists("env.py"):
     import env
 
 
+# Set usernames and passwords for login tests
+USERNAME_ADMIN = os.environ.get('USERNAME_ADMIN')
+USERNAME_USER = os.environ.get('USERNAME_USER')
+SPW_ONE = os.environ.get('SPW_ONE')
+SPW_TWO = os.environ.get('SPW_TWO')
+
+
+# testClass for all routes for a visitor of the site
 class RoutesVisitor(unittest.TestCase):
     # Ensure that route opens index page
     def test_index(self):
@@ -156,7 +164,8 @@ class RoutesVisitor(unittest.TestCase):
 '''
 
 
-class FlaskTestCasesLoadsVisitor(unittest.TestCase):
+# testClass for all page loads for a visitor of the site
+class loadsVisitor(unittest.TestCase):
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client(self)
@@ -301,6 +310,12 @@ class FlaskTestCasesLoadsVisitor(unittest.TestCase):
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 '''
+
+
+# testClass for all login functionality
+class loginTests(unittest.TestCase):
+
+
 
 # To run the test app
 if __name__ == "__main__":
