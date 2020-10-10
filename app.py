@@ -376,7 +376,6 @@ def delete_user(user_id):
 
 # Contact page in case of any problems
 @app.route("/contact")
-@login_required
 def contact():
     return render_template("contact.html")
 
