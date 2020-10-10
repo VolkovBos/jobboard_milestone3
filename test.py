@@ -14,7 +14,7 @@ USERNAME_ADMIN = os.environ.get('USERNAME_ADMIN')
 USERNAME_USER = os.environ.get('USERNAME_USER')
 SPW_ONE = os.environ.get('SPW_ONE')
 SPW_TWO = os.environ.get('SPW_TWO')
-
+VACANCY_ID = '5f67bc3643f71774b981ebfc'
 
 '''
 testClass for all routes for a visitor of the site
@@ -503,9 +503,11 @@ class RoutesUserAvailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            '/add_application/abcdefg',
+            '/add_application/',
+            data={'vacancy_id': VACANCY_ID},
             content_type='html/text'
         )
+        print()
         self.assertEqual(response.status_code, 200)
 
 
