@@ -1,9 +1,6 @@
 # Imports needed
 import os
-from flask_pymongo import (
-    abort,
-    PyMongo
-)
+from flask_pymongo import PyMongo
 from app import app
 import unittest
 
@@ -37,20 +34,20 @@ class RoutesVisitorAvailable(unittest.TestCase):
     which are available for a visitor
     '''
 
+    # Ensure that route opens contact page
+    def test_contact(self):
+        tester = app.test_client()
+        response = tester.get(
+            '/contact',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client()
         response = tester.get(
             '/index',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
-    # Ensure that route opens vacancies page
-    def test_vacancies(self):
-        tester = app.test_client()
-        response = tester.get(
-            '/vacancies',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
@@ -73,11 +70,11 @@ class RoutesVisitorAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that route opens contact page
-    def test_contact(self):
+    # Ensure that route opens vacancies page
+    def test_vacancies(self):
         tester = app.test_client()
         response = tester.get(
-            '/contact',
+            '/vacancies',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
@@ -238,6 +235,16 @@ class loadsVisitorAvailable(unittest.TestCase):
     testClass for all page loads for a visitor of the site
     which are available for a visitor
     '''
+
+    # Ensure that the contact page loads correctly
+    def test_contact_loads(self):
+        tester = app.test_client()
+        response = tester.get(
+            '/contact',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Contact Us</h1>' in response.data)
+
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client()
@@ -246,15 +253,6 @@ class loadsVisitorAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
-
-    # Ensure that the vacancies page loads correctly
-    def test_vacancies_loads(self):
-        tester = app.test_client()
-        response = tester.get(
-            '/vacancies',
-            content_type='html/text'
-        )
-        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
 
     # Ensure that the login page loads correctly
     def test_login_loads(self):
@@ -274,14 +272,14 @@ class loadsVisitorAvailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Registration</h1>' in response.data)
 
-    # Ensure that the contact page loads correctly
-    def test_contact_loads(self):
+    # Ensure that the vacancies page loads correctly
+    def test_vacancies_loads(self):
         tester = app.test_client()
         response = tester.get(
-            '/contact',
+            '/vacancies',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Contact Us</h1>' in response.data)
+        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
 
 
 class loadsVisitorUnvailable(unittest.TestCase):
