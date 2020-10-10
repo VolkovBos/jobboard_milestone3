@@ -285,10 +285,8 @@ To make sure there where nog syntax errors, I've used the following validators o
 
 
 ### Issues found
-When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution here:<br>
-https://github.com/Dogfalo/materialize/issues/3844
-
-Visitors and users can see urls from which they should have no access rights. I wouldn't want to solve this with several if-else statements in every route/view. So I asked arround and with a little help I created my own decorator for this. 
+* When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution [here](https://github.com/Dogfalo/materialize/issues/3844)
+* Visitors and users can see urls from which they should have no access rights. I wouldn't want to solve this with several if-else statements in every route/view. So I asked arround and with a little help I created my own decorator for this. 
 
 
 ## Deployment
