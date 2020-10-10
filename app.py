@@ -38,6 +38,16 @@ app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
 
+# Login check decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 # Login config (https://www.youtube.com/watch?v=2Zz97NVbH0U)
 class User:
     def __init__(self, id, username, password):
