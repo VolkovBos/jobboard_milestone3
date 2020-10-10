@@ -678,6 +678,20 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens contact page
+    def test_contact(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/contact',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client()
