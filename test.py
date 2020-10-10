@@ -664,9 +664,14 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-	# Ensure that route opens change password page
+    # Ensure that route opens change password page
     def test_changepassword(self):
         tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
         response = tester.get(
             f'/change_password/{CANDIDATE_ID_USER}',
             content_type='html/text'
