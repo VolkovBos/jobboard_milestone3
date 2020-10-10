@@ -29,6 +29,7 @@ CANDIDATE_ID_USER = candidate_user['_id']
 CANDIDATE_ID_ADMIN = candidate_admin['_id']
 APPLICATION_ID = application['_id']
 
+
 class RoutesVisitorAvailable(unittest.TestCase):
     '''
     testClass for all routes for a visitor of the site
@@ -83,7 +84,7 @@ class RoutesVisitorAvailable(unittest.TestCase):
 
 class RoutesVisitorUnavailable(unittest.TestCase):
     '''
-    testClass for all routes for a visitor of the site
+    testClass for all routes/views for a visitor of the site
     which are unavailable for a visitor
     '''
     # Ensure that a visitor gets the message that this page cannot be found
