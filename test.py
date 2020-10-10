@@ -480,7 +480,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
     # Ensure that the error page loads correctly
-    def test_edituserId(self):
+    def test_edituserRandomId(self):
         tester = app.test_client()
         response = tester.get(
             '/edit_user/abcdef',
@@ -488,6 +488,14 @@ class loadsVisitorUnvailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
+    # Ensure that the error page loads correctly
+    def test_edituserId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/edit_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
     # Ensure that the error page loads correctly
     def test_editvacancy(self):
         tester = app.test_client()
