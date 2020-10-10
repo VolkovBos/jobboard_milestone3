@@ -20,6 +20,8 @@ SPW_TWO = os.environ.get('SPW_TWO')
 testClass for all routes for a visitor of the site
 which are available for a visitor
 '''
+
+
 class RoutesVisitorAvailable(unittest.TestCase):
     # Ensure that route opens index page
     def test_index(self):
@@ -174,8 +176,13 @@ class RoutesVisitorUnavailable(unittest.TestCase):
 '''
 
 
-# testClass for all page loads for a visitor of the site
-class loadsVisitor(unittest.TestCase):
+'''
+testClass for all page loads for a visitor of the site
+which are available for a visitor
+'''
+
+
+class loadsVisitorAvailable(unittest.TestCase):
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client(self)
@@ -220,7 +227,14 @@ class loadsVisitor(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Contact Us</h1>' in response.data)
+
+
 '''
+testClass for all page loads for a visitor of the site
+which are unavailable for a visitor
+'''
+'''
+class loadsVisitorUnvailable(unittest.TestCase):
     # Ensure that the error page loads correctly
     def test_addapplication_loads(self):
         tester = app.test_client(self)
