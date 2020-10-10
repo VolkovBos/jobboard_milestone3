@@ -561,9 +561,9 @@ class loadsVisitorUnvailable(unittest.TestCase):
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
 
-class loginTests(unittest.TestCase):
+class loginUserTests(unittest.TestCase):
     '''
-    testClass for all login functionality
+    testClass for user login functionality
     '''
     # Test for login by user with correct credentials
     def test_correct_credentials_user(self):
@@ -595,6 +595,11 @@ class loginTests(unittest.TestCase):
         )
         self.assertIn(b'Your password is incorrect', response.data)
 
+
+class loginAdminTests(unittest.TestCase):
+    '''
+    testClass for user login functionality
+    '''
     # Test for login by admin with correct credentials
     def test_correct_credentials_admin(self):
         tester = app.test_client()
