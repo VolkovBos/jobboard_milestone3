@@ -37,24 +37,6 @@ class RoutesVisitorAvailable(unittest.TestCase):
     which are available for a visitor
     '''
 
-    # Ensure that route opens 403 error page
-    def test_403(self):
-        tester = app.test_client()
-        response = tester.get(
-            abort(403),
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
-    # Ensure that route opens 404 error page
-    def test_404(self):
-        tester = app.test_client()
-        response = tester.get(
-            abort(404),
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
     # Ensure that route opens index page
     def test_index(self):
         tester = app.test_client()
