@@ -354,6 +354,15 @@ class loadsVisitorUnvailable(unittest.TestCase):
     which are unavailable for a visitor
     '''
     # Ensure that the error page loads correctly
+    def test_addapplicationId_loads(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/add_application/{VACANCY_ID}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that the error page loads correctly
     def test_addapplication_loads(self):
         tester = app.test_client()
         response = tester.get(
