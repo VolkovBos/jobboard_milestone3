@@ -353,7 +353,7 @@ class loginTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
-    
+
     # Test for login by admin with incorrect username
     def test_incorrect_username_admin(self):
         tester = app.test_client(self)
@@ -363,6 +363,16 @@ class loginTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'The username provided is not known', response.data)
+
+    # Test for login by admin with incorrect password
+    def test_incorrect_password_admin(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            follow_redirects=True
+        )
+        self.assertIn(b'Your password is incorrect', response.data)
 
 
 # To run the test app
