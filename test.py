@@ -1,6 +1,6 @@
 # Imports needed
 import os
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, g
 from app import app
 import unittest
 
@@ -23,6 +23,7 @@ vacancy = mongo.db.vacancies.find_one()
 candidate_user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
 candidate_admin = mongo.db.candidates.find_one({'user_name': USERNAME_ADMIN})
 application = mongo.db.applications.find_one()
+g.user = mongo.db.candidates.find_one({'user_name': USERNAME_USER})
 
 VACANCY_ID = vacancy['_id']
 CANDIDATE_ID_USER = candidate_user['_id']
@@ -140,6 +141,15 @@ class RoutesVisitorUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_myapplications(self):
+        tester = app.test_client()
+        response = tester.get(
+            '/myapplications',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_changepassword(self):
