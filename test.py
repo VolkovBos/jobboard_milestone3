@@ -534,6 +534,15 @@ class loadsVisitorUnvailable(unittest.TestCase):
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
     # Ensure that the error page loads correctly
+    def test_profileId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/profile/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that the error page loads correctly
     def test_users(self):
         tester = app.test_client()
         response = tester.get(
