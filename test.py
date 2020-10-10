@@ -506,7 +506,6 @@ class RoutesUserAvailable(unittest.TestCase):
             f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
-        print()
         self.assertEqual(response.status_code, 200)
 
 
