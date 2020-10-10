@@ -231,7 +231,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
-    def test_editvacancyId(self):
+    def test_editvacancyRandomId(self):
         tester = app.test_client()
         response = tester.get(
             '/edit_vacancy/abcdef',
