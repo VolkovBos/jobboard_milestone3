@@ -207,6 +207,17 @@ class RoutesVisitorUnavailable(unittest.TestCase):
     def test_edituserId(self):
         tester = app.test_client()
         response = tester.get(
+            f'/edit_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+
+
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_edituserId(self):
+        tester = app.test_client()
+        response = tester.get(
             '/edit_user/abcdef',
             content_type='html/text'
         )
