@@ -324,6 +324,16 @@ class loginTests(unittest.TestCase):
         )
         self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
 
+    # Test for login by user with incorrect username
+    def test_incorrect_username_user(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username='randomusername', password=SPW_TWO),
+            follow_redirects=True
+        )
+        self.assertIn(b'The username provided is not known', response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
