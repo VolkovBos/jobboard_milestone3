@@ -636,34 +636,6 @@ class RoutesUserAvailable(unittest.TestCase):
     testClass for all routes for a user of the site
     which are available for a user
     '''
-    # Ensure that route opens index page
-    def test_index(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/index',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
-    # Ensure that route opens vacancies page
-    def test_vacancies(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/vacancies',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
     # Ensure that route opens add application page
     def test_addapplicationFromVacancy(self):
         tester = app.test_client()
@@ -692,6 +664,20 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens index page
+    def test_index(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/index',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens profile page
     def test_profile(self):
         tester = app.test_client()
@@ -702,6 +688,20 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         response = tester.get(
             f'/profile/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
+    # Ensure that route opens vacancies page
+    def test_vacancies(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/vacancies',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
