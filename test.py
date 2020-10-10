@@ -258,6 +258,15 @@ class RoutesVisitorUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
+    def test_profileId(self):
+        tester = app.test_client()
+        response = tester.get(
+            f'/profile/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a visitor gets the message that this page cannot be found
     def test_users(self):
         tester = app.test_client()
         response = tester.get(
