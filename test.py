@@ -1,5 +1,6 @@
 # Imports needed
 import os
+from flask_pymongo import PyMongo
 from app import app
 import unittest
 
@@ -14,7 +15,13 @@ USERNAME_ADMIN = os.environ.get('USERNAME_ADMIN')
 USERNAME_USER = os.environ.get('USERNAME_USER')
 SPW_ONE = os.environ.get('SPW_ONE')
 SPW_TWO = os.environ.get('SPW_TWO')
-VACANCY_ID = '5f67bc3643f71774b981ebfc'
+
+
+# MongoDB configuration
+mongo = PyMongo(app)
+the_vacancy = mongo.db.vacancies.find_one()
+VACANCY_ID = the_vacancy['_id']
+
 
 '''
 testClass for all routes for a visitor of the site
