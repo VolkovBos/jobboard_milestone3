@@ -334,6 +334,16 @@ class loginTests(unittest.TestCase):
         )
         self.assertIn(b'The username provided is not known', response.data)
 
+    # Test for login by user with incorrect password
+    def test_incorrect_password_user(self):
+        tester = app.test_client(self)
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password='randompassword'),
+            follow_redirects=True
+        )
+        self.assertIn(b'Your password is incorrect', response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
