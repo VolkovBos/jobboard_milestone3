@@ -1266,6 +1266,20 @@ class LoadsUserUnavailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
+    # Ensure that the error page loads correctly
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
