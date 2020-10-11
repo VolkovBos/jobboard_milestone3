@@ -283,6 +283,18 @@ To make sure there where nog syntax errors, I've used the following validators o
 * [PEP8](http://pep8online.com/checkresult)
 
 ### Testing User Stories
+- Visitor
+    1. As a visitor, I want to be able to see which vacancies are available at the company
+        - By using the navigation menu I can visit the vacancies page to see the open vacancies
+    2. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
+    3. As a visitor, I want to be able to register so I can get a log in for the site
+        - By using the navigation menu I can visit the register page to register me as a candidate/user
+    4. As a visitor, I want to be able to get in contact so I can get more information about a partically subject
+        - I can use the menu to go to the contact page.
+        - On the contact page I can fill in my name e-mailadress and message.
+        - The contact form will let me know all fields are manditory.
+        - I can send in the form by clicking the Submit button.
+
 
 ### Unittesting
 For the Unittests I focussed mostly on authorisation, page loads and the error pages. Besides this I also tested the login, logout and register functionality. Because of time I chose to do test the button, actions, queries and database modifiers in the user storie testing. 
