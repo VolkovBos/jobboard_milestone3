@@ -174,7 +174,7 @@ The font Barrio is chosen in the corporate identity so I used this on the logo. 
 Because the company is a startup there are no images available just yet. And also the goal of the site is more for recruitment processes and connection with the candidates then a global PR of the company. Maybe in the near future this can be adjusted due to growth.
 
 ### Database
-This website has a MongoDb databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used MongoDb on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.
+This website has a [MongoDB](https://www.mongodb.com) databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used [MongoDB](https://www.mongodb.com) on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.
 
 #### Tables
 The most tables are self explanatory, but I consciously chose to use one table for candidates and users due to the size of the project and the simplicity of the current business processes. I allready created a profiles table, this simplifies editing or creating a new user by the admin and prevents a typo but also this anticipates on the possibility of implementing new user profiles. 
@@ -275,6 +275,8 @@ To make sure there where nog syntax errors, I've used the following validators o
 
 ### Testing User Stories
 
+### Unittesting
+For the Unittests I focussed mostly on authorisation, page loads and the error pages. Besides this I also tested the login, logout and register functionality. Because of time I chose to do test the button, actions, queries and database modifiers in the user storie testing. 
 
 ### Further testing
 * Tested this website on laptop and mobile.
@@ -284,12 +286,46 @@ To make sure there where nog syntax errors, I've used the following validators o
 * During testing I used "inspect" function on different OS, devices and browsers.
 
 
-### Issues found
+### Issues found (all solved)
 * When implementing the sidebar nav form materialize I came accross the issue that the sidebar was greyed out. I found the solution [here](https://github.com/Dogfalo/materialize/issues/3844)
 * Visitors and users can see urls from which they should have no access rights. I wouldn't want to solve this with several if-else statements in every route/view. So I asked arround and with a little help I created my own decorator for this. 
 
 
 ## Deployment
+This project was created using Github.
+From there I used Gitpod to write my code.
+Then I used commits to git followed by pushes to my GitHub repository.
+I've deployed this project to Heroku and used automated pushes to make sure my pushes to GitHub were also made to Heroku.
+For deployment on Heroku I've used the following steps:
+* Using the terminal command pip freeze > requirements.txt I have created a requirements.txt file.
+* Using the terminal command echo web: python app.py > Procfile I have created a procfile.
+* I've used git add, git commit and git push to push the requirements and procfile to GitHub.
+* I've created a new app on the Heroku website by using the "new" button on my dashboard.
+* I gave the app a name of jobboard-milestone3 and set the region to Europe.
+* From the Heroku dashboard I've clicked "Deploy" > "Deployment method" and selected GitHub.
+* Confirm the linking of the Heroku app to the correct GitHub repository.
+* In the Heroku dashboard I've clicked "Settings" > "Reveal Config Vars".
+* I've added the config vars for my IP, PORT, MONGO_URI and SECRET_KEY.
+* In the "Manual Deployment" section of this page I've made sure the master branch is selected and I've clicked "Deploy Branch".
+* The site was now successfully deployed.
+
+### Env.py
+In Gitpod I used a env.py file for my settings of the site, connection to [MongoDB](https://www.mongodb.com). I also used this for the Flask Unittests. I used the code below (with <> substituted for my string).
+
+```
+import os
+
+os.environ["MONGO_URI"] = "mongodb+srv://root:<PASSWORD_MONGODB>@myfirstcluster.vwkuk.mongodb.net/<NAME_MONGODB>?retryWrites=true&w=majority"
+os.environ["SECRET_KEY"] = "justtasecretkeyforme"
+
+# For testing
+os.environ["USERNAME_ADMIN"] = '<USERNAME_ADMIN>'
+os.environ["USERNAME_USER"] = '<USERNAME_USER>'
+os.environ["SPW_ONE"] = '<PASSWORD_ADMIN>'
+os.environ["SPW_TWO"] = '<PASSWORD_USER>'
+```
+
+### For my assessors
 03-10-2020 :<br>
 I had an issue with my credentials appearing in cached Python files/folders. So I had to remove the <span>__ Pycache __</span> folder and all history. I did this with:
 ```
