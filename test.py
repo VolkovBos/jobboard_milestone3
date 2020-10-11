@@ -38,7 +38,6 @@ class RoutesVisitorAvailable(unittest.TestCase):
     testClass for all routes for a visitor of the site
     which are available for a visitor
     '''
-    '''
     # Ensure that route opens contact page
     def test_contact(self):
         tester = app.test_client()
@@ -83,14 +82,12 @@ class RoutesVisitorAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
-    '''
 
 
 class RoutesVisitorUnavailable(unittest.TestCase):
     '''
     testClass for all routes/views for a visitor of the site
     which are unavailable for a visitor
-    '''
     '''
     # Ensure that a visitor gets the message that this page cannot be found
     def test_addapplicationFromVacancie(self):
@@ -153,7 +150,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
             '/myapplications',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 404)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_changepassword(self):
@@ -298,14 +295,12 @@ class RoutesVisitorUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-    '''
 
 
 class LoadsVisitorAvailable(unittest.TestCase):
     '''
     testClass for all page loads for a visitor of the site
     which are available for a visitor
-    '''
     '''
     # Ensure that the contact page loads correctly
     def test_contact_loads(self):
@@ -351,14 +346,12 @@ class LoadsVisitorAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
-    '''
 
 
 class LoadsVisitorUnvailable(unittest.TestCase):
     '''
     testClass for all page loads for a visitor of the site
     which are unavailable for a visitor
-    '''
     '''
     # Ensure that the error page loads correctly
     def test_addapplicationId_loads(self):
@@ -566,13 +559,11 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-    '''
 
 
 class LoginUserTests(unittest.TestCase):
     '''
     testClass for user login functionality
-    '''
     '''
     # Test for login by user with correct credentials
     def test_correct_credentials_user(self):
@@ -603,14 +594,12 @@ class LoginUserTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'Your password is incorrect', response.data)
-    '''
 
 
 class RoutesUserAvailable(unittest.TestCase):
     '''
     testClass for all routes for a user of the site
     which are available for a user
-    '''
     '''
     # Ensure that route opens add application page
     def test_addapplicationFromVacancy(self):
@@ -723,14 +712,12 @@ class RoutesUserAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
-    '''
 
 
 class RoutesUserUnavailable(unittest.TestCase):
     '''
     testClass for all routes/views for a visitor of the site
     which are unavailable for a user
-    '''
     '''
     # Ensure that a user gets the message that this page cannot be found
     def test_addapplicationFromVacancyFakeId(self):
@@ -745,9 +732,8 @@ class RoutesUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 500)
-    '''
-    '''
-    Not catched correctly, change in app.py needed!
+
+    # Not catched correctly, change in app.py needed!
     # Ensure that a user gets the message that this page cannot be found
     def test_addapplicationFromApplicationPage(self):
         tester = app.test_client()
@@ -761,8 +747,7 @@ class RoutesUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-    '''
-    '''
+
     # Ensure that a user gets the message that this page cannot be found
     def test_adduser(self):
         tester = app.test_client()
@@ -958,14 +943,12 @@ class RoutesUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-    '''
 
 
 class LoadsUserAvailable(unittest.TestCase):
     '''
     testClass for all page loads for a user of the site
     which are available for a user
-    '''
     '''
     # Ensure that route opens add application page
     def test_addapplicationFromVacancy(self):
@@ -1036,14 +1019,12 @@ class LoadsUserAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'A form to see your user profile' in response.data)
-    '''
 
 
 class LoadsUserUnavailable(unittest.TestCase):
     '''
     testClass for all page loads for a user of the site
     which are unavailable for a user
-    '''
     '''
     # Ensure that the error page loads correctly
     def test_addapplicationFromVacancyFakeId(self):
@@ -1058,10 +1039,8 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
-    '''
 
-    '''
-    Not catched correctly, change in app.py needed!
+    # Not catched correctly, change in app.py needed!
     # Ensure that the error page loads correctly
     def test_addapplicationFromApplicationPage(self):
         tester = app.test_client()
@@ -1075,8 +1054,6 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-    '''
-    '''
 
     # Ensure that the error page loads correctly
     def test_adduser(self):
@@ -1273,13 +1250,11 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-    '''
 
 
 class LoginAdminTests(unittest.TestCase):
     '''
     testClass for admin login functionality
-    '''
     '''
     # Test for login by admin with correct credentials
     def test_correct_credentials_admin(self):
@@ -1310,7 +1285,6 @@ class LoginAdminTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'Your password is incorrect', response.data)
-    '''
 
 
 class RoutesAdminAvailable(unittest.TestCase):
@@ -1332,7 +1306,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens add application page
     def test_addapplicationFromApplicationPage(self):
         tester = app.test_client()
         tester.post(
@@ -1346,7 +1320,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens add user page
     def test_adduser(self):
         tester = app.test_client()
         tester.post(
@@ -1360,7 +1334,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens add vacancy page
     def test_addvacancy(self):
         tester = app.test_client()
         tester.post(
@@ -1374,7 +1348,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens applications page
     def test_applications(self):
         tester = app.test_client()
         tester.post(
@@ -1416,7 +1390,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens edit application page
     def test_editapplicationId(self):
         tester = app.test_client()
         tester.post(
@@ -1444,7 +1418,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens edit vacancy page
     def test_editvacancyId(self):
         tester = app.test_client()
         tester.post(
@@ -1500,7 +1474,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that route opens users page
     def test_users(self):
         tester = app.test_client()
         tester.post(
@@ -1534,7 +1508,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
     testClass for all routes for a admin of the site
     which are unavailable for a admin, mostly due to an incorrect id
     '''
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_addapplicationFromVacancyFakeId(self):
         tester = app.test_client()
         tester.post(
@@ -1548,7 +1522,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_changepasswordRandomId(self):
         tester = app.test_client()
         tester.post(
@@ -1562,7 +1536,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the message that this page cannot be found
     def test_editapplication(self):
         tester = app.test_client()
         tester.post(
@@ -1576,7 +1550,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_editapplicationRandomId(self):
         tester = app.test_client()
         tester.post(
@@ -1590,7 +1564,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_edituserRandomId(self):
         tester = app.test_client()
         tester.post(
@@ -1604,7 +1578,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the message that this page cannot be found
     def test_editvacancy(self):
         tester = app.test_client()
         tester.post(
@@ -1618,7 +1592,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_editvacancyRandomId(self):
         tester = app.test_client()
         tester.post(
@@ -1632,7 +1606,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the message that this page cannot be found
     def test_profile(self):
         tester = app.test_client()
         tester.post(
@@ -1646,7 +1620,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
-    # Ensure that a user gets the message that this page cannot be found
+    # Ensure that a admin gets the server error message
     def test_profileRandomId(self):
         tester = app.test_client()
         tester.post(
@@ -1659,6 +1633,208 @@ class RoutesAdminUnAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 500)
+
+
+class LoadsAdminAvailable(unittest.TestCase):
+    '''
+    testClass for all routes for a admin of the site
+    which are available for a admin
+    '''
+    # Ensure that route opens add application page
+    def test_addapplicationFromVacancy(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/add_application/{VACANCY_ID}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Add Application</h1>' in response.data)
+
+    # Ensure that route opens login page
+    def test_addapplicationFromApplicationPage(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/admin',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Add Application</h1>' in response.data)
+
+    # Ensure that route opens add user page
+    def test_adduser(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_user',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Add User</h1>' in response.data)
+
+    # Ensure that route opens add vacancy page
+    def test_addvacancy(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_vacancy',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Add Vacancy</h1>' in response.data)
+
+    # Ensure that route opens applications page
+    def test_applications(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/applications',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Open Applications</h1>' in response.data)
+
+    # Ensure that route opens change password page
+    def test_changepassword(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/change_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Change password</h1>' in response.data)
+
+    # Ensure that route opens contact page
+    def test_contact(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/contact',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Contact Us</h1>' in response.data)
+
+    # Ensure that route opens edit application page
+    def test_editapplicationId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_application/{APPLICATION_ID}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Edit Application</h1>' in response.data)
+
+    # Ensure that route opens edit user page
+    def test_edituser(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_user/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Edit User</h1>' in response.data)
+
+    # Ensure that route opens edit vacancy page
+    def test_editvacancyId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_vacancy/{VACANCY_ID}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Edit Vacancy</h1>' in response.data)
+
+    # Ensure that route opens index page
+    def test_index(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/index',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+
+    # Ensure that route opens profile page
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/profile/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'A form to see your user profile' in response.data)
+
+    # Ensure that route opens users page
+    def test_users(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/users',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Users to approve</h1>' in response.data)
+
+    # Ensure that route opens vacancies page
+    def test_vacancies(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/vacancies',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
 
 
 # To run the test app
