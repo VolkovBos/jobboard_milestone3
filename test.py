@@ -1067,7 +1067,7 @@ class loadsUserAvailable(unittest.TestCase):
             f'/profile/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(f"b'<h1>{CANDIDATE_NAME_USER}</h1>'" in response.data)
+        self.assertTrue(b'A form to see your user profile' in response.data)
 
 
 # To run the test app
