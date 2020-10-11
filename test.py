@@ -936,7 +936,7 @@ class RoutesUserUnavailable(unittest.TestCase):
             '/edit_vacancy/abcdef',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 404)
 
     # Ensure that a user gets the message that this page cannot be found
     def test_profile(self):
@@ -953,7 +953,7 @@ class RoutesUserUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a user gets the message that this page cannot be found
-    def test_profileId(self):
+    def test_profileRandomRandomId(self):
         tester = app.test_client()
         tester.post(
             '/login',
@@ -961,11 +961,24 @@ class RoutesUserUnavailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            f'/profile/{CANDIDATE_ID_USER}',
+            '/profile/adbcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_users(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/users',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-
 
 # To run the test app
 if __name__ == "__main__":
