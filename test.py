@@ -733,7 +733,6 @@ class RoutesUserUnavailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
-    # Not catched correctly, change in app.py needed!
     # Ensure that a user gets the message that this page cannot be found
     def test_addapplicationFromApplicationPage(self):
         tester = app.test_client()
@@ -1040,7 +1039,6 @@ class LoadsUserUnavailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
 
-    # Not catched correctly, change in app.py needed!
     # Ensure that the error page loads correctly
     def test_addapplicationFromApplicationPage(self):
         tester = app.test_client()
