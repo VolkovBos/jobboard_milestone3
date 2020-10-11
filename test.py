@@ -1039,6 +1039,20 @@ class loadsUserAvailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Change password</h1>' in response.data)
 
+    # Ensure that a visitor gets the message that this page cannot be found
+    def test_edituser(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Edit User</h1>' in response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
