@@ -520,8 +520,10 @@ def add_application(vacancy_id):
     if vacancy_id != 'admin':
         the_vacancy = mongo.db.vacancies.find_one(
             {"_id": ObjectId(vacancy_id)})
-    else:
+    elif g.user['profile'] == 'admin':
         the_vacancy = ''
+    else:
+        abort(404)
     return render_template(
         'addapplication.html',
         vacancy=the_vacancy,
