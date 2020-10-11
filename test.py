@@ -594,7 +594,18 @@ class LoginUserTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'Your password is incorrect', response.data)
-
+    ''' Not wokring yet
+    # Test for login by user with unapproved status
+    def test_upprovedUser(self):
+        tester = app.test_client()
+        # candidate_user['approved'] = False
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        self.assertIn(b'Your registration is not processed yet.', response.data)
+    '''
     # Test for logout by user
     def test_correct_logout(self):
         tester = app.test_client(self)
