@@ -1332,7 +1332,49 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that route opens my applications page
+    # Ensure that a user gets the message that this page cannot be found
+    def test_addapplicationFromApplicationPage(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/admin',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_adduser(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_user',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_addvacancy(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_vacancy',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
+    # Ensure that a user gets the message that this page cannot be found
     def test_applications(self):
         tester = app.test_client()
         tester.post(
@@ -1341,7 +1383,7 @@ class RoutesAdminAvailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            '/myapplications',
+            '/applications',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
@@ -1374,6 +1416,20 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editapplicationId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_application/{APPLICATION_ID}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens edit user page
     def test_edituser(self):
         tester = app.test_client()
@@ -1384,6 +1440,20 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         response = tester.get(
             f'/edit_user/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editvacancyId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/edit_vacancy/{VACANCY_ID}',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
@@ -1402,6 +1472,20 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens my applications page
+    def test_myapplications(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/myapplications',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens profile page
     def test_profile(self):
         tester = app.test_client()
@@ -1416,6 +1500,20 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that a user gets the message that this page cannot be found
+    def test_users(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/users',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens vacancies page
     def test_vacancies(self):
         tester = app.test_client()
@@ -1426,20 +1524,6 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         response = tester.get(
             '/vacancies',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
-    # Ensure that a user gets the message that this page cannot be found
-    def test_addapplicationFromApplicationPage(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/add_application/admin',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 200)
