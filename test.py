@@ -1973,7 +1973,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-    
+
     # Ensure that a admin gets the server error message
     def test_profileRandomId(self):
         tester = app.test_client()
