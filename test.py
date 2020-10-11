@@ -606,43 +606,6 @@ class LoginUserTests(unittest.TestCase):
     '''
 
 
-class LoginAdminTests(unittest.TestCase):
-    '''
-    testClass for admin login functionality
-    '''
-    '''
-    # Test for login by admin with correct credentials
-    def test_correct_credentials_admin(self):
-        tester = app.test_client()
-        response = tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
-            follow_redirects=True
-        )
-        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
-
-    # Test for login by admin with incorrect username
-    def test_incorrect_username_admin(self):
-        tester = app.test_client()
-        response = tester.post(
-            '/login',
-            data=dict(username='randomusername', password=SPW_ONE),
-            follow_redirects=True
-        )
-        self.assertIn(b'The username provided is not known', response.data)
-
-    # Test for login by admin with incorrect password
-    def test_incorrect_password_admin(self):
-        tester = app.test_client()
-        response = tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password='randompassword'),
-            follow_redirects=True
-        )
-        self.assertIn(b'Your password is incorrect', response.data)
-    '''
-
-
 class RoutesUserAvailable(unittest.TestCase):
     '''
     testClass for all routes for a user of the site
@@ -1081,6 +1044,7 @@ class LoadsUserUnavailable(unittest.TestCase):
     testClass for all page loads for a user of the site
     which are unavailable for a user
     '''
+    '''
     # Ensure that the error page loads correctly
     def test_addapplicationFromVacancyFakeId(self):
         tester = app.test_client()
@@ -1094,6 +1058,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+    '''
 
     '''
     Not catched correctly, change in app.py needed!
@@ -1110,6 +1075,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+    '''
     '''
 
     # Ensure that the error page loads correctly
@@ -1307,6 +1273,44 @@ class LoadsUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+    '''
+
+
+class LoginAdminTests(unittest.TestCase):
+    '''
+    testClass for admin login functionality
+    '''
+    '''
+    # Test for login by admin with correct credentials
+    def test_correct_credentials_admin(self):
+        tester = app.test_client()
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
+
+    # Test for login by admin with incorrect username
+    def test_incorrect_username_admin(self):
+        tester = app.test_client()
+        response = tester.post(
+            '/login',
+            data=dict(username='randomusername', password=SPW_ONE),
+            follow_redirects=True
+        )
+        self.assertIn(b'The username provided is not known', response.data)
+
+    # Test for login by admin with incorrect password
+    def test_incorrect_password_admin(self):
+        tester = app.test_client()
+        response = tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            follow_redirects=True
+        )
+        self.assertIn(b'Your password is incorrect', response.data)
+    '''
 
 
 # To run the test app
