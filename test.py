@@ -600,7 +600,7 @@ class LoginUserTests(unittest.TestCase):
         tester = app.test_client(self)
         tester.post(
             '/login',
-            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
             follow_redirects=True
         )
         response = tester.get('/logout', follow_redirects=True)
@@ -1300,7 +1300,7 @@ class LoginAdminTests(unittest.TestCase):
         tester = app.test_client(self)
         tester.post(
             '/login',
-            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
             follow_redirects=True
         )
         response = tester.get('/logout', follow_redirects=True)

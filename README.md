@@ -292,8 +292,7 @@ For the Unittests I focussed mostly on authorisation, page loads and the error p
 
 
 ## Deployment
-This project was created using Github.
-From there I used Gitpod to write my code.
+This project was created using Github, from there I used Gitpod to write my code.
 Then I used commits to git followed by pushes to my GitHub repository.
 I've deployed this project to Heroku and used automated pushes to make sure my pushes to GitHub were also made to Heroku.
 For deployment on Heroku I've used the following steps:
@@ -308,6 +307,46 @@ For deployment on Heroku I've used the following steps:
 * I've added the config vars for my IP, PORT, MONGO_URI and SECRET_KEY.
 * In the "Manual Deployment" section of this page I've made sure the master branch is selected and I've clicked "Deploy Branch".
 * The site was now successfully deployed.
+
+### MongoDB
+Create a MongoDB database with the tables(collections):
+- applications
+- candidates
+- profiles
+- status
+- vacancies
+
+Then you can use below code to create the first admin user. From there on, you can use the site to add, modify or delete users.
+
+```
+import os
+from flask import Flask
+from flask_pymongo import PyMongo
+from werkzeug.security import generate_password_hash
+
+app = Flask(__name__)
+MONGO_URI = "mongodb+srv://root:bos77@myfirstcluster.vwkuk.mongodb.net/jobboard?retryWrites=true&w=majority"
+app.config["MONGO_DBNAME"] = 'jobboard_milestone3'
+app.config["MONGO_URI"] = MONGO_URI
+mongo = PyMongo(app)
+
+username = 'TESTROBBERT'
+user_password = 'TESTROBBERT'
+email = 'bos@bos.bos'
+hash_pass = generate_password_hash(user_password)
+
+mongo.db.candidates.insert_one(
+    {
+        'user_name': username,
+        'email': email,
+        'password': hash_pass,
+        'approved': True,
+        'status': 'active',
+        'profile': 'admin',
+        'user_id': 1
+    }
+)
+```
 
 ### Env.py
 In Gitpod I used a env.py file for my settings of the site, connection to [MongoDB](https://www.mongodb.com). I also used this for the Flask Unittests. I used the code below (with <> substituted for my string).
