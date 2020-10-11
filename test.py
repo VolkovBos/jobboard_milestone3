@@ -1093,7 +1093,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/add_application/abcdefg',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
 
 
 # To run the test app
