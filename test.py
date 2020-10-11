@@ -767,6 +767,23 @@ class RoutesUserUnavailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 500)
 
+    '''
+    Not catched correctly, change in app.py needed!
+    # Ensure that a user gets the message that this page cannot be found
+    def test_addapplicationFromApplicationPage(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/admin',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+    '''
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
