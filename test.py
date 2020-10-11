@@ -1501,7 +1501,7 @@ class RoutesAdminAvailable(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class RoutesAdminUnAvailable(unittest.TestCase):
+class RoutesAdminUnavailable(unittest.TestCase):
     '''
     testClass for all routes for a admin of the site
     which are unavailable for a admin, mostly due to an incorrect id
@@ -1833,6 +1833,138 @@ class LoadsAdminAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
+
+
+class LoadsAdminUnavailable(unittest.TestCase):
+    '''
+    testClass for all page loads for a user of the site
+    which are unavailable for a user due to an incorrect id
+    '''
+    # Ensure that a admin gets the server error message
+    def test_addapplicationFromVacancyFakeId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/abcdefg',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+
+    # Ensure that a admin gets the server error message
+    def test_changepasswordRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/change_password/abcdef',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+
+    # Ensure that a admin gets the message that this page cannot be found
+    def test_editapplication(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_application',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that a admin gets the server error message
+    def test_editapplicationRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_application/abcdef',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+
+    # Ensure that a admin gets the server error message
+    def test_edituserRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_user/abcdef',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+
+    # Ensure that a admin gets the message that this page cannot be found
+    def test_editvacancy(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_vacancy',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+
+    # Ensure that a admin gets the server error message
+    def test_editvacancyRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_vacancy/abcdef',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+
+    # Ensure that a admin gets the message that this page cannot be found
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+    
+    # Ensure that a admin gets the server error message
+    def test_profileRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile/adbcdef',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
 
 
 # To run the test app
