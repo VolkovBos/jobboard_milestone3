@@ -932,7 +932,7 @@ class RoutesUserUnavailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a user gets the message that this page cannot be found
-    def test_profileRandomRandomId(self):
+    def test_profileRandomId(self):
         tester = app.test_client()
         tester.post(
             '/login',
@@ -1247,7 +1247,7 @@ class LoadsUserUnavailable(unittest.TestCase):
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
 
     # Ensure that the error page loads correctly
-    def test_profileRandomRandomId(self):
+    def test_profileRandomId(self):
         tester = app.test_client()
         tester.post(
             '/login',
@@ -1647,7 +1647,7 @@ class RoutesAdminUnAvailable(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     # Ensure that a user gets the message that this page cannot be found
-    def test_profileRandomRandomId(self):
+    def test_profileRandomId(self):
         tester = app.test_client()
         tester.post(
             '/login',
