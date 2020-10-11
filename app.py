@@ -173,14 +173,22 @@ def login():
             # Check if the user is active
             if users['status'] == 'active':
 
-                # Check if the password is correct
-                if check_password_hash(users['password'], password):
-                    session['user_id'] = users['user_id']
-                    return redirect(url_for('index'))
+                # Check if the user is approved
+                if users['approved'] is True:
 
-                # Incorrect password
+                    # Check if the password is correct
+                    if check_password_hash(users['password'], password):
+                        session['user_id'] = users['user_id']
+                        return redirect(url_for('index'))
+
+                    # Incorrect password
+                    else:
+                        flash('Your password is incorrect')
+                        return redirect(url_for('login'))
+
+                # User is not approved yet
                 else:
-                    flash('Your password is incorrect')
+                    flash('Your registration is not processed yet.')
                     return redirect(url_for('login'))
 
             # Inactive user
