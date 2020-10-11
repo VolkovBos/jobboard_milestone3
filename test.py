@@ -680,7 +680,7 @@ class RoutesUserAvailable(unittest.TestCase):
             f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
     # Ensure that route opens index page
     def test_index(self):
