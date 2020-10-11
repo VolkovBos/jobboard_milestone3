@@ -936,7 +936,7 @@ class RoutesUserUnavailable(unittest.TestCase):
             '/edit_vacancy/abcdef',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 500)
 
     # Ensure that a user gets the message that this page cannot be found
     def test_profile(self):
