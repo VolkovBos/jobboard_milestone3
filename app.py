@@ -481,7 +481,7 @@ def delete_vacancy(vacancy_id):
 
 # Applications page for overview and management of Applications
 @app.route('/applications')
-@login_required
+@admin_required
 def applications():
     return render_template(
         "applications.html",
