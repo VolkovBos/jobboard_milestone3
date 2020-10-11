@@ -595,6 +595,17 @@ class LoginUserTests(unittest.TestCase):
         )
         self.assertIn(b'Your password is incorrect', response.data)
 
+    # Test for logout by user
+    def test_correct_logout(self):
+        tester = app.test_client(self)
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            follow_redirects=True
+        )
+        response = tester.get('/logout', follow_redirects=True)
+        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+
 
 class RoutesUserAvailable(unittest.TestCase):
     '''
@@ -1283,6 +1294,17 @@ class LoginAdminTests(unittest.TestCase):
             follow_redirects=True
         )
         self.assertIn(b'Your password is incorrect', response.data)
+
+    # Test for logout by admin
+    def test_correct_logout(self):
+        tester = app.test_client(self)
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password='randompassword'),
+            follow_redirects=True
+        )
+        response = tester.get('/logout', follow_redirects=True)
+        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
 
 
 class RoutesAdminAvailable(unittest.TestCase):
