@@ -27,6 +27,8 @@ application = mongo.db.applications.find_one()
 
 VACANCY_ID = vacancy['_id']
 CANDIDATE_ID_USER = candidate_user['_id']
+CANDIDATE_NAME_USER = candidate_user['first_name'] \
+    + candidate_user['last_name']
 CANDIDATE_ID_ADMIN = candidate_admin['_id']
 APPLICATION_ID = application['_id']
 
@@ -220,7 +222,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
     def test_edituserId(self):
         tester = app.test_client()
         response = tester.get(
-            f'/edit_password/{CANDIDATE_ID_USER}',
+            f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
@@ -497,7 +499,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
     def test_edituserId(self):
         tester = app.test_client()
         response = tester.get(
-            f'/edit_password/{CANDIDATE_ID_USER}',
+            f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
         self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
@@ -708,7 +710,7 @@ class RoutesUserAvailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            f'/edit_password/{CANDIDATE_ID_USER}',
+            f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
@@ -1048,10 +1050,24 @@ class loadsUserAvailable(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get(
-            f'/edit_password/{CANDIDATE_ID_USER}',
+            f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
         self.assertTrue(b'<h1>Edit User</h1>' in response.data)
+
+    # Ensure that route opens profile page
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/profile/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(f"b'<h1>{CANDIDATE_NAME_USER}</h1>'" in response.data)
 
 
 # To run the test app
