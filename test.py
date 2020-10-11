@@ -1011,6 +1011,34 @@ class loadsUserAvailable(unittest.TestCase):
         )
         self.assertTrue(b'<h1>Application</h1>' in response.data)
 
+    # Ensure that route opens my applications page
+    def test_applications(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/myapplications',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>My Applications</h1>' in response.data)
+
+    # Ensure that route opens change password page
+    def test_changepassword(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/change_password/{CANDIDATE_ID_USER}',
+            content_type='html/text'
+        )
+        self.assertTrue(b'<h1>Change password</h1>' in response.data)
+
 
 # To run the test app
 if __name__ == "__main__":
