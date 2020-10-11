@@ -301,7 +301,7 @@ class RoutesVisitorUnavailable(unittest.TestCase):
     '''
 
 
-class loadsVisitorAvailable(unittest.TestCase):
+class LoadsVisitorAvailable(unittest.TestCase):
     '''
     testClass for all page loads for a visitor of the site
     which are available for a visitor
@@ -354,7 +354,7 @@ class loadsVisitorAvailable(unittest.TestCase):
     '''
 
 
-class loadsVisitorUnvailable(unittest.TestCase):
+class LoadsVisitorUnvailable(unittest.TestCase):
     '''
     testClass for all page loads for a visitor of the site
     which are unavailable for a visitor
@@ -569,7 +569,7 @@ class loadsVisitorUnvailable(unittest.TestCase):
     '''
 
 
-class loginUserTests(unittest.TestCase):
+class LoginUserTests(unittest.TestCase):
     '''
     testClass for user login functionality
     '''
@@ -604,7 +604,7 @@ class loginUserTests(unittest.TestCase):
         self.assertIn(b'Your password is incorrect', response.data)
 
 
-class loginAdminTests(unittest.TestCase):
+class LoginAdminTests(unittest.TestCase):
     '''
     testClass for admin login functionality
     '''
@@ -994,10 +994,11 @@ class RoutesUserUnavailable(unittest.TestCase):
     '''
 
 
-class loadsUserAvailable(unittest.TestCase):
+class LoadsUserAvailable(unittest.TestCase):
     '''
     testClass for all page loads for a user of the site
     which are available for a user
+    '''
     '''
     # Ensure that route opens add application page
     def test_addapplicationFromVacancy(self):
@@ -1068,6 +1069,27 @@ class loadsUserAvailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertTrue(b'A form to see your user profile' in response.data)
+    '''
+
+
+class LoadsUserUnavailable(unittest.TestCase):
+    '''
+    testClass for all page loads for a user of the site
+    which are unavailable for a user
+    '''
+    # Ensure that the error page loads correctly
+    def test_addapplicationFromVacancyFakeId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/abcdefg',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
 
 
 # To run the test app
