@@ -1529,6 +1529,138 @@ class RoutesAdminAvailable(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+class RoutesAdminUnAvailable(unittest.TestCase):
+    '''
+    testClass for all routes for a admin of the site
+    which are unavailable for a admin, mostly due to an incorrect id
+    '''
+    # Ensure that a user gets the message that this page cannot be found
+    def test_addapplicationFromVacancyFakeId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/add_application/abcdefg',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_changepasswordRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/change_password/abcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editapplication(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_application',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editapplicationRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_application/abcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_edituserRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_user/abcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editvacancy(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_vacancy',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_editvacancyRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_vacancy/abcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_profile(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
+
+    # Ensure that a user gets the message that this page cannot be found
+    def test_profileRandomRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/profile/adbcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
