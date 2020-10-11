@@ -16,32 +16,41 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was c
 ## UX
 
 ### User stories
-- <ins>General website user (visitor)</ins>
-    - As a visitor, I want to be able to see which vacancies are available at the company
-    - As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
-    - As a visitor, I want to be able to register so I can get a log in for the site
-    - As a visitor, I want to be able to get in contact so I can get more information about a partically subject
+<details>
+<summary>General website user (visitor)</summary>
 
-- <ins>Candidate (logged in) user</ins>
-    - As a user, I want to be able to log in my user environment so I can see all information applicable to me
-    - As a user, I want to be able to log out my user environment
-    - As a user, I want to be able to see which vacancies are available at the company, so I can apply to them
-    - As a user, I want to be able to apply to a open vacancy, so I can join the company
-    - As a user, I want to be able to see my application history, so I can know which applications are still ongoing
-    - As a user, I want to be able to change my profile information, so this is up to date
-    - As a user, I want to be able to change my password
+1. As a visitor, I want to be able to see which vacancies are available at the company
+2. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
+3. As a visitor, I want to be able to register so I can get a log in for the site
+4. As a visitor, I want to be able to get in contact so I can get more information about a partically subject
 
-- <ins>Administrator</ins>
-    - As the admin, I want to be able to see and do all the user stories of a logged in user so I can control the data and the environment
-    - As the admin, I want to be able to have an overview of vacancies, applications and user in the environment
-    - As the admin, I want to be able to add vacancies so that they are available for website and candidate user
-    - As the admin, I want to be able to close, edit and delete vacancies
-    - As the admin, I want to be able to add applications for candidates and vacancies so that they are available for the candidate user
-    - As the admin, I want to be able to close, edit and delete applications
-    - As the admin, I want to be able to add users so that I can give candidates login credentials
-    - As the admin, I want to be able to approve new registrations so no one can get access without permission/controle
-    - As the admin, I want to be able to delete user so that they cannot login anymore
-    - As the admin, I don't want other people to be able to use pages from where changes to the database can be made.
+</details>
+<details>
+<summary>Candidate (logged in) user</summary>
+
+1. As a user, I want to be able to log in my user environment so I can see all information applicable to me
+2. As a user, I want to be able to log out my user environment
+3. As a user, I want to be able to see which vacancies are available at the company, so I can apply to them
+4. As a user, I want to be able to apply to a open vacancy, so I can join the company
+5. As a user, I want to be able to see my application history, so I can know which applications are still ongoing
+6. As a user, I want to be able to change my profile information, so this is up to date
+7. As a user, I want to be able to change my password
+</details>
+<details>
+<summary>Administrator</summary>
+
+1. As the admin, I want to be able to see and do all the user stories of a logged in user so I can control the data and the environment
+2. As the admin, I want to be able to have an overview of vacancies, applications and user in the environment
+3. As the admin, I want to be able to add vacancies so that they are available for website and candidate user
+4. As the admin, I want to be able to close, edit and delete vacancies
+5. As the admin, I want to be able to add applications for candidates and vacancies so that they are available for the candidate user
+6. As the admin, I want to be able to close, edit and delete applications
+7. As the admin, I want to be able to add users so that I can give candidates login credentials
+8. As the admin, I want to be able to approve new registrations so no one can get access without permission/controle
+9. As the admin, I want to be able to delete user so that they cannot login anymore
+10. As the admin, I don't want other people to be able to use pages from where changes to the database can be made.
+
+</details>
 
 ### WireFrames
 <details>
