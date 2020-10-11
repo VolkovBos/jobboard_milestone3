@@ -48,6 +48,18 @@ def login_required(f):
     return decorated_function
 
 
+# Admin check decorator
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is not None:
+            if g.user['profile'] == 'admin':
+                return f(*args, **kwargs)
+            return abort(404)
+        return abort(404)
+    return decorated_function
+
+
 # Login config (https://www.youtube.com/watch?v=2Zz97NVbH0U)
 class User:
     def __init__(self, id, username, password):
@@ -199,6 +211,7 @@ def logout():
 
 # Profile page for users
 @app.route('/profile/<candidate_id>')
+@login_required
 def profile(candidate_id):
     if not g.user:
         abort(404)
@@ -263,7 +276,7 @@ def update_password(user_id):
 
 # User page for management of users
 @app.route('/users')
-@login_required
+@admin_required
 def users():
     if g.user['profile'] == 'admin':
         return render_template(
@@ -276,7 +289,7 @@ def users():
 
 # Add user/candidate page
 @app.route('/add_user')
-@login_required
+@admin_required
 def add_user():
     if g.user['profile'] == 'admin':
         user_status = mongo.db.status.find({'type': 'user'})
@@ -291,7 +304,7 @@ def add_user():
 
 # Insert a new user/candidate
 @app.route('/insert_user', methods=['POST'])
-@login_required
+@admin_required
 def insert_user():
     users = mongo.db.candidates
     hash_pass = generate_password_hash(request.form.get('password'))
@@ -355,7 +368,7 @@ def update_user(user_id):
 
 # Approving a new registrated user
 @app.route('/approve_user/<user_id>')
-@login_required
+@admin_required
 def approve_user(user_id):
     users = mongo.db.candidates
     users.update(
@@ -368,7 +381,7 @@ def approve_user(user_id):
 
 # Delete a user
 @app.route('/delete_user/<user_id>')
-@login_required
+@admin_required
 def delete_user(user_id):
     mongo.db.candidates.remove({'_id': ObjectId(user_id)})
     return redirect(url_for('users'))
@@ -396,7 +409,7 @@ def vacancies():
 
 # Route to go to the add vacancy page
 @app.route('/add_vacancy')
-@login_required
+@admin_required
 def add_vacancy():
     if g.user['profile'] == 'admin':
         vacancy_status = mongo.db.status.find({'type': 'vacancy'})
@@ -409,7 +422,7 @@ def add_vacancy():
 
 # Insert a new vacancy
 @app.route('/insert_vacancy', methods=['POST'])
-@login_required
+@admin_required
 def insert_vacancy():
     vacancies = mongo.db.vacancies
     vacancies.insert_one(request.form.to_dict())
@@ -418,7 +431,7 @@ def insert_vacancy():
 
 # Route to go to the edit vacancy page
 @app.route('/edit_vacancy/<vacancy_id>')
-@login_required
+@admin_required
 def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
@@ -430,7 +443,7 @@ def edit_vacancy(vacancy_id):
 
 # Edit a vacancy
 @app.route('/update_vacancy/<vacancy_id>', methods=['POST'])
-@login_required
+@admin_required
 def update_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
     vacancies.update(
@@ -447,7 +460,7 @@ def update_vacancy(vacancy_id):
 
 # Close a vacancy, set status on done
 @app.route('/close_vacancy/<vacancy_id>')
-@login_required
+@admin_required
 def close_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
     vacancies.update(
@@ -460,7 +473,7 @@ def close_vacancy(vacancy_id):
 
 # Delete a vacancy
 @app.route('/delete_vacancy/<vacancy_id>')
-@login_required
+@admin_required
 def delete_vacancy(vacancy_id):
     mongo.db.vacancies.remove({'_id': ObjectId(vacancy_id)})
     return redirect(url_for('vacancies'))
@@ -481,6 +494,7 @@ def applications():
 
 # Applications page for overview of applications for a user
 @app.route('/myapplications')
+@login_required
 def myapplications():
     return render_template(
         "applications.html",
@@ -531,7 +545,7 @@ def insert_application():
 
 # Route to go to the edit application page
 @app.route('/edit_application/<application_id>')
-@login_required
+@admin_required
 def edit_application(application_id):
     the_application = mongo.db.applications.find_one(
         {"_id": ObjectId(application_id)})
@@ -554,7 +568,7 @@ def edit_application(application_id):
 
 # Update an application
 @app.route('/update_application/<application_id>', methods=['POST'])
-@login_required
+@admin_required
 def update_application(application_id):
     applications = mongo.db.applications
     applications.update(
@@ -572,7 +586,7 @@ def update_application(application_id):
 
 # Close an application
 @app.route('/close_application/<application_id>')
-@login_required
+@admin_required
 def close_application(application_id):
     applications = mongo.db.applications
     applications.update(
@@ -585,7 +599,7 @@ def close_application(application_id):
 
 # Delete an application
 @app.route('/delete_application/<application_id>')
-@login_required
+@admin_required
 def delete_application(application_id):
     mongo.db.applications.remove({'_id': ObjectId(application_id)})
     return redirect(url_for('applications'))
