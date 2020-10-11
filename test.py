@@ -882,6 +882,21 @@ class RoutesUserUnavailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 404)
 
+    # Ensure that a user gets the message that this page cannot be found
+    def test_edituserRandomId(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            '/edit_user/abcdef',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 500)
+
+
 # To run the test app
 if __name__ == "__main__":
     unittest.main()
