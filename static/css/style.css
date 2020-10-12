@@ -15,13 +15,6 @@ h1 {
     font-size: 3rem;
 }
 
-h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    text-decoration: underline;
-}
-
 .shortcut {
     font-size: 150%;
 }
@@ -87,6 +80,11 @@ footer a {
     max-width: 1600px;
 }
 
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
 .home-image {
     height: auto;
     max-width: 100%;
@@ -103,6 +101,31 @@ footer a {
         transform: scale(1.0);
     }
 }
+
+.catch-box {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    right: 40px;
+    bottom: 240px;
+    width: 200px;
+    height: 170px;
+    padding: 10px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Play', sans-serif;
+}
+
+#catch-phrase {
+    background-color: rgba(2, 203, 238, 0.5);
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
