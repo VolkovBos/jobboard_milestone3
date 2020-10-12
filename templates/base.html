@@ -14,7 +14,10 @@
 
 <!--    Personalized Styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-    
+
+<!--    Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <!--    EmailJS API, sends email to owner of site-->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
     
@@ -32,158 +35,9 @@
 <!--    Header      -->
     <header>
 <!--    Navbar      -->
-        <div class="navbar navbar-fixed">
-            <nav class="blue darken-4">
-                <div class="nav-wrapper">
-                    <a href="{{ url_for('index') }}" class="brand-logo">BOS UP</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right">
-                        <i class="material-icons">menu</i>
-                    </a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>
-                            <a  class="{% if 'index' in request.path %} active {% endif %}"
-                                title="Home" 
-                                href="{{ url_for('index') }}">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a  class="{% if 'vacancies' in request.path %} active {% endif %}"
-                                title= {% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %} 
-                                href="{{ url_for('vacancies') }}">
-                                Vacancies
-                            </a>
-                        </li>
-                    {% if not g.user %}
-                        <li>
-                            <a  class="{% if 'login' in request.path %} active {% endif %}"
-                                title="Login with your credentials" 
-                                href="{{ url_for('login') }}">
-                                Login
-                            </a>
-                        </li>
-                        <li>
-                            <a  class="{% if 'register' in request.path %} active {% endif %}" 
-                                title="Register to get an user account" 
-                                href="{{ url_for('register') }}">
-                                Register
-                            </a>
-                        </li>
-                    {% else %}
-                        {% if g.user['profile'] != 'admin' %}
-                            <li>
-                                <a  class="{% if 'myapplications' in request.path %} active {% endif %}"
-                                    title="See which applications you have" 
-                                    href="{{ url_for('myapplications') }}" >
-                                    My Applications
-                                </a>
-                            </li>
-                        {% elif g.user['profile'] == 'admin' %}
-                            <li>
-                                <a  class="{% if 'applications' in request.path %} active {% endif %}"
-                                    title="Manage applications" 
-                                    href="{{ url_for('applications') }}" >
-                                    Applications
-                                </a>
-                            </li>
-                            <li>
-                                <a  class="{% if 'users' in request.path %} active {% endif %}"
-                                    title="Manage users"
-                                    href="{{ url_for('users') }}">
-                                    Users
-                                </a>
-                            </li>
-                        {% endif %}
-                            <li>
-                                <a  class="{% if 'profile' in request.path %} active {% endif %}"
-                                    title="Go to your userprofile" 
-                                    href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
-                                    {{ g.user["user_name"] }}
-                                </a>
-                            </li>
-                            <li>
-                                <a title="Logout" href="{{ url_for('logout') }}">
-                                    <i class="material-icons right">exit_to_app</i>
-                                </a>
-                            </li>
-                    {% endif %}
-                    </ul>
-                </div>
-            </nav>
-        </div>
-<!--    Mobile side Navbar      -->
-        <ul class="sidenav" id="mobile-demo">
-        {% if g.user %}
-            <li>
-                <a href="#">
-                    {{ g.user['user_name'] }}
-                    <i class="material-icons right">person</i>
-                </a>
-            </li>
-            <li class="divider"></li>
-        {% endif %}
-            <li>
-                <a href="{{ url_for('index') }}">
-                    Home
-                    <i class="material-icons right">home</i>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url_for('vacancies') }}">
-                    Vacancies
-                    <i class="material-icons right">library_books</i>
-                </a>
-            </li>
-        {% if not g.user %}
-            <li>
-                <a href="{{ url_for('login') }}">
-                    Login
-                    <i class="material-icons right">vpn_key</i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{url_for('register')}}">
-                    Register
-                    <i class="material-icons right">format_align_left</i>
-                </a>
-            </li>
-        {% else %}
-            {% if g.user['profile'] != 'admin' %}
-                <li>
-                    <a href="{{ url_for('myapplications') }}" >
-                        My Applications
-                        <i class="material-icons right">transfer_within_a_station</i>
-                    </a>
-                </li>
-            {% elif g.user['profile'] == 'admin' %}
-                <li>
-                    <a  href="{{ url_for('applications') }}" >
-                        Applications
-                        <i class="material-icons right">transfer_within_a_station</i>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('users') }}">
-                        Users
-                        <i class="material-icons right">supervisor_account</i>
-                    </a>
-                </li>
-            {% endif %}
-                <li>
-                    <a href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
-                        Profile
-                        <i class="material-icons right">person</i>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="{{ url_for('logout') }}">
-                        Logout
-                        <i class="material-icons right">exit_to_app</i>
-                    </a>
-                </li>
-        {% endif %}
-        </ul>
+        <nav class="navbar fixed-top navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('index') }}">BOS UP</a>
+        </nav>
     </header>
 
 <!--    Content section      -->

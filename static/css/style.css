@@ -27,23 +27,6 @@ h2 {
 }
 
 /*-----      Navbar      -----*/
-nav {
-    padding: 0 2em;
-}
-
-nav .brand-logo {
-    font-family: 'Barrio', cursive;
-}
-
-nav ul a {
-    font-size: 1.4rem;
-    text-transform: uppercase;
-}
-
-a.active {
-  border-bottom: 3px solid red;
-      transition: background-color .3s;
-}
 
 /*-----      Footer      -----*/
 footer {
