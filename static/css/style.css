@@ -107,7 +107,7 @@ img {
     z-index: 1;
     margin: 0;
     right: 40px;
-    bottom: 240px;
+    bottom: 40px;
     width: 200px;
     height: 170px;
     padding: 10px;
@@ -124,6 +124,36 @@ img {
 h2 {
     font-size: 1.5rem;
     text-transform: uppercase;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1%;
+    background: blue;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 0.5s forwards;
+    animation-delay: 3s;
+}
+
+@-webkit-keyframes slide {
+    100% {
+        top: 40%;
+        left: 50%;
+        width: 20%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes slide {
+    100% {
+        top: 40%;
+        left: 50%;
+        width: 20%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 /*-----      Forms       -----*/
