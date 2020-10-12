@@ -198,6 +198,10 @@ svg {
     margin-bottom: 150px;
 }
 
+.mobile-line {
+    display: none;
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
@@ -308,7 +312,7 @@ table {
     
     /*-----      Footer      -----*/
     .social-link-spacing {
-        display: block;
+        display: inline-block;
         margin-bottom: 5px;
     }
 
@@ -368,5 +372,39 @@ table {
             width: 20%;
             transform: translate(-50%, -50%);
         }
+    }
+
+    .references {
+        margin-bottom: 50px;   
+    }
+
+    .mobile-line {
+        display: inline-block;
+    }
+
+    footer {
+        padding-bottom: 40px;
+    }
+
+    .footer-spacing {
+        margin-bottom: 5px;
+    }
+
+    footer h5 {
+        display: block;
+    }
+
+    #footer-mid {
+        text-align: right;
+    }
+
+    #footer-right h5 {
+        text-align: left;
+    }
+
+    .social-links {
+        padding: 0;
+        margin-top: 20px;
+        position: absolute;
     }
 }
