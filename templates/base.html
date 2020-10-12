@@ -38,7 +38,10 @@
 		<!--    Navbar      -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="navbar-colors">
 			<a class="navbar-brand" href="{{ url_for('index') }}">
-				<h1>BOS UP</h1>
+				<h1>
+                    <img src="{{ url_for('static', filename='img/bos-up-logo.png') }}" width="50" height="50" alt="Logo BOS UP">
+                    BOS UP
+                </h1>
 			</a>
 			<button class="navbar-toggler navbar-lines" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
