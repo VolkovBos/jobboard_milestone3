@@ -27,6 +27,7 @@ h2 {
 }
 
 /*-----      Navbar      -----*/
+
 #navbar-colors {
     background-color: lightskyblue;
 }
@@ -35,7 +36,7 @@ h2 {
     color: #777777;
 }
 
-/*------------------------Footer------------------------*/
+/*-----      Footer      -----*/
 
 footer {
     background-color: lightskyblue;
@@ -79,7 +80,6 @@ footer a {
 .social-links li a i:hover {
     background: blue;
 }
-
 
 /*-----      Forms       -----*/
 .dropdown-content li>a, 
