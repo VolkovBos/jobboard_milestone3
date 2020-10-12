@@ -11,6 +11,11 @@ body {
 
 /*-----      Navbar      -----*/
 
+.navbar-brand h1 {
+    color: cadetblue;
+    font-weight: 900;
+}
+
 #navbar-colors {
     background-color: lightskyblue;
 }
