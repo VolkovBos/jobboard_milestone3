@@ -19,6 +19,10 @@ body {
     color: #777777;
 }
 
+.navbar {
+    padding-right: 50px;
+}
+
 /*-----      Footer      -----*/
 
 footer {
@@ -49,8 +53,8 @@ footer a {
 }
 
 .social-links li a i {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     padding: 12px 0;
     border-radius: 50%;
     font-size: 18px;
@@ -71,7 +75,7 @@ footer a {
 /*-----      Index       -----*/
 
 .display-container {
-    max-width: 1600px;
+    max-width: 1500px;
 }
 
 img {
@@ -81,7 +85,7 @@ img {
 
 .home-image {
     height: auto;
-    max-width: 100%;
+    width: 100%;
     animation-name: home-zoom;
     animation-duration: 8s;
     animation-fill-mode: backwards;
@@ -188,6 +192,10 @@ svg {
 .quotes {
     text-align: center;
     color: #777777;
+}
+
+.references {
+    margin-bottom: 150px;
 }
 
 /*-----      Forms       -----*/
@@ -299,15 +307,32 @@ table {
     }
     
     /*-----      Footer      -----*/
-    footer {
-        height: 2rem;
-        line-height: 2rem;
-        font-size: 1.3rem;
-        text-align: center;
-        color: #fff;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
+    .social-link-spacing {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /*-----      Index      -----*/
+    .catch-box {
+        display: none;
+    }
+
+    @-webkit-keyframes slide {
+        100% {
+            top: 30%;
+            left: 50%;
+            width: 20%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @keyframes slide {
+        100% {
+            top: 30%;
+            left: 50%;
+            width: 20%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
 
@@ -326,15 +351,22 @@ table {
         font-size: smaller;
     }
     
-    /*-----      Footer      -----*/
-    footer {
-        height: 1.5rem;
-        line-height: 1.5rem;
-        font-size: 1rem;
-        text-align: center;
-        color: #fff;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
+    /*-----      Index      -----*/
+    @-webkit-keyframes slide {
+        100% {
+            top: 25%;
+            left: 50%;
+            width: 20%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @keyframes slide {
+        100% {
+            top: 25%;
+            left: 50%;
+            width: 20%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
