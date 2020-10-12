@@ -346,8 +346,8 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-MONGO_URI = "mongodb+srv://root:bos77@myfirstcluster.vwkuk.mongodb.net/jobboard?retryWrites=true&w=majority"
-app.config["MONGO_DBNAME"] = 'jobboard_milestone3'
+MONGO_URI = "mongodb+srv://root:<PASSWORD_MONGODB>@myfirstcluster.vwkuk.mongodb.net/<NAME_MONGODB>?retryWrites=true&w=majority"
+app.config["MONGO_DBNAME"] = '<NAME_MONGODB>'
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
