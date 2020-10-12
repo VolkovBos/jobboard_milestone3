@@ -174,6 +174,13 @@ svg {
     margin: auto;
 }
 
+.blockquote {
+    color: #777777;
+    margin: 0;
+    min-height: 0px;
+    box-sizing: content-box;
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
