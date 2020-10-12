@@ -35,16 +35,16 @@ h2 {
     color: #777777;
 }
 
-/*-----      Footer      -----*/
+/*------------------------Footer------------------------*/
+
 footer {
-    height: 3rem;
-    line-height: 3rem;
-    font-size: 1.5rem;
-    text-align: center;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: lightskyblue;
+    min-height: 120px;
+    margin: 0;
+}
+
+#footer-details {
+    padding: 20px;
 }
 
 /*-----      Forms       -----*/
