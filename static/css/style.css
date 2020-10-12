@@ -39,6 +39,7 @@ h2 {
 
 footer {
     background-color: lightskyblue;
+    color: #777777;
     min-height: 120px;
     margin: 0;
 }
@@ -49,6 +50,10 @@ footer {
 
 #footer-right h5,  .social-links{
     text-align: right;
+}
+
+footer a {
+    color: #fafafa;
 }
 
 .social-links {
