@@ -158,7 +158,20 @@ div.header h1 {
     text-align: center;
     background-color: cadetblue;
     color: #fafafa;
-    margin-bottom: auto ;
+    margin-bottom: auto;
+}
+
+hr {
+    height: 3px;
+    border-width: 0;
+    background-color: #777777;
+    width: 50%;
+}
+
+svg {
+    color: #777777;
+    display: block;
+    margin: auto;
 }
 
 /*-----      Forms       -----*/
