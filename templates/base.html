@@ -33,19 +33,22 @@
 </head>
 
 <body class="blue lighten-5">
-	<!--    Header      -->
+<!--    Header      -->
 	<header>
-		<!--    Navbar      -->
+<!--    Navbar      -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="navbar-colors">
+<!--    Brand logo       -->
 			<a class="navbar-brand" href="{{ url_for('index') }}">
 				<h1>
                     <img src="{{ url_for('static', filename='img/bos-up-logo.png') }}" width="50" height="50" alt="Logo BOS UP">
                     BOS UP
                 </h1>
 			</a>
+<!--    Hamburger menu       -->
 			<button class="navbar-toggler navbar-lines" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
+<!--    Full website menu       -->
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
@@ -65,13 +68,14 @@
 		</nav>
 	</header>
 
-	<!--    Content section      -->
+<!--    Content section      -->
     {% block content %}
     {% endblock %}
 
-	<!--    Footer      -->
+<!--    Footer      -->
 	<footer class="container-fluid">
 		<div id="footer-details" class="row">
+<!--    Contact section of the footer      -->
 			<div class="col-sm-3 col-md-2 footer-spacing">
 				<h5>Contact</h5>
 				<a href="{{ url_for('contact') }}">
@@ -84,10 +88,12 @@
 
 				</a>
 			</div>
+<!--    Copyright section of the footer      -->
 			<div class="col-sm-5 col-md-5 footer-spacing" id="footer-mid">
 				<h5>© 2020 Copyright:</h5>
                 <a href="https://github.com/VolkovBos">Robbert Bos</a>
 			</div>
+<!--    Social links section of the footer      -->
 			<div class="col-sm-4 col-md-5 footer-spacing" id="footer-right">
 				<h5>Social</h5>
 				<ul class="list-inline social-links">
