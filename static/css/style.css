@@ -27,6 +27,13 @@ h2 {
 }
 
 /*-----      Navbar      -----*/
+#navbar-colors {
+    background-color: lightskyblue;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #777777;
+}
 
 /*-----      Footer      -----*/
 footer {
