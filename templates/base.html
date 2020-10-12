@@ -69,34 +69,6 @@
     {% block content %}
     {% endblock %}
 
-	<!--    Floating quick action menu, only available for admins     -->
-	{% if g.user['profile'] == 'admin' %}
-	<div class="fixed-action-btn">
-		<a class="btn-floating btn-large red">
-			<i class="large material-icons">mode_edit</i>
-		</a>
-		<ul>
-			<li>
-				<a class="btn-floating green" title="Create vacancy" href="{{url_for('add_vacancy')}}">
-					<i class="material-icons right">add</i>
-					Add Vacancy
-				</a>
-			</li>
-			<li>
-				<a class="btn-floating yellow darken-1" title="Create application"
-					href="{{url_for('add_application', vacancy_id='admin')}}">
-					<i class="material-icons">assignment</i>
-				</a>
-			</li>
-			<li>
-				<a class="btn-floating green" title="Create user/candidate" href="{{url_for('add_user')}}">
-					<i class="material-icons">person</i>
-				</a>
-			</li>
-		</ul>
-	</div>
-	{% endif %}
-
 	<!--    Footer      -->
 	<footer class="container-fluid">
 		<div id="footer-details" class="row">
