@@ -12,6 +12,10 @@
 <!--    Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+<!-- Font awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
 <!--    Personalized Styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 
@@ -94,14 +98,57 @@
 <!--    Footer      -->
     <footer class="container-fluid">
         <div id="footer-details" class="row">
-            <div class="col-sm-3 col-md-2 footer-spacing">
-                Contact
+            <div class="col-sm-3 col-md-3 footer-spacing">
+                <h5>Contact</h5>
             </div>
-            <div class="col-sm-6 col-md-6 footer-spacing">
-                © 2020 Copyright: Robbert Bos
+            <div class="col-sm-6 col-md-5 footer-spacing">
+                <h5>© 2020 Copyright:<br>
+                Robbert Bos</h5>
             </div>
             <div class="col-sm-3 col-md-4 footer-spacing">
-                Social
+                <h5>Social</h5>
+                <ul class="list-inline social-links">
+                    <span class="social-link-spacing">
+                     <li class="list-inline-item">
+                        <a target="_blank" href="https://www.facebook.com/">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://twitter.com/">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://ie.linkedin.com/">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </li>
+                    </span>
+                    <span class="social-link-spacing">
+                     <li class="list-inline-item">
+                        <a target="_blank" href="https://www.pinterest.com/">
+                        <i class="fab fa-pinterest" aria-hidden="true"></i>
+                        <span class="sr-only">Pinterest</span>
+                    </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.instagram.com/">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.youtube.com/">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                            <span class="sr-only">YouTube</span>
+                        </a>
+                    </li>
+                    </span>
+                </ul>
             </div>
         </div>
     </footer>
