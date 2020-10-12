@@ -63,10 +63,8 @@
 	</header>
 
 	<!--    Content section      -->
-	<section class="container">
-		{% block content %}
-		{% endblock %}
-	</section>
+    {% block content %}
+    {% endblock %}
 
 	<!--    Floating quick action menu, only available for admins     -->
 	{% if g.user['profile'] == 'admin' %}
