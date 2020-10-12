@@ -207,6 +207,13 @@ svg {
     display: none;
 }
 
+/*-----      Login modal       -----*/
+
+.modal-header {
+    background-color: cadetblue;
+    color: #fafafa;
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
