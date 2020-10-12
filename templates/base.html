@@ -51,18 +51,79 @@
 <!--    Full website menu       -->
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="{{ url_for('index') }}">Home </a>
+					<li class="nav-item {% if 'index' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            href="{{ url_for('index') }}" 
+                            title="Home">
+                            Home 
+                        </a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('vacancies') }}">Vacancies </a>
+					<li class="nav-item {% if 'vacancies' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            href="{{ url_for('vacancies') }}" 
+                            title={% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %}>
+                            Vacancies 
+                        </a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('register') }}">Register </a>
+    <!-- Only non-logged in vistors will see the register and login items -->
+            {% if not g.user %}
+					<li class="nav-item {% if 'register' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            href="{{ url_for('register') }}" 
+                            title="Register to get an user account">
+                            Register 
+                        </a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('login') }}">Login </a>
+					<li class="nav-item {% if 'login' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            href="{{ url_for('login') }}" 
+                            title="Login with your credentials">
+                            Login 
+                        </a>
 					</li>
+    <!-- User will see their own job applications -->
+            {% else %} 
+                {% if g.user['profile'] != 'admin' %}
+                    <li class="nav-item {% if 'myapplications' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            href="{{ url_for('myapplications') }}"
+                            title="See which applications you have">
+                            My Applications
+                        </a>
+                    </li>
+    <!-- Admins will see all job applications and users -->
+                {% elif g.user['profile'] == 'admin' %}
+                    <li class="nav-item {% if 'applications' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            title="Manage applications" 
+                            href="{{ url_for('applications') }}">
+                            Applications
+                        </a>
+                    </li>
+                    <li class="nav-item {% if 'users' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            title="Manage users" 
+                            href="{{ url_for('users') }}">
+                            Users
+                        </a>
+                    </li>
+                {% endif %}
+    <!-- Only logged in users will see the profile and logout items -->
+                    <li class="nav-item {% if 'profile' in request.path %} active {% endif %}">
+						<a  class="nav-link" 
+                            title="Go to your userprofile" 
+                            href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
+                            {{ g.user['user_name'] }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+						<a  class="nav-link" 
+                            title="Logout" 
+                            href="{{ url_for('logout') }}">
+                            <i class="material-icons right">exit_to_app</i>
+                        </a>
+                    </li>
+            {% endif %}
 				</ul>
 			</div>
 		</nav>
