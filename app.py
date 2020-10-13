@@ -401,12 +401,6 @@ def delete_user(user_id):
     return redirect(url_for('users'))
 
 
-# Contact page in case of any problems
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
-
-
 # Vacancies page for overview and management of vacancies
 @app.route('/vacancies')
 def vacancies():
