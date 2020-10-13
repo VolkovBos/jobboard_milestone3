@@ -69,9 +69,9 @@
             {% if not g.user %}
 					<li class="nav-item {% if 'register' in request.path %} active {% endif %}">
 						<a  class="nav-link" 
-                            href="{{ url_for('register') }}" 
+                            href="#" 
                             title="Register to get an user account"
-                            data-toggle="#" data-target="#">
+                            data-toggle="modal" data-target="#signUpModal">
                             Register 
                         </a>
 					</li>
@@ -246,6 +246,51 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" value="Log In"/>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+<!--    Register Modal     -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+<!--    Modal header     -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Register you candidate profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/register" method="POST">
+                        <div class="form-group">
+<!--    Login Username     -->
+                            <label id="userLabelSu" class="col-form-label">Username</label>
+                            <input class="form-control" type="text" id="username1" name="username1">
+                        </div>
+                        <div class="form-group">
+<!--    Email candidate     -->
+                            <label id="emailLabel" class="col-form-label">Email address</label>
+                            <input class="form-control" type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+<!--    Login Password     -->
+                            <label id="passwordLabelSu" class="col-form-label">Password</label>
+                            <input class="form-control" type="password" id="user_password1" name="user_password1">
+                        </div>
+                        <div class="form-group">
+<!--    Confirl Password     -->
+                            <label id="passwordLabelSuConfirm" class="col-form-label">Confirm Password</label>
+                            <input class="form-control" type="password" id="user_password2" name="user_password2">
+                        </div>
+<!--    Modal Buttons     -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Register"/>
                         </div>
                     </form>
                 </div>

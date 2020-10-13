@@ -96,24 +96,24 @@ def register():
 
     # If the button is called for an action
     if request.method == 'POST':
-        username = request.form['username']
+        username1 = request.form['username1']
         email = request.form['email']
         user_password1 = request.form['user_password1']
         user_password2 = request.form['user_password2']
 
         # Check if the username is at least 8 characters
-        if len(username) < 8:
+        if len(username1) < 8:
             flash("Username should be at least 8 characters")
             return redirect(url_for('index'))
 
         else:
             # Check if the password and password actually match
             if user_password1 == user_password2:
-                user = mongo.db.candidates.find_one({'user_name': username})
+                user = mongo.db.candidates.find_one({'user_name': username1})
 
                 # Check if the user exist in the database
                 if user:
-                    flash(f"{username} already exists! \
+                    flash(f"{username1} already exists! \
                         Please choose a different username.")
                     return redirect(url_for('index'))
 
@@ -125,7 +125,7 @@ def register():
                     # Create new user with hashed password
                     mongo.db.candidates.insert_one(
                         {
-                            'user_name': username,
+                            'user_name': username1,
                             'email': email,
                             'password': hash_pass,
                             'approved': False
@@ -133,7 +133,7 @@ def register():
                     )
                     # Check if user is actually saved
                     user_in_db = mongo.db.candidates.find_one(
-                        {"user_name": username})
+                        {"user_name": username1})
 
                     # if saved message that the registration is being processed
                     if user_in_db:
