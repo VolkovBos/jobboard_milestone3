@@ -257,11 +257,11 @@ svg {
 .hr-vacancy {
     width: 100%;
 }
-/* for line breaks in text
-.card-text {
+
+.textarea-breaks {
     white-space: pre-wrap;
 }
- */
+ 
 /*-----      Forms       -----*/
 /*
 .dropdown-content li>a, 
