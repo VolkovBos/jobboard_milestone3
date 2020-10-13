@@ -8,7 +8,9 @@
 <!--    Title open section     -->
             <div class="col">
                 <h1>{{vacancy.vacancy_name }}</h1>
+            {% if vacancy.photo_url != '' and vacancy.photo_url != null %}
                 <img class="card-img-top" src="{{vacancy.photo_url}}" alt="Card image cap">
+            {% endif %}
             </div>
             <div class="col">
                 <form action="{{url_for('update_vacancy', vacancy_id=vacancy._id)}}" method="POST">

@@ -31,7 +31,9 @@
         <div class="card-deck">
         {% for vac in vacancies_open%}
             <div class="card col-sm-12 col-md-5">
+            {% if vac.photo_url != '' and vac.photo_url != null %}
                 <img class="card-img-top" src="{{vac.photo_url}}" alt="Card image cap">
+            {% endif %}
                 <div class="card-body">
                     <div class="row center-button">
 
@@ -75,7 +77,9 @@
         <div class="card-deck">
         {% for vac in vacancies_closed  %}
             <div class="card col-sm-12 col-md-5">
+            {% if vac.photo_url != '' and vac.photo_url != null %}
                 <img class="card-img-top" src="{{vac.photo_url}}" alt="Card image cap">
+            {% endif %}
                 <div class="card-body">
                     <div class="row center-button">
 
