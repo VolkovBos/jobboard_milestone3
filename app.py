@@ -423,13 +423,14 @@ def delete_user(user_id):
     return redirect(url_for('users'))
 
 
-# Vacancies page for overview and management of vacancies
+# Vacancies page 
 @app.route('/vacancies')
 def vacancies():
     """
     Overview of all the vacancies divided in 2 user groups:
-    visitors and users see the open vacancies
-    Admins will also see the closed vacancies
+    - Visitors and users see the open vacancies
+    - Admins will also see the closed vacancies
+      they can CRUD all vacancies
     """
     vacancies_open = mongo.db.vacancies.find(
         {'vacancy_status': 'open'})
@@ -443,13 +444,12 @@ def vacancies():
     )
 
 
-# Route to go to the add vacancy page
 @app.route('/add_vacancy')
 @admin_required
 def add_vacancy():
     """
     Add a vacancy by using a form,
-    photos can be selected by dropdown
+    photos and statusses can be selected by dropdown
     """
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
     photos = mongo.db.photos.find()
@@ -460,7 +460,6 @@ def add_vacancy():
         photos=photos)
 
 
-# Insert a new vacancy
 @app.route('/insert_vacancy', methods=['POST'])
 @admin_required
 def insert_vacancy():
@@ -473,10 +472,13 @@ def insert_vacancy():
     return redirect(url_for('vacancies'))
 
 
-# Route to go to the edit vacancy page
 @app.route('/edit_vacancy/<vacancy_id>')
 @admin_required
 def edit_vacancy(vacancy_id):
+    """
+    Edit a vacancy by using a form
+    photos and statusses can be selected by dropdown
+    """
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     photos = mongo.db.photos.find()
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
@@ -488,10 +490,13 @@ def edit_vacancy(vacancy_id):
         photos=photos)
 
 
-# Edit a vacancy
 @app.route('/update_vacancy/<vacancy_id>', methods=['POST'])
 @admin_required
 def update_vacancy(vacancy_id):
+    """
+    Updates vacancy to the database
+    Checks build in to see which button is being used
+    """
 
     # If cancel button is used
     if 'cancel' in request.form:
