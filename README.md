@@ -258,15 +258,18 @@ I have used the following technologys for this project:
 * [jQuery](https://jquery.com/), for some initializing and support of [Materialize](https://materializecss.com/)
 * [Python](https://www.python.org), for the backend
     - Flask, for custom functions
-    - Pymongo, for connection to my [MongoDB](https://www.mongodb.com)
+    - flask_pymongo for connection to my [MongoDB](https://www.mongodb.com)
     - bson.objectid
     - werkzeug.security, for hashed passwords
+    - functools, for my own view decorators
 * [MongoDB](https://www.mongodb.com), for my database
 * [BSON](https://en.wikipedia.org/wiki/BSON), to store my data
 * [Heroku](https://heroku.com), to deploy my app
 * [Gitpod](https://gitpod.io), for development
 * [Github](https://github.com), for version control
-* [Materialize](https://materializecss.com/), to make my website responsive, mobile-first and have some out-of-the-box functionalities
+* [Materialize](https://materializecss.com/), for icons
+* [Bootstrap](https://getbootstrap.com/), for CSS and HTML framework for ex. modals
+* [Bootstrap Icons](https://icons.getbootstrap.com/), for icons
 * [Google Fonts](https://fonts.google.com/), to choose and combine my fonts
 * [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
 * [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
@@ -295,6 +298,20 @@ To make sure there where nog syntax errors, I've used the following validators o
         - The contact form will let me know all fields are manditory.
         - I can send in the form by clicking the Submit button.
 
+### Login/Register Validation
+There are some login checks with error message shown, you will get redirected to the index page and the message is shown in the top off the page. The error with message:
+- Wrong password; "Your password is incorrect"
+- User isn't approved yet by admin; "Your registration is not processed yet"
+- User isn't approved yet by admin; "This user is inactive, please contact the administrator"
+- Username is incorrect; "The username provided is not known"
+
+Registration; the error with message:
+- Username exists; "{username} already exists! Please choose a different username."
+- User isn't created; "There was a problem saving your registration. If this happens again, please use the contactform to contact the administrator of the website."
+- Two different passwords; "Passwords are not identical. Please try again."
+- Username is shorter then 8 characters; "Username should be at least 8 characters"
+
+If the registration is a succes you will get the message:"Your registration is saved, we will get in touch with you."
 
 ### Unittesting
 For the Unittests I focussed mostly on authorisation, page loads and the error pages. Besides this I also tested the login, logout and register functionality. Because of time I chose to do test the button, actions, queries and database modifiers in the user storie testing. 

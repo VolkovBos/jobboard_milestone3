@@ -101,53 +101,59 @@ def register():
         user_password1 = request.form['user_password1']
         user_password2 = request.form['user_password2']
 
-        # Check if the password and password actually match
-        if user_password1 == user_password2:
-            user = mongo.db.candidates.find_one({'user_name': username})
+        # Check if the username is at least 8 characters
+        if len(username) < 8:
+            flash("Username should be at least 8 characters")
+            return redirect(url_for('index'))
 
-            # Check if the user exist in the database
-            if user:
-                flash(f"{username} already exists! \
-                    Please choose a different username.")
-                return redirect(url_for('register'))
-
-            # If the user does not exist register new user
-            else:
-                # Hash password
-                hash_pass = generate_password_hash(user_password1)
-
-                # Create new user with hashed password
-                mongo.db.candidates.insert_one(
-                    {
-                        'user_name': username,
-                        'email': email,
-                        'password': hash_pass,
-                        'approved': False
-                    }
-                )
-                # Check if user is actually saved
-                user_in_db = mongo.db.candidates.find_one(
-                    {"user_name": username})
-
-                # if saved message that the registration is being processed
-                if user_in_db:
-                    flash("Your registration is saved, \
-                        we will get in touch with you.")
-                    return redirect(url_for('register'))
-
-                # if not saved refer to the contact page
-                else:
-                    flash("There was a problem saving your registration. \
-                        If this happens again, please use the contactform \
-                            to contact the administrator of the website.")
-                    return redirect(url_for('contact'))
-
-        # If the passwords don't match
         else:
-            flash("Passwords are not identical. Please try again.")
-            return redirect(url_for('register'))
+            # Check if the password and password actually match
+            if user_password1 == user_password2:
+                user = mongo.db.candidates.find_one({'user_name': username})
 
-    return render_template("register.html")
+                # Check if the user exist in the database
+                if user:
+                    flash(f"{username} already exists! \
+                        Please choose a different username.")
+                    return redirect(url_for('index'))
+
+                # If the user does not exist register new user
+                else:
+                    # Hash password
+                    hash_pass = generate_password_hash(user_password1)
+
+                    # Create new user with hashed password
+                    mongo.db.candidates.insert_one(
+                        {
+                            'user_name': username,
+                            'email': email,
+                            'password': hash_pass,
+                            'approved': False
+                        }
+                    )
+                    # Check if user is actually saved
+                    user_in_db = mongo.db.candidates.find_one(
+                        {"user_name": username})
+
+                    # if saved message that the registration is being processed
+                    if user_in_db:
+                        flash("Your registration is saved, \
+                            we will get in touch with you.")
+                        return redirect(url_for('index'))
+
+                    # if not saved refer to the contact page
+                    else:
+                        flash("There was a problem saving your registration. \
+                            If this happens again, please use the contactform \
+                                to contact the administrator of the website.")
+                        return redirect(url_for('index'))
+
+            # If the passwords don't match
+            else:
+                flash("Passwords are not identical. Please try again.")
+                return redirect(url_for('index'))
+
+    return redirect(url_for('index'))
 
 
 # Login page for candidates and admin to login
