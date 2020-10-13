@@ -17,6 +17,7 @@ body {
 .navbar-brand h1 {
     color: cadetblue;
     font-weight: 900;
+    line-height: inherit;
 }
 
 #navbar-colors {
