@@ -258,6 +258,10 @@ svg {
     text-align: center;
 }
 
+.card-deck {
+    justify-content: center;
+}
+
 @media (min-width: 576px){
     .card-deck .card {
         flex: none;

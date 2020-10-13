@@ -448,7 +448,7 @@ def vacancies():
 @admin_required
 def add_vacancy():
     """
-    Add a vacancy by using a form, 
+    Add a vacancy by using a form,
     photos can be selected by dropdown
     """
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
