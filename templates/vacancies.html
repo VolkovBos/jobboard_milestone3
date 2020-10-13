@@ -19,9 +19,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-3 col-md-6">
+            <div class="col-sm-12 col-md-8">
 <!--    Short information section    -->
-                <p>Do you recognize yourself in our profile and are you looking for a challenging position at a flourishing company in the     utility sector? View our current vacancies here and mail us your CV!
+                <p class="intro-text">Do you recognize yourself in our profile and are you looking for a challenging position at a flourishing company in the utility sector? View our current vacancies here and contact us or email your resume!
                 </p>
             </div>
         </div>
@@ -29,7 +29,7 @@
 <!--    Carddeck of vacancies      -->
         <div class="card-deck">
         {% for vac in vacancies_open %}
-            <div class="card col-sm-5">
+            <div class="card col-sm-12 col-md-5">
                 <img class="card-img-top" src="{{vac.photo_url}}" alt="Card image cap">
                 <div class="card-body">
 
@@ -44,7 +44,14 @@
                 {% endif %}
 
 <!--    Vacancy information      -->
-                    <h5 class="card-title">{{vac.vacancy_name}}</h5>
+                    <h5 class="card-title center">{{vac.vacancy_name}}</h5>
+                    <hr class="hr-vacancy">
+                    <p class="card-text center">
+                        Hours : {% if vac.hours != null and vac.hours != '' %}{{vac.hours}} {% else %} unknown{% endif %}<br>
+                        Salary : {% if vac.salary != null and vac.salary != '' %}{{vac.salary}} {% else %} unknown{% endif %}<br>
+                        Location : {% if vac.location != null and vac.location != '' %}{{vac.location}} {% else %} unknown{% endif %}
+                    </p>
+                    <hr class="hr-vacancy">
                     <p class="card-text">{{vac.vacancy_text}}</p>
                     <p class="card-text"><small class="text-muted">closes on {{vac.end_date}}</small></p>
                 </div>

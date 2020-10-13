@@ -12,8 +12,8 @@ body {
 .first-container {
     margin-top: 100px;
 }
-/*-----      Navbar      -----*/
 
+/*-----      Navbar      -----*/
 .navbar-brand h1 {
     color: cadetblue;
     font-weight: 900;
@@ -32,7 +32,6 @@ body {
 }
 
 /*-----      Footer      -----*/
-
 footer {
     background-color: lightskyblue;
     color: #777777;
@@ -81,7 +80,6 @@ footer a {
 }
 
 /*-----      Index       -----*/
-
 .display-container {
     max-width: 1500px;
 }
@@ -211,7 +209,6 @@ svg {
 }
 
 /*-----      Login modal       -----*/
-
 .modal-header {
     background-color: cadetblue;
     color: #fafafa;
@@ -241,6 +238,10 @@ svg {
 }
 
 /*-----      Vacancies       -----*/
+.intro-text {
+    font-size: larger;
+}
+
 @media (min-width: 576px){
     .card-deck .card {
         flex: none;
@@ -248,6 +249,14 @@ svg {
     }
 }
 
+.hr-vacancy {
+    width: 100%;
+}
+/* for line breaks in text
+.card-text {
+    white-space: pre-wrap;
+}
+ */
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
