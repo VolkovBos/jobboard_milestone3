@@ -482,6 +482,11 @@ def edit_vacancy(vacancy_id):
 @app.route('/update_vacancy/<vacancy_id>', methods=['POST'])
 @admin_required
 def update_vacancy(vacancy_id):
+
+    # If cancel button is used
+    if 'cancel' in request.form:
+        return redirect(url_for('vacancies'))
+
     vacancies = mongo.db.vacancies
     vacancies.update_one(
         {'_id': ObjectId(vacancy_id)},
@@ -502,7 +507,8 @@ def update_vacancy(vacancy_id):
         return redirect(url_for('edit_vacancy', vacancy_id=vacancy_id))
 
     # If save button is used
-    return redirect(url_for('vacancies'))
+    if 'save' in request.form:
+        return redirect(url_for('vacancies'))
 
 
 # Close a vacancy, set status on done
