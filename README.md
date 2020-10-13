@@ -273,6 +273,7 @@ I have used the following technologys for this project:
 * [Google Fonts](https://fonts.google.com/), to choose and combine my fonts
 * [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
 * [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
+* [TinyPNG](https://tinypng.com/), for reducing the filesizes on my images
 
 ## Testing
 
@@ -411,7 +412,26 @@ git push force
 ```
 
 ## Credits
+### Content
+The idea, content and development for this project was written or designed by myself.
+
+### Media
+The logo was designed en made by myself. 
+I used images from [Unsplash](https://unsplash.com/) throughout my site.
+
+Thanks to:
+[Albert Dera](https://unsplash.com/@albertdera), for a profile image
+[Clem Onojeghuo](https://unsplash.com/@clemono), for a vacancy image
+[Florian Olivio](https://unsplash.com/@florianolv), for a vacancy image
+[Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters), for a vacancy image
+[Jimmy Fermin](https://unsplash.com/@jimmyferminphotography), for a profile image
+[Marvin Meyer](https://unsplash.com/@marvelous), for the main index background image
+[Shahadat Rahman](https://unsplash.com/@hishahadat), for a vacancy image
+
+### Acknowledgements
 Thanks to [Tim (Justim)](https://github.com/justim) for some deeper explanation about Python views and decorators. Helped me with the login view decorator.
+
+Specail thanks to [Paul Friel](https://github.com/Spagettileg) who repeatedly and thoroughly gave me feedback on my site during the project.
 
 And a thanks to my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) who gave me honest and good feedback on my site/code and helped me te complete this project.
 
