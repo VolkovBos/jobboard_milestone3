@@ -321,14 +321,5 @@
             $('.tabs').tabs();                                  // For tabs in userprofile
         });
 	</script>
-
-	<!-- Script to prevent autoprefill of browser on forms -->
-	{% if g.user['profile'] == 'admin' or 'register' in request.path or 'login' in request.path %}
-	<script>
-		$("input").click(function(){
-            $(this).removeAttr("readonly");
-        });
-	</script>
-	{% endif %}
 </body>
 </html>
