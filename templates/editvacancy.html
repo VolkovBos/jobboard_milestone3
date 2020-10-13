@@ -1,73 +1,81 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!--    A form to edit a vacancy -->
-        <div class="row col s12 listpages">
+<!--    A page for open vacancies -->
+    <div class="container first-container">
+        <div class="row">
 
-<!--    Title     -->
-            <div class="row">
-                <h1>Edit Vacancy</h1>
+<!--    Title open section     -->
+            <div class="col">
+                <h1>{{vacancy.vacancy_name }}Edit Vacancy</h1>
+                <img class="card-img-top" src="{{vacancy.photo_url}}" alt="Card image cap">
             </div>
+            <div class="col">
+                <form action="{{url_for('update_vacancy', vacancy_id=vacancy._id)}}" method="POST">
 
-<!--    Form     -->
-            <form class="col s12" action="{{url_for('update_vacancy', vacancy_id=vacancy._id)}}" method="POST">
-
-<!--    Save button     -->
-                <div class="row center">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        Update
-                        <i class="material-icons right">save</i>
-                    </button>
-                </div>
-
-<!--    Vacancy name     -->
-                <div class="row">
-                    <div class="input-field col s7">
-                        <i class="material-icons prefix">assignment</i>
-                        <input id="vacancy_name" name="vacancy_name" type="text" class="validate" value="{{vacancy.vacancy_name }}"/>
-                        <label for="vacancy_name">Vacancy name</label>
+                <h1>{{vacancy.vacancy_name }}Edit Vacancy</h1>
+                    <div class="form-group">
+                        <label for="vacancy_name">Vacancy Name </label>
+                        <input type="text" class="form-control" id="vacancy_name" name="vacancy_name" value="{{vacancy.vacancy_name }}">
                     </div>
-
-<!--    Vacancy status     -->
-                    <div class="input-field col s5">
-                        <i class="material-icons prefix">show_chart</i>
-                            <select id="vacancy_status" name="vacancy_status">
-                                <option disabled>Choose Status</option>
-                        {% for stat in status %}
-                            {% if stat.status_name == vacancy.vacancy_status %}
-                                <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
-                            {% else %}
-                                <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                            </select>
-                        <label for="vacancy_status">Status</label>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="vacancy_status">Vacancy Status </label>
+                                <select class="form-control" id="vacancy_status" name="vacancy_status">
+                                    <option disabled>Choose Status</option>
+                            {% for stat in status %}
+                                {% if stat.status_name == vacancy.vacancy_status %}
+                                    <option value="{{ stat.status_name }}" selected>{{ stat.status_name }}</option>
+                                {% else %}
+                                    <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="location">Location </label>
+                                <input type="text" class="form-control" id="location" name="location" value="{{vacancy.location }}">
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-<!--    Date fields     -->
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">today</i>
-                        <input id="start_date" name="start_date" type="text" class="datepicker" value="{{vacancy.start_date }}"/>
-                        <label for="start_date">Start date</label>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="hours">Hours </label>
+                                <input type="text" class="form-control" id="hours" name="hours" value="{{vacancy.hours }}">
+                            </div>
+                            <div class="col-6">
+                                <label for="salary">Salary </label>
+                                <input type="text" class="form-control" id="salary" name="salary" value="{{vacancy.salary }}">
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">today</i>
-                        <input id="end_date" name="end_date" type="text" class="datepicker" value="{{vacancy.end_date }}"/>
-                        <label for="end_date">End date</label>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="start_date">Start date of the vacancy</label>
+                                <input class="form-control" type="date" value="{{vacancy.start_date }}" id="start_date" name="start_date">
+                            </div>
+                            <div class="col-6">
+                                <label for="end_date">Closing date of the vacancy</label>
+                                <input class="form-control" type="date" value="{{vacancy.end_date }}" id="end_date" name="end_date">
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-<!--    Vacancy text     -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">subject</i>
-                        <textarea id="vacancy_text" name="vacancy_text" class="materialize-textarea" rows="30">{{vacancy.vacancy_text }}</textarea>
-                        <label for="vacancy_text">Vacancy text</label>
+                    <div class="form-group">
+                        <label for="photo_url">Url for the Photo </label>
+                        <input class="form-control" type="url" value="{{vacancy.photo_url }}" id="photo_url" name="photo_url">
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="vacancy_text">Vacancy Text </label>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{vacancy.vacancy_text }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="save">Save</button>
+                    <button type="submit" class="btn btn-dark" name="update">Update</button>
+                </form>
+            </div>
         </div>
+    </div>
 
 {% endblock %}

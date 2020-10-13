@@ -454,15 +454,21 @@ def edit_vacancy(vacancy_id):
 @admin_required
 def update_vacancy(vacancy_id):
     vacancies = mongo.db.vacancies
-    vacancies.update(
+    vacancies.update_one(
         {'_id': ObjectId(vacancy_id)},
-        {
+        {'$set': {
             'vacancy_name': request.form.get('vacancy_name'),
             'vacancy_status': request.form.get('vacancy_status'),
+            'location': request.form.get('location'),
+            'hours': request.form.get('hours'),
+            'salary': request.form.get('salary'),
             'start_date': request.form.get('start_date'),
             'end_date': request.form.get('end_date'),
+            'photo_url': request.form.get('photo_url'),
             'vacancy_text': request.form.get('vacancy_text')
-        })
+        }})
+    if 'update' in request.form:
+        return redirect(url_for('edit_vacancy', vacancy_id=vacancy_id))
     return redirect(url_for('vacancies'))
 
 
