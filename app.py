@@ -426,6 +426,11 @@ def delete_user(user_id):
 # Vacancies page for overview and management of vacancies
 @app.route('/vacancies')
 def vacancies():
+    """
+    Overview of all the vacancies divided in 2 user groups:
+    visitors and users see the open vacancies
+    Admins will also see the closed vacancies
+    """
     vacancies_open = mongo.db.vacancies.find(
         {'vacancy_status': 'open'})
     vacancies_closed = mongo.db.vacancies.find(
