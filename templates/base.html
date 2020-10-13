@@ -133,6 +133,19 @@
 	</header>
 
 <!--    Content section      -->
+
+    <div class="row">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+            <p class="blink_me center">{{ message }}</p>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+    </div>
+
     {% block content %}
     {% endblock %}
 

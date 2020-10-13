@@ -214,6 +214,29 @@ svg {
     color: #fafafa;
 }
 
+/*-----      Error messages      -----*/
+.blink_me {
+    animation: blinker 2s;
+    animation-iteration-count: 2;
+    color: red;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+.flashes {
+    width: 100%;
+    margin: auto;
+    margin-top: 80px;
+    padding-top: 10px;
+    font-size: x-large;
+    text-align: center;
+    z-index: 100;
+    display: inline-table;
+    background-color: yellow;
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
@@ -304,16 +327,6 @@ table {
     text-align: left;
 }
 
-/*-----      Error messages      -----*/
-.blink_me {
-    animation: blinker 2s;
-    animation-iteration-count: 2;
-    color: red;
-}
-
-@keyframes blinker {  
-  50% { opacity: 0; }
-}
 
 /*-----      Smaller Devices      -----*/
 @media only screen and (max-width: 768px) {

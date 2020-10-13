@@ -184,23 +184,23 @@ def login():
                     # Incorrect password
                     else:
                         flash('Your password is incorrect')
-                        return redirect(url_for('login'))
+                        return redirect(url_for('index'))
 
                 # User is not approved yet
                 else:
                     flash('Your registration is not processed yet.')
-                    return redirect(url_for('login'))
+                    return redirect(url_for('index'))
 
             # Inactive user
             else:
                 flash('This user is inactive, \
                     please contact the administrator')
-                return redirect(url_for('login'))
+                return redirect(url_for('index'))
 
         # Unknown user
         else:
             flash('The username provided is not known')
-            return redirect(url_for('login'))
+            return redirect(url_for('index'))
 
     return render_template('login.html')
 
