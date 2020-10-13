@@ -9,6 +9,14 @@
             <div class="col">
                 <h1>Open Vacancies</h1>
             </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7">
+<!--    Short information section    -->
+                <p class="intro-text">Do you recognize yourself in our profile and are you looking for a challenging position at a flourishing company in the utility sector? View our current vacancies here and contact us or email your resume!
+                </p>
+            </div>
             <div class="col">
 <!--    Button to add vacancy, only available for admin    -->
             {%  if g.user['profile'] == 'admin' %}
@@ -16,13 +24,6 @@
                     + Add Vacancy
                 </a>
             {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-8">
-<!--    Short information section    -->
-                <p class="intro-text">Do you recognize yourself in our profile and are you looking for a challenging position at a flourishing company in the utility sector? View our current vacancies here and contact us or email your resume!
-                </p>
             </div>
         </div>
 
