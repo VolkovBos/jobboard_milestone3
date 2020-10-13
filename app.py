@@ -469,11 +469,13 @@ def insert_vacancy():
 @admin_required
 def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
+    photos = mongo.db.photos.find()
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
     return render_template(
         'editvacancy.html',
         vacancy=the_vacancy,
-        status=vacancy_status)
+        status=vacancy_status,
+        photos=photos)
 
 
 # Edit a vacancy

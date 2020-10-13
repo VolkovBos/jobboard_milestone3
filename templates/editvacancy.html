@@ -75,7 +75,16 @@
 <!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
                     <div class="form-group">
                         <label for="photo_url">Url for the Photo </label>
-                        <input class="form-control" type="url" value="{{vacancy.photo_url }}" id="photo_url" name="photo_url">
+                        <select class="form-control" id="photo_url" name="photo_url">
+                            <option disabled>Choose Image</option>
+                            {% for photo in photos %}
+                                {% if photo.photo_url == vacancy.photo_url %}
+                                    <option value="{{ photo.photo_url }}" selected>{{ photo.name }}</option>
+                                {% else %}
+                                    <option value="{{ photo.photo_url }}">{{ photo.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                     </div>
                 
 <!--    Vacancy text, line break can be used in this textarea    -->
