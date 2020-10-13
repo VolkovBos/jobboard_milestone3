@@ -38,8 +38,11 @@ app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
 
-# Login check decorator
 def login_required(f):
+    """
+    View decorator which indicates that for that view/page a user is
+    required to be logged in. Otherwise a 404 page is being showed.
+    """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if g.user is None:
@@ -48,8 +51,11 @@ def login_required(f):
     return decorated_function
 
 
-# Admin check decorator
 def admin_required(f):
+    """
+    View decorator which indicates that for that view/page a admin is
+    required to be logged in. Otherwise a 404 page is being showed.
+    """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if g.user is not None:
@@ -62,6 +68,9 @@ def admin_required(f):
 
 # Login config (https://www.youtube.com/watch?v=2Zz97NVbH0U)
 class User:
+    """
+    Login configuration
+    """
     def __init__(self, id, username, password):
         self.id = id
         self.username = username
@@ -71,9 +80,12 @@ class User:
         return f'<User: {self.username}>'
 
 
-# Set g.user at login to show the correct navbar and buttons
 @app.before_request
 def before_request():
+    """
+    Set g.user at login to show the correct navbar and buttons
+    Used tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
+    """
     g.user = None
 
     if 'user_id' in session:
@@ -84,6 +96,9 @@ def before_request():
 @app.route('/')
 @app.route('/index')
 def index():
+    """
+    Index to welcome the user, static content
+    """
     return render_template("index.html")
 
 
@@ -156,11 +171,16 @@ def register():
     return redirect(url_for('index'))
 
 
-# Login page for candidates and admin to login
-# I used a tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
-# for the login/session sections.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Login page for candidates and admin to login
+    I used a tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
+    for the login/session sections. Checks if user and password are
+    correct, show messages above main hero image on index.html
+    Used tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
+    """
+
     # Check if user is not logged in already
     if g.user:
         return redirect(url_for('index'))
@@ -208,13 +228,15 @@ def login():
             flash('The username provided is not known')
             return redirect(url_for('index'))
 
-    return render_template('login.html')
+    return redirect(url_for('index'))
 
 
-# Navbar link to clear session -> to logout
 @app.route('/logout')
 @login_required
 def logout():
+    """
+    Navbar link to clear session -> to logout the user/admin
+    """
     if not g.user:
         return redirect(url_for('index'))
 
