@@ -11,13 +11,13 @@ function sendMail(contactForm) {
             "message": contactForm.message.value,
             "subject": contactForm.subject.value
         });
-        $("#from_name, #from_email, #message, #subject").val("");
+        $("#name, #email, #message, #subject").val("");
             alert("Thank you for your message!");
         return true;
     
     /* Error catching */
     } catch (error) {
-        $("#from_name, #from_email, #message, #subject").val("");
+        $("#name, #email, #message, #subject").val("");
             alert(error);
         return false;
     }

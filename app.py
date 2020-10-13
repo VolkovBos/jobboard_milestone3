@@ -97,7 +97,7 @@ def register():
     # If the button is called for an action
     if request.method == 'POST':
         username1 = request.form['username1']
-        email = request.form['email']
+        email = request.form['emailAdress']
         user_password1 = request.form['user_password1']
         user_password2 = request.form['user_password2']
 
