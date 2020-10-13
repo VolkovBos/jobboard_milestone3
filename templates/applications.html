@@ -1,149 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!--    Applications page      -->
-        <div class="row col s12 listpages">
+<!--    A page for (open) applications -->
+    <div class="container first-container">
+        <div class="row">
 
 <!--    Title open section     -->
-            <div class="row">
+            <div class="col">
             {% if g.user['profile'] == 'admin' %}
                 <h1>Open Applications</h1>
             {% else %}
                 <h1>My Applications</h1>
             {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7">
+
+<!--    Short information section    -->
+                <p class="intro-text">
+                    Here you see you job applications, ongoing and the history. If you have a specific question about the status of a application or you want to know more about the vacancy you applied on, please feel free to <a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal">contact us</a> or contact your recruiter!
+                </p>
+            </div>
+            <div class="col">
 
 <!--    Button to add application, only available for admin    -->
             {%  if g.user['profile'] == 'admin' %}
-                <div class="col s12 center">
-                    <a href="{{url_for('add_application', vacancy_id='admin')}}" class="waves-effect waves-light btn">
-                        <i class="material-icons right">add</i>
-                        Add Application
-                    </a>
-                </div>
+                <a href="{{url_for('add_application', vacancy_id='admin')}}" class="btn btn-outline-success center-button">
+                    + Add Application
+                </a>
             {% endif %}
             </div>
-
-<!--    Application list with open status    -->
-            <ul class="collapsible" data-collapsible="accordion">
-            {% for apl in applications_open %}
-                <li>
-                    <div class="row collapsible-header blue lighten-3">
-
-<!--    Front card text      -->
-                        <div class="col s9">    
-                            <table>
-                                <tr>
-                                    <td class="icon_col"></td>
-                                    <td class="first_col">Vacancy</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.vacancy_name}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="icon_col"><i class="material-icons">expand_more</i></td>
-                                    <td class="first_col">Candidate</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.candidate_name}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="icon_col"></td>
-                                    <td class="first_col">Status</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.status}}</td>
-                                </tr>
-                            </table>
-                        </div>
-
-<!--    Button to edit application, only available for admin    -->
-                        <div class="col s3 center">
-                        {%  if g.user['profile'] == 'admin' %}
-                            <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">
-                                Edit
-                            </a>
-                        {% endif %}
-                        </div>
-                    </div>
-
-<!--    Collapsible card text      -->
-                    <div class="collapsible-body blue lighten-4">
-                        <p>{{apl.vacancy_text}}</p>
-
-<!--    Admin buttons      -->
-                        <div class="center">
-                        {%  if g.user['profile'] == 'admin' %}
-                            <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn waves-effect waves-light">
-                                Close
-                            </a>
-                            <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn waves-effect waves-light red lighten-2">
-                                Delete
-                            </a>
-                        {% endif %}
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
-            </ul>
-
-<!--    Title Closed     -->
-            <div class="row">
-                <h1>Closed Applications</h1>
             </div>
-
-<!--    Application list with closed status    -->
-            <ul class="collapsible" data-collapsible="accordion">
-            {% for apl in applications_closed %}
-                <li>
-                    <div class="row collapsible-header blue lighten-3">
-
-<!--    Front card text      -->
-                        <div class="col s9">
-                            <table>
-                                <tr>
-                                    <td class="icon_col"></td>
-                                    <td class="first_col">Vacancy</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.vacancy_name}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="icon_col"><i class="material-icons">expand_more</i></td>
-                                    <td class="first_col">Candidate</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.candidate_name}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="icon_col"></td>
-                                    <td class="first_col">Status</td>
-                                    <td class="mid_col">:</td>
-                                    <td class="last_col">{{apl.status}}</td>
-                                </tr>
-                            </table>
-                        </div>
-
-<!--    Button to edit application, only available for admin    -->
-                        <div class="col s3 center">
-                        {%  if g.user['profile'] == 'admin' %}
-                            <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn waves-effect waves-light blue">
-                                Edit
-                            </a>
-                        {% endif %}
-                        </div>
-                    </div>
-
-<!--    Collapsible card text      -->
-                    <div class="collapsible-body blue lighten-4">
-                        <p>{{apl.vacancy_text}}</p>
-
-<!--    Delete button     -->
-                        <div class="center">
-                        {%  if g.user['profile'] == 'admin' %}
-                            <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn waves-effect waves-light red lighten-2">
-                                Delete
-                            </a>
-                        {% endif %}
-                        </div>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
         </div>
+
+<!--    Carddeck of applications      -->
+        <div class="card-deck">
+        {% for apl in applications_open %}
+            <div class="card col-sm-12 col-md-5">
+            {% if apl.photo_url != '' and apl.photo_url != null %}
+                <img class="card-img-top" src="{{apl.photo_url}}" alt="Card image cap">
+            {% endif %}
+                <div class="card-body">
+                    <div class="row center-button">
+
+<!--    Button section, only availlable when logged in     -->
+                    {%  if g.user['profile'] == 'admin' %}
+                        <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn btn-outline-info button-margin">Edit</a>
+                        <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn btn-outline-warning button-margin">Close</a>
+                        <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn btn-outline-danger button-margin">Delete</a>
+                    {% endif %}
+                    </div>
+
+<!--    Vacancy information, where the candidate has applied for      -->
+                    <h5 class="card-title center">{{apl.vacancy_name}}</h5>
+                    <hr class="hr-vacancy">
+                    <p class="card-text center">
+                        {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
+                        {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
+                        {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
+                    </p>
+                    <hr class="hr-vacancy">
+                    <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
+                    <p class="card-text"><small class="text-muted">closes on {{apl.end_date}}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
 
 {% endblock %}
