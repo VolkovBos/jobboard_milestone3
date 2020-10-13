@@ -447,18 +447,29 @@ def vacancies():
 @app.route('/add_vacancy')
 @admin_required
 def add_vacancy():
+    """
+    Add a vacancy by using a form, 
+    photos can be selected by dropdown
+    """
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+    photos = mongo.db.photos.find()
+
     return render_template(
         'addvacancy.html',
-        status=vacancy_status)
+        status=vacancy_status,
+        photos=photos)
 
 
 # Insert a new vacancy
 @app.route('/insert_vacancy', methods=['POST'])
 @admin_required
 def insert_vacancy():
+    """
+    Insert vacancy to the database
+    """
     vacancies = mongo.db.vacancies
     vacancies.insert_one(request.form.to_dict())
+
     return redirect(url_for('vacancies'))
 
 
@@ -469,7 +480,7 @@ def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     photos = mongo.db.photos.find()
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
-    
+
     return render_template(
         'editvacancy.html',
         vacancy=the_vacancy,
