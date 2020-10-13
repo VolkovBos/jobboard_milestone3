@@ -52,9 +52,9 @@
                     <h5 class="card-title center">{{vac.vacancy_name}}</h5>
                     <hr class="hr-vacancy">
                     <p class="card-text center">
-                        Hours : {% if vac.hours != null and vac.hours != '' %}{{vac.hours}} {% else %} unknown{% endif %}<br>
-                        Salary : {% if vac.salary != null and vac.salary != '' %}{{vac.salary}} {% else %} unknown{% endif %}<br>
-                        Location : {% if vac.location != null and vac.location != '' %}{{vac.location}} {% else %} unknown{% endif %}
+                        {% if vac.hours != null and vac.hours != '' %}Hours : {{vac.hours}} {% endif %}<br>
+                        {% if vac.salary != null and vac.salary != '' %}Salary : {{vac.salary}} {% endif %}<br>
+                        {% if vac.location != null and vac.location != '' %}Location : {{vac.location}} {% endif %}
                     </p>
                     <hr class="hr-vacancy">
                     <p class="card-text textarea-breaks">{{vac.vacancy_text}}</p>
