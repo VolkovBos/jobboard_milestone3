@@ -447,13 +447,10 @@ def vacancies():
 @app.route('/add_vacancy')
 @admin_required
 def add_vacancy():
-    if g.user['profile'] == 'admin':
-        vacancy_status = mongo.db.status.find({'type': 'vacancy'})
-        return render_template(
-            'addvacancy.html',
-            status=vacancy_status)
-    else:
-        abort(404)
+    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+    return render_template(
+        'addvacancy.html',
+        status=vacancy_status)
 
 
 # Insert a new vacancy
