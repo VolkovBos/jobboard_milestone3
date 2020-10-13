@@ -467,8 +467,12 @@ def update_vacancy(vacancy_id):
             'photo_url': request.form.get('photo_url'),
             'vacancy_text': request.form.get('vacancy_text')
         }})
+
+    # If update button is used
     if 'update' in request.form:
         return redirect(url_for('edit_vacancy', vacancy_id=vacancy_id))
+
+    # If save button is used
     return redirect(url_for('vacancies'))
 
 
