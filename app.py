@@ -435,6 +435,7 @@ def vacancies():
         {'vacancy_status': 'open'})
     vacancies_closed = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'open'}})
+
     return render_template(
         "vacancies.html",
         vacancies_open=vacancies_open,
@@ -471,6 +472,7 @@ def edit_vacancy(vacancy_id):
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     photos = mongo.db.photos.find()
     vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+    
     return render_template(
         'editvacancy.html',
         vacancy=the_vacancy,
