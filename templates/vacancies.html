@@ -2,21 +2,48 @@
 {% block content %}
 
 <!--    A page for open vacancies -->
-        <div class="row col s12 listpages">
+    <div class="container first-container">
+        <div class="row">
 
 <!--    Title open section     -->
-            <div class="row">
+            <div class="col">
                 <h1>Open Vacancies</h1>
-
+            </div>
+            <div class="col">
 <!--    Button to add vacancy, only available for admin    -->
             {%  if g.user['profile'] == 'admin' %}
-                <div class="col s12 center">
-                    <a href="{{url_for('add_vacancy')}}" class="btn waves-effect waves-light">
-                        <i class="material-icons right">add</i>
-                        Add Vacancy
-                    </a>
-                </div>
+                <a href="{{url_for('add_vacancy')}}" class="btn btn-outline-success">
+                    + Add Vacancy
+                </a>
             {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-6">
+<!--    Short information section    -->
+                <p>Do you recognize yourself in our profile and are you looking for a challenging position at a flourishing company in the     utility sector? View our current vacancies here and mail us your CV!
+                </p>
+            </div>
+        </div>
+
+<!--    Carddeck of vacancies      -->
+        <div class="card-deck">
+        {% for vac in vacancies_open %}
+            <div class="card col-sm-3">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{vac.vacancy_name}}</h5>
+                    <p class="card-text">{{vac.vacancy_text}}</p>
+                    <p class="card-text"><small class="text-muted">closes on {{vac.end_date}}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+
+
             </div>
 
 <!--    List of vacancies      -->

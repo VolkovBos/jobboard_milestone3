@@ -9,6 +9,9 @@ body {
     font-size: 150%;
 }
 
+.first-container {
+    margin-top: 100px;
+}
 /*-----      Navbar      -----*/
 
 .navbar-brand h1 {
@@ -237,6 +240,14 @@ svg {
     background-color: yellow;
 }
 
+/*-----      Vacancies       -----*/
+@media (min-width: 576px){
+    .card-deck .card {
+        flex: none;
+        margin-bottom: 20px;
+    }
+}
+
 /*-----      Forms       -----*/
 
 .dropdown-content li>a, 
@@ -276,10 +287,11 @@ label {
     display: flex;
 }
 
+/*
 .card {
     padding: 20px;
 }
-
+*/
 td {
     padding:0;
 }
