@@ -259,14 +259,11 @@ def profile(candidate_id):
 @app.route('/change_password/<user_id>')
 @login_required
 def change_password(user_id):
-    if not g.user:
-        abort(404)
-
-    else:
-        the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
-        return render_template(
-            'changepassword.html',
-            user=the_user)
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+    
+    return render_template(
+        'changepassword.html',
+        user=the_user)
 
 
 # Change the password in MongoDB
