@@ -652,10 +652,14 @@ def insert_application():
         return redirect(url_for('myapplications'))
 
 
-# Route to go to the edit application page
 @app.route('/edit_application/<application_id>')
 @admin_required
 def edit_application(application_id):
+    """
+    Route to go to the edit application page
+    Vacancies and candidates are shown in dropdown selector
+    closed/inactive record are shown in lower section of dropdown
+    """
     the_application = mongo.db.applications.find_one(
         {"_id": ObjectId(application_id)})
     active_candidates = mongo.db.candidates.find(
