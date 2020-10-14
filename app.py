@@ -421,9 +421,9 @@ def vacancies():
       they can CRUD all vacancies
     """
     vacancies_open = mongo.db.vacancies.find(
-        {'vacancy_status': 'open'})
+        {'vacancy_status': {'$ne': 'closed'}})
     vacancies_closed = mongo.db.vacancies.find(
-        {'vacancy_status': {'$ne': 'open'}})
+        {'vacancy_status': 'closed'})
 
     return render_template(
         "vacancies.html",
@@ -596,7 +596,8 @@ def add_application(vacancy_id):
     """
 
     all_candidates = mongo.db.candidates.find()
-    open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
+    open_vacancies = mongo.db.vacancies.find(
+        {'vacancy_status': {'$ne': 'closed'}})
     application_status = mongo.db.status.find({'type': 'application'})
 
     if vacancy_id != 'admin':
