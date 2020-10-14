@@ -761,24 +761,31 @@ def update_application(application_id):
     return redirect(url_for('applications'))
 
 
-# Close an application
 @app.route('/close_application/<application_id>')
 @admin_required
 def close_application(application_id):
+    """
+    Updates application to the database
+    Closes a application, set status on closed
+    """
     applications = mongo.db.applications
     applications.update(
         {'_id': ObjectId(application_id)},
         {'$set': {
             'status': 'closed'
         }})
+
     return redirect(url_for('applications'))
 
 
-# Delete an application
 @app.route('/delete_application/<application_id>')
 @admin_required
 def delete_application(application_id):
+    """
+    Deletes vacancy from the database
+    """
     mongo.db.applications.remove({'_id': ObjectId(application_id)})
+
     return redirect(url_for('applications'))
 
 
