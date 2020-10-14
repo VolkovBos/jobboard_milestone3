@@ -453,6 +453,38 @@ def approve_user(user_id):
     return redirect(url_for('users'))
 
 
+@app.route('/deactivate_user/<user_id>')
+@admin_required
+def deactivate_user(user_id):
+    """
+    Updates user to inactive in the database
+    """
+    users = mongo.db.candidates
+    users.update(
+        {'_id': ObjectId(user_id)},
+        {'$set': {
+            'status': 'inactive'
+        }})
+
+    return redirect(url_for('users'))
+
+
+@app.route('/activate_user/<user_id>')
+@admin_required
+def activate_user(user_id):
+    """
+    Updates user to active in the database
+    """
+    users = mongo.db.candidates
+    users.update(
+        {'_id': ObjectId(user_id)},
+        {'$set': {
+            'status': 'active'
+        }})
+
+    return redirect(url_for('users'))
+
+
 @app.route('/delete_user/<user_id>')
 @admin_required
 def delete_user(user_id):
