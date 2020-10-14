@@ -86,9 +86,7 @@
                     {% if vac.location != null and vac.location != '' %}Location :{{vac.location}} {% endif %}
                 </p>
                 <hr class="hr-vacancy">
-                <p class="card-text textarea-breaks">
-                    {{vac.vacancy_text}}
-                </p>
+                <p class="card-text textarea-breaks">{{vac.vacancy_text}}</p>
                 <p class="card-text">
                     <small class="text-muted">
                         closes on {{vac.end_date}}
