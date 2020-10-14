@@ -545,16 +545,16 @@ def delete_vacancy(vacancy_id):
 @admin_required
 def applications():
     """
-    Overview of all the applications 
+    Overview of all the applications
     for overview and management of applications
     Admins can CRUD all applications
     """
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
-            {'status': 'open'}),
+            {'status': {'$ne': 'closed'}}),
         applications_closed=mongo.db.applications.find(
-            {'status': {'$ne': 'open'}})
+            {'status': 'closed'})
     )
 
 
@@ -587,7 +587,7 @@ def add_application(vacancy_id):
     Add a application by using a form,
     statusses can be selected by dropdown
     Admin can also create a application from application page,
-    here a open vacancy can be chosen in a dropdown as well 
+    here a open vacancy can be chosen in a dropdown as well
     as active candidates
     """
 
