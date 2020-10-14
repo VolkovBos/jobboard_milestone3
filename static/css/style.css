@@ -215,7 +215,7 @@ svg {
     display: none;
 }
 
-/*-----      Login modal       -----*/
+/*-----      Modals     -----*/
 .modal-header {
     background-color: cadetblue;
     color: #fafafa;
@@ -244,7 +244,7 @@ svg {
     background-color: yellow;
 }
 
-/*-----      Vacancies       -----*/
+/*-----      Vacancies & Applications      -----*/
 .intro-text {
     font-size: larger;
 }
