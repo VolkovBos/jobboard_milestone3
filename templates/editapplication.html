@@ -1,131 +1,184 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <!--    A page to edit an application -->
-        <div class="row col s12 listpages">
+<div class="container first-container">
+        <div class="row">
 
-<!--    Title     -->
-            <div class="row">
-                <h1>Edit Application</h1>
+<!--    Title section     -->
+            <div class="col">
+                <form action="{{url_for('insert_application')}}" method="POST">
+                    <h1>
+                        Edit Application
+                    </h1>
+
+<!--    Name of the vacancy, function title of the job    -->
+<!--    Prefilled when creating from a vacancy   -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-8">
+                                <label for="vacancy_name">
+                                    Vacancy Name
+                                </label>
+
+<!--    Prefilled and readonly for a regular user  -->
+                                <select id="vacancy_name" name="vacancy_name" class="form-control">
+                                    <option disabled>
+                                        Choose Vacancy
+                                    </option>
+                                {% for vac in vacancies %}
+                                    {% if vac.vacancy_name == application.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}" selected>
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ vac.vacancy_name }}">
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select> 
+                            {% endif %}
+                            </div>
+
+<!--    Application status     -->
+                            <div class="col-4">
+                                <label for="status">
+                                    Status Job Application
+                                </label> 
+                                <select id="status" name="status" class="form-control">
+                                    <option selected>
+                                        Choose Status
+                                    </option>
+                                {% for stat in status %}
+                                    {% if stat.status_name == application.status %}
+                                    <option value="{{ stat.status_name }}" selected>
+                                        {{ stat.status_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ stat.status_name }}">
+                                        {{ stat.status_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+
+<!--    Availability of the candidate and candidate name    -->
+                            <div class="col-6">
+                                <label for="start_date">
+                                    Available from
+                                </label>
+                                <input value="{{ application.start_date }}" class="form-control" type="date" id="start_date" name="start_date">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="candidate_name">
+                                    Candidate name
+                                </label>
+
+<!--    Prefilled and readonly for a regular user  -->
+                                <select id="candidate_name" name="candidate_name" class="form-control">
+                                    <option selected>
+                                        Choose Candidate
+                                    </option>
+                                {% for can in candidates %}
+                                    {% if can.user_name == application.candidate_name %}
+                                    <option value="{{ can.user_name }}" selected>
+                                        {{ can.user_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ can.user_name }}">
+                                        {{ can.user_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
+
+<!--    Comments on the appication or from candidate    -->
+                    <div class="form-group">
+                        <label for="comments">
+                                Comments
+                            </label>
+                        <textarea id="comments" name="comments" class="form-control" rows="5">{{ application.comments }}</textarea>
+                    </div>
+
+<!--    More info about the vacancy   -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="hours">
+                                    Hours
+                                </label>
+                                <input value="{{ application.hours }}" type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="salary">
+                                    Salary
+                                </label>
+                                <input value="{{ application.salary }}" type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="photo_url">
+                                    Url for the Photo
+                                </label>
+                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
+                                    <option selected>
+                                        Choose Image
+                                    </option>
+                                {% for photo in photos %}
+                                    {% if can.user_name == application.candidate_name %}
+                                    <option value="{{ photo.photo_url }}" selected>
+                                        {{ photo.name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ photo.photo_url }}">
+                                        {{ photo.name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="location">
+                                    Location
+                                </label>
+                                <input value="{{ application.location }}" type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+<!--    Vacancy text, line break can be used in this textarea    -->
+                    <div class="form-group">
+                        <label for="vacancy_text">
+                            Vacancy Text
+                        </label>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{vacancy.vacancy_text}}</textarea>
+                    </div>
+
+<!--    Save button will save and redirect back to the vacancies page, cancel will not save   -->
+                    <div class="row center-button">
+                        <button type="submit" class="btn btn-primary" name="save">
+                            Save
+                        </button>
+                        <button type="submit" class="btn btn-danger" name="cancel">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
-
-<!--    Form     -->
-            <form class="col s12" action="{{url_for('insert_application')}}" method="POST" >
-
-<!--    Save button     -->
-                <div class="row center">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        Update
-                        <i class="material-icons right">add_box</i>
-                    </button>
-                </div>
-
-<!--    Vacancy name, prefilled when admin is creating an application     -->
-                <div class="row">
-                    <div class="input-field col s7">
-                        <i class="material-icons prefix">assignment</i>
-                        <select id="vacancy_name" name="vacancy_name">
-                            <option disabled>Choose Vacancy</option>
-                    {% for vac in open_vacancies %}
-                        {% if vac.vacancy_name == application.vacancy_name %}
-                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                {{ vac.vacancy_name }} - {{ vac.end_date }}
-                            </option>
-                        {% else %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                {{ vac.vacancy_name }}- {{ vac.end_date }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                            <option disabled>Closed vacancies</option>
-                    {% for vac in closed_vacancies %}
-                        {% if vac.vacancy_name == application.vacancy_name %}
-                            <option value="{{ vac.vacancy_name }}- {{ application.end_date }}" selected>
-                                {{ vac.vacancy_name }} - {{ vac.end_date }}
-                            </option>
-                        {% else %}
-                            <option value="{{ vac.vacancy_name }}- {{ vac.end_date }}">
-                                {{ vac.vacancy_name }}- {{ vac.end_date }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                        </select>
-                        <label for="vacancy_name">Vacancy name</label>
-                    </div>
-
-<!--    Application  status     -->
-                    <div class="input-field col s4">
-                        <i class="material-icons prefix">show_chart</i>
-                        <select id="status" name="status">
-                            <option disabled>Choose Status</option>
-                    {% for stat in status %}
-                        {% if stat.status_name == application.status %}
-                            <option value="{{ stat.status_name }}" selected>
-                                {{ stat.status_name }}
-                            </option>
-                        {% else %}
-                            <option value="{{ stat.status_name }}">
-                                {{ stat.status_name }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                        </select>
-                        <label for="status">Status</label>
-                    </div>
-                </div>
-
-<!--    Candidate     -->
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">person</i>
-
-                        <select id="candidate_name" name="candidate_name">
-                            <option disabled>Choose Candidate</option>
-                    {% for can in candidates %}
-                        {% if can.user_name == application.candidate_name %}
-                            <option value="{{ can.user_name }}" selected>
-                                {{ can.user_name }}
-                            </option>
-                        {% else %}
-                            <option value="{{ can.user_name }}">
-                                {{ can.user_name }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                        </select>
-                        <label for="candidate_name">Candidate name</label>
-                    </div>
-
-<!--    Availability of the candidate    -->
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">today</i>
-                        <input value="{{ application.start_date }}" id="start_date" name="start_date" type="text" class="datepicker"/>
-                        <label for="start_date">Available from</label>
-                    </div>
-                </div>
-
-<!--    Comments on application and/or candidate     -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">subject</i>
-                        <textarea id="comments" name="comments" class="materialize-textarea">
-                            {{ application.comments }}
-                        </textarea>
-                        <label for="comments">Comments</label>
-                    </div>
-                </div>
-
-<!--    Vacancy text     -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">subject</i>
-                        <textarea id="vacancy_text" name="vacancy_text" class="materialize-textarea" rows="30">
-                            {{ application.vacancy_text }}
-                        </textarea>
-                        <label for="vacancy_text">Vacancy text</label>
-                    </div>
-                </div>
-            </form>
         </div>
+    </div>
 
 {% endblock %}
