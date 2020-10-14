@@ -324,13 +324,18 @@ def update_password(user_id):
 @app.route('/users')
 @admin_required
 def users():
-    users = mongo.db.candidates.find({'approved': True})
-    users_to_approve = mongo.db.candidates.find({'approved': False})
+    users_active = mongo.db.candidates.find(
+        {'approved': True, 'status': 'active'})
+    users_to_approve = mongo.db.candidates.find(
+        {'approved': False, 'status': 'active'})
+    users_inactive = mongo.db.candidates.find(
+        {'status': 'inactive'})
 
     return render_template(
         "users.html",
-        users=users,
-        users_to_approve=users_to_approve
+        users=users_active,
+        users_to_approve=users_to_approve,
+        users_inactive=users_inactive
     )
 
 
