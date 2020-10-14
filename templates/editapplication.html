@@ -156,13 +156,13 @@
                                 <label for="hours">
                                     Hours
                                 </label>
-                                <input value="{{ application.hours }}" type="text" class="form-control" id="hours" name="hours" readonly>
+                                <input value="{{ application.hours }}" type="text" class="form-control" id="hours" name="hours">
                             </div>
                             <div class="col-6">
                                 <label for="salary">
                                     Salary
                                 </label>
-                                <input value="{{ application.salary }}" type="text" class="form-control" id="salary" name="salary" readonly>
+                                <input value="{{ application.salary }}" type="text" class="form-control" id="salary" name="salary">
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                                 <label for="photo_url">
                                     Url for the Photo
                                 </label>
-                                <select class="form-control" id="photo_url" name="photo_url" value="{{ application.photo_url }}" readonly>
+                                <select class="form-control" id="photo_url" name="photo_url" value="{{ application.photo_url }}">
                                     <option disabled>
                                         Choose Image
                                     </option>
@@ -195,7 +195,7 @@
                                 <label for="location">
                                     Location
                                 </label>
-                                <input value="{{ application.location }}" type="text" class="form-control" id="location" name="location" readonly>
+                                <input value="{{ application.location }}" type="text" class="form-control" id="location" name="location">
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                         <label for="vacancy_text">
                             Vacancy Text
                         </label>
-                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{application.vacancy_text}}</textarea>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{application.vacancy_text}}</textarea>
                     </div>
 
 <!--    Save button will save and redirect back to the vacancies page, cancel will not save   -->
