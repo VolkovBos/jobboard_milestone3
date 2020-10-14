@@ -31,11 +31,32 @@
                                 <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="form-control" readonly/>
                             {% else %}
                                 <select id="vacancy_name" name="vacancy_name" class="form-control">
-                                    <option selected>
+                                    <option disabled selected>
                                         Choose Vacancy
                                     </option>
+                                    <option disabled>
+                                        -- Open vacancies --
+                                    </option>
+
+<!-- Open vacancies shown in dropdown menu -->
                                 {% for vac in vacancies %}
                                     {% if vac.vacancy_name == vacancy.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}" selected>
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ vac.vacancy_name }}">
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                    <option disabled>
+                                        -- Closed vacancies --
+                                    </option>
+
+<!-- Closed vacancies shown in dropdown menu -->
+                                {% for vac in closed_vacancies %}
+                                    {% if vac.vacancy_name == application.vacancy_name %}
                                     <option value="{{ vac.vacancy_name }}" selected>
                                         {{ vac.vacancy_name }}
                                     </option>
@@ -58,7 +79,7 @@
                                 <input value="open" id="status" name="status" type="text" class="form-control" readonly/>
                             {% else %}
                                 <select id="status" name="status" class="form-control">
-                                    <option selected>
+                                    <option disabled selected>
                                         Choose Status
                                     </option>
                                 {% for stat in status %}
@@ -91,12 +112,27 @@
                                 <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="form-control" readonly /> 
                             {% else %}
                                 <select id="candidate_name" name="candidate_name" class="form-control">
-                                    <option selected>
+                                    <option disabled selected>
                                         Choose Candidate
                                     </option>
+                                    <option disabled>
+                                        -- Active Candidates --
+                                    </option>
+
+<!-- Active candidates shown in dropdown menu -->
                                     {% for can in candidates %}
-                                        <option value="{{ can.user_name }}">{{ can.user_name }}</option>
+                                    <option value="{{ can.user_name }}">{{ can.user_name }}</option>
                                     {% endfor %}
+                                    <option disabled>
+                                        -- Inactive Candidates --
+                                    </option>
+
+<!-- Inactive candidates shown in dropdown menu -->
+                                {% for can in inactive_candidates %}
+                                    <option value="{{ can.user_name }}">
+                                        {{ can.user_name }}
+                                    </option>
+                                {% endfor %}
                                 </select> 
                             {% endif %}
                             </div>
