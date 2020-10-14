@@ -97,10 +97,27 @@
 
 <!--    Prefilled candidates  -->
                                 <select id="candidate_name" name="candidate_name" class="form-control">
-                                    <option selected>
+                                    <option disabled>
                                         Choose Candidate
                                     </option>
-                                {% for can in candidates %}
+                                    <option disabled>
+                                        -- Active Candidates --
+                                    </option>
+                                {% for can in active_candidates %}
+                                    {% if can.user_name == application.candidate_name %}
+                                    <option value="{{ can.user_name }}" selected>
+                                        {{ can.user_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ can.user_name }}">
+                                        {{ can.user_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                    <option disabled>
+                                        -- Inactive Candidates --
+                                    </option>
+                                {% for can in inactive_candidates %}
                                     {% if can.user_name == application.candidate_name %}
                                     <option value="{{ can.user_name }}" selected>
                                         {{ can.user_name }}

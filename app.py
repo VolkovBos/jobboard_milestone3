@@ -658,7 +658,10 @@ def insert_application():
 def edit_application(application_id):
     the_application = mongo.db.applications.find_one(
         {"_id": ObjectId(application_id)})
-    all_candidates = mongo.db.candidates.find()
+    active_candidates = mongo.db.candidates.find(
+        {'status': 'active'})
+    inactive_candidates = mongo.db.candidates.find(
+        {'status': {'$ne': 'active'}})
     open_vacancies = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
@@ -669,7 +672,8 @@ def edit_application(application_id):
     return render_template(
         'editapplication.html',
         application=the_application,
-        candidates=all_candidates,
+        active_candidates=active_candidates,
+        inactive_candidates=inactive_candidates,
         open_vacancies=open_vacancies,
         closed_vacancies=closed_vacancies,
         status=application_status)
