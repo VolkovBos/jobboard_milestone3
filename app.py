@@ -595,7 +595,10 @@ def add_application(vacancy_id):
     as active candidates
     """
 
-    all_candidates = mongo.db.candidates.find()
+    active_candidates = mongo.db.candidates.find(
+        {'status': 'active'})
+    inactive_candidates = mongo.db.candidates.find(
+        {'status': {'$ne': 'active'}})
     open_vacancies = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'closed'}})
     application_status = mongo.db.status.find({'type': 'application'})
@@ -616,7 +619,8 @@ def add_application(vacancy_id):
     return render_template(
         'addapplication.html',
         vacancy=the_vacancy,
-        candidates=all_candidates,
+        active_candidates=active_candidates,
+        inactive_candidates=inactive_candidates,
         vacancies=open_vacancies,
         status=application_status)
 

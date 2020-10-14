@@ -120,9 +120,9 @@
                                     </option>
 
 <!-- Active candidates shown in dropdown menu -->
-                                    {% for can in candidates %}
+                                {% for can in active_candidates %}
                                     <option value="{{ can.user_name }}">{{ can.user_name }}</option>
-                                    {% endfor %}
+                                {% endfor %}
                                     <option disabled>
                                         -- Inactive Candidates --
                                     </option>
