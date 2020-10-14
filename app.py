@@ -114,7 +114,6 @@ def register():
 
     Also hashes the password to the database
     """
-
     # Check if user is not logged in already
     if g.user:
         return redirect(url_for('index'))
@@ -194,12 +193,11 @@ def login():
     - if user/candidate is active
     - if user is approved
     if incorrect; show messages above main hero image on index.html
-    
+
     Used tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
 
     Also unhashes the password from the database
     """
-
     # Check if user is not logged in already
     if g.user:
         return redirect(url_for('index'))
@@ -504,7 +502,6 @@ def update_vacancy(vacancy_id):
     Updates vacancy to the database
     Checks build in to see which button is being used
     """
-
     # If cancel button is used
     if 'cancel' in request.form:
         return redirect(url_for('vacancies'))
@@ -538,7 +535,7 @@ def update_vacancy(vacancy_id):
 def close_vacancy(vacancy_id):
     """
     Updates vacancy to the database
-    Close a vacancy, set status on closed
+    Closes a vacancy, set status on closed
     """
     vacancies = mongo.db.vacancies
     vacancies.update(
@@ -557,6 +554,7 @@ def delete_vacancy(vacancy_id):
     Deletes vacancy from the database
     """
     mongo.db.vacancies.remove({'_id': ObjectId(vacancy_id)})
+
     return redirect(url_for('vacancies'))
 
 
@@ -568,6 +566,7 @@ def applications():
     for overview and management of applications
     Admins can CRUD all applications
     """
+
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
@@ -644,13 +643,16 @@ def add_application(vacancy_id):
         status=application_status)
 
 
-# Insert a new application, from application page or from a vacancy
 @app.route('/insert_application', methods=['POST'])
 @login_required
 def insert_application():
+    """
+    Insert application to the database
+    Queries the linked vacancy and adds some of the data
+    from vacancy to see in the myapplication overview
+    """
     the_vacancy = mongo.db.vacancies.find_one(
             {'vacancy_name': request.form.get('vacancy_name')})
-
     applications = mongo.db.applications
     applications.insert_one(
         {
@@ -706,21 +708,32 @@ def edit_application(application_id):
         status=application_status)
 
 
-# Update an application
 @app.route('/update_application/<application_id>', methods=['POST'])
 @admin_required
 def update_application(application_id):
+    """
+    Updates application to the database
+    Queries the linked vacancy and adds some of the data
+    from vacancy to see in the myapplication overview
+    """
+    the_vacancy = mongo.db.vacancies.find_one(
+            {'vacancy_name': request.form.get('vacancy_name')})
     applications = mongo.db.applications
     applications.update(
         {'_id': ObjectId(application_id)},
         {
             'vacancy_name': request.form.get('vacancy_name'),
             'status': request.form.get('status'),
-            'candidate_name': request.form.get('candidate_name'),
             'start_date': request.form.get('start_date'),
+            'candidate_name': request.form.get('candidate_name'),
             'comments': request.form.get('comments'),
-            'vacancy_text': request.form.get('vacancy_text')
+            'hours': the_vacancy.get('hours'),
+            'salary': the_vacancy.get('salary'),
+            'photo_url': the_vacancy.get('photo_url'),
+            'location': the_vacancy.get('location'),
+            'vacancy_text': the_vacancy.get('vacancy_text')
         })
+
     return redirect(url_for('applications'))
 
 
