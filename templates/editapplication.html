@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <!--    A page to edit an application -->
-<div class="container first-container">
+    <div class="container first-container">
         <div class="row">
 
 <!--    Title section     -->
@@ -25,7 +25,24 @@
                                     <option disabled>
                                         Choose Vacancy
                                     </option>
-                                {% for vac in vacancies %}
+                                    <option disabled>
+                                        -- Open vacancies --
+                                    </option>
+                                {% for vac in open_vacancies %}
+                                    {% if vac.vacancy_name == application.vacancy_name %}
+                                    <option value="{{ vac.vacancy_name }}" selected>
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% else %}
+                                    <option value="{{ vac.vacancy_name }}">
+                                        {{ vac.vacancy_name }}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                                    <option disabled>
+                                        -- Closed vacancies --
+                                    </option>
+                                {% for vac in closed_vacancies %}
                                     {% if vac.vacancy_name == application.vacancy_name %}
                                     <option value="{{ vac.vacancy_name }}" selected>
                                         {{ vac.vacancy_name }}
@@ -37,7 +54,6 @@
                                     {% endif %}
                                 {% endfor %}
                                 </select> 
-                            {% endif %}
                             </div>
 
 <!--    Application status     -->
@@ -79,7 +95,7 @@
                                     Candidate name
                                 </label>
 
-<!--    Prefilled and readonly for a regular user  -->
+<!--    Prefilled candidates  -->
                                 <select id="candidate_name" name="candidate_name" class="form-control">
                                     <option selected>
                                         Choose Candidate
@@ -100,7 +116,7 @@
                         </div>
                     </div>
 
-<!--    Comments on the appication or from candidate    -->
+<!--    Comments on the application or from candidate    -->
                     <div class="form-group">
                         <label for="comments">
                                 Comments
@@ -115,13 +131,13 @@
                                 <label for="hours">
                                     Hours
                                 </label>
-                                <input value="{{ application.hours }}" type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}" readonly>
+                                <input value="{{ application.hours }}" type="text" class="form-control" id="hours" name="hours" readonly>
                             </div>
                             <div class="col-6">
                                 <label for="salary">
                                     Salary
                                 </label>
-                                <input value="{{ application.salary }}" type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}" readonly>
+                                <input value="{{ application.salary }}" type="text" class="form-control" id="salary" name="salary" readonly>
                             </div>
                         </div>
                     </div>
@@ -133,7 +149,7 @@
                                 <label for="photo_url">
                                     Url for the Photo
                                 </label>
-                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
+                                <select class="form-control" id="photo_url" name="photo_url" value="{{ application.photo_url }}" readonly>
                                     <option selected>
                                         Choose Image
                                     </option>
@@ -154,7 +170,7 @@
                                 <label for="location">
                                     Location
                                 </label>
-                                <input value="{{ application.location }}" type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}" readonly>
+                                <input value="{{ application.location }}" type="text" class="form-control" id="location" name="location" readonly>
                             </div>
                         </div>
                     </div>
@@ -164,7 +180,7 @@
                         <label for="vacancy_text">
                             Vacancy Text
                         </label>
-                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{vacancy.vacancy_text}}</textarea>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{application.vacancy_text}}</textarea>
                     </div>
 
 <!--    Save button will save and redirect back to the vacancies page, cancel will not save   -->

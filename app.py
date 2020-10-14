@@ -660,9 +660,9 @@ def edit_application(application_id):
         {"_id": ObjectId(application_id)})
     all_candidates = mongo.db.candidates.find()
     open_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': 'open'})
+        {'vacancy_status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': {'$ne': 'open'}})
+        {'vacancy_status': 'closed'})
     application_status = mongo.db.status.find(
         {'type': 'application'})
 
