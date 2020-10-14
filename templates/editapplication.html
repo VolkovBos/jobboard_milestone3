@@ -28,6 +28,8 @@
                                     <option disabled>
                                         -- Open vacancies --
                                     </option>
+
+<!-- Open vacancies shown in dropdown menu -->
                                 {% for vac in open_vacancies %}
                                     {% if vac.vacancy_name == application.vacancy_name %}
                                     <option value="{{ vac.vacancy_name }}" selected>
@@ -42,6 +44,8 @@
                                     <option disabled>
                                         -- Closed vacancies --
                                     </option>
+
+<!-- Closed vacancies shown in dropdown menu -->
                                 {% for vac in closed_vacancies %}
                                     {% if vac.vacancy_name == application.vacancy_name %}
                                     <option value="{{ vac.vacancy_name }}" selected>
@@ -103,6 +107,8 @@
                                     <option disabled>
                                         -- Active Candidates --
                                     </option>
+
+<!-- Active candidates shown in dropdown menu -->
                                 {% for can in active_candidates %}
                                     {% if can.user_name == application.candidate_name %}
                                     <option value="{{ can.user_name }}" selected>
@@ -117,6 +123,8 @@
                                     <option disabled>
                                         -- Inactive Candidates --
                                     </option>
+
+<!-- Inactive candidates shown in dropdown menu -->
                                 {% for can in inactive_candidates %}
                                     {% if can.user_name == application.candidate_name %}
                                     <option value="{{ can.user_name }}" selected>
