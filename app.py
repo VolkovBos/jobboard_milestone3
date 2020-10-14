@@ -570,11 +570,15 @@ def myapplications():
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
-            {'candidate_name': g.user['user_name'], 'status': 'open'}),
+            {
+                'candidate_name': g.user['user_name'],
+                'status': {'$ne': 'closed'}
+            }
+        ),
         applications_closed=mongo.db.applications.find(
             {
                 'candidate_name': g.user['user_name'],
-                'status': {'$ne': 'open'}
+                'status': 'closed'
             }
         )
     )
