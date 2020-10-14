@@ -1,259 +1,297 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
-<div class="container first-container">
-    <div class="row">
-        <div class="col-sm-9 col-md-9">
-            <h1>
-                Users asking for approval
-            </h1>
-        </div>
-        <div class="col-sm-3 col-md-3">
-            <a href="{{url_for('add_user')}}" class="btn btn-outline-success button-margin">
-                + Add User
-            </a>
-        </div>
+<!--    Users page      -->
+    <div class="container first-container">
+        <div class="row">
 
-        <!--    Users to approve section     -->
-        <table class="table table-condensed" style="border-collapse:collapse;">
-            <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Candidate</th>
-                    <th>Userprofile</th>
-                    <th>Status</th>
-                    <th>Approved</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users_to_approve %}
-                <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                    <td>{{user.user_id}}</td>
-                    <td>{{user.user_name}}</td>
-                    <td>{{user.first_name}} {{user.last_name}}</td>
-                    <td>{{user.profile}}</td>
+<!--    Title approve section     -->
+            <div class="col-sm-9 col-md-9">
+                <h1>
+                    Users asking for approval
+                </h1>
+            </div>
+
+<!--    Button to add users   -->
+            <div class="col-sm-3 col-md-3">
+                <a href="{{url_for('add_user')}}" class="btn btn-outline-success button-margin">
+                    + Add User
+                </a>
+            </div>
+            <table class="table table-condensed" style="border-collapse:collapse;">
+                <thead class="thead-dark">
+
+<!--    User list table header   -->
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Candidate</th>
+                        <th>Userprofile</th>
+                        <th>Status</th>
+                        <th>Approved</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+<!--    User list with to approve status    -->
+                    {% for user in users_to_approve %}
+
+<!--    User info   -->
+                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
+                        <td>{{user.user_id}}</td>
+                        <td>{{user.user_name}}</td>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.profile}}</td>
                     {% if user.status == 'active' %}
-                    <td class="text-success">{{user.status}}</td>
+                        <td class="text-success">{{user.status}}</td>
                     {% else %}
-                    <td class="text-danger">{{user.status}}</td>
+                        <td class="text-danger">{{user.status}}</td>
                     {% endif %} {% if user.approved == True %}
-                    <td class="text-success">{{user.approved}}</td>
+                        <td class="text-success">{{user.approved}}</td>
                     {% else %}
-                    <td class="text-danger">{{user.approved}}</td>
+                        <td class="text-danger">{{user.approved}}</td>
                     {% endif %}
-                </tr>
-                <tr>
-                    <td colspan="6" class="hiddenRow">
-                        <div class="accordian-body collapse row" id="demo{{user.user_id}}">
-                            <table class="user-collapse">
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td>{{user.email}}</td>
-                                </tr>
-                                <tr>
-                                    <td>street</td>
-                                    <td>:</td>
-                                    <td>{{user.street}}</td>
-                                </tr>
-                                <tr>
-                                    <td>House Nr</td>
-                                    <td>:</td>
-                                    <td>{{user.house_nr}}</td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>:</td>
-                                    <td>{{user.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Zip Code</td>
-                                    <td>:</td>
-                                    <td>{{user.zip_code}}</td>
-                                </tr>
-                            </table>
-                            <div class="center user-collapse">
-                                <a href="{{url_for('approve_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
-                                    Approve
-                                </a>
-                                <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
-                                    Delete
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                    </tr>
+                    <tr>
 
-    <div class="row">
-        <div class="col-sm-9 col-md-9">
-            <h1>
-                Active users
-            </h1>
+<!--    Candidate info behind collapsible menu  -->
+                        <td colspan="6" class="hiddenRow">
+                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                                <table class="user-collapse">
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>street</td>
+                                        <td>:</td>
+                                        <td>{{user.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>House Nr</td>
+                                        <td>:</td>
+                                        <td>{{user.house_nr}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>:</td>
+                                        <td>{{user.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zip Code</td>
+                                        <td>:</td>
+                                        <td>{{user.zip_code}}</td>
+                                    </tr>
+                                </table>
+
+<!--    Buttons to approve or delete new user    -->
+                                <div class="center user-collapse">
+                                    <a href="{{url_for('approve_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
+                                        Approve
+                                    </a>
+                                    <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
-        <!--    Users active section     -->
-        <table class="table table-condensed" style="border-collapse:collapse;">
-            <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Candidate</th>
-                    <th>Userprofile</th>
-                    <th>Status</th>
-                    <th>Approved</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                    <td>{{user.user_id}}</td>
-                    <td>{{user.user_name}}</td>
-                    <td>{{user.first_name}} {{user.last_name}}</td>
-                    <td>{{user.profile}}</td>
-                    {% if user.status == 'active' %}
-                    <td class="text-success">{{user.status}}</td>
-                    {% else %}
-                    <td class="text-danger">{{user.status}}</td>
-                    {% endif %} {% if user.approved == True %}
-                    <td class="text-success">{{user.approved}}</td>
-                    {% else %}
-                    <td class="text-danger">{{user.approved}}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <td colspan="6" class="hiddenRow">
-                        <div class="accordian-body collapse row" id="demo{{user.user_id}}">
-                            <table class="user-collapse">
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td>{{user.email}}</td>
-                                </tr>
-                                <tr>
-                                    <td>street</td>
-                                    <td>:</td>
-                                    <td>{{user.street}}</td>
-                                </tr>
-                                <tr>
-                                    <td>House Nr</td>
-                                    <td>:</td>
-                                    <td>{{user.house_nr}}</td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>:</td>
-                                    <td>{{user.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Zip Code</td>
-                                    <td>:</td>
-                                    <td>{{user.zip_code}}</td>
-                                </tr>
-                            </table>
-                            <div class="center user-collapse">
-                                <a href="{{url_for('edit_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
-                                    Edit
-                                </a>
-                                <a href="{{url_for('deactivate_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
-                                    Deactivate
-                                </a>
-                                <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
-                                    Delete
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<!--    Users active section     -->
+        <div class="row">
 
-    <div class="row">
-        <div class="col-sm-9 col-md-9">
-            <h1>
-                Inactive users
-            </h1>
+<!--    Title active section     -->
+            <div class="col-sm-9 col-md-9">
+                <h1>
+                    Active users
+                </h1>
+            </div>
+            <table class="table table-condensed" style="border-collapse:collapse;">
+                <thead class="thead-dark">
+
+<!--    User list table header   -->
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Candidate</th>
+                        <th>Userprofile</th>
+                        <th>Status</th>
+                        <th>Approved</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+<!--    User list with active status    -->
+                    {% for user in users %}
+
+<!--    User info   -->
+                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
+                        <td>{{user.user_id}}</td>
+                        <td>{{user.user_name}}</td>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.profile}}</td>
+                        {% if user.status == 'active' %}
+                        <td class="text-success">{{user.status}}</td>
+                        {% else %}
+                        <td class="text-danger">{{user.status}}</td>
+                        {% endif %} {% if user.approved == True %}
+                        <td class="text-success">{{user.approved}}</td>
+                        {% else %}
+                        <td class="text-danger">{{user.approved}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+
+<!--    Candidate info behind collapsible menu  -->
+                        <td colspan="6" class="hiddenRow">
+                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                                <table class="user-collapse">
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>street</td>
+                                        <td>:</td>
+                                        <td>{{user.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>House Nr</td>
+                                        <td>:</td>
+                                        <td>{{user.house_nr}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>:</td>
+                                        <td>{{user.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zip Code</td>
+                                        <td>:</td>
+                                        <td>{{user.zip_code}}</td>
+                                    </tr>
+                                </table>
+
+<!--    Buttons to edit, deactive or delete new user    -->
+                                <div class="center user-collapse">
+                                    <a href="{{url_for('edit_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
+                                        Edit
+                                    </a>
+                                    <a href="{{url_for('deactivate_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
+                                        Deactivate
+                                    </a>
+                                    <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
-        <!--    Users active section     -->
-        <table class="table table-condensed" style="border-collapse:collapse;">
-            <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Candidate</th>
-                    <th>Userprofile</th>
-                    <th>Status</th>
-                    <th>Approved</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users_inactive %}
-                <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                    <td>{{user.user_id}}</td>
-                    <td>{{user.user_name}}</td>
-                    <td>{{user.first_name}} {{user.last_name}}</td>
-                    <td>{{user.profile}}</td>
-                    {% if user.status == 'active' %}
-                    <td class="text-success">{{user.status}}</td>
-                    {% else %}
-                    <td class="text-danger">{{user.status}}</td>
-                    {% endif %} {% if user.approved == True %}
-                    <td class="text-success">{{user.approved}}</td>
-                    {% else %}
-                    <td class="text-danger">{{user.approved}}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <td colspan="6" class="hiddenRow">
-                        <div class="accordian-body collapse row" id="demo{{user.user_id}}">
-                            <table class="user-collapse">
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td>{{user.email}}</td>
-                                </tr>
-                                <tr>
-                                    <td>street</td>
-                                    <td>:</td>
-                                    <td>{{user.street}}</td>
-                                </tr>
-                                <tr>
-                                    <td>House Nr</td>
-                                    <td>:</td>
-                                    <td>{{user.house_nr}}</td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>:</td>
-                                    <td>{{user.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Zip Code</td>
-                                    <td>:</td>
-                                    <td>{{user.zip_code}}</td>
-                                </tr>
-                            </table>
-                            <div class="center user-collapse">
-                                <a href="{{url_for('activate_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
-                                    Activate
-                                </a>
-                                <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
-                                    Delete
-                                </a>
+<!--    Users inactive section     -->
+        <div class="row">
+        
+<!--    Title inactive section     -->
+            <div class="col-sm-9 col-md-9">
+                <h1>
+                    Inactive users
+                </h1>
+            </div>
+
+            <!--    Users active section     -->
+            <table class="table table-condensed" style="border-collapse:collapse;">
+                <thead class="thead-dark">
+
+<!--    User list table header   -->
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Candidate</th>
+                        <th>Userprofile</th>
+                        <th>Status</th>
+                        <th>Approved</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+<!--    User list with inactive status    -->
+                    {% for user in users_inactive %}
+
+<!--    User info   -->
+                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
+                        <td>{{user.user_id}}</td>
+                        <td>{{user.user_name}}</td>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.profile}}</td>
+                        {% if user.status == 'active' %}
+                        <td class="text-success">{{user.status}}</td>
+                        {% else %}
+                        <td class="text-danger">{{user.status}}</td>
+                        {% endif %} {% if user.approved == True %}
+                        <td class="text-success">{{user.approved}}</td>
+                        {% else %}
+                        <td class="text-danger">{{user.approved}}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+
+<!--    Candidate info behind collapsible menu  -->
+                        <td colspan="6" class="hiddenRow">
+                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                                <table class="user-collapse">
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>{{user.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>street</td>
+                                        <td>:</td>
+                                        <td>{{user.street}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>House Nr</td>
+                                        <td>:</td>
+                                        <td>{{user.house_nr}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>:</td>
+                                        <td>{{user.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zip Code</td>
+                                        <td>:</td>
+                                        <td>{{user.zip_code}}</td>
+                                    </tr>
+                                </table>
+
+<!--    Buttons to active or delete new user    -->
+                                <div class="center user-collapse">
+                                    <a href="{{url_for('activate_user', user_id=user._id)}}" class="btn btn-outline-success button-margin">
+                                        Activate
+                                    </a>
+                                    <a href="{{url_for('delete_user', user_id=user._id)}}" class="btn btn-outline-danger button-margin">
+                                        Delete
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 {% endblock %}
