@@ -156,13 +156,21 @@
                                 <label for="hours">
                                     Hours
                                 </label>
+                            {% if g.user['profile'] == 'admin' %}
+                                <input type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}">
+                            {% else%}
                                 <input type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}" readonly>
+                            {% endif %}
                             </div>
                             <div class="col-6">
                                 <label for="salary">
                                     Salary
                                 </label>
+                            {% if g.user['profile'] == 'admin' %}
+                                <input type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}">
+                            {% else%}
                                 <input type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}" readonly>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
@@ -174,7 +182,11 @@
                                 <label for="photo_url">
                                     Url for the Photo
                                 </label>
+                            {% if g.user['profile'] == 'admin' %}
+                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}">
+                            {% else%}
                                 <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
+                            {% endif %}
                                     <option selected>
                                         Choose Image
                                     </option>
@@ -189,7 +201,11 @@
                                 <label for="location">
                                     Location
                                 </label>
+                            {% if g.user['profile'] == 'admin' %}
+                                <input type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}">
+                            {% else%}
                                 <input type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}" readonly>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
@@ -199,7 +215,11 @@
                         <label for="vacancy_text">
                             Vacancy Text
                         </label>
+                    {% if g.user['profile'] == 'admin' %}
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{vacancy.vacancy_text}}</textarea>
+                    {% else%}
                         <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{vacancy.vacancy_text}}</textarea>
+                    {% endif %}
                     </div>
                 {% endif %}
 

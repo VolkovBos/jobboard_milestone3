@@ -612,7 +612,7 @@ def add_application(vacancy_id):
     here a open vacancy can be chosen in a dropdown as well
     as active candidates
     """
-
+    photos = mongo.db.photos.find()
     active_candidates = mongo.db.candidates.find(
         {'status': 'active'})
     inactive_candidates = mongo.db.candidates.find(
@@ -640,7 +640,8 @@ def add_application(vacancy_id):
         active_candidates=active_candidates,
         inactive_candidates=inactive_candidates,
         vacancies=open_vacancies,
-        status=application_status)
+        status=application_status,
+        photos=photos)
 
 
 @app.route('/insert_application', methods=['POST'])
@@ -654,27 +655,48 @@ def insert_application():
     the_vacancy = mongo.db.vacancies.find_one(
             {'vacancy_name': request.form.get('vacancy_name')})
     applications = mongo.db.applications
+
+    """
+    When admin/user creates application its being updated with vacancy info
+    An admin can overulle this, by filling the fields
+    """
+    hours = (request.form.get('hours')
+             if request.form.get('hours') != ''
+             else the_vacancy.get('hours'))
+    salary = (request.form.get('salary')
+              if request.form.get('salary') != ''
+              else the_vacancy.get('salary'))
+    photo_url = (request.form.get('photo_url')
+                 if request.form.get('photo_url') != ''
+                 else the_vacancy.get('photo_url'))
+    location = (request.form.get('location')
+                if request.form.get('location') != ''
+                else the_vacancy.get('location'))
+    vacancy_text = (request.form.get('vacancy_text')
+                    if request.form.get('vacancy_text') != ''
+                    else the_vacancy.get('vacancy_text'))
+
     applications.insert_one(
-        {
-            'vacancy_name': request.form.get('vacancy_name'),
-            'status': request.form.get('status'),
-            'start_date': request.form.get('start_date'),
-            'candidate_name': request.form.get('candidate_name'),
-            'comments': request.form.get('comments'),
-            'hours': the_vacancy.get('hours'),
-            'salary': the_vacancy.get('salary'),
-            'photo_url': the_vacancy.get('photo_url'),
-            'location': the_vacancy.get('location'),
-            'vacancy_text': the_vacancy.get('vacancy_text')
-        })
+            {
+                'vacancy_name': request.form.get('vacancy_name'),
+                'status': request.form.get('status'),
+                'start_date': request.form.get('start_date'),
+                'candidate_name': request.form.get('candidate_name'),
+                'comments': request.form.get('comments'),
+                'hours': hours,
+                'salary': salary,
+                'photo_url': photo_url,
+                'location': location,
+                'vacancy_text': vacancy_text
+            })
+
+    # User is redirected to Myapplications
+    if g.user['profile'] != 'admin':
+        return redirect(url_for('myapplications'))
 
     # Admin is redirected to all applications
     if g.user['profile'] == 'admin':
         return redirect(url_for('applications'))
-
-    # User is redirected to his/her applications
-    else:
-        return redirect(url_for('myapplications'))
 
 
 @app.route('/edit_application/<application_id>')
@@ -685,6 +707,7 @@ def edit_application(application_id):
     Vacancies and candidates are shown in dropdown selector
     closed/inactive record are shown in lower section of dropdown
     """
+    photos = mongo.db.photos.find()
     the_application = mongo.db.applications.find_one(
         {"_id": ObjectId(application_id)})
     active_candidates = mongo.db.candidates.find(
@@ -705,7 +728,8 @@ def edit_application(application_id):
         inactive_candidates=inactive_candidates,
         open_vacancies=open_vacancies,
         closed_vacancies=closed_vacancies,
-        status=application_status)
+        status=application_status,
+        photos=photos)
 
 
 @app.route('/update_application/<application_id>', methods=['POST'])

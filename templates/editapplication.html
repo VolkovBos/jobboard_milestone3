@@ -175,11 +175,11 @@
                                     Url for the Photo
                                 </label>
                                 <select class="form-control" id="photo_url" name="photo_url" value="{{ application.photo_url }}" readonly>
-                                    <option selected>
+                                    <option disabled>
                                         Choose Image
                                     </option>
                                 {% for photo in photos %}
-                                    {% if can.user_name == application.candidate_name %}
+                                    {% if photo.photo_url == application.photo %}
                                     <option value="{{ photo.photo_url }}" selected>
                                         {{ photo.name }}
                                     </option>
