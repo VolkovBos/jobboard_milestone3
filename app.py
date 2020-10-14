@@ -185,7 +185,7 @@ def login():
     """
     Login view on a modal for candidates/user and admin to login
     I used a tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
-    for the login/session sections. 
+    for the login/session sections.
     Checks if :
     - username is minimal 8 characters long
     - if username exists
