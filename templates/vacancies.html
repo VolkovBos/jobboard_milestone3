@@ -28,11 +28,12 @@
             {% endif %}
             </div>
         </div>
+    </div>
 
 <!--    Carddeck of vacancies      -->
         <div class="card-deck">
         {% for vac in vacancies_open %}
-            <div class="card col-sm-12 col-md-5">
+            <div class="card col-sm-5 col-md-3">
             {% if vac.photo_url != '' and vac.photo_url != null %}
                 <img class="card-img-top" src="{{vac.photo_url}}" alt="Card image cap">
             {% endif %}
