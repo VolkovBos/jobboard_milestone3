@@ -1,35 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 
 <!--    A page for a new application -->
-<div class="container first-container">
-    <div class="row">
+    <div class="container first-container">
+        <div class="row">
 
-        <!--    Title section     -->
-        <div class="col">
-            <form action="{{url_for('insert_application')}}" method="POST">
+<!--    Title section     -->
+            <div class="col">
+                <form action="{{url_for('insert_application')}}" method="POST">
                 {% if g.user['profile'] == 'admin' %}
-                <h1>
-                    Add Application
-                </h1>
+                    <h1>
+                        Add Application
+                    </h1>
                 {% else %}
-                <h1>
-                    Application
-                </h1>
+                    <h1>
+                        Application
+                    </h1>
                 {% endif %}
 
-                <!--    Name of the vacancy, function title of the job    -->
-                <!--    Prefilled when creating from a vacancy   -->
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-8">
-                            <label for="vacancy_name">
+<!--    Name of the vacancy, function title of the job    -->
+<!--    Prefilled when creating from a vacancy   -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-8">
+                                <label for="vacancy_name">
                                     Vacancy Name
                                 </label>
 
-                            <!--    Prefilled and readonly for a regular user  -->
+<!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
-                            <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="form-control" readonly/> {% else %}
-                            <select id="vacancy_name" name="vacancy_name" class="form-control">
+                                <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="form-control" readonly/>
+                            {% else %}
+                                <select id="vacancy_name" name="vacancy_name" class="form-control">
                                     <option selected>
                                         Choose Vacancy
                                     </option>
@@ -44,70 +45,127 @@
                                     </option>
                                     {% endif %}
                                 {% endfor %}
-                                </select> {% endif %}
-                        </div>
+                                </select> 
+                            {% endif %}
+                            </div>
 
-                        <!--    Application status     -->
-                        <div class="col-4">
-                            <label for="status">Status Job Application</label> {% if g.user['profile'] != 'admin' %}
-                            <input value="open" id="status" name="status" type="text" class="form-control" readonly/> {% else %}
-                            <select id="status" name="status" class="form-control">
-                                        <option selected>Choose Status</option>
-                                    {% for stat in status %}
-                                        <option value="{{ stat.status_name }}">{{ stat.status_name }}</option>
-                                    {% endfor %}
-                                    </select> {% endif %}
+<!--    Application status     -->
+                            <div class="col-4">
+                                <label for="status">
+                                    Status Job Application
+                                </label> 
+                            {% if g.user['profile'] != 'admin' %}
+                                <input value="open" id="status" name="status" type="text" class="form-control" readonly/>
+                            {% else %}
+                                <select id="status" name="status" class="form-control">
+                                    <option selected>
+                                        Choose Status
+                                    </option>
+                                {% for stat in status %}
+                                    <option value="{{ stat.status_name }}">
+                                        {{ stat.status_name }}
+                                    </option>
+                                {% endfor %}
+                                </select>
+                            {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
+                    <div class="form-group">
+                        <div class="row">
 
-                        <!--    Availability of the candidate and candidate name    -->
-                        <div class="col-6">
-                            <label for="start_date">
+<!--    Availability of the candidate and candidate name    -->
+                            <div class="col-6">
+                                <label for="start_date">
                                     Available from
                                 </label>
-                            <input class="form-control" type="date" id="start_date" name="start_date">
-                        </div>
-                        <div class="input-field col s6">
-                            <label for="candidate_name">
+                                <input class="form-control" type="date" id="start_date" name="start_date">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="candidate_name">
                                     Candidate name
                                 </label>
 
-                            <!--    Prefilled and readonly for a regular user  -->
+<!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
-                            <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="form-control" readonly /> {% else %}
-                            <select id="candidate_name" name="candidate_name" class="form-control">
+                                <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="form-control" readonly /> 
+                            {% else %}
+                                <select id="candidate_name" name="candidate_name" class="form-control">
                                     <option selected>
                                         Choose Candidate
                                     </option>
                                     {% for can in candidates %}
                                         <option value="{{ can.user_name }}">{{ can.user_name }}</option>
                                     {% endfor %}
-                                </select> {% endif %}
+                                </select> 
+                            {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!--    Comments on the appication or from candidate    -->
-                <div class="form-group">
-                    <label for="comments">
-                            Comments
-                        </label>
-                    <textarea id="comments" name="comments" class="form-control" rows="5"></textarea>
-                </div>
+<!--    Comments on the appication or from candidate    -->
+                    <div class="form-group">
+                        <label for="comments">
+                                Comments
+                            </label>
+                        <textarea id="comments" name="comments" class="form-control" rows="5"></textarea>
+                    </div>
 
-                <!--    Vacancy text, line break can be used in this textarea    -->
-                <div class="form-group">
-                    <label for="vacancy_text">
+<!--    More info about the vacancy   -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="hours">
+                                    Hours
+                                </label>
+                                <input type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="salary">
+                                    Salary
+                                </label>
+                                <input type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="photo_url">
+                                    Url for the Photo
+                                </label>
+                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
+                                    <option selected>
+                                        Choose Image
+                                    </option>
+                                {% for photo in photos %}
+                                    <option value="{{ photo.photo_url }}">
+                                        {{ photo.name }}
+                                    </option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="location">
+                                    Location
+                                </label>
+                                <input type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+<!--    Vacancy text, line break can be used in this textarea    -->
+                    <div class="form-group">
+                        <label for="vacancy_text">
                             Vacancy Text
                         </label>
-                    <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{ vacancy.vacancy_text }}</textarea>
-                </div>
-            </form>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{ vacancy.vacancy_text }}</textarea>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
