@@ -187,13 +187,23 @@
                             {% else%}
                                 <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
                             {% endif %}
-                                    <option selected>
+                                {% if vacancy.photo_url == '' %}
+                                    <option disabled selected>
+                                {% else %}
+                                    <option disabled>
+                                {% endif %}
                                         Choose Image
                                     </option>
                                 {% for photo in photos %}
+                                    {% if photo.photo_url == vacancy.photo_url %}
+                                    <option value="{{ photo.photo_url }}" selected>
+                                        {{ photo.name }}
+                                    </option>
+                                    {% else %}
                                     <option value="{{ photo.photo_url }}">
                                         {{ photo.name }}
                                     </option>
+                                    {% endif %}
                                 {% endfor %}
                                 </select>
                             </div>
