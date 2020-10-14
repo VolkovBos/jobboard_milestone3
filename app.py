@@ -249,14 +249,10 @@ def logout():
 @app.route('/profile/<candidate_id>')
 @login_required
 def profile(candidate_id):
-    if not g.user:
-        abort(404)
-
-    else:
-        return render_template(
-            "profile.html",
-            candidate=mongo.db.candidates.find_one(
-                {"_id": ObjectId(candidate_id)}))
+    return render_template(
+        "profile.html",
+        candidate=mongo.db.candidates.find_one(
+            {"_id": ObjectId(candidate_id)}))
 
 
 # Change password page for users
