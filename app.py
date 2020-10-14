@@ -346,7 +346,7 @@ def add_user():
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     max_user_id = mongo.db.candidates.find().sort(
-        [("user_id", -1)]).limit(1) + 1
+        [("user_id", -1)]).limit(1)[0]['user_id'] + 1
 
     return render_template(
         'adduser.html',
