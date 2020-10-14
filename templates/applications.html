@@ -2,15 +2,20 @@
 {% block content %}
 
 <!--    A page for (open) applications -->
+<!--    This section shows the ongoing applications     -->
     <div class="container first-container">
         <div class="row">
 
 <!--    Title open section     -->
             <div class="col">
             {% if g.user['profile'] == 'admin' %}
-                <h1>Open Applications</h1>
+                <h1>
+                    Open Applications
+                </h1>
             {% else %}
-                <h1>My Applications</h1>
+                <h1>
+                    My Applications
+                </h1>
             {% endif %}
             </div>
         </div>
@@ -19,7 +24,12 @@
 
 <!--    Short information section    -->
                 <p class="intro-text">
-                    Here you see you job applications, ongoing and the history. If you have a specific question about the status of a application or you want to know more about the vacancy you applied on, please feel free to <a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal">contact us</a> or contact your recruiter!
+                    Here you see you job applications, ongoing and the history. If you have a specific question about the 
+                    status of a application or you want to know more about the vacancy you applied on, please feel free to 
+                    <a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal">
+                        contact us
+                    </a> 
+                    or contact your recruiter!
                 </p>
             </div>
             <div class="col">
@@ -31,43 +41,131 @@
                 </a>
             {% endif %}
             </div>
-            </div>
         </div>
+    </div>
 
 <!--    Carddeck of applications      -->
-        <div class="card-deck">
-        {% for apl in applications_open %}
-            <div class="card col-sm-12 col-md-5">
-            {% if apl.photo_url != '' and apl.photo_url != null %}
-                <img class="card-img-top" src="{{apl.photo_url}}" alt="Card image cap">
-            {% endif %}
-                <div class="card-body">
-                    <div class="row center-button">
+    <div class="card-deck">
+    {% for apl in applications_open %}
+        <div class="card col-sm-5 col-md-3">
 
-<!--    Button section, only availlable when logged in     -->
-                    {%  if g.user['profile'] == 'admin' %}
-                        <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn btn-outline-info button-margin">Edit</a>
-                        <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn btn-outline-warning button-margin">Close</a>
-                        <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn btn-outline-danger button-margin">Delete</a>
-                    {% endif %}
-                    </div>
+<!--    Only shows image when its available     -->
+        {% if apl.photo_url != '' and apl.photo_url != null %}
+            <img class="card-img-top" src="{{apl.photo_url}}" alt="Vacancy image">
+        {% endif %}
+            <div class="card-body">
+                <div class="row center-button">
+
+<!--    Button section, only availlable for admin   -->
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn btn-outline-info button-margin">
+                        Edit
+                    </a>
+                    <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn btn-outline-warning button-margin">
+                        Close
+                    </a>
+                    <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn btn-outline-danger button-margin">
+                        Delete
+                    </a>
+                {% endif %}
+                </div>
 
 <!--    Vacancy information, where the candidate has applied for      -->
-                    <h5 class="card-title center">{{apl.vacancy_name}}</h5>
-                    <hr class="hr-vacancy">
-                    <p class="card-text center">
-                        {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
-                        {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
-                        {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
-                    </p>
-                    <hr class="hr-vacancy">
-                    <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
-                    <p class="card-text"><small class="text-muted">closes on {{apl.end_date}}</small></p>
-                </div>
+                <h5 class="card-title center">
+                    {{apl.vacancy_name}}
+                </h5>
+                <hr class="hr-vacancy">
+                <p class="card-text center">
+                    {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
+                    {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
+                    {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
+                </p>
+                <hr class="hr-vacancy">
+                <p class="card-text textarea-breaks">
+                    {{apl.vacancy_text}}
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        closes on {{apl.end_date}}
+                    </small>
+                </p>
             </div>
-        {% endfor %}
         </div>
+    {% endfor %}
+    </div>
 
+<!--    This section shows the closed/old applications     -->
+    <div class="container second-container">
+        <div class="row">
+
+<!--    Title closed section     -->
+            <div class="col">
+                <h1>
+                    Closed Applications
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7">
+
+<!--    Button to add application, only available for admin    -->
+            {%  if g.user['profile'] == 'admin' %}
+                <a href="{{url_for('add_application', vacancy_id='admin')}}" class="btn btn-outline-success center-button">
+                    + Add Application
+                </a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+<!--    Carddeck of applications      -->
+    <div class="card-deck">
+    {% for apl in applications_open %}
+        <div class="card col-sm-5 col-md-3">
+
+<!--    Only shows image when its available     -->
+        {% if apl.photo_url != '' and apl.photo_url != null %}
+            <img class="card-img-top" src="{{apl.photo_url}}" alt="Vacancy image">
+        {% endif %}
+            <div class="card-body">
+
+<!--    Button section, only availlable for admin   -->
+                <div class="row center-button">
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn btn-outline-info button-margin">
+                        Edit
+                    </a>
+                    <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn btn-outline-warning button-margin">
+                        Close
+                    </a>
+                    <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn btn-outline-danger button-margin">
+                        Delete
+                    </a>
+                {% endif %}
+                </div>
+
+<!--    Vacancy information, where the candidate has applied for      -->
+                <h5 class="card-title center">
+                    {{apl.vacancy_name}}
+                </h5>
+                <hr class="hr-vacancy">
+                <p class="card-text center">
+                    {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
+                    {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
+                    {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
+                </p>
+                <hr class="hr-vacancy">
+                <p class="card-text textarea-breaks">
+                    {{apl.vacancy_text}}
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        closes on {{apl.end_date}}
+                    </small>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
     </div>
 
 {% endblock %}
