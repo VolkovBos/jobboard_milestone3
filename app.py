@@ -66,10 +66,10 @@ def admin_required(f):
     return decorated_function
 
 
-# Login config (https://www.youtube.com/watch?v=2Zz97NVbH0U)
 class User:
     """
     Login configuration
+    (https://www.youtube.com/watch?v=2Zz97NVbH0U)
     """
     def __init__(self, id, username, password):
         self.id = id
@@ -92,7 +92,6 @@ def before_request():
         g.user = mongo.db.candidates.find_one({'user_id': session['user_id']})
 
 
-# General index route
 @app.route('/')
 @app.route('/index')
 def index():
@@ -102,9 +101,20 @@ def index():
     return render_template("index.html")
 
 
-# Registration route
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+    Registration view on a modal for vistors of the site to register
+    Checks if :
+    - username is minimal 8 characters long
+    - if both passwords matches
+    - if username allready exist
+    - if registration was saved
+    if incorrect; show messages above main hero image on index.html
+
+    Also hashes the password to the database
+    """
+
     # Check if user is not logged in already
     if g.user:
         return redirect(url_for('index'))
@@ -174,11 +184,20 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Login page for candidates and admin to login
+    Login view on a modal for candidates/user and admin to login
     I used a tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
-    for the login/session sections. Checks if user and password are
-    correct, show messages above main hero image on index.html
+    for the login/session sections. 
+    Checks if :
+    - username is minimal 8 characters long
+    - if username exists
+    - if password is correct
+    - if user/candidate is active
+    - if user is approved
+    if incorrect; show messages above main hero image on index.html
+    
     Used tutorial: https://www.youtube.com/watch?v=2Zz97NVbH0U
+
+    Also unhashes the password from the database
     """
 
     # Check if user is not logged in already
