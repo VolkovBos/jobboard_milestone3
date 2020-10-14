@@ -600,10 +600,16 @@ def add_application(vacancy_id):
         {'vacancy_status': {'$ne': 'closed'}})
     application_status = mongo.db.status.find({'type': 'application'})
 
+    """
+    The admin string is set if a application is created from the
+    application page. Then there is no vacancy data available
+    """
+    # Check if the vacancy_id is a normal id
     if vacancy_id != 'admin':
         the_vacancy = mongo.db.vacancies.find_one(
             {"_id": ObjectId(vacancy_id)})
 
+    # Set an empty string as the id, null will give an error
     elif g.user['profile'] == 'admin':
         the_vacancy = ''
 
@@ -619,11 +625,29 @@ def add_application(vacancy_id):
 @app.route('/insert_application', methods=['POST'])
 @login_required
 def insert_application():
-    applications = mongo.db.applications
-    applications.insert_one(request.form.to_dict())
+    the_vacancy = mongo.db.vacancies.find_one(
+            {'vacancy_name': request.form.get('vacancy_name')})
 
+    applications = mongo.db.applications
+    applications.insert_one(
+        {
+            'vacancy_name': request.form.get('vacancy_name'),
+            'status': request.form.get('status'),
+            'start_date': request.form.get('start_date'),
+            'candidate_name': request.form.get('candidate_name'),
+            'comments': request.form.get('comments'),
+            'hours': the_vacancy.get('hours'),
+            'salary': the_vacancy.get('salary'),
+            'photo_url': the_vacancy.get('photo_url'),
+            'location': the_vacancy.get('location'),
+            'vacancy_text': the_vacancy.get('vacancy_text')
+        })
+
+    # Admin is redirected to all applications
     if g.user['profile'] == 'admin':
         return redirect(url_for('applications'))
+
+    # User is redirected to his/her applications
     else:
         return redirect(url_for('myapplications'))
 
