@@ -260,7 +260,7 @@ def profile(candidate_id):
 @login_required
 def change_password(user_id):
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
-    
+
     return render_template(
         'changepassword.html',
         user=the_user)
@@ -307,28 +307,23 @@ def update_password(user_id):
 @app.route('/users')
 @admin_required
 def users():
-    if g.user['profile'] == 'admin':
-        return render_template(
-            "users.html",
-            users=mongo.db.candidates.find({'approved': True}),
-            users_to_approve=mongo.db.candidates.find({'approved': False}))
-    else:
-        abort(403)
+    return render_template(
+        "users.html",
+        users=mongo.db.candidates.find({'approved': True}),
+        users_to_approve=mongo.db.candidates.find({'approved': False}))
 
 
 # Add user/candidate page
 @app.route('/add_user')
 @admin_required
 def add_user():
-    if g.user['profile'] == 'admin':
-        user_status = mongo.db.status.find({'type': 'user'})
-        user_profiles = mongo.db.profiles.find()
-        return render_template(
-            'adduser.html',
-            status=user_status,
-            profiles=user_profiles)
-    else:
-        abort(403)
+    user_status = mongo.db.status.find({'type': 'user'})
+    user_profiles = mongo.db.profiles.find()
+
+    return render_template(
+        'adduser.html',
+        status=user_status,
+        profiles=user_profiles)
 
 
 # Insert a new user/candidate
@@ -364,6 +359,7 @@ def edit_user(user_id):
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+
     return render_template(
         'edituser.html',
         user=the_user,
@@ -416,7 +412,6 @@ def delete_user(user_id):
     return redirect(url_for('users'))
 
 
-# Vacancies page 
 @app.route('/vacancies')
 def vacancies():
     """
@@ -519,31 +514,41 @@ def update_vacancy(vacancy_id):
         return redirect(url_for('vacancies'))
 
 
-# Close a vacancy, set status on done
 @app.route('/close_vacancy/<vacancy_id>')
 @admin_required
 def close_vacancy(vacancy_id):
+    """
+    Updates vacancy to the database
+    Close a vacancy, set status on closed
+    """
     vacancies = mongo.db.vacancies
     vacancies.update(
         {'_id': ObjectId(vacancy_id)},
         {'$set': {
             'vacancy_status': 'closed'
         }})
+
     return redirect(url_for('vacancies'))
 
 
-# Delete a vacancy
 @app.route('/delete_vacancy/<vacancy_id>')
 @admin_required
 def delete_vacancy(vacancy_id):
+    """
+    Deletes vacancy from the database
+    """
     mongo.db.vacancies.remove({'_id': ObjectId(vacancy_id)})
     return redirect(url_for('vacancies'))
 
 
-# Applications page for overview and management of Applications
 @app.route('/applications')
 @admin_required
 def applications():
+    """
+    Overview of all the applications 
+    for overview and management of applications
+    Admins can CRUD all applications
+    """
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
@@ -553,10 +558,15 @@ def applications():
     )
 
 
-# Applications page for overview of applications for a user
 @app.route('/myapplications')
 @login_required
 def myapplications():
+    """
+    Overview of all the applications for users
+    for overview of applications
+    users can only check their own applications
+    """
+
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
@@ -570,10 +580,17 @@ def myapplications():
     )
 
 
-# Route to go to the add application page
 @app.route('/add_application/<vacancy_id>')
 @login_required
 def add_application(vacancy_id):
+    """
+    Add a application by using a form,
+    statusses can be selected by dropdown
+    Admin can also create a application from application page,
+    here a open vacancy can be chosen in a dropdown as well 
+    as active candidates
+    """
+
     all_candidates = mongo.db.candidates.find()
     open_vacancies = mongo.db.vacancies.find({'vacancy_status': 'open'})
     application_status = mongo.db.status.find({'type': 'application'})
@@ -581,10 +598,10 @@ def add_application(vacancy_id):
     if vacancy_id != 'admin':
         the_vacancy = mongo.db.vacancies.find_one(
             {"_id": ObjectId(vacancy_id)})
+
     elif g.user['profile'] == 'admin':
         the_vacancy = ''
-    else:
-        abort(404)
+
     return render_template(
         'addapplication.html',
         vacancy=the_vacancy,
