@@ -320,10 +320,15 @@ def update_password(user_id):
         user=the_user)
 
 
-# User page for management of users
 @app.route('/users')
 @admin_required
 def users():
+    """
+    Overview of all the users divided in 3 groups:
+    - Users which are registrated and need to be approved by an admin
+    - Users which can login
+    - Users which are inactive
+    """
     users_active = mongo.db.candidates.find(
         {'approved': True, 'status': 'active'})
     users_to_approve = mongo.db.candidates.find(
@@ -339,10 +344,14 @@ def users():
     )
 
 
-# Add user/candidate page
 @app.route('/add_user')
 @admin_required
 def add_user():
+    """
+    Add a user by using a form,
+    profiles and statusses can be selected by dropdown
+    user_id is counted upwards
+    """
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     max_user_id = mongo.db.candidates.find().sort(
@@ -355,10 +364,12 @@ def add_user():
         max_user_id=max_user_id)
 
 
-# Insert a new user/candidate
 @app.route('/insert_user', methods=['POST'])
 @admin_required
 def insert_user():
+    """
+    Insert user to the database
+    """
     users = mongo.db.candidates
     hash_pass = generate_password_hash(request.form.get('password'))
 
@@ -381,10 +392,13 @@ def insert_user():
     return redirect(url_for('users'))
 
 
-# Edit user/candidate page
 @app.route('/edit_user/<user_id>')
 @login_required
 def edit_user(user_id):
+    """
+    Edit a user by using a form
+    profiles and statusses can be selected by dropdown
+    """
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
@@ -396,10 +410,12 @@ def edit_user(user_id):
         profiles=user_profiles)
 
 
-# Edit a user/candidate
 @app.route('/update_user/<user_id>', methods=['POST'])
 @login_required
 def update_user(user_id):
+    """
+    Updates user to the database
+    """
     users = mongo.db.candidates
     users.update(
         {'_id': ObjectId(user_id)},
@@ -417,27 +433,34 @@ def update_user(user_id):
             'city': request.form.get('city')
         }}
     )
+
     return redirect(url_for('users'))
 
 
-# Approving a new registrated user
 @app.route('/approve_user/<user_id>')
 @admin_required
 def approve_user(user_id):
+    """
+    Updates user to approved in the database
+    """
     users = mongo.db.candidates
     users.update(
         {'_id': ObjectId(user_id)},
         {'$set': {
             'approved': True
         }})
+
     return redirect(url_for('users'))
 
 
-# Delete a user
 @app.route('/delete_user/<user_id>')
 @admin_required
 def delete_user(user_id):
+    """
+    Deletes user from the database
+    """
     mongo.db.candidates.remove({'_id': ObjectId(user_id)})
+
     return redirect(url_for('users'))
 
 
