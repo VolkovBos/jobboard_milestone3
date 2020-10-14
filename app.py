@@ -324,10 +324,14 @@ def update_password(user_id):
 @app.route('/users')
 @admin_required
 def users():
+    users = mongo.db.candidates.find({'approved': True})
+    users_to_approve = mongo.db.candidates.find({'approved': False})
+
     return render_template(
         "users.html",
-        users=mongo.db.candidates.find({'approved': True}),
-        users_to_approve=mongo.db.candidates.find({'approved': False}))
+        users=users,
+        users_to_approve=users_to_approve
+    )
 
 
 # Add user/candidate page
@@ -336,11 +340,14 @@ def users():
 def add_user():
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
+    max_user_id = mongo.db.candidates.find().sort(
+        [("user_id", -1)]).limit(1) + 1
 
     return render_template(
         'adduser.html',
         status=user_status,
-        profiles=user_profiles)
+        profiles=user_profiles,
+        max_user_id=max_user_id)
 
 
 # Insert a new user/candidate
