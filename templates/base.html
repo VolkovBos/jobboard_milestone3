@@ -33,21 +33,26 @@
 </head>
 
 <body class="blue lighten-5">
+
 <!--    Header      -->
 	<header>
+
 <!--    Navbar      -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="navbar-colors">
+
 <!--    Brand logo       -->
 			<a class="navbar-brand" href="{{ url_for('index') }}">
 				<h1>
                     <img src="{{ url_for('static', filename='img/bos-up-logo.png') }}" width="50" height="50" alt="Logo BOS UP">
                     BOS UP
                 </h1>
-			</a>
+            </a>
+            
 <!--    Hamburger menu       -->
 			<button class="navbar-toggler navbar-lines" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
+
 <!--    Full website menu       -->
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ml-auto">
@@ -64,8 +69,9 @@
                             title={% if g.user['profile'] != 'admin' %} "Check our vacancies" {% else %} "Manage vacancies" {% endif %}>
                             Vacancies 
                         </a>
-					</li>
-    <!-- Only non-logged in vistors will see the register and login items -->
+                    </li>
+                    
+<!-- Only non-logged in vistors will see the register and login items -->
             {% if not g.user %}
 					<li class="nav-item {% if 'register' in request.path %} active {% endif %}">
 						<a  class="nav-link" 
@@ -83,8 +89,9 @@
                             data-toggle="modal" data-target="#signInModal">
                             Login 
                         </a>
-					</li>
-    <!-- User will see their own job applications -->
+                    </li>
+                    
+<!-- User will see their own job applications -->
             {% else %} 
                 {% if g.user['profile'] != 'admin' %}
                     <li class="nav-item {% if 'myapplications' in request.path %} active {% endif %}">
@@ -94,7 +101,8 @@
                             My Applications
                         </a>
                     </li>
-    <!-- Admins will see all job applications and users -->
+
+<!-- Admins will see all job applications and users -->
                 {% elif g.user['profile'] == 'admin' %}
                     <li class="nav-item {% if 'applications' in request.path %} active {% endif %}">
 						<a  class="nav-link" 
@@ -111,7 +119,8 @@
                         </a>
                     </li>
                 {% endif %}
-    <!-- Only logged in users will see the profile and logout items -->
+
+<!-- Only logged in users will see the profile and logout items -->
                     <li class="nav-item {% if 'profile' in request.path %} active {% endif %}">
 						<a  class="nav-link" 
                             title="Go to your userprofile" 
@@ -132,8 +141,7 @@
 		</nav>
 	</header>
 
-<!--    Content section      -->
-
+<!--    Error messages for login and register modal    -->
     <div class="row">
 {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -152,9 +160,12 @@
 <!--    Footer      -->
 	<footer class="container-fluid">
 		<div id="footer-details" class="row">
+
 <!--    Contact section of the footer      -->
 			<div class="col-sm-3 col-md-2 footer-spacing">
-				<h5>Contact</h5>
+				<h5>
+                    Contact
+                </h5>
 				<a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal">
 					<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor"
 						xmlns="http://www.w3.org/2000/svg">
@@ -162,33 +173,47 @@
 							d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
 					</svg>
                 </a>
-			</div>
+            </div>
+            
 <!--    Copyright section of the footer      -->
 			<div class="col-sm-5 col-md-5 footer-spacing" id="footer-mid">
-				<h5>© 2020 Copyright:</h5>
-                <a href="https://github.com/VolkovBos">Robbert Bos</a>
-			</div>
+				<h5>
+                    © 2020 Copyright:
+                </h5>
+                <a href="https://github.com/VolkovBos">
+                    Robbert Bos
+                </a>
+            </div>
+            
 <!--    Social links section of the footer      -->
 			<div class="col-sm-4 col-md-5 footer-spacing" id="footer-right">
-				<h5>Social</h5>
+				<h5>
+                    Social
+                </h5>
 				<ul class="list-inline social-links">
 					<span class="social-link-spacing">
                         <li class="list-inline-item">
                             <a target="_blank" href="https://www.facebook.com/">
                                 <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                                <span class="sr-only">Facebook</span>
+                                <span class="sr-only">
+                                    Facebook
+                                </span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a target="_blank" href="https://twitter.com/">
                                 <i class="fab fa-twitter" aria-hidden="true"></i>
-                                <span class="sr-only">Twitter</span>
+                                <span class="sr-only">
+                                    Twitter
+                                </span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a target="_blank" href="https://ie.linkedin.com/">
                                 <i class="fab fa-linkedin" aria-hidden="true"></i>
-                                <span class="sr-only">LinkedIn</span>
+                                <span class="sr-only">
+                                    LinkedIn
+                                </span>
                             </a>
                         </li>
                     </span>
@@ -196,19 +221,25 @@
                         <li class="list-inline-item">
                             <a target="_blank" href="https://www.pinterest.com/">
                             <i class="fab fa-pinterest" aria-hidden="true"></i>
-                            <span class="sr-only">Pinterest</span>
+                            <span class="sr-only">
+                                Pinterest
+                            </span>
                         </a>
                         </li>
                         <li class="list-inline-item">
                             <a target="_blank" href="https://www.instagram.com/">
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
-                                <span class="sr-only">Instagram</span>
+                                <span class="sr-only">
+                                    Instagram
+                                </span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a target="_blank" href="https://www.youtube.com/">
                                 <i class="fab fa-youtube" aria-hidden="true"></i>
-                                <span class="sr-only">YouTube</span>
+                                <span class="sr-only">
+                                    YouTube
+                                </span>
                             </a>
                         </li>
 					</span>
@@ -221,28 +252,42 @@
     <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
 <!--    Modal header     -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login with your credentials</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Login with your credentials
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form action="/login" method="POST">
                         <div class="form-group">
+
 <!--    Login Username     -->
-                            <label id="userLabel" class="col-form-label">Username</label>
+                            <label id="userLabel" class="col-form-label">
+                                Username
+                            </label>
                             <input class="form-control" type="text" id="username" name="username" required>
                         </div>
                         <div class="form-group">
+
 <!--    Login Password     -->
-                            <label id="passwordLabel" class="col-form-label">Password</label>
+                            <label id="passwordLabel" class="col-form-label">
+                                Password
+                            </label>
                             <input class="form-control" type="password" id="password" name="password" required>
                         </div>
+
 <!--    Modal Buttons     -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
                             <input type="submit" class="btn btn-primary" value="Log In">
                         </div>
                     </form>
@@ -256,38 +301,58 @@
     <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
 <!--    Modal header     -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Register you candidate profile</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">
+                        Register you candidate profile
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form action="/register" method="POST">
                         <div class="form-group">
+
 <!--    Login Username     -->
-                            <label id="userLabelSu" class="col-form-label">Username</label>
+                            <label id="userLabelSu" class="col-form-label">
+                                Username
+                            </label>
                             <input class="form-control" type="text" id="username1" name="username1" required>
                         </div>
                         <div class="form-group">
+
 <!--    Email candidate     -->
-                            <label id="emailLabel" class="col-form-label">Email address</label>
+                            <label id="emailLabel" class="col-form-label">
+                                Email address
+                            </label>
                             <input class="form-control" type="email" id="emailAdress" name="emailAdress" required>
                         </div>
                         <div class="form-group">
+
 <!--    Login Password     -->
-                            <label id="passwordLabelSu" class="col-form-label">Password</label>
+                            <label id="passwordLabelSu" class="col-form-label">
+                                Password
+                            </label>
                             <input class="form-control" type="password" id="user_password1" name="user_password1" required>
                         </div>
                         <div class="form-group">
+
 <!--    Confirl Password     -->
-                            <label id="passwordLabelSuConfirm" class="col-form-label">Confirm Password</label>
+                            <label id="passwordLabelSuConfirm" class="col-form-label">
+                                Confirm Password
+                            </label>
                             <input class="form-control" type="password" id="user_password2" name="user_password2" required>
                         </div>
+
 <!--    Modal Buttons     -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
                             <input type="submit" class="btn btn-primary" value="Register">
                         </div>
                     </form>
@@ -301,45 +366,76 @@
     <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
 <!--    Modal header     -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Contact us</h5>
+                    <h5 class="modal-title" id="exampleModalLabel2">
+                        Contact us
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form onsubmit="return sendMail(this);">
                         <div class="form-group">
+
 <!--    Fullname     -->
-                            <label id="fullnameLabel" class="col-form-label">Fullname</label>
+                            <label id="fullnameLabel" class="col-form-label">
+                                Fullname
+                            </label>
                             <input class="form-control" type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
+
 <!--    Email address     -->
-                            <label id="emailLabel1" class="col-form-label">Email address</label>
+                            <label id="emailLabel1" class="col-form-label">
+                                Email address
+                            </label>
                             <input class="form-control" type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-<!--    Subject    -->
+
+<!--    Subject, set in the email subject    -->
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="subject">Subject</label>
+                                <label class="input-group-text" for="subject">
+                                    Subject
+                                </label>
                             </div>
                             <select class="custom-select" id="subject" name="subject" required>
-                                <option selected>Choose...</option>
-                                <option value="Interested in a vacancy">Interested in a vacancy</option>
-                                <option value="General info">General info</option>
-                                <option value="GDPR">GDPR</option>
-                                <option value="Other">Other</option>
+                                <option selected>
+                                    Choose...
+                                </option>
+                                <option value="Interested in a vacancy">
+                                    Interested in a vacancy
+                                </option>
+                                <option value="General info">
+                                    General info
+                                </option>
+                                <option value="GDPR">
+                                    GDPR
+                                </option>
+                                <option value="Other">
+                                    Other
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
-<!--    Message    -->
-                            <label id="messageLabel" class="col-form-label">Question/Message</label>
+
+<!--    Message, set in the email body    -->
+                            <label id="messageLabel" class="col-form-label">
+                                Question/Message
+                            </label>
                             <textarea class="form-control" id="message" name="message" required></textarea>
                         </div>
+
+<!--    Contact Modal Buttons     -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
                             <button class="btn btn-primary" type="submit">
                                 Submit
                             </button>
