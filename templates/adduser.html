@@ -17,11 +17,11 @@
 
 <!--    Add a profile pisture url and load the url with the button    -->
                         <div class="col-6 display-grid">
-                            <img class="rounded-circle" id="blah" src="https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/profile.png?raw=true" alt="your image" />
+                            <img class="rounded-circle" id="blah" src="{{profile_pic}}" alt="your image" />
                             <label for="image_url">
                                 Url for profile photo
                             </label>
-                            <input type="text" class="form-control" id="image_url" name="image_url">
+                            <input value="{{profile_pic}}" type="text" class="form-control" id="image_url" name="image_url">
                             <button type="button" class="btn btn-primary" name="load" id="image_url_button">
                                 Load Image
                             </button>

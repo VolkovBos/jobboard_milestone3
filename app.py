@@ -356,12 +356,16 @@ def add_user():
     user_profiles = mongo.db.profiles.find()
     max_user_id = mongo.db.candidates.find().sort(
         [("user_id", -1)]).limit(1)[0]['user_id'] + 1
+    profile_pic = 'https://github.com/VolkovBos/milestone3_jobboard/\
+blob/master/static/img/profile.png?raw=true'
 
     return render_template(
         'adduser.html',
         status=user_status,
         profiles=user_profiles,
-        max_user_id=max_user_id)
+        max_user_id=max_user_id,
+        profile_pic=profile_pic
+    )
 
 
 @app.route('/insert_user', methods=['POST'])
@@ -391,7 +395,7 @@ def insert_user():
             'city': request.form.get('city'),
             'approved': True
         })
-        
+
     return redirect(url_for('users'))
 
 
