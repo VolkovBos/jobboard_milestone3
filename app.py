@@ -399,16 +399,16 @@ def insert_user():
     return redirect(url_for('users'))
 
 
-@app.route('/edit_user/<user_id>')
+@app.route('/edit_user/<userid>')
 @login_required
-def edit_user(user_id):
+def edit_user(userid):
     """
     Edit a user by using a form
     profiles and statusses can be selected by dropdown
     """
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
-    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(userid)})
 
     return render_template(
         'edituser.html',
@@ -417,25 +417,28 @@ def edit_user(user_id):
         profiles=user_profiles)
 
 
-@app.route('/update_user/<user_id>', methods=['POST'])
+@app.route('/update_user/<userid>', methods=['POST'])
 @login_required
-def update_user(user_id):
+def update_user(userid):
     """
     Updates user to the database
     """
     users = mongo.db.candidates
+    user_id = int(request.form.get('user_id'),)
+
     users.update(
-        {'_id': ObjectId(user_id)},
+        {'_id': ObjectId(userid)},
         {'$set': {
+            'image_url': request.form.get('image_url'),
             'user_name': request.form.get('user_name'),
             'email': request.form.get('email'),
             'profile': request.form.get('profile'),
             'status': request.form.get('status'),
-            'user_id': request.form.get('user_id'),
-            'first_name': request.form.get('first_name'),
-            'last_name': request.form.get('last_name'),
+            'user_id': user_id,
+            'first_name': request.form.get('given-name'),
+            'last_name': request.form.get('family-name'),
             'street': request.form.get('street'),
-            'house_nr': request.form.get('house_nr'),
+            'house_nr': request.form.get('address-line2'),
             'zip_code': request.form.get('zip_code'),
             'city': request.form.get('city')
         }}
@@ -444,15 +447,15 @@ def update_user(user_id):
     return redirect(url_for('users'))
 
 
-@app.route('/approve_user/<user_id>')
+@app.route('/approve_user/<userid>')
 @admin_required
-def approve_user(user_id):
+def approve_user(userid):
     """
     Updates user to approved in the database
     """
     users = mongo.db.candidates
     users.update(
-        {'_id': ObjectId(user_id)},
+        {'_id': ObjectId(userid)},
         {'$set': {
             'approved': True
         }})
@@ -460,15 +463,15 @@ def approve_user(user_id):
     return redirect(url_for('users'))
 
 
-@app.route('/deactivate_user/<user_id>')
+@app.route('/deactivate_user/<userid>')
 @admin_required
-def deactivate_user(user_id):
+def deactivate_user(userid):
     """
     Updates user to inactive in the database
     """
     users = mongo.db.candidates
     users.update(
-        {'_id': ObjectId(user_id)},
+        {'_id': ObjectId(userid)},
         {'$set': {
             'status': 'inactive'
         }})
@@ -476,15 +479,15 @@ def deactivate_user(user_id):
     return redirect(url_for('users'))
 
 
-@app.route('/activate_user/<user_id>')
+@app.route('/activate_user/<userid>')
 @admin_required
-def activate_user(user_id):
+def activate_user(userid):
     """
     Updates user to active in the database
     """
     users = mongo.db.candidates
     users.update(
-        {'_id': ObjectId(user_id)},
+        {'_id': ObjectId(userid)},
         {'$set': {
             'status': 'active'
         }})
@@ -492,13 +495,13 @@ def activate_user(user_id):
     return redirect(url_for('users'))
 
 
-@app.route('/delete_user/<user_id>')
+@app.route('/delete_user/<userid>')
 @admin_required
-def delete_user(user_id):
+def delete_user(userid):
     """
     Deletes user from the database
     """
-    mongo.db.candidates.remove({'_id': ObjectId(user_id)})
+    mongo.db.candidates.remove({'_id': ObjectId(userid)})
 
     return redirect(url_for('users'))
 
