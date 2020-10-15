@@ -263,20 +263,20 @@ def logout():
 
 
 # Profile page for users
-@app.route('/profile/<candidate_id>')
+@app.route('/profile/<userid>')
 @login_required
-def profile(candidate_id):
+def profile(userid):
     return render_template(
         "profile.html",
-        candidate=mongo.db.candidates.find_one(
-            {"_id": ObjectId(candidate_id)}))
+        user=mongo.db.candidates.find_one(
+            {"_id": ObjectId(userid)}))
 
 
 # Change password page for users
-@app.route('/change_password/<user_id>')
+@app.route('/change_password/<userid>')
 @login_required
-def change_password(user_id):
-    the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
+def change_password(userid):
+    the_user = mongo.db.candidates.find_one({"_id": ObjectId(userid)})
 
     return render_template(
         'changepassword.html',

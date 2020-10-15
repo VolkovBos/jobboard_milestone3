@@ -124,7 +124,7 @@
                     <li class="nav-item {% if 'profile' in request.path %} active {% endif %}">
 						<a  class="nav-link" 
                             title="Go to your userprofile" 
-                            href="{{ url_for('profile', candidate_id=g.user['_id']) }}">
+                            href="{{ url_for('profile', userid=g.user['_id']) }}">
                             {{ g.user['user_name'] }}
                         </a>
                     </li>
