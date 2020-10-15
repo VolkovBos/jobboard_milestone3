@@ -1,7 +1,7 @@
 # BOS UP jobboard - Milestone Project 3
 
 ## Introduction
-Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was created to get more interactive with our candidate and give them insights in the status of our vacancies and ongoing applications.
+Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is created to let potential candidates know who we are and what we do. And also we want to give the option to see if they want to come and join us! If a candidate registers on our site and our recruiter has had contact with them, the candidate can apply on several cool and interesting vacancies. At all time they can see where they are in the application process, which will get them more engaged with the whole team. I hope you take a look at the site and maybe we will see you at the meeting!
 
 ![alt text](static/img/responsive.jpg)
 
@@ -53,6 +53,7 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site was c
 </details>
 
 ### WireFrames
+During the project I got a lot of feedback and strayed away from the initial wireframes. The login, register and contct pages are replaced by modals instead of the initial pages.
 <details>
 <summary>Home Page</summary>
 <br>
@@ -252,6 +253,8 @@ The most tables are self explanatory, but I consciously chose to use one table f
 
 ## Technologies Used
 I have used the following technologys for this project:
+
+### Languages
 * [HTML5](https://en.wikipedia.org/wiki/HTML5), Semantic markup language as the shell of the site
 * [CSS3](https://en.wikipedia.org/wiki/CSS), Cascading Style Sheets as the design of the site
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript), for the contact form and preventing prefilled forms
@@ -262,18 +265,27 @@ I have used the following technologys for this project:
     - bson.objectid
     - werkzeug.security, for hashed passwords
     - functools, for my own view decorators
-* [MongoDB](https://www.mongodb.com), for my database
 * [BSON](https://en.wikipedia.org/wiki/BSON), to store my data
+
+### Apps, Api
+* [MongoDB](https://www.mongodb.com), for my database
 * [Heroku](https://heroku.com), to deploy my app
 * [Gitpod](https://gitpod.io), for development
 * [Github](https://github.com), for version control
+* [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
+* [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
+* [TinyPNG](https://tinypng.com/), for reducing the filesizes on my images
+
+### Framework
 * [Materialize](https://materializecss.com/), for icons
 * [Bootstrap](https://getbootstrap.com/), for CSS and HTML framework for ex. modals
 * [Bootstrap Icons](https://icons.getbootstrap.com/), for icons
 * [Google Fonts](https://fonts.google.com/), to choose and combine my fonts
-* [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
-* [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
-* [TinyPNG](https://tinypng.com/), for reducing the filesizes on my images
+
+### Resources
+* [Iconmonstr](https://iconmonstr.com/), for social svg images
+* [Encycolorpedia](https://encycolorpedia.nl/), for coloring the svg images
+* [Unsplash](https://unsplash.com/), for images
 
 ## Testing
 
