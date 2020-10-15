@@ -29,7 +29,7 @@
 <!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
                                 <select id="vacancy_id" name="vacancy_id" class="form-control">
-                                    <option value="{{ vacancy._id }}" disabled selected>
+                                    <option value="{{ vacancy._id }}" selected>
                                         {{ vacancy.vacancy_name }}
                                     </option>
                                 </select>
