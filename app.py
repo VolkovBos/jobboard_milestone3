@@ -719,6 +719,8 @@ def add_application(vacancy_id):
         {'status': {'$ne': 'active'}})
     open_vacancies = mongo.db.vacancies.find(
         {'vacancy_status': {'$ne': 'closed'}})
+    closed_vacancies = mongo.db.vacancies.find(
+        {'vacancy_status': 'closed'})
     application_status = mongo.db.status.find({'type': 'application'})
 
     """
@@ -739,7 +741,8 @@ def add_application(vacancy_id):
         vacancy=the_vacancy,
         active_candidates=active_candidates,
         inactive_candidates=inactive_candidates,
-        vacancies=open_vacancies,
+        open_vacancies=open_vacancies,
+        closed_vacancies=closed_vacancies,
         status=application_status,
         photos=photos)
 
@@ -752,8 +755,9 @@ def insert_application():
     Queries the linked vacancy and adds some of the data
     from vacancy to see in the myapplication overview
     """
+    vacancy_id = request.form.get('vacancy_id')
     the_vacancy = mongo.db.vacancies.find_one(
-            {'vacancy_name': request.form.get('vacancy_name')})
+            {"_id": ObjectId(vacancy_id)})
     applications = mongo.db.applications
 
     """
@@ -778,7 +782,8 @@ def insert_application():
 
     applications.insert_one(
             {
-                'vacancy_name': request.form.get('vacancy_name'),
+                'vacancy_name': the_vacancy.get('vacancy_name'),
+                'vacancy_id': vacancy_id,
                 'status': request.form.get('status'),
                 'start_date': request.form.get('start_date'),
                 'candidate_name': request.form.get('candidate_name'),
@@ -840,13 +845,15 @@ def update_application(application_id):
     Queries the linked vacancy and adds some of the data
     from vacancy to see in the myapplication overview
     """
+    vacancy_id = request.form.get('vacancy_id')
     the_vacancy = mongo.db.vacancies.find_one(
-            {'vacancy_name': request.form.get('vacancy_name')})
+            {"_id": ObjectId(vacancy_id)})
     applications = mongo.db.applications
     applications.update(
         {'_id': ObjectId(application_id)},
         {
-            'vacancy_name': request.form.get('vacancy_name'),
+            'vacancy_name': the_vacancy.get('vacancy_name'),
+            'vacancy_id': vacancy_id,
             'status': request.form.get('status'),
             'start_date': request.form.get('start_date'),
             'candidate_name': request.form.get('candidate_name'),

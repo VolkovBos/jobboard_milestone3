@@ -6,7 +6,7 @@
 
 <!--    Title section     -->
             <div class="col">
-                <form action="{{url_for('insert_application')}}" method="POST">
+                <form action="{{url_for('update_application', application_id=application._id)}}" method="POST">
                     <h1>
                         Edit Application
                     </h1>
@@ -21,7 +21,7 @@
                                 </label>
 
 <!--    Prefilled and readonly for a regular user  -->
-                                <select id="vacancy_name" name="vacancy_name" class="form-control">
+                                <select id="vacancy_id" name="vacancy_id" class="form-control">
                                     <option disabled>
                                         Choose Vacancy
                                     </option>
@@ -32,11 +32,11 @@
 <!-- Open vacancies shown in dropdown menu -->
                                 {% for vac in open_vacancies %}
                                     {% if vac.vacancy_name == application.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}" selected>
+                                    <option value="{{ vac._id }}" selected>
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% else %}
-                                    <option value="{{ vac.vacancy_name }}">
+                                    <option value="{{ vac._id }}">
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% endif %}
@@ -48,17 +48,18 @@
 <!-- Closed vacancies shown in dropdown menu -->
                                 {% for vac in closed_vacancies %}
                                     {% if vac.vacancy_name == application.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}" selected>
+                                    <option value="{{ vac._id }}" selected>
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% else %}
-                                    <option value="{{ vac.vacancy_name }}">
+                                    <option value="{{ vac._id }}">
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% endif %}
                                 {% endfor %}
                                 </select> 
                             </div>
+                            
 
 <!--    Application status     -->
                             <div class="col-4">
@@ -83,6 +84,11 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                                <small class="col-12">
+                                    If tou change the vacancy, all the vacancy related information will be updated fomr the vacancy after you save
+                                </small>
+                            </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -150,6 +156,13 @@
                     </div>
 
 <!--    More info about the vacancy   -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                Vacancy information
+                            </h1>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">

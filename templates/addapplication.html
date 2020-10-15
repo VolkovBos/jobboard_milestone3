@@ -30,7 +30,7 @@
                             {% if g.user['profile'] != 'admin' %}
                                 <input value="{{ vacancy.vacancy_name }}" id="vacancy_name" name="vacancy_name" type="text" class="form-control" readonly/>
                             {% else %}
-                                <select id="vacancy_name" name="vacancy_name" class="form-control">
+                                <select id="vacancy_id" name="vacancy_id" class="form-control">
                                     <option disabled selected>
                                         Choose Vacancy
                                     </option>
@@ -39,13 +39,13 @@
                                     </option>
 
 <!-- Open vacancies shown in dropdown menu -->
-                                {% for vac in vacancies %}
+                                {% for vac in open_vacancies %}
                                     {% if vac.vacancy_name == vacancy.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}" selected>
+                                    <option value="{{ vac._id }}" selected>
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% else %}
-                                    <option value="{{ vac.vacancy_name }}">
+                                    <option value="{{ vac._id }}">
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% endif %}
@@ -56,12 +56,12 @@
 
 <!-- Closed vacancies shown in dropdown menu -->
                                 {% for vac in closed_vacancies %}
-                                    {% if vac.vacancy_name == application.vacancy_name %}
-                                    <option value="{{ vac.vacancy_name }}" selected>
+                                    {% if vac.vacancy_name == vacancy.vacancy_name %}
+                                    <option value="{{ vac._id }}" selected>
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% else %}
-                                    <option value="{{ vac.vacancy_name }}">
+                                    <option value="{{ vac._id }}">
                                         {{ vac.vacancy_name }}
                                     </option>
                                     {% endif %}
@@ -150,6 +150,13 @@
 <!--    Will not show vacancy information if the vacancy isn't set yet   -->
                 {% if vacancy != '' %}
 <!--    More info about the vacancy   -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>
+                                Vacancy information
+                            </h1>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
