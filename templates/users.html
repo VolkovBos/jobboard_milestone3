@@ -87,6 +87,7 @@
 
 <!--    Buttons to approve or delete new user    -->
                                 <div class="center user-collapse">
+                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
                                     <a href="{{url_for('approve_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
                                         Approve
                                     </a>
@@ -178,8 +179,9 @@
                                     </tr>
                                 </table>
 
-<!--    Buttons to edit, deactive or delete new user    -->
+<!--    Buttons to edit, deactive or delete user    -->
                                 <div class="center user-collapse">
+                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
                                     <a href="{{url_for('edit_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
                                         Edit
                                     </a>
@@ -276,8 +278,9 @@
                                     </tr>
                                 </table>
 
-<!--    Buttons to active or delete new user    -->
+<!--    Buttons to active or delete user    -->
                                 <div class="center user-collapse">
+                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
                                     <a href="{{url_for('activate_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
                                         Activate
                                     </a>
