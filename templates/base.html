@@ -460,5 +460,19 @@
 
 	<!--    Bootstrap   -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#image_url_button').on({
+            'click': function(){
+                var image_url = $("#image_url").val()
+                try {
+                    $('#blah').attr('src', image_url);
+
+                } catch(err) {
+                    return null
+                }
+            }
+        });
+    </script>
 </body>
 </html>

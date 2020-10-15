@@ -8,10 +8,23 @@
 <!--    Title section     -->
             <div class="col">
                 <form action="{{url_for('insert_user')}}" method="POST">
-                    <h1>
-                        Add User
-                    </h1>
-                    
+                    <div class="row">
+                        <div class="col-6">
+                            <h1>
+                                Add User
+                            </h1>
+                        </div>
+                        <div class="col-6 display-grid">
+                            <img class="rounded-circle" id="blah" src="https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/profile.png?raw=true" alt="your image" />
+                            <label for="image_url">
+                                    Url for profile photo
+                                </label>
+                            <input type='text'class="form-control" id="image_url" name="image_url"/>
+                            <button type="button" class="btn btn-primary" name="load" id="image_url_button">
+                                Load Image
+                            </button>
+                        </div>
+                    </div>
 <!--    User name & Email     -->
                     <div class="form-group">
                         <div class="row">
