@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     
-<!--    User name & Email     -->
+<!--    User name & Profile     -->
                     <div class="row">
                         <div class="col-12">
                             <h1>
@@ -44,18 +44,6 @@
                                 </label>
                                 <input value="{{user.user_name}}" type="text" class="form-control" id="user_name" name="user_name" required>
                             </div>
-                            <div class="col-6">
-                                <label for="email">
-                                    Email
-                                </label>
-                                <input value="{{user.email}}" type="email" class="form-control" id="email" name="email">
-                            </div>
-                        </div>
-                    </div>
-
-<!--    Profile     -->
-                    <div class="form-group">
-                        <div class="row">
                             <div class="col-6">
                                 <label for="profile">
                                     Profile
@@ -124,6 +112,22 @@
                                     Candidate last name
                                 </label>
                                 <input value="{{user.last_name}}" type="text" class="form-control" id="family-name" name="family-name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="email">
+                                    Email
+                                </label>
+                                <input value="{{user.email}}" type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="col-6">
+                                <label for="email">
+                                    Phone
+                                </label>
+                                <input value="{{user.phone}}" type="email" class="form-control" id="phone" name="phone">
                             </div>
                         </div>
                     </div>
