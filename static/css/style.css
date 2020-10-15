@@ -326,6 +326,15 @@ svg {
     margin-bottom: 30px;
 }
 
+/*-- Profile --*/
+.text-right {
+    text-align: right;
+}
+
+.text-info {
+    color: cadetblue;
+}
+
 /*-----      Error pages      -----*/
 .error-alignment {
     margin: auto;
