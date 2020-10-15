@@ -39,7 +39,11 @@
 <!--    User info   -->
                     <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
                         <td>{{user.user_id}}</td>
-                        <td>{{user.user_name}}</td>
+                        <td>
+                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
+                                {{user.user_name}}
+                            </a>
+                        </td>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
                     {% if user.status == 'active' %}
@@ -133,7 +137,11 @@
 <!--    User info   -->
                     <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
                         <td>{{user.user_id}}</td>
-                        <td>{{user.user_name}}</td>
+                        <td>
+                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
+                                {{user.user_name}}
+                            </a>
+                        </td>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
                         {% if user.status == 'active' %}
@@ -232,7 +240,11 @@
 <!--    User info   -->
                     <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
                         <td>{{user.user_id}}</td>
-                        <td>{{user.user_name}}</td>
+                        <td>
+                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
+                                {{user.user_name}}
+                            </a>
+                        </td>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
                         {% if user.status == 'active' %}
