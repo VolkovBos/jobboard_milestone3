@@ -380,17 +380,18 @@ def insert_user():
             'user_name': request.form.get('user_name'),
             'email': request.form.get('email'),
             'profile': request.form.get('profile'),
+            'password': hash_pass,
             'status': request.form.get('status'),
             'user_id': user_id,
-            'password': hash_pass,
-            'first_name': request.form.get('first_name'),
-            'last_name': request.form.get('last_name'),
+            'first_name': request.form.get('given-name'),
+            'last_name': request.form.get('family-name'),
             'street': request.form.get('street'),
-            'house_nr': request.form.get('house_nr'),
+            'house_nr': request.form.get('address-line2'),
             'zip_code': request.form.get('zip_code'),
             'city': request.form.get('city'),
             'approved': True
         })
+        
     return redirect(url_for('users'))
 
 
