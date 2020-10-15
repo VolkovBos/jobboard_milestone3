@@ -461,7 +461,13 @@ def update_user(userid):
         }}
     )
 
-    return redirect(url_for('users'))
+    # admin redirects back to users overview
+    if g.user['profile'] == 'admin':
+        return redirect(url_for('users'))
+
+    # user redirects back to users overview
+    if g.user['profile'] == 'user':
+        return redirect(url_for('profile', userid=g.user['_id']))
 
 
 @app.route('/approve_user/<userid>')
