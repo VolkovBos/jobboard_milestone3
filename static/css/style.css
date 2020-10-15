@@ -3,6 +3,7 @@
 /*-----      General      -----*/
 body {
     font-family: 'Play', sans-serif;
+    background-color: #e2e8f0;  
 }
 
 .shortcut {
@@ -22,6 +23,11 @@ body {
 .second-container {
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.9), 0 2px 2px 2px rgba(0,0,0,.4);
+    border: 3px solid cadetblue;
 }
 
 /*-----      Navbar      -----*/
