@@ -354,9 +354,8 @@ def add_user():
     """
     user_status = mongo.db.status.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
-    max_user = mongo.db.candidates.find().sort(
-        [("user_id", -1)]).limit(1)[0]['user_id']
-    max_user_id = max_user + 1
+    max_user_id = mongo.db.candidates.find().sort(
+        [("user_id", -1)]).limit(1)[0]['user_id'] + 1
 
     return render_template(
         'adduser.html',
@@ -373,15 +372,16 @@ def insert_user():
     """
     users = mongo.db.candidates
     hash_pass = generate_password_hash(request.form.get('password'))
+    user_id = int(request.form.get('user_id'),)
 
     users.insert_one(
         {
-            'image_url': request.form.get('image_url',)
+            'image_url': request.form.get('image_url'),
             'user_name': request.form.get('user_name'),
             'email': request.form.get('email'),
             'profile': request.form.get('profile'),
             'status': request.form.get('status'),
-            'user_id': request.form.get('user_id'),
+            'user_id': user_id,
             'password': hash_pass,
             'first_name': request.form.get('first_name'),
             'last_name': request.form.get('last_name'),
