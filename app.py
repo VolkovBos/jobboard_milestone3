@@ -316,7 +316,7 @@ def update_password(user_id):
                 user=the_user)
 
     return render_template(
-        'changepassword.html',
+        'profile.html',
         user=the_user)
 
 
