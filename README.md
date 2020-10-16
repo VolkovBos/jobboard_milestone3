@@ -12,6 +12,8 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
      - [Wireframes](#wireframes)
      - [Design](#design)
      - [Database](#database)
+        - [Tables](#tables)
+        - [Tables design](#tables-design)
 2. [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
@@ -21,8 +23,21 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
     - [Framework](#framework)
     - [Resources](#resources)
 4. [Testing](#testing)
+    - [Error pages](#error-pages)
+    - [Validators](#validators)
+    - [Testing User Stories](#testing-user-stories)
+    - [Login-Register Validation](#login-register-validation)
+    - [Unittesting](#unittesting)
+    - [Further testing](#further-testing)
+    - [Issues found (all solved)](#issues-found-all-solved)
 5. [Deployment](#deployment)
+    - [MongoDB](#mongodb)
+    - [Env.py](#env-py)
+    - [For my assessors](#for-my-assessors)
 6. [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
 
 ## UX
 
@@ -338,7 +353,7 @@ To make sure there where nog syntax errors, I've used the following validators o
         - The contact form will let me know all fields are manditory.
         - I can send in the form by clicking the Submit button.
 
-### Login/Register Validation
+### Login-Register Validation
 There are some login checks with error message shown, you will get redirected to the index page and the message is shown in the top off the page. The error with message:
 - Wrong password; "Your password is incorrect"
 - User isn't approved yet by admin; "Your registration is not processed yet"
