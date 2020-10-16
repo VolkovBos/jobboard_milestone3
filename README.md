@@ -15,6 +15,9 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
 
 ## UX
 
+### Project Goals
+[BOS UP](https://jobboard-milestone3.herokuapp.com/) is part of my Code Institute Full Stack Software Development course, the Data Centric Development module. The scope for this milestone project is to "Build a MongoDB-backed Flask project for a web application that allows users to store and manipulate data records about a particular domain." So I created a jobboard where visitors can access the vacancies and register, candidates can login and apply and admins can admin. All CRUD operations are implemented in the site, where I made a distinctive choice about what user can do which operation. The target audience is for people around all ages who are looking for a job in our branche (utility sector).
+
 ### User stories
 <details>
 <summary>General website user (visitor)</summary>
@@ -177,11 +180,24 @@ During the project I got a lot of feedback and strayed away from the initial wir
 <ins>Color Scheme</ins><br/>
 The color scheme is chosen because of the corporate identity of BOS UP, which contains a blue pallet of colors.
 
-<ins>Typography</ins><br/>
-The font Barrio is chosen in the corporate identity so I used this on the logo. To get a nice contrast with this I chose for Montserrat for the main font on the website. The font is simple but yet adds some character.
+The two most important colors are lightskyblue and cadetblue. To make the site easy to read, I used these two colors on the most pages. For buttons I used custom bootstrap design, to let them stand out. For instance; I do want to make the delete button red!
 
-<ins>Images</ins><br/>
-Because the company is a startup there are no images available just yet. And also the goal of the site is more for recruitment processes and connection with the candidates then a global PR of the company. Maybe in the near future this can be adjusted due to growth.
+- ![#5F9EA0](https://placehold.it/15/5F9EA0/000000?text=+) `#5F9EA0 - CadetBlue`
+- ![#87CEFA](https://placehold.it/15/87CEFA/000000?text=+) `#87CEFA - LightSkyBlue`
+
+For texts I used three main colors; the standard black, a grey one and a white one. I used the standard and the grey to get a bit of contrast between them. The white one is for sections where the background is darker, for instance a jumbotron.
+- ![#000000](https://placehold.it/15/000000/000000?text=+) `#000000 - Black`
+- ![#777777](https://placehold.it/15/777777/000000?text=+) `#777777 - Grey`
+- ![#FAFAFA](https://placehold.it/15/FAFAFA/000000?text=+) `#FAFAFA - Offset white`
+
+I used a body background color for contrast so cards and tables stand out more, also this gives a less cheaper and easier on the eye look to the site.
+- ![#E2E8F0](https://placehold.it/15/E2E8F0/000000?text=+) `#E2E8F0 - very light grey `
+
+For error messages I used a yellow background to really stand out.
+
+<ins>Typography</ins><br/>
+The font I selected to this page is Play from [GoogleFonts](https://fonts.google.com/), because it is professional but not as common used. The font is simple but yet adds some character.
+
 
 ### Database
 This website has a [MongoDB](https://www.mongodb.com) databases called jobboard_milestone3, within this database I've used 5 tables (or collections). I used [MongoDB](https://www.mongodb.com) on advise of my mentor and CodeInstitute for this project and for this phase of the development of the website this works fine. However I must add; whenever expanding your business processes further in this portal, I would highly recommend taking a new look to your chosen database. For example if you want to add more HR and employee processes it is my advice to do this with an relationship based database.

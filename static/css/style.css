@@ -3,7 +3,7 @@
 /*-----      General      -----*/
 body {
     font-family: 'Play', sans-serif;
-    background-color: #e2e8f0;  
+    background-color: #E2E8F0;  
 }
 
 .shortcut {
@@ -27,18 +27,18 @@ body {
 
 .card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.9), 0 2px 2px 2px rgba(0,0,0,.4);
-    border: 3px solid cadetblue;
+    border: 3px solid CadetBlue;
 }
 
 /*-----      Navbar      -----*/
 .navbar-brand h1 {
-    color: cadetblue;
+    color: CadetBlue;
     font-weight: 900;
     line-height: inherit;
 }
 
 #navbar-colors {
-    background-color: lightskyblue;
+    background-color: LightSkyBlue;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -55,7 +55,7 @@ body {
 
 /*-----      Footer      -----*/
 footer {
-    background-color: lightskyblue;
+    background-color: LightSkyBlue;
     color: #777777;
     min-height: 150px;
     margin: 0;
@@ -74,7 +74,7 @@ footer {
 }
 
 footer a {
-    color: #fafafa;
+    color: #FAFAFA;
 }
 
 .social-links {
@@ -89,7 +89,7 @@ footer a {
     font-size: 18px;
     line-height: 7px;
     text-align: center;
-    color: fafafa;
+    color: #FAFAFA;
     background: #777777;
     transition: all 0.7s ease-in-out;
     -moz-transition: all 0.7s ease-in-out;
@@ -98,7 +98,7 @@ footer a {
 }
 
 .social-links li a i:hover {
-    background: blue;
+    background: CadetBlue;
 }
 
 /*-----      Index       -----*/
@@ -137,10 +137,9 @@ img {
     width: 200px;
     height: 170px;
     padding: 10px;
-    color: #fff;
+    color: #FAFAFA;
     font-weight: 600;
     text-transform: uppercase;
-    font-family: 'Play', sans-serif;
 }
 
 #catch-phrase {
@@ -157,7 +156,6 @@ h2 {
     top: 0;
     left: 0;
     width: 1%;
-    background: blue;
     -webkit-animation: slide 0.5s forwards;
     -webkit-animation-delay: 2s;
     animation: slide 0.5s forwards;
@@ -183,7 +181,7 @@ h2 {
 }
 
 div.header h1 {
-    background-color: lightskyblue;
+    background-color: LightSkyBlue;
     margin: 0;
     padding: 20px;
     text-align: center;
@@ -192,8 +190,8 @@ div.header h1 {
 
 .jumbotron {
     text-align: center;
-    background-color: cadetblue;
-    color: #fafafa;
+    background-color: CadetBlue;
+    color: #FAFAFA;
     margin-bottom: auto;
 }
 
@@ -232,15 +230,15 @@ svg {
 
 /*-----      Modals     -----*/
 .modal-header {
-    background-color: cadetblue;
-    color: #fafafa;
+    background-color: CadetBlue;
+    color: #FAFAFA;
 }
 
 /*-----      Error messages      -----*/
 .blink_me {
     animation: blinker 2s;
     animation-iteration-count: 2;
-    color: red;
+    color: #777777;
 }
 
 @keyframes blinker {  
@@ -299,7 +297,7 @@ svg {
 
 /*-----      Users      -----*/
 .table .thead-dark th {
-    background-color: cadetblue;
+    background-color: CadetBlue;
     border: none;
 }
 
@@ -336,7 +334,7 @@ svg {
 }
 
 .text-info {
-    color: cadetblue;
+    color: CadetBlue;
 }
 
 /*-----      Error pages      -----*/
