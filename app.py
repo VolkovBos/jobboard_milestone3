@@ -583,7 +583,7 @@ def insert_image():
 
 @app.route('/uplete_image/<image_id>', methods=['POST'])
 @admin_required
-def uplete_image(status_id):
+def uplete_image(image_id):
     photos = mongo.db.photos
 
     if 'save' in request.form:
