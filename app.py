@@ -533,7 +533,27 @@ def delete_user(userid):
 @app.route('/setup')
 @admin_required
 def setup():
+    status = mongo.db.status.find()
+    return render_template("setup.html", status=status)
+
+
+@app.route('/update_status')
+@admin_required
+def update_status():
     return render_template("setup.html")
+
+
+@app.route('/delete_status')
+@admin_required
+def delete_status():
+    return render_template("setup.html")
+
+
+@app.route('/insert_status')
+@admin_required
+def insert_status():
+    return render_template("setup.html")
+
 
 @app.route('/vacancies')
 def vacancies():

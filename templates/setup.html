@@ -1,1 +1,118 @@
-<h1>Hello world!</h1>
+{% extends 'base.html' %} 
+{% block content %}
+
+<!--    A page for (open) vacancies -->
+<!--    This section shows the ongoing vacancies     -->
+    <div class="container first-container">
+        <div class="row">
+
+<!--    Title open section     -->
+            <div class="col">
+                <h1>
+                    SETUP section
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7">
+
+<!--    Short information section    -->
+                <p class="intro-text">
+                    lorem ipsum
+                </p>
+            </div>
+        </div>
+
+        <hr>
+    
+        <div class="row">
+            <div class="col-8">
+                <h1>
+                    Status
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="list-group col-12">
+
+
+            {% for stat in status %}
+                <form action="{{url_for('upsert_status')}}" method="POST">
+                    
+                    <li class="row">
+                        <div class="col-4">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Status Name</span>
+                                </div>
+                            {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
+                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="status_name" name="status_name" readonly>
+                            {% else %}
+                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="status_name" name="status_name">
+                            {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Type</span>
+                                </div>
+                            {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
+                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="type" name="type" readonly>
+                            {% else %}
+                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="type" name="type">
+                            {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                        {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
+                            <small>This is a mandatory status</small>
+                        {% else %}
+                            <button type="button" class="btn btn-primary btn-sm" name="load" id="delete_status">
+                                Save
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" name="load" id="delete_status">
+                                Delete
+                            </button>
+                        {% endif %}
+                        </div>    
+                    </li>
+                </form>
+            {% endfor %}
+
+                <form action="{{url_for('upsert_status')}}" method="POST">
+                    <li class="row">
+                        <div class="col-4">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Status Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="status_name" name="status_name">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Type</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="type" name="type">
+                            </div>
+                        </div>
+                            
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary btn-sm" name="load" id="insert_status">
+                                Insert new status
+                            </button>
+                        </div>
+                    </li>
+                </form>
+            </ul>
+        </div>
+    </div>
+
+
+    
+{% endblock %}
