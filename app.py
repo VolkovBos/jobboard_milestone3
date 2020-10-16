@@ -530,6 +530,11 @@ def delete_user(userid):
     return redirect(url_for('users'))
 
 
+@app.route('/setup')
+@admin_required
+def setup():
+    return render_template("setup.html")
+
 @app.route('/vacancies')
 def vacancies():
     """
