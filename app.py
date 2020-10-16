@@ -533,6 +533,17 @@ def delete_user(userid):
 @app.route('/setup')
 @admin_required
 def setup():
+    """
+    Overview of some fields which can be managed by the admin
+    fields are status, images and profiles
+
+    status has mandatory records which cannot be deleted because
+    they are used in queries in this app
+
+    images are used fo vacancies and application selection
+
+    profiles are as of yet readonly
+    """
     status = mongo.db.status.find().sort([("type", 1)])
     profiles = mongo.db.profiles.find().sort([("name", 1)])
     images = mongo.db.photos.find().sort([("name", 1)])
@@ -547,6 +558,9 @@ def setup():
 @app.route('/insert_status', methods=['POST'])
 @admin_required
 def insert_status():
+    """
+    Insert status to the database
+    """
     status = mongo.db.status
     status.insert_one(request.form.to_dict())
 
@@ -556,6 +570,11 @@ def insert_status():
 @app.route('/uplete_status/<status_id>', methods=['POST'])
 @admin_required
 def uplete_status(status_id):
+    """
+    Updates or deletes a status to/of the database
+    depending on the button used
+    returns to the setup route
+    """
     status = mongo.db.status
 
     if 'save' in request.form:
@@ -575,6 +594,10 @@ def uplete_status(status_id):
 @app.route('/insert_image', methods=['POST'])
 @admin_required
 def insert_image():
+    """
+    Insert image to the database
+    used for vacancies and application overview pages
+    """
     photos = mongo.db.photos
     photos.insert_one(request.form.to_dict())
 
@@ -584,6 +607,11 @@ def insert_image():
 @app.route('/uplete_image/<image_id>', methods=['POST'])
 @admin_required
 def uplete_image(image_id):
+    """
+    Updates or deletes a image to/of the database
+    depending on the button used
+    returns to the setup route
+    """
     photos = mongo.db.photos
 
     if 'save' in request.form:
