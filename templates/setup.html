@@ -24,11 +24,15 @@
 
         <hr>
         <div class="row">
+
+<!--    Title section     -->
             <div class="col-12">
                 <h1>
                     Status
                 </h1>
             </div>
+
+<!--    Short information section    -->
             <div class="col-12">
                 <p class="intro-text">
                     Use application, vacancy or user as type to add a status to that selection. Mandatory fields cannot be changed or deleted.
@@ -38,16 +42,17 @@
         <div class="row">
             <ul class="list-group col-12">
 
-
+<!--    List of all avalable statusses    -->
             {% for stat in status %}
                 <form action="{{url_for('uplete_status',status_id=stat._id)}}" method="POST">
-                    
                     <li class="row">
                         <div class="col-lg-5 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-sm7">Status Name</span>
                                 </div>
+
+<!--    inactive and closed statusses are mandatory due to app.py queries    -->
                             {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
                                 <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm7" id="status_name" name="status_name" readonly>
                             {% else %}
@@ -55,7 +60,6 @@
                             {% endif %}
                             </div>
                         </div>
-
                         <div class="col-lg-5 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
@@ -68,7 +72,8 @@
                             {% endif %}
                             </div>
                         </div>
-                        
+
+<!--    Buttons, only available with non mandatory records    -->
                         <div class="col-lg-2 col-sm-12 center-button">
                         {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
                             <small>This is a mandatory status</small>
@@ -85,6 +90,7 @@
                 </form>
             {% endfor %}
 
+<!--    Add a new status empty line    -->
                 <form action="{{url_for('insert_status')}}" method="POST">
                     <li class="row">
                         <div class="col-lg-5 col-sm-12">
@@ -95,7 +101,6 @@
                                 <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm4" id="status_name" name="status_name">
                             </div>
                         </div>
-
                         <div class="col-lg-5 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
@@ -104,7 +109,8 @@
                                 <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm5" id="type" name="type">
                             </div>
                         </div>
-                            
+
+<!--    Add a new status button  -->
                         <div class="col-lg-2 col-sm-12 center-button">
                             <button type="submit" class="btn btn-primary btn-sm" href="{{url_for('insert_status')}}" name="insert">
                                 Insert new status
@@ -117,11 +123,15 @@
 
         <hr>
         <div class="row">
+
+<!--    Title section     -->
             <div class="col-12">
                 <h1>
                     Profiles
                 </h1>
             </div>
+
+<!--    Short information section    -->
             <div class="col-12">
                 <p class="intro-text">
                     Profiles cannot be changed at this moment. Please contact the database administrator for more info.
@@ -130,6 +140,8 @@
         </div>
         <div class="row">
             <ul class="list-group col-12">
+
+<!--    List of all avalable profiles    -->
             {% for profile in profiles %}
                     <li class="row">
                         <div class="col-12">
@@ -147,11 +159,15 @@
 
         <hr>
         <div class="row">
+
+<!--    Title section     -->
             <div class="col-12">
                 <h1>
                     Images
                 </h1>
             </div>
+
+<!--    Short information section    -->
             <div class="col-12">
                 <p class="intro-text">
                     Here you can controle the vacancy(application) images.
@@ -161,10 +177,9 @@
         <div class="row">
             <ul class="list-group col-12">
 
-
+<!--    List of all avalable photos    -->
             {% for image in images %}
                 <form action="{{url_for('uplete_image',image_id=image._id)}}" method="POST">
-                    
                     <li class="row">
                         <div class="col-lg-3 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
@@ -174,7 +189,6 @@
                                 <input value="{{image.name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm2" id="name" name="name">
                             </div>
                         </div>
-
                         <div class="col-lg-7 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
@@ -183,7 +197,6 @@
                                 <input value="{{image.photo_url}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm3" id="photo_url" name="type">
                             </div>
                         </div>
-                        
                         <div class="col-lg-2 col-sm-12 center-button">
                             <button type="submit" class="btn btn-primary btn-sm" href="#" name="save" id="save_image">
                                 Save
@@ -196,6 +209,7 @@
                 </form>
             {% endfor %}
 
+<!--    Add a new photo empty line    -->
                 <form action="{{url_for('insert_image')}}" method="POST">
                     <li class="row">
                         <div class="col-lg-3 col-sm-12">
@@ -206,7 +220,6 @@
                                 <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="name" name="name">
                             </div>
                         </div>
-
                         <div class="col-lg-7 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
@@ -216,6 +229,7 @@
                             </div>
                         </div>
                             
+<!--    Add a new photo button  -->
                         <div class="col-lg-2 col-sm-12 center-button">
                             <button type="submit" class="btn btn-primary btn-sm" href="#" name="insert">
                                 Insert new Photo
@@ -225,9 +239,6 @@
                 </form>
             </ul>
         </div>
-
     </div>
-
-
     
 {% endblock %}
