@@ -1,12 +1,11 @@
 {% extends 'base.html' %} 
 {% block content %}
 
-<!--    A page for (open) vacancies -->
-<!--    This section shows the ongoing vacancies     -->
+<!--    A page for managing fields -->
     <div class="container first-container">
         <div class="row">
 
-<!--    Title open section     -->
+<!--    Title section     -->
             <div class="col">
                 <h1>
                     SETUP section
@@ -37,7 +36,7 @@
 
 
             {% for stat in status %}
-                <form action="{{url_for('upsert_status')}}" method="POST">
+                <form action="{{url_for('uplete_status',status_id=stat._id)}}" method="POST">
                     
                     <li class="row">
                         <div class="col-4">
@@ -70,10 +69,10 @@
                         {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
                             <small>This is a mandatory status</small>
                         {% else %}
-                            <button type="button" class="btn btn-primary btn-sm" name="load" id="delete_status">
+                            <button type="submit" class="btn btn-primary btn-sm" href="#" name="save" id="delete_status">
                                 Save
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" name="load" id="delete_status">
+                            <button type="submit" class="btn btn-primary btn-sm" href="#" name="delete" id="delete_status">
                                 Delete
                             </button>
                         {% endif %}
@@ -82,7 +81,7 @@
                 </form>
             {% endfor %}
 
-                <form action="{{url_for('upsert_status')}}" method="POST">
+                <form action="{{url_for('insert_status')}}" method="POST">
                     <li class="row">
                         <div class="col-4">
                             <div class="input-group input-group-sm mb-3">
@@ -103,7 +102,7 @@
                         </div>
                             
                         <div class="col-4">
-                            <button type="button" class="btn btn-primary btn-sm" name="load" id="insert_status">
+                            <button type="submit" class="btn btn-primary btn-sm" href="{{url_for('insert_status')}}" name="insert">
                                 Insert new status
                             </button>
                         </div>

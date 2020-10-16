@@ -525,7 +525,7 @@ def delete_user(userid):
     """
     Deletes user from the database
     """
-    mongo.db.candidates.remove({'_id': ObjectId(userid)})
+    mongo.db.candidates.delete_one({'_id': ObjectId(userid)})
 
     return redirect(url_for('users'))
 
@@ -533,26 +533,36 @@ def delete_user(userid):
 @app.route('/setup')
 @admin_required
 def setup():
-    status = mongo.db.status.find()
+    status = mongo.db.status.find().sort([("type", 1)])
     return render_template("setup.html", status=status)
 
 
-@app.route('/update_status')
-@admin_required
-def update_status():
-    return render_template("setup.html")
-
-
-@app.route('/delete_status')
-@admin_required
-def delete_status():
-    return render_template("setup.html")
-
-
-@app.route('/insert_status')
+@app.route('/insert_status', methods=['POST'])
 @admin_required
 def insert_status():
-    return render_template("setup.html")
+    status = mongo.db.status
+    status.insert_one(request.form.to_dict())
+
+    return redirect(url_for('setup'))
+
+
+@app.route('/uplete_status/<status_id>', methods=['POST'])
+@admin_required
+def uplete_status(status_id):
+    status = mongo.db.status
+
+    if 'save' in request.form:
+        status.update_one(
+            {'_id': ObjectId(status_id)},
+            {'$set': {
+                'status_name': request.form.get('status_name'),
+                'type': request.form.get('type')
+            }})
+
+    if 'delete' in request.form:
+        mongo.db.status.delete_one({'_id': ObjectId(status_id)})
+
+    return redirect(url_for('setup'))
 
 
 @app.route('/vacancies')
@@ -701,7 +711,7 @@ def delete_vacancy(vacancy_id):
     """
     Deletes vacancy from the database
     """
-    mongo.db.vacancies.remove({'_id': ObjectId(vacancy_id)})
+    mongo.db.vacancies.delte_one({'_id': ObjectId(vacancy_id)})
 
     return redirect(url_for('vacancies'))
 
@@ -939,7 +949,7 @@ def delete_application(application_id):
     """
     Deletes vacancy from the database
     """
-    mongo.db.applications.remove({'_id': ObjectId(application_id)})
+    mongo.db.applications.delete_one({'_id': ObjectId(application_id)})
 
     return redirect(url_for('applications'))
 
