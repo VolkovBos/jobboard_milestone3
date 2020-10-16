@@ -102,10 +102,16 @@ footer a {
 }
 
 /*-----      Index       -----*/
+/*
 .display-container {
     max-width: 1500px;
 }
-
+*/
+.display-container {
+    max-height: 700px;
+    overflow: hidden;
+    position: relative;
+}
 img {
     vertical-align: middle;
     border-style: none;
