@@ -148,7 +148,7 @@
 
 
             {% for image in images %}
-                <form action="#" method="POST">
+                <form action="{{url_for('uplete_image',image_id=image._id)}}" method="POST">
                     
                     <li class="row">
                         <div class="col-lg-3 col-sm-12">
@@ -181,7 +181,7 @@
                 </form>
             {% endfor %}
 
-                <form action="{{url_for('insert_status')}}" method="POST">
+                <form action="{{url_for('insert_image')}}" method="POST">
                     <li class="row">
                         <div class="col-lg-3 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
@@ -202,8 +202,8 @@
                         </div>
                             
                         <div class="col-lg-2 col-sm-12 center-button">
-                            <button type="submit" class="btn btn-primary btn-sm" href="{{url_for('insert_status')}}" name="insert">
-                                Insert new Phtot
+                            <button type="submit" class="btn btn-primary btn-sm" href="#" name="insert">
+                                Insert new Photo
                             </button>
                         </div>
                     </li>

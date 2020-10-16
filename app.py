@@ -567,7 +567,35 @@ def uplete_status(status_id):
             }})
 
     if 'delete' in request.form:
-        mongo.db.status.delete_one({'_id': ObjectId(status_id)})
+        status.delete_one({'_id': ObjectId(status_id)})
+
+    return redirect(url_for('setup'))
+
+
+@app.route('/insert_image', methods=['POST'])
+@admin_required
+def insert_image():
+    photos = mongo.db.photos
+    photos.insert_one(request.form.to_dict())
+
+    return redirect(url_for('setup'))
+
+
+@app.route('/uplete_image/<image_id>', methods=['POST'])
+@admin_required
+def uplete_image(status_id):
+    photos = mongo.db.photos
+
+    if 'save' in request.form:
+        photos.update_one(
+            {'_id': ObjectId(status_id)},
+            {'$set': {
+                'name': request.form.get('name'),
+                'photo_url': request.form.get('photo_url')
+            }})
+
+    if 'delete' in request.form:
+        photos.delete_one({'_id': ObjectId(image_id)})
 
     return redirect(url_for('setup'))
 
