@@ -7,18 +7,29 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
 
 ## Contents
 1. [UX](#UX)
-2. [Features](#Features)
-3. [Technologies Used](#Technologies-Used)
-4. [Testing](#Testing)
-5. [Deployment](#Deployment)
-6. [Credits](#Credits)
+     - [Project Goals](#project-goals)
+     - [User Stories](#user-stories)
+     - [Wireframes](#wireframes)
+     - [Design](#design)
+     - [Database](#database)
+2. [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Features Left to Implement](#features-left-to-implement)
+3. [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Apps-Api](#apps-api)
+    - [Framework](#framework)
+    - [Resources](#resources)
+4. [Testing](#testing)
+5. [Deployment](#deployment)
+6. [Credits](#credits)
 
 ## UX
 
 ### Project Goals
 [BOS UP](https://jobboard-milestone3.herokuapp.com/) is part of my Code Institute Full Stack Software Development course, the Data Centric Development module. The scope for this milestone project is to "Build a MongoDB-backed Flask project for a web application that allows users to store and manipulate data records about a particular domain." So I created a jobboard where visitors can access the vacancies and register, candidates can login and apply and admins can admin. All CRUD operations are implemented in the site, where I made a distinctive choice about what user can do which operation. The target audience is for people around all ages who are looking for a job in our branche (utility sector).
 
-### User stories
+### User Stories
 <details>
 <summary>General website user (visitor)</summary>
 
@@ -283,7 +294,7 @@ I have used the following technologys for this project:
     - functools, for my own view decorators
 * [BSON](https://en.wikipedia.org/wiki/BSON), to store my data
 
-### Apps, Api
+### Apps-Api
 * [MongoDB](https://www.mongodb.com), for my database
 * [Heroku](https://heroku.com), to deploy my app
 * [Gitpod](https://gitpod.io), for development
