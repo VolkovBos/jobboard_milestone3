@@ -49,6 +49,10 @@ body {
     padding-right: 50px;
 }
 
+.search-form {
+    width: 15rem;
+}
+
 /*-----      Footer      -----*/
 footer {
     background-color: lightskyblue;

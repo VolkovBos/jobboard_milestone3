@@ -1,5 +1,6 @@
 # General imports for this project
 import os
+import re
 from flask import (
     abort,
     flash,
@@ -546,6 +547,28 @@ def vacancies():
         "vacancies.html",
         vacancies_open=vacancies_open,
         vacancies_closed=vacancies_closed
+    )
+
+
+@app.route('/search_vacancy')
+def search_vacancy():
+    """
+    Option to search in the navbar for vacancies
+    Got the solution here on slack:
+    https://code-institute-room.slack.com/archives/C7JQY2RHC/p1597516473422900?thread_ts=1597493944.417900&cid=C7JQY2RHC
+    """
+    query = request.args.get("search")
+    vacs = mongo.db.vacancies.find(
+        {"$or": [{"vacancy_name": {"$regex": re.compile(
+                    query, re.IGNORECASE)}},
+                 {"location": {"$regex": re.compile(
+                    query, re.IGNORECASE)}},
+                 {"vacancy_text": {"$regex": re.compile(
+                    query, re.IGNORECASE)}}]})
+
+    return render_template(
+        'vacancies.html',
+        vacancies_open=vacs,
     )
 
 
