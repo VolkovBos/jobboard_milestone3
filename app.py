@@ -534,7 +534,14 @@ def delete_user(userid):
 @admin_required
 def setup():
     status = mongo.db.status.find().sort([("type", 1)])
-    return render_template("setup.html", status=status)
+    profiles = mongo.db.profiles.find().sort([("name", 1)])
+    images = mongo.db.photos.find().sort([("name", 1)])
+    return render_template(
+        "setup.html",
+        status=status,
+        profiles=profiles,
+        images=images
+    )
 
 
 @app.route('/insert_status', methods=['POST'])
