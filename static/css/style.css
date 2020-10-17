@@ -452,6 +452,10 @@ svg {
         margin-top: 20px;
         position: absolute;
     }
+
+    .mobile-hidden {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 480px) {

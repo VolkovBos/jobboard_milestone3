@@ -25,17 +25,17 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>Candidate</th>
+                        <th class="mobile-hidden">Candidate</th>
                         <th>Userprofile</th>
-                        <th>Status</th>
-                        <th>Approved</th>
+                        <th class="mobile-hidden">Status</th>
+                        <th class="mobile-hidden">Approved</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
 
 <!--    User list with to approve status    -->
-                    {% for user in users_to_approve %}
+                {% for user in users_to_approve %}
 
 <!--    User info   -->
                     <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
@@ -45,16 +45,16 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
                     {% if user.status == 'active' %}
-                        <td class="text-success">{{user.status}}</td>
+                        <td class="text-success mobile-hidden">{{user.status}}</td>
                     {% else %}
-                        <td class="text-danger">{{user.status}}</td>
+                        <td class="text-danger mobile-hidden">{{user.status}}</td>
                     {% endif %} {% if user.approved == True %}
-                        <td class="text-success">{{user.approved}}</td>
+                        <td class="text-success mobile-hidden">{{user.approved}}</td>
                     {% else %}
-                        <td class="text-danger">{{user.approved}}</td>
+                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
                     {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
@@ -106,7 +106,7 @@
                             </div>
                         </td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -127,10 +127,10 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>Candidate</th>
+                        <th class="mobile-hidden">Candidate</th>
                         <th>Userprofile</th>
-                        <th>Status</th>
-                        <th>Approved</th>
+                        <th class="mobile-hidden">Status</th>
+                        <th class="mobile-hidden">Approved</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -147,17 +147,18 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
-                        {% if user.status == 'active' %}
-                        <td class="text-success">{{user.status}}</td>
-                        {% else %}
-                        <td class="text-danger">{{user.status}}</td>
-                        {% endif %} {% if user.approved == True %}
-                        <td class="text-success">{{user.approved}}</td>
-                        {% else %}
-                        <td class="text-danger">{{user.approved}}</td>
-                        {% endif %}
+                    {% if user.status == 'active' %}
+                        <td class="text-success mobile-hidden">{{user.status}}</td>
+                    {% else %}
+                        <td class="text-danger mobile-hidden">{{user.status}}</td>
+                    {% endif %} 
+                    {% if user.approved == True %}
+                        <td class="text-success mobile-hidden">{{user.approved}}</td>
+                    {% else %}
+                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
+                    {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
                         </td>
@@ -234,10 +235,10 @@
                     <tr>
                         <th>#</th>
                         <th>Username</th>
-                        <th>Candidate</th>
+                        <th class="mobile-hidden">Candidate</th>
                         <th>Userprofile</th>
-                        <th>Status</th>
-                        <th>Approved</th>
+                        <th class="mobile-hidden">Status</th>
+                        <th class="mobile-hidden">Approved</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -254,16 +255,16 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.profile}}</td>
                         {% if user.status == 'active' %}
-                        <td class="text-success">{{user.status}}</td>
+                        <td class="text-success mobile-hidden">{{user.status}}</td>
                         {% else %}
-                        <td class="text-danger">{{user.status}}</td>
+                        <td class="text-danger mobile-hidden">{{user.status}}</td>
                         {% endif %} {% if user.approved == True %}
-                        <td class="text-success">{{user.approved}}</td>
+                        <td class="text-success mobile-hidden">{{user.approved}}</td>
                         {% else %}
-                        <td class="text-danger">{{user.approved}}</td>
+                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
                         {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
