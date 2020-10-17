@@ -280,7 +280,7 @@ def change_password(userid):
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(userid)})
 
     return render_template(
-        'changepassword.html',
+        'index.html',
         user=the_user)
 
 
@@ -307,13 +307,13 @@ def update_password(user_id):
             else:
                 flash("Your current password is incorrect")
                 return render_template(
-                    'changepassword.html',
+                    'profile.html',
                     user=the_user)
 
         else:
             flash("The new passwords do not match")
             return render_template(
-                'changepassword.html',
+                'index.html',
                 user=the_user)
 
     return render_template(
@@ -723,10 +723,6 @@ def update_vacancy(vacancy_id):
     Updates vacancy to the database
     Checks build in to see which button is being used
     """
-    # If cancel button is used
-    if 'cancel' in request.form:
-        return redirect(url_for('vacancies'))
-
     vacancies = mongo.db.vacancies
     vacancies.update_one(
         {'_id': ObjectId(vacancy_id)},
@@ -916,16 +912,9 @@ def insert_application():
                 'vacancy_text': vacancy_text
             })
 
-    # User is redirected
+    # User is redirected to My Applications
     if g.user['profile'] != 'admin':
-
-        # To My Applications
-        if 'save' in request.form:
-            return redirect(url_for('myapplications'))
-
-        # To Open Vacancies
-        if 'cancel' in request.form:
-            return redirect(url_for('vacancies'))
+        return redirect(url_for('myapplications'))
 
     # Admin is redirected to all applications
     if g.user['profile'] == 'admin':
