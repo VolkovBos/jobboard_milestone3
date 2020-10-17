@@ -70,7 +70,11 @@ footer {
     margin: initial;
 }
 
-#footer-right h5,  .social-links{
+.only-mobile {
+    display: none;
+}
+
+#footer-right h5,  .social-links {
     text-align: right;
 }
 
@@ -356,10 +360,10 @@ svg {
 /*-----      Smaller Devices      -----*/
 @media only screen and (max-width: 768px) {
     /*-----      Footer      -----*/
-    .social-link-spacing {
+    /*.social-link-spacing {
         display: inline-block;
         margin-bottom: 5px;
-    }
+    }*/
 
     /*-----      Index      -----*/
     .catch-box {
@@ -427,6 +431,22 @@ svg {
     }
 
     /*-----      Footer      -----*/
+    .center-mobile {
+        text-align: center;
+        margin: auto;
+    }
+
+    .only-mobile {
+        display: inline;
+        margin: auto;
+    }
+
+    #footer-right h5{
+        text-align: center;
+        margin: auto;
+    }
+
+    /*
     footer {
         padding-bottom: 40px;
     }
@@ -451,7 +471,7 @@ svg {
         padding: 0;
         margin-top: 20px;
         position: absolute;
-    }
+    }*/
 
     .mobile-hidden {
         display: none;
