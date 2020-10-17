@@ -313,7 +313,7 @@ def update_password(user_id):
         else:
             flash("The new passwords do not match")
             return render_template(
-                'index.html',
+                'profile.html',
                 user=the_user)
 
     return render_template(
