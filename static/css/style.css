@@ -59,6 +59,7 @@ footer {
     color: #777777;
     min-height: 150px;
     margin: 0;
+    width: 100%
 }
 
 #footer-details {
@@ -450,5 +451,24 @@ svg {
         padding: 0;
         margin-top: 20px;
         position: absolute;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /*-----      Index      -----*/
+    h1 {
+        font-size: 1.8rem;
+    }
+    div.header {
+        height: 80px;
+    }
+}
+
+/*-----      iPad Pro 12.9   -----*/
+@media only screen and (width: 1024px) and ( height:1366px) {
+    /* On the Ipad a fixed footer due to high resolution */
+    footer {
+        position: fixed;
+        bottom: 0;
     }
 }
