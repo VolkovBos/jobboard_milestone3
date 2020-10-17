@@ -29,7 +29,6 @@
                     </div>
                     
 <!--    User name & Profile     -->
-                {% if g.user['profile'] == 'admin' %}
                     <div class="row">
                         <div class="col-12">
                             <h1>
@@ -43,13 +42,13 @@
                                 <label for="user_name">
                                     User Name
                                 </label>
-                                <input value="{{user.user_name}}" type="text" class="form-control" id="user_name" name="user_name" required>
+                                <input value="{{user.user_name}}" type="text" class="form-control" id="user_name" name="user_name" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
                             </div>
                             <div class="col-6">
                                 <label for="profile">
                                     Profile
                                 </label>
-                                <select class="form-control" id="profile" name="profile" required>
+                                <select class="form-control" id="profile" name="profile" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
                                     <option disabled>
                                         Choose Profile
                                     </option>
@@ -72,7 +71,7 @@
                                 <label for="status">
                                     Status
                                 </label>
-                                <select class="form-control" id="status" name="status" required>
+                                <select class="form-control" id="status" name="status" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
                                     <option disabled>
                                         Choose Status
                                     </option>
@@ -87,11 +86,10 @@
                                 <label for="user_id">
                                     User Id
                                 </label>
-                                <input value="{{user.user_id}}" type="number" class="form-control" id="user_id" name="user_id" required>
+                                <input value="{{user.user_id}}" type="number" class="form-control" id="user_id" name="user_id" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
                             </div>
                         </div>
                     </div>
-                {% endif %}
 
 <!--    First & Last name of the candidate    -->
                     <div class="row">
@@ -306,9 +304,7 @@
                         <button type="submit" class="btn btn-primary" name="save">
                             Save
                         </button>
-                        <button type="submit" class="btn btn-danger" name="cancel">
-                            Cancel
-                        </button>
+                        <a href="{{ url_for('profile', userid=g.user['_id']) }}" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>
             </div>
