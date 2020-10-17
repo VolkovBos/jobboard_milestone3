@@ -918,7 +918,7 @@ def insert_application():
 
     # User is redirected
     if g.user['profile'] != 'admin':
-        
+
         # To My Applications
         if 'save' in request.form:
             return redirect(url_for('myapplications'))
