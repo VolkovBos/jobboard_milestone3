@@ -916,9 +916,16 @@ def insert_application():
                 'vacancy_text': vacancy_text
             })
 
-    # User is redirected to Myapplications
+    # User is redirected
     if g.user['profile'] != 'admin':
-        return redirect(url_for('myapplications'))
+        
+        # To My Applications
+        if 'save' in request.form:
+            return redirect(url_for('myapplications'))
+
+        # To Open Vacancies
+        if 'cancel' in request.form:
+            return redirect(url_for('vacancies'))
 
     # Admin is redirected to all applications
     if g.user['profile'] == 'admin':
