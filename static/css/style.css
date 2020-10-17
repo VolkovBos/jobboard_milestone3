@@ -173,6 +173,8 @@ h2 {
         top: 40%;
         left: 50%;
         width: 20%;
+        max-width: 300px;
+        max-height: 300px;
         transform: translate(-50%, -50%);
     }
 }
@@ -182,6 +184,8 @@ h2 {
         top: 40%;
         left: 50%;
         width: 20%;
+        max-width: 300px;
+        max-height: 300px;
         transform: translate(-50%, -50%);
     }
 }
@@ -376,6 +380,8 @@ svg {
             top: 30%;
             left: 50%;
             width: 20%;
+            max-width: 200px;
+            max-height: 200px;
             transform: translate(-50%, -50%);
         }
     }
@@ -385,6 +391,8 @@ svg {
             top: 30%;
             left: 50%;
             width: 20%;
+            max-width: 200px;
+            max-height: 200px;    
             transform: translate(-50%, -50%);
         }
     }
@@ -402,6 +410,8 @@ svg {
             top: 25%;
             left: 50%;
             width: 20%;
+            max-width: 100px;
+            max-height: 100px;
             transform: translate(-50%, -50%);
         }
     }
@@ -411,6 +421,8 @@ svg {
             top: 25%;
             left: 50%;
             width: 20%;
+            max-width: 100px;
+            max-height: 100px;
             transform: translate(-50%, -50%);
         }
     }
