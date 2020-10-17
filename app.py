@@ -273,21 +273,15 @@ def profile(userid):
             {"_id": ObjectId(userid)}))
 
 
-# Change password page for users
-@app.route('/change_password/<userid>')
-@login_required
-def change_password(userid):
-    the_user = mongo.db.candidates.find_one({"_id": ObjectId(userid)})
-
-    return render_template(
-        'index.html',
-        user=the_user)
-
-
-# Change the password in MongoDB
 @app.route('/update_password/<user_id>', methods=['POST'])
 @login_required
 def update_password(user_id):
+    """
+    This will update the password from a modal available at the profile
+    page for the user. Some checks are being set. A user should always
+    fill in his current password and twice the new one, so no typos
+    can be made.
+    """
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(user_id)})
 
     if request.method == 'POST':
@@ -296,25 +290,23 @@ def update_password(user_id):
         hash_pass = generate_password_hash(form['password_new'])
         print(form)
 
-        # Check if the password and password actually match
+        # Check if the new passwords actually match
         if form['password_new'] == form['password_new_confirm']:
 
+            # Check if the old password is correct
             if check_password_hash(the_user['password'], form['password_old']):
                 users.update(
                     {'_id': ObjectId(user_id)},
                     {'$set': {'password': hash_pass}})
+                flash("Your password is changed")
 
+            # Old password is incorrect
             else:
                 flash("Your current password is incorrect")
-                return render_template(
-                    'profile.html',
-                    user=the_user)
 
+        # Confirm and new password are not the same
         else:
             flash("The new passwords do not match")
-            return render_template(
-                'profile.html',
-                user=the_user)
 
     return render_template(
         'profile.html',
