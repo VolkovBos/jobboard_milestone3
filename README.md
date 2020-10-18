@@ -286,6 +286,7 @@ I have used the following technologys for this project:
 * [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
 * [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
 * [TinyPNG](https://tinypng.com/), for reducing the filesizes on my images
+* [Am I Responsive](http://ami.responsivedesign.is/#), for README image
 
 ### Framework
 * [Materialize](https://materializecss.com/), for icons
