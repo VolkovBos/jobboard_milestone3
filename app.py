@@ -159,7 +159,8 @@ def register():
                             'password': hash_pass,
                             'approved': False,
                             'status': 'active',
-                            'user_id': max_user_id
+                            'user_id': max_user_id,
+                            'profile': 'user'
                         }
                     )
                     # Check if user is actually saved
