@@ -153,7 +153,8 @@ def register():
                             'user_name': username1,
                             'email': email,
                             'password': hash_pass,
-                            'approved': False
+                            'approved': False,
+                            'status': 'active'
                         }
                     )
                     # Check if user is actually saved
