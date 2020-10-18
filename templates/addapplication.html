@@ -115,7 +115,7 @@
                             {% if g.user['profile'] != 'admin' %}
                                 <select id="candidate_id" name="candidate_id" class="form-control">
                                     <option value="{{ g.user['_id']  }}" selected>
-                                        {{ g.user['first_name']  }} {{ g.user['last_name']  }}
+                                        {{ g.user['first_name']  }}&nbsp;{{ g.user['last_name']  }}
                                     </option>
                                 </select>
                             {% else %}
@@ -140,7 +140,7 @@
 <!-- Inactive candidates shown in dropdown menu -->
                                 {% for can in inactive_candidates %}
                                     <option value="{{ can._id }}">
-                                        {{ can.first_name }} {{ can.last_name }}
+                                        {{ can.first_name }}&nbsp;{{ can.last_name }}
                                     </option>
                                 {% endfor %}
                                 </select> 

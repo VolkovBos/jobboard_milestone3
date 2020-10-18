@@ -49,6 +49,13 @@
     {% for apl in applications_open %}
         <div class="card col-sm-5 col-md-3">
 
+<!--    Show the candidate name for the admin   -->
+    {%  if g.user['profile'] == 'admin' %}
+        <h5 class="card-title center">
+            {{apl.candidate_name}}
+        </h5>
+    {% endif %}
+
 <!--    Only shows image when its available     -->
         {% if apl.vacancy_photo_url != '' and apl.vacancy_photo_url != null %}
             <img class="card-img-top" src="{{apl.vacancy_photo_url}}" alt="Vacancy image">
@@ -105,6 +112,13 @@
     {% for apl in applications_closed %}
         <div class="card col-sm-5 col-md-3">
 
+<!--    Show the candidate name for the admin   -->
+    {%  if g.user['profile'] == 'admin' %}
+        <h5 class="card-title center">
+            {{apl.candidate_name}}
+        </h5>
+    {% endif %}
+    
 <!--    Only shows image when its available     -->
         {% if apl.photo_url != '' and apl.photo_url != null %}
             <img class="card-img-top" src="{{apl.photo_url}}" alt="Vacancy image">

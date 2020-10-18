@@ -811,18 +811,19 @@ def myapplications():
     for overview of applications
     users can only check their own applications
     """
+    user_id = str(g.user['_id'])
 
     return render_template(
         "applications.html",
         applications_open=mongo.db.applications.find(
             {
-                'candidate_id': g.user['_id'],
+                'candidate_id': user_id,
                 'status': {'$ne': 'closed'}
             }
         ),
         applications_closed=mongo.db.applications.find(
             {
-                'candidate_id': g.user['_id'],
+                'candidate_id': user_id,
                 'status': 'closed'
             }
         )
@@ -920,7 +921,7 @@ def insert_application():
             'comments': request.form.get('comments'),
             'candidate_id': candidate_id,
             'candidate_name': the_candidate.get('first_name')
-            + the_candidate.get('last_name'),
+            + ' ' + the_candidate.get('last_name'),
             'vacancy_id': vacancy_id,
             'vacancy_job_title': the_vacancy.get('job_title'),
             'vacancy_hours': vacancy_hours,
