@@ -147,6 +147,10 @@ def register():
                     # Hash password
                     hash_pass = generate_password_hash(user_password1)
 
+                    # Get the highest user_id from the database and add 1
+                    max_user_id = mongo.db.candidates.find().sort(
+                         [("user_id", -1)]).limit(1)[0]['user_id'] + 1
+
                     # Create new user with hashed password
                     mongo.db.candidates.insert_one(
                         {
@@ -154,7 +158,8 @@ def register():
                             'email': email,
                             'password': hash_pass,
                             'approved': False,
-                            'status': 'active'
+                            'status': 'active',
+                            'user_id': max_user_id
                         }
                     )
                     # Check if user is actually saved
