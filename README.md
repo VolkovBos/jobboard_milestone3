@@ -3,7 +3,7 @@
 ## Introduction
 Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is created to let potential candidates know who we are and what we do. And also we want to give the option to see if they want to come and join us! If a candidate registers on our site and our recruiter has had contact with them, the candidate can apply on several cool and interesting vacancies. At all time they can see where they are in the application process, which will get them more engaged with the whole team. I hope you take a look at the site and maybe we will see you at the meeting!
 
-![alt text](static/img/responsive.jpg)
+![Website design](static/img/responsive.jpg)
 
 ## Contents
 1. [UX](#UX)
@@ -231,39 +231,8 @@ This website has a [MongoDB](https://www.mongodb.com) databases called jobboard_
 #### Tables
 The most tables are self explanatory, but I consciously chose to use one table for candidates and users due to the size of the project and the simplicity of the current business processes. I allready created a profiles table, this simplifies editing or creating a new user by the admin and prevents a typo but also this anticipates on the possibility of implementing new user profiles. 
 
-#### Tables design
-<details>
-<summary>Vacancies</summary>
-<br>
-
-![Vacancies](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Vacancy_table.jpg?raw=true)
-
-</details>
-<details>
-<summary>Candidates/users</summary>
-<br>
-
-![Candidates/users](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Candidate_table.jpg?raw=true)
-
-</details><details>
-<summary>Application</summary>
-<br>
-
-![Application](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Application_table.jpg?raw=true)
-
-</details><details>
-<summary>Statusses</summary>
-<br>
-
-![Statusses](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Statusses_table.jpg?raw=true)
-
-</details><details>
-<summary>Profiles</summary>
-<br>
-
-![Profiles](https://github.com/VolkovBos/milestone3_jobboard/blob/master/static/img/Profiles_table.jpg?raw=true)
-
-</details>
+#### Tables designed
+![Tables overview](static/img/tables.jpg)
 
 ## Features
 

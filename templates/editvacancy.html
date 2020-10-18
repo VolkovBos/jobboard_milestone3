@@ -8,7 +8,7 @@
 <!--    Title section     -->
             <div class="col">
                 <h1>
-                    Vacancy : {{vacancy.vacancy_name }}
+                    Vacancy : {{vacancy.job_title }}
                 </h1>
             {% if vacancy.photo_url != '' and vacancy.photo_url != null %}
                 <img class="card-img-top" src="{{vacancy.photo_url}}" alt="Vacancy image">
@@ -22,25 +22,25 @@
 
 <!--    Name of the vacancy, function title of the job    -->
                     <div class="form-group">
-                        <label for="vacancy_name">
+                        <label for="job_title">
                             Vacancy Name
                         </label>
-                        <input type="text" class="form-control" id="vacancy_name" name="vacancy_name" value="{{vacancy.vacancy_name }}">
+                        <input type="text" class="form-control" id="job_title" name="job_title" value="{{vacancy.job_title }}">
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
 
 <!--    Vacancy status is used for rendering vacancies on the global side of the website    -->
-                                <label for="vacancy_status">
-                                    Vacancy Status
+                                <label for="status">
+                                    Status
                                 </label>
-                                <select class="form-control" id="vacancy_status" name="vacancy_status">
+                                <select class="form-control" id="status" name="status">
                                     <option disabled>
                                         Choose Status
                                     </option>
                             {% for stat in status %}
-                                {% if stat.status_name == vacancy.vacancy_status %}
+                                {% if stat.status_name == vacancy.status %}
                                     <option value="{{ stat.status_name }}" selected>
                                         {{ stat.status_name }}
                                     </option>
@@ -120,10 +120,10 @@
 
 <!--    Vacancy text, line break can be used in this textarea    -->
                     <div class="form-group">
-                        <label for="vacancy_text">
+                        <label for="text">
                             Vacancy Text
                         </label>
-                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{vacancy.vacancy_text }}</textarea>
+                        <textarea class="form-control" id="text" name="text" rows="20">{{vacancy.text }}</textarea>
                     </div>
 
 <!--    Save button will save and redirect back to the vacancies page, update will save and stay on this page    -->

@@ -22,15 +22,15 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-8">
-                                <label for="vacancy_name">
-                                    Vacancy Name
+                                <label for="vacancy_job_title">
+                                    Job Title
                                 </label>
 
 <!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
                                 <select id="vacancy_id" name="vacancy_id" class="form-control">
                                     <option value="{{ vacancy._id }}" selected>
-                                        {{ vacancy.vacancy_name }}
+                                        {{ vacancy.job_title }}
                                     </option>
                                 </select>
                             {% else %}
@@ -44,13 +44,13 @@
 
 <!-- Open vacancies shown in dropdown menu -->
                                 {% for vac in open_vacancies %}
-                                    {% if vac.vacancy_name == vacancy.vacancy_name %}
+                                    {% if vac.job_title == vacancy.job_title %}
                                     <option value="{{ vac._id }}" selected>
-                                        {{ vac.vacancy_name }}
+                                        {{ vac.job_title }}
                                     </option>
                                     {% else %}
                                     <option value="{{ vac._id }}">
-                                        {{ vac.vacancy_name }}
+                                        {{ vac.job_title }}
                                     </option>
                                     {% endif %}
                                 {% endfor %}
@@ -60,13 +60,13 @@
 
 <!-- Closed vacancies shown in dropdown menu -->
                                 {% for vac in closed_vacancies %}
-                                    {% if vac.vacancy_name == vacancy.vacancy_name %}
+                                    {% if vac.job_title == vacancy.job_title %}
                                     <option value="{{ vac._id }}" selected>
-                                        {{ vac.vacancy_name }}
+                                        {{ vac.job_title }}
                                     </option>
                                     {% else %}
                                     <option value="{{ vac._id }}">
-                                        {{ vac.vacancy_name }}
+                                        {{ vac.job_title }}
                                     </option>
                                     {% endif %}
                                 {% endfor %}
@@ -77,7 +77,7 @@
 <!--    Application status     -->
                             <div class="col-4">
                                 <label for="status">
-                                    Status Job Application
+                                    Status
                                 </label> 
                             {% if g.user['profile'] != 'admin' %}
                                 <input value="open" id="status" name="status" type="text" class="form-control" readonly/>
@@ -101,10 +101,10 @@
 
 <!--    Availability of the candidate and candidate name    -->
                             <div class="col-6">
-                                <label for="start_date">
+                                <label for="availability_date">
                                     Available from
                                 </label>
-                                <input class="form-control" type="date" id="start_date" name="start_date">
+                                <input class="form-control" type="date" id="availability_date" name="availability_date">
                             </div>
                             <div class="input-field col s6">
                                 <label for="candidate_name">
@@ -113,9 +113,13 @@
 
 <!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
-                                <input value="{{ g.user['user_name'] }}" id="candidate_name" name="candidate_name" type="text" class="form-control" readonly /> 
+                                <select id="candidate_id" name="candidate_id" class="form-control">
+                                    <option value="{{ g.user['_id']  }}" selected>
+                                        {{ g.user['first_name']  }} {{ g.user['last_name']  }}
+                                    </option>
+                                </select>
                             {% else %}
-                                <select id="candidate_name" name="candidate_name" class="form-control">
+                                <select id="candidate_id" name="candidate_id" class="form-control">
                                     <option disabled selected>
                                         Choose Candidate
                                     </option>
@@ -125,7 +129,9 @@
 
 <!-- Active candidates shown in dropdown menu -->
                                 {% for can in active_candidates %}
-                                    <option value="{{ can.user_name }}">{{ can.user_name }}</option>
+                                    <option value="{{ can._id }}">
+                                        {{ can.first_name }} {{ can.last_name }}
+                                    </option>
                                 {% endfor %}
                                     <option disabled>
                                         -- Inactive Candidates --
@@ -133,8 +139,8 @@
 
 <!-- Inactive candidates shown in dropdown menu -->
                                 {% for can in inactive_candidates %}
-                                    <option value="{{ can.user_name }}">
-                                        {{ can.user_name }}
+                                    <option value="{{ can._id }}">
+                                        {{ can.first_name }} {{ can.last_name }}
                                     </option>
                                 {% endfor %}
                                 </select> 
@@ -157,7 +163,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h1>
-                                Vacancy information
+                                Vacancy Information
                             </h1>
                         </div>
                     </div>
@@ -168,9 +174,9 @@
                                     Hours
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
-                                <input type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}">
+                                <input type="text" class="form-control" id="vacancy_hours" name="vacancy_hours" value="{{ vacancy.hours }}">
                             {% else%}
-                                <input type="text" class="form-control" id="hours" name="hours" value="{{ vacancy.hours }}" readonly>
+                                <input type="text" class="form-control" id="vacancy_hours" name="vacancy_hours" value="{{ vacancy.hours }}" readonly>
                             {% endif %}
                             </div>
                             <div class="col-6">
@@ -178,9 +184,9 @@
                                     Salary
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
-                                <input type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}">
+                                <input type="text" class="form-control" id="vacancy_salary" name="vacancy_salary" value="{{ vacancy.salary }}">
                             {% else%}
-                                <input type="text" class="form-control" id="salary" name="salary" value="{{ vacancy.salary }}" readonly>
+                                <input type="text" class="form-control" id="vacancy_salary" name="vacancy_salary" value="{{ vacancy.salary }}" readonly>
                             {% endif %}
                             </div>
                         </div>
@@ -190,13 +196,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <label for="photo_url">
+                                <label for="vacancy_photo_url">
                                     Url for the Photo
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
-                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}">
+                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ vacancy.photo_url }}">
                             {% else%}
-                                <select class="form-control" id="photo_url" name="photo_url" value="{{ vacancy.photo_url }}" readonly>
+                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ vacancy.photo_url }}" readonly>
                             {% endif %}
                                 {% if vacancy.photo_url == '' %}
                                     <option disabled selected>
@@ -223,9 +229,9 @@
                                     Location
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
-                                <input type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}">
+                                <input type="text" class="form-control" id="vacancy_location" name="vacancy_location" value="{{ vacancy.location }}">
                             {% else%}
-                                <input type="text" class="form-control" id="location" name="location" value="{{ vacancy.location }}" readonly>
+                                <input type="text" class="form-control" id="vacancy_location" name="vacancy_location" value="{{ vacancy.location }}" readonly>
                             {% endif %}
                             </div>
                         </div>
@@ -237,9 +243,9 @@
                             Vacancy Text
                         </label>
                     {% if g.user['profile'] == 'admin' %}
-                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{vacancy.vacancy_text}}</textarea>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20">{{vacancy.text}}</textarea>
                     {% else%}
-                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{vacancy.vacancy_text}}</textarea>
+                        <textarea class="form-control" id="vacancy_text" name="vacancy_text" rows="20" readonly>{{vacancy.text}}</textarea>
                     {% endif %}
                     </div>
                 {% endif %}

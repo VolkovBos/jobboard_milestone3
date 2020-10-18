@@ -50,8 +50,8 @@
         <div class="card col-sm-5 col-md-3">
 
 <!--    Only shows image when its available     -->
-        {% if apl.photo_url != '' and apl.photo_url != null %}
-            <img class="card-img-top" src="{{apl.photo_url}}" alt="Vacancy image">
+        {% if apl.vacancy_photo_url != '' and apl.vacancy_photo_url != null %}
+            <img class="card-img-top" src="{{apl.vacancy_photo_url}}" alt="Vacancy image">
         {% endif %}
             <div class="card-body">
                 <div class="row center-button">
@@ -72,23 +72,16 @@
 
 <!--    Vacancy information, where the candidate has applied for      -->
                 <h5 class="card-title center">
-                    {{apl.vacancy_name}}
+                    {{apl.vacancy_job_title}}
                 </h5>
                 <hr class="hr-vacancy">
                 <p class="card-text center">
-                    {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
-                    {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
-                    {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
+                    {% if apl.vacancy_hours != null and apl.vacancy_hours != '' %}Hours : {{apl.vacancy_hours}} {% endif %}<br>
+                    {% if apl.vacancy_salary != null and apl.vacancy_salary != '' %}Salary : {{apl.vacancy_salary}} {% endif %}<br>
+                    {% if apl.vacancy_location != null and apl.vacancy_location != '' %}Location : {{apl.vacancy_location}} {% endif %}
                 </p>
                 <hr class="hr-vacancy">
-                <p class="card-text textarea-breaks">
-                    {{apl.vacancy_text}}
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        closes on {{apl.end_date}}
-                    </small>
-                </p>
+                <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
             </div>
         </div>
     {% endfor %}
@@ -135,23 +128,16 @@
 
 <!--    Vacancy information, where the candidate has applied for      -->
                 <h5 class="card-title center">
-                    {{apl.vacancy_name}}
+                    {{apl.vacancy_job_title}}
                 </h5>
                 <hr class="hr-vacancy">
                 <p class="card-text center">
-                    {% if apl.hours != null and apl.hours != '' %}Hours : {{apl.hours}} {% endif %}<br>
-                    {% if apl.salary != null and apl.salary != '' %}Salary : {{apl.salary}} {% endif %}<br>
-                    {% if apl.location != null and apl.location != '' %}Location : {{apl.location}} {% endif %}
+                    {% if apl.vacancy_hours != null and apl.vacancy_hours != '' %}Hours : {{apl.vacancy_hours}} {% endif %}<br>
+                    {% if apl.vacancy_salary != null and apl.vacancy_salary != '' %}Salary : {{apl.vacancy_salary}} {% endif %}<br>
+                    {% if apl.vacancy_location != null and apl.vacancy_location != '' %}Location : {{apl.vacancy_location}} {% endif %}
                 </p>
                 <hr class="hr-vacancy">
-                <p class="card-text textarea-breaks">
-                    {{apl.vacancy_text}}
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        closes on {{apl.end_date}}
-                    </small>
-                </p>
+                <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
             </div>
         </div>
     {% endfor %}

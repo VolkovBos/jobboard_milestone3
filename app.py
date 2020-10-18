@@ -629,9 +629,9 @@ def vacancies():
       they can CRUD all vacancies
     """
     vacancies_open = mongo.db.vacancies.find(
-        {'vacancy_status': {'$ne': 'closed'}})
+        {'status': {'$ne': 'closed'}})
     vacancies_closed = mongo.db.vacancies.find(
-        {'vacancy_status': 'closed'})
+        {'status': 'closed'})
 
     return render_template(
         "vacancies.html",
@@ -649,11 +649,11 @@ def search_vacancy():
     """
     query = request.args.get("search")
     vacs = mongo.db.vacancies.find(
-        {"$or": [{"vacancy_name": {"$regex": re.compile(
+        {"$or": [{"job_title": {"$regex": re.compile(
                     query, re.IGNORECASE)}},
                  {"location": {"$regex": re.compile(
                     query, re.IGNORECASE)}},
-                 {"vacancy_text": {"$regex": re.compile(
+                 {"text": {"$regex": re.compile(
                     query, re.IGNORECASE)}}]})
 
     return render_template(
@@ -685,7 +685,18 @@ def insert_vacancy():
     Insert vacancy to the database
     """
     vacancies = mongo.db.vacancies
-    vacancies.insert_one(request.form.to_dict())
+    vacancies.insert_one(
+        {
+            'job_title': request.form.get('job_title'),
+            'status': request.form.get('status'),
+            'location': request.form.get('location'),
+            'hours': request.form.get('hours'),
+            'salary': request.form.get('salary'),
+            'start_date': request.form.get('start_date'),
+            'end_date': request.form.get('end_date'),
+            'photo_url': request.form.get('photo_url'),
+            'text': request.form.get('text')
+        })
 
     return redirect(url_for('vacancies'))
 
@@ -719,15 +730,15 @@ def update_vacancy(vacancy_id):
     vacancies.update_one(
         {'_id': ObjectId(vacancy_id)},
         {'$set': {
-            'vacancy_name': request.form.get('vacancy_name'),
-            'vacancy_status': request.form.get('vacancy_status'),
+            'job_title': request.form.get('job_title'),
+            'status': request.form.get('status'),
             'location': request.form.get('location'),
             'hours': request.form.get('hours'),
             'salary': request.form.get('salary'),
             'start_date': request.form.get('start_date'),
             'end_date': request.form.get('end_date'),
             'photo_url': request.form.get('photo_url'),
-            'vacancy_text': request.form.get('vacancy_text')
+            'text': request.form.get('text')
         }})
 
     # If update button is used
@@ -747,10 +758,10 @@ def close_vacancy(vacancy_id):
     Closes a vacancy, set status on closed
     """
     vacancies = mongo.db.vacancies
-    vacancies.update(
+    vacancies.update_one(
         {'_id': ObjectId(vacancy_id)},
         {'$set': {
-            'vacancy_status': 'closed'
+            'status': 'closed'
         }})
 
     return redirect(url_for('vacancies'))
@@ -762,7 +773,7 @@ def delete_vacancy(vacancy_id):
     """
     Deletes vacancy from the database
     """
-    mongo.db.vacancies.delte_one({'_id': ObjectId(vacancy_id)})
+    mongo.db.vacancies.delete_one({'_id': ObjectId(vacancy_id)})
 
     return redirect(url_for('vacancies'))
 
@@ -798,13 +809,13 @@ def myapplications():
         "applications.html",
         applications_open=mongo.db.applications.find(
             {
-                'candidate_name': g.user['user_name'],
+                'candidate_id': g.user['_id'],
                 'status': {'$ne': 'closed'}
             }
         ),
         applications_closed=mongo.db.applications.find(
             {
-                'candidate_name': g.user['user_name'],
+                'candidate_id': g.user['_id'],
                 'status': 'closed'
             }
         )
@@ -827,9 +838,9 @@ def add_application(vacancy_id):
     inactive_candidates = mongo.db.candidates.find(
         {'status': {'$ne': 'active'}})
     open_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': {'$ne': 'closed'}})
+        {'status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': 'closed'})
+        {'status': 'closed'})
     application_status = mongo.db.status.find({'type': 'application'})
 
     """
@@ -853,7 +864,8 @@ def add_application(vacancy_id):
         open_vacancies=open_vacancies,
         closed_vacancies=closed_vacancies,
         status=application_status,
-        photos=photos)
+        photos=photos
+    )
 
 
 @app.route('/insert_application', methods=['POST'])
@@ -867,42 +879,49 @@ def insert_application():
     vacancy_id = request.form.get('vacancy_id')
     the_vacancy = mongo.db.vacancies.find_one(
             {"_id": ObjectId(vacancy_id)})
+
+    candidate_id = request.form.get('candidate_id')
+    the_candidate = mongo.db.candidates.find_one(
+            {"_id": ObjectId(candidate_id)})
+
     applications = mongo.db.applications
 
     """
     When admin/user creates application its being updated with vacancy info
     An admin can overulle this, by filling the fields
     """
-    hours = (request.form.get('hours')
-             if request.form.get('hours') != ''
-             else the_vacancy.get('hours'))
-    salary = (request.form.get('salary')
-              if request.form.get('salary') != ''
-              else the_vacancy.get('salary'))
-    photo_url = (request.form.get('photo_url')
-                 if request.form.get('photo_url') != ''
-                 else the_vacancy.get('photo_url'))
-    location = (request.form.get('location')
-                if request.form.get('location') != ''
-                else the_vacancy.get('location'))
+    vacancy_hours = (request.form.get('vacancy_hours')
+                     if request.form.get('vacancy_hours') != ''
+                     else the_vacancy.get('vacancy_hours'))
+    vacancy_salary = (request.form.get('vacancy_salary')
+                      if request.form.get('vacancy_salary') != ''
+                      else the_vacancy.get('vacancy_salary'))
+    vacancy_photo_url = (request.form.get('vacancy_photo_url')
+                         if request.form.get('vacancy_photo_url') != ''
+                         else the_vacancy.get('vacancy_photo_url'))
+    vacancy_location = (request.form.get('vacancy_location')
+                        if request.form.get('vacancy_location') != ''
+                        else the_vacancy.get('vacancy_location'))
     vacancy_text = (request.form.get('vacancy_text')
                     if request.form.get('vacancy_text') != ''
                     else the_vacancy.get('vacancy_text'))
 
     applications.insert_one(
-            {
-                'vacancy_name': the_vacancy.get('vacancy_name'),
-                'vacancy_id': vacancy_id,
-                'status': request.form.get('status'),
-                'start_date': request.form.get('start_date'),
-                'candidate_name': request.form.get('candidate_name'),
-                'comments': request.form.get('comments'),
-                'hours': hours,
-                'salary': salary,
-                'photo_url': photo_url,
-                'location': location,
-                'vacancy_text': vacancy_text
-            })
+        {
+            'status': request.form.get('status'),
+            'availability_date': request.form.get('availability_date'),
+            'comments': request.form.get('comments'),
+            'candidate_id': candidate_id,
+            'candidate_name': the_candidate.get('first_name')
+            + the_candidate.get('last_name'),
+            'vacancy_id': vacancy_id,
+            'vacancy_job_title': the_vacancy.get('job_title'),
+            'vacancy_hours': vacancy_hours,
+            'vacancy_salary': vacancy_salary,
+            'vacancy_photo_url': vacancy_photo_url,
+            'vacancy_location': vacancy_location,
+            'vacancy_text': vacancy_text
+        })
 
     # User is redirected to My Applications
     if g.user['profile'] != 'admin':
@@ -929,9 +948,9 @@ def edit_application(application_id):
     inactive_candidates = mongo.db.candidates.find(
         {'status': {'$ne': 'active'}})
     open_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': {'$ne': 'closed'}})
+        {'status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
-        {'vacancy_status': 'closed'})
+        {'status': 'closed'})
     application_status = mongo.db.status.find(
         {'type': 'application'})
 
@@ -943,7 +962,8 @@ def edit_application(application_id):
         open_vacancies=open_vacancies,
         closed_vacancies=closed_vacancies,
         status=application_status,
-        photos=photos)
+        photos=photos
+    )
 
 
 @app.route('/update_application/<application_id>', methods=['POST'])
@@ -957,22 +977,41 @@ def update_application(application_id):
     vacancy_id = request.form.get('vacancy_id')
     the_vacancy = mongo.db.vacancies.find_one(
             {"_id": ObjectId(vacancy_id)})
+    candidate_id = request.form.get('candidate_id')
+    the_candidate = mongo.db.candidates.find_one(
+            {"_id": ObjectId(candidate_id)})
     applications = mongo.db.applications
-    applications.update(
+
+    applications.update_one(
         {'_id': ObjectId(application_id)},
-        {
-            'vacancy_name': the_vacancy.get('vacancy_name'),
-            'vacancy_id': vacancy_id,
+        {'$set': {
             'status': request.form.get('status'),
-            'start_date': request.form.get('start_date'),
-            'candidate_name': request.form.get('candidate_name'),
+            'availability_date': request.form.get('availability_date'),
             'comments': request.form.get('comments'),
-            'hours': the_vacancy.get('hours'),
-            'salary': the_vacancy.get('salary'),
-            'photo_url': the_vacancy.get('photo_url'),
-            'location': the_vacancy.get('location'),
-            'vacancy_text': the_vacancy.get('vacancy_text')
-        })
+            'candidate_id': candidate_id,
+            'candidate_name': the_candidate.get('first_name')
+            + the_candidate.get('last_name')
+        }})
+
+    the_application = mongo.db.applications.find_one(
+        {"_id": ObjectId(application_id)})
+
+    """
+    Updates application with all vacancy data
+    if vacancy is changed
+    """
+    if the_application['vacancy_id'] != vacancy_id:
+        applications.update_one(
+            {'_id': ObjectId(application_id)},
+            {'$set': {
+                'vacancy_id': vacancy_id,
+                'vacancy_job_title': the_vacancy.get('job_title'),
+                'vacancy_hours': the_vacancy.get('hours'),
+                'vacancy_salary': the_vacancy.get('salary'),
+                'vacancy_photo_url': the_vacancy.get('photo_url'),
+                'vacancy_location': the_vacancy.get('location'),
+                'vacancy_text': the_vacancy.get('text')
+            }})
 
     return redirect(url_for('applications'))
 
@@ -985,7 +1024,7 @@ def close_application(application_id):
     Closes a application, set status on closed
     """
     applications = mongo.db.applications
-    applications.update(
+    applications.update_one(
         {'_id': ObjectId(application_id)},
         {'$set': {
             'status': 'closed'
