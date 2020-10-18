@@ -345,7 +345,7 @@ def add_user():
     profiles and statusses can be selected by dropdown
     user_id is counted upwards
     """
-    user_status = mongo.db.status.find({'type': 'user'})
+    user_status = mongo.db.statuses.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     max_user_id = mongo.db.candidates.find().sort(
         [("user_id", -1)]).limit(1)[0]['user_id'] + 1
@@ -398,9 +398,9 @@ def insert_user():
 def edit_user(userid):
     """
     Edit a user by using a form
-    profiles and statusses can be selected by dropdown
+    profiles and statuses can be selected by dropdown
     """
-    user_status = mongo.db.status.find({'type': 'user'})
+    user_status = mongo.db.statuses.find({'type': 'user'})
     user_profiles = mongo.db.profiles.find()
     the_user = mongo.db.candidates.find_one({"_id": ObjectId(userid)})
 
@@ -536,7 +536,7 @@ def setup():
 
     profiles are as of yet readonly
     """
-    status = mongo.db.status.find().sort([("type", 1)])
+    status = mongo.db.statuses.find().sort([("type", 1)])
     profiles = mongo.db.profiles.find().sort([("name", 1)])
     images = mongo.db.photos.find().sort([("name", 1)])
     return render_template(
@@ -553,7 +553,7 @@ def insert_status():
     """
     Insert status to the database
     """
-    status = mongo.db.status
+    status = mongo.db.statuses
     status.insert_one(request.form.to_dict())
 
     return redirect(url_for('setup'))
@@ -567,7 +567,7 @@ def uplete_status(status_id):
     depending on the button used
     returns to the setup route
     """
-    status = mongo.db.status
+    status = mongo.db.statuses
 
     if 'save' in request.form:
         status.update_one(
@@ -669,7 +669,7 @@ def add_vacancy():
     Add a vacancy by using a form,
     photos and statusses can be selected by dropdown
     """
-    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+    vacancy_status = mongo.db.statuses.find({'type': 'vacancy'})
     photos = mongo.db.photos.find()
 
     return render_template(
@@ -710,7 +710,7 @@ def edit_vacancy(vacancy_id):
     """
     the_vacancy = mongo.db.vacancies.find_one({"_id": ObjectId(vacancy_id)})
     photos = mongo.db.photos.find()
-    vacancy_status = mongo.db.status.find({'type': 'vacancy'})
+    vacancy_status = mongo.db.statuses.find({'type': 'vacancy'})
 
     return render_template(
         'editvacancy.html',
@@ -827,7 +827,7 @@ def myapplications():
 def add_application(vacancy_id):
     """
     Add a application by using a form,
-    statusses can be selected by dropdown
+    statuses can be selected by dropdown
     Admin can also create a application from application page,
     here a open vacancy can be chosen in a dropdown as well
     as active candidates
@@ -841,7 +841,7 @@ def add_application(vacancy_id):
         {'status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
         {'status': 'closed'})
-    application_status = mongo.db.status.find({'type': 'application'})
+    application_status = mongo.db.statuses.find({'type': 'application'})
 
     """
     The admin string is set if a application is created from the
@@ -951,7 +951,7 @@ def edit_application(application_id):
         {'status': {'$ne': 'closed'}})
     closed_vacancies = mongo.db.vacancies.find(
         {'status': 'closed'})
-    application_status = mongo.db.status.find(
+    application_status = mongo.db.statuses.find(
         {'type': 'application'})
 
     return render_template(
