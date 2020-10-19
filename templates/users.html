@@ -68,16 +68,26 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
+                        <td class="mobile-hidden">
+                            {{user.first_name}} {{user.last_name}}
+                        </td>
                         <td>{{user.profile}}</td>
                     {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">{{user.status}}</td>
+                        <td class="text-success mobile-hidden">
+                            {{user.status}}
+                        </td>
                     {% else %}
-                        <td class="text-danger mobile-hidden">{{user.status}}</td>
+                        <td class="text-danger mobile-hidden">
+                            {{user.status}}
+                        </td>
                     {% endif %} {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">{{user.approved}}</td>
+                        <td class="text-success mobile-hidden">
+                            {{user.approved}}
+                        </td>
                     {% else %}
-                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
+                        <td class="text-danger mobile-hidden">
+                            {{user.approved}}
+                        </td>
                     {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
@@ -173,17 +183,28 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
-                        <td>{{user.profile}}</td>
+                        <td class="mobile-hidden">
+                            {{user.first_name}} {{user.last_name}}
+                        </td>
+                        <td>{{user.profile}}
+                    </td>
                     {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">{{user.status}}</td>
+                        <td class="text-success mobile-hidden">
+                            {{user.status}}
+                        </td>
                     {% else %}
-                        <td class="text-danger mobile-hidden">{{user.status}}</td>
+                        <td class="text-danger mobile-hidden">
+                            {{user.status}}
+                        </td>
                     {% endif %} 
                     {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">{{user.approved}}</td>
+                        <td class="text-success mobile-hidden">
+                            {{user.approved}}
+                        </td>
                     {% else %}
-                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
+                        <td class="text-danger mobile-hidden">
+                            {{user.approved}}
+                        </td>
                     {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
@@ -284,17 +305,28 @@
                                 {{user.user_name}}
                             </a>
                         </td>
-                        <td class="mobile-hidden">{{user.first_name}} {{user.last_name}}</td>
+                        <td class="mobile-hidden">
+                            {{user.first_name}} {{user.last_name}}
+                        </td>
                         <td>{{user.profile}}</td>
-                        {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">{{user.status}}</td>
-                        {% else %}
-                        <td class="text-danger mobile-hidden">{{user.status}}</td>
-                        {% endif %} {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">{{user.approved}}</td>
-                        {% else %}
-                        <td class="text-danger mobile-hidden">{{user.approved}}</td>
-                        {% endif %}
+                    {% if user.status == 'active' %}
+                        <td class="text-success mobile-hidden">
+                            {{user.status}}
+                        </td>
+                    {% else %}
+                        <td class="text-danger mobile-hidden">
+                            {{user.status}}
+                        </td>
+                    {% endif %} 
+                    {% if user.approved == True %}
+                        <td class="text-success mobile-hidden">
+                            {{user.approved}}
+                        </td>
+                    {% else %}
+                        <td class="text-danger mobile-hidden">
+                            {{user.approved}}
+                        </td>
+                    {% endif %}
                         <td>
                             <i class="material-icons text-info mr-2">arrow_downward</i>
                         </td>
