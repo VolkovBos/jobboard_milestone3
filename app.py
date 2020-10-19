@@ -48,7 +48,9 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if g.user is None:
             return abort(404)
+
         return f(*args, **kwargs)
+
     return decorated_function
 
 
@@ -62,8 +64,11 @@ def admin_required(f):
         if g.user is not None:
             if g.user['profile'] == 'admin':
                 return f(*args, **kwargs)
+
             return abort(404)
+
         return abort(404)
+
     return decorated_function
 
 
@@ -270,10 +275,12 @@ def logout():
     return redirect(url_for('index'))
 
 
-# Profile page for users
 @app.route('/profile/<userid>')
 @login_required
 def profile(userid):
+    """
+    Opens profile page of a user
+    """
     return render_template(
         "profile.html",
         user=mongo.db.candidates.find_one(
@@ -1055,25 +1062,27 @@ def delete_application(application_id):
 # Error 403 handler route
 @app.errorhandler(403)
 def forbidden(e):
+
     return render_template('403.html'), 403
 
 
 # Error 404 handler route
 @app.errorhandler(404)
 def page_not_found(e):
+
     return render_template('404.html'), 404
 
 
 # Error 500 handler route
 @app.errorhandler(500)
 def server_error(e):
+
     return render_template('500.html'), 500
 
 
 # To run the app
-# debug uitzetten aan het eind
 if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=True)
+        debug=False)
