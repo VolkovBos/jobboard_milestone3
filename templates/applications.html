@@ -3,7 +3,7 @@
 
 <!--    A page for (open) applications -->
 <!--    This section shows the ongoing applications     -->
-    <div class="container first-container">
+    <div class="container first-container-cards">
         <div class="row">
 
 <!--    Title open section     -->
@@ -45,9 +45,10 @@
     </div>
 
 <!--    Carddeck of applications      -->
+    <hr>
     <div class="card-deck">
     {% for apl in applications_open %}
-        <div class="card col-sm-5 col-md-3">
+        <div class="card col-sm-5 col-md-5">
 
 <!--    Show the candidate name for the admin   -->
     {%  if g.user['profile'] == 'admin' %}
@@ -95,6 +96,7 @@
     </div>
 
 <!--    This section shows the closed/old applications     -->
+    <hr>
     <div class="container second-container">
         <div class="row">
 
@@ -110,7 +112,7 @@
 <!--    Carddeck of applications      -->
     <div class="card-deck">
     {% for apl in applications_closed %}
-        <div class="card col-sm-5 col-md-3">
+        <div class="card col-sm-5 col-md-5">
 
 <!--    Show the candidate name for the admin   -->
     {%  if g.user['profile'] == 'admin' %}

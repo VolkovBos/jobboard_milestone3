@@ -17,7 +17,10 @@ body {
 .first-container {
     margin-top: 150px;
     margin-bottom: 100px;
-    
+}
+
+.first-container-cards {
+    margin-top: 150px;
 }
 
 .second-container {
@@ -309,6 +312,15 @@ svg {
 .table .thead-dark th {
     background-color: CadetBlue;
     border: none;
+}
+
+tr.accordion-toggle {
+    background-color: LightSkyBlue;
+}
+
+div.accordion-body {
+    border: 2px solid #777777;
+    border-radius: 10px;
 }
 
 .user-collapse {

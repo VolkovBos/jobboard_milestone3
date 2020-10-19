@@ -5,6 +5,29 @@
     <div class="container first-container">
         <div class="row">
 
+<!--    Title section     -->
+            <div class="col-sm-9 col-md-9">
+                <h1>
+                    Users
+                </h1>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+<!--    Short information section    -->
+                <p class="intro-text">
+                    Here you can manage all user accounts. In the user to approve section you'll find users who have registrated on the site, but aren't approved yet. In the active section are all user now availailable to log in. And in the inactive section you'll find old users which have been blocked for logging in on the site.
+                </p>
+                <p class="intro-text">
+                    You can see more information about the userprofile if you clik on the blue line. Here you can find your possible action for this user account. If you want to see the full userprofile, click on the username.
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+
 <!--    Title approve section     -->
             <div class="col-sm-9 col-md-9">
                 <h1>
@@ -64,7 +87,7 @@
 
 <!--    Candidate info behind collapsible menu  -->
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>
                                         <td>Email</td>
@@ -112,6 +135,7 @@
         </div>
 
 <!--    Users active section     -->
+        <hr>
         <div class="row">
 
 <!--    Title active section     -->
@@ -167,7 +191,7 @@
 
 <!--    Candidate info behind collapsible menu  -->
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>
                                         <td>Email</td>
@@ -218,6 +242,7 @@
         </div>
 
 <!--    Users inactive section     -->
+        <hr>
         <div class="row">
         
 <!--    Title inactive section     -->
@@ -274,7 +299,7 @@
 
 <!--    Candidate info behind collapsible menu  -->
                         <td colspan="6" class="hiddenRow">
-                            <div class="accordian-body collapse row" id="demo{{user.user_id}}">
+                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>
                                         <td>Email</td>

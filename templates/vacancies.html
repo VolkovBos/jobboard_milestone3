@@ -3,7 +3,7 @@
 
 <!--    A page for (open) vacancies -->
 <!--    This section shows the ongoing vacancies     -->
-    <div class="container first-container">
+    <div class="container first-container-cards">
         <div class="row">
 
 <!--    Title open section     -->
@@ -39,9 +39,10 @@
     </div>
 
 <!--    Carddeck of vacancies      -->
+    <hr>
     <div class="card-deck">
     {% for vac in vacancies_open %}
-        <div class="card col-sm-5 col-md-3">
+        <div class="card col-sm-5 col-md-5">
 
 <!--    Only shows image when its available     -->
         {% if vac.photo_url != '' and vac.photo_url != null %}
@@ -99,6 +100,7 @@
 
 <!--    This section shows the closed vacancies, only available for the admin     -->
 {% if g.user['profile'] == 'admin' %}
+    <hr>
     <div class="container second-container">
         <div class="row">
 
@@ -114,7 +116,7 @@
 <!--    Carddeck of closed vacancies      -->
     <div class="card-deck">
         {% for vac in vacancies_closed %}
-        <div class="card col-sm-5 col-md-3">
+        <div class="card col-sm-5 col-md-5">
 
 <!--    Only shows image when its available     -->
         {% if vac.photo_url != '' and vac.photo_url != null %}
