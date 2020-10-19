@@ -527,18 +527,7 @@
 	<!--    Bootstrap   -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        $('#image_url_button').on({
-            'click': function(){
-                var image_url = $("#image_url").val()
-                try {
-                    $('#blah').attr('src', image_url);
-
-                } catch(err) {
-                    return null
-                }
-            }
-        });
-    </script>
+    <!--    Loads image on button click -->
+	<script src="{{ url_for('static', filename='js/loadImage.js') }}"></script>   
 </body>
 </html>
