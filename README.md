@@ -48,8 +48,8 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
 <details>
 <summary>General website user (visitor)</summary>
 
-1. As a visitor, I want to be able to see which vacancies are available at the company
-2. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
+1. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
+2. As a visitor, I want to be able to see which vacancies are available at the company
 3. As a visitor, I want to be able to register so I can get a log in for the site
 4. As a visitor, I want to be able to get in contact so I can get more information about a partically subject
 
@@ -62,22 +62,19 @@ Welcome to [BOS UP](https://jobboard-milestone3.herokuapp.com/)! This site is cr
 3. As a user, I want to be able to see which vacancies are available at the company, so I can apply to them
 4. As a user, I want to be able to apply to a open vacancy, so I can join the company
 5. As a user, I want to be able to see my application history, so I can know which applications are still ongoing
-6. As a user, I want to be able to change my profile information, so this is up to date
+6. As a user, I want to be able to see and change my profile information, so this is up to date
 7. As a user, I want to be able to change my password
 </details>
 <details>
 <summary>Administrator</summary>
 
-1. As the admin, I want to be able to see and do all the user stories of a logged in user so I can control the data and the environment
-2. As the admin, I want to be able to have an overview of vacancies, applications and user in the environment
-3. As the admin, I want to be able to add vacancies so that they are available for website and candidate user
-4. As the admin, I want to be able to close, edit and delete vacancies
-5. As the admin, I want to be able to add applications for candidates and vacancies so that they are available for the candidate user
-6. As the admin, I want to be able to close, edit and delete applications
-7. As the admin, I want to be able to add users so that I can give candidates login credentials
-8. As the admin, I want to be able to approve new registrations so no one can get access without permission/controle
-9. As the admin, I want to be able to delete user so that they cannot login anymore
-10. As the admin, I don't want other people to be able to use pages from where changes to the database can be made.
+1. As the admin, I want to be able to see and do all the user stories of a logged in user so I can perform regular actions.
+2. As the admin, I want to be able to have an overview of vacancies, applications and user in the environment.
+3. As the admin, I want to be able to add, close, edit and delete vacancies so that I can controle the content available for website and candidate users.
+4. As the admin, I want to be able to add, close, edit and delete applications for candidates and vacancies that I can controle the content. available for website and candidate users
+5. As the admin, I want to be able to add, deactivate, edit and delete users so that I can give candidates login credentials.
+6. As the admin, I want to be able to approve new registrations so no one can get access without permission/controle.
+7. As the admin, I don't want other profiles to be able to use pages from where important changes to the database can be made
 
 </details>
 
@@ -231,7 +228,7 @@ This website has a [MongoDB](https://www.mongodb.com) databases called jobboard_
 #### Tables
 The most tables are self explanatory, but I consciously chose to use one table for candidates and users due to the size of the project and the simplicity of the current business processes. I allready created a profiles table, this simplifies editing or creating a new user by the admin and prevents a typo but also this anticipates on the possibility of implementing new user profiles. 
 
-#### Tables designed
+#### Tables design
 ![Tables overview](static/img/tables.jpg)
 
 ## Features
@@ -253,11 +250,11 @@ The most tables are self explanatory, but I consciously chose to use one table f
 - [x] Quick action menu
 - [x] 403, 404, 500 Error handling (and pages)
 - [x] CRUD Users/candidates
+- [x] Manual search option
+- [x] Setup page for admin
 
 ### Features Left to Implement
 - [ ] Trashbin
-- [ ] CRUD Status and profiles
-- [ ] Manual search option
 - [ ] Cloning of records
 - [ ] Forgot password
 - [ ] Userprofile: office employee
@@ -286,7 +283,6 @@ I have used the following technologys for this project:
 * [EmailJS](https://www.emailjs.com/), to let the user be able to contact me
 * [Balsamiq](https://balsamiq.com/wireframes/desktop/), for creating the wireframes
 * [TinyPNG](https://tinypng.com/), for reducing the filesizes on my images
-* [Am I Responsive](http://ami.responsivedesign.is/#), for README image
 
 ### Framework
 * [Materialize](https://materializecss.com/), for icons
@@ -312,16 +308,121 @@ To make sure there where nog syntax errors, I've used the following validators o
 
 ### Testing User Stories
 - Visitor
-    1. As a visitor, I want to be able to see which vacancies are available at the company
-        - By using the navigation menu I can visit the vacancies page to see the open vacancies
-    2. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture
-    3. As a visitor, I want to be able to register so I can get a log in for the site
-        - By using the navigation menu I can visit the register page to register me as a candidate/user
-    4. As a visitor, I want to be able to get in contact so I can get more information about a partically subject
-        - I can use the menu to go to the contact page.
-        - On the contact page I can fill in my name e-mailadress and message.
+    1. As a visitor, I want to be able to see general information about the company so I get a 'feel' about the corporate culture:
+        - By using the navbar menu I can visit the Home page to see the main page.
+    2. As a visitor, I want to be able to see which vacancies are available at the company:
+        - By using the navigation menu I can visit the Vacancies page to see the open vacancies.
+        - By using the search field in the navbar I can find vacancies with a quick search function on name, text or location.
+    3. As a visitor, I want to be able to register so I can get a log in for the site:
+        - By using the navigation menu I can open the Register modal to register me as a candidate/user.
+        - I will get error messages on the Home page if my registration isn't processed.
+        - I will get a succes message on the Home page if my egistration is processed.
+    4. As a visitor, I want to be able to get in contact so I can get more information about a partically subject:
+        - I can use the menu to go to open the Contact modal.
+        - On the Contact modal I can fill in my name e-mailadress and message.
         - The contact form will let me know all fields are manditory.
         - I can send in the form by clicking the Submit button.
+
+
+- User (candidate logged in)
+    1. As the user, I want to be able to see and do all the user stories of a visitor:
+        - See user stories visitor
+    2. As a user, I want to be able to log in my user environment so I can see all information applicable to me:
+        - By clicking the login button in the menu I will open the login modal.
+        - As an user I can login by using my own username and personal password.
+        - The form will let me know both fields are mandetory.
+        - I will get error messages on the Home page if my login isn't processed.
+        - I will be redirected to the Home page and my navbar will show My Application and my name to confirm I'm logged in.
+    3. As a user, I want to be able to log out my user environment:
+        - When I'm logged in I can logout by using the logout button in the navigation menu.
+        - I will be redirected to the Home page and My Application and my name will dissappear form the navbar.
+    4. As a user, I want to be able to apply to a open vacancy, so I can join the company:
+        - By navigating to the Vacancies page I can use the 'Apply to this vacancy!' button on a vacancy to apply to that vacancy.
+        - On the Application page I can fill in my availbility date and add some personal comments.
+        - I also see some brief information of the vacancy.
+        - I can Save to apply and get redirected to My Application.
+        - I can Cancel and get redirected back to Open Vacancies.
+    5. As a user, I want to be able to see my application history, so I can know which applications are still ongoing:
+        - By using the navigation menu I can visit the My Applications page to see all of my applications.
+    6. As a user, I want to be able to see and change my profile information, so this is up to date:
+        - By using the navigation menu I can visit my Profile page by clicking on my name.
+        - Here I can see all of my profile information:
+            - User information
+            - Photo
+            - Candidate information
+            - Address information
+            - Social sites
+            - Skills
+        - I can edit my profile by clicking on the edit button.
+        - On the Edit Profile page I can change my info and either:
+            - Save, this will save changes and go back to my profile.
+            - Cancel, this will ignore my changes and go back to my profile.
+    7. As a user, I want to be able to change my password:
+        - By using the navigation menu I can visit my Profile page by clicking on my name.
+        - I can change my password by clicking on the Change password button to open a modal.
+        - On the Change Password modal I can fill in my old and new password as well as a confirmation of the new password.
+        - The contact form will let me know all fields are manditory.
+        - I can save my change in the form by clicking the Save button.
+
+
+- Admin
+    1. As the admin, I want to be able to see and do all the user stories of a logged in user so I can perform regular actions:
+        - See user stories user
+    2. As the admin, I want to be able to have an overview of vacancies, applications and users in the environment:
+        - By using the navigation menu I can visit the Vacancies page to see all the vacancies.
+        - By using the navigation menu I can visit the Applications page to see all the applications.
+        - By using the navigation menu I can visit the Users page to see all the users.
+    3. As the admin, I want to be able to add, close, edit and delete vacancies so that I can controle the content available for website and candidate users:
+        - By navigating to the Vacancies page I can use the 'Add Vacancy' button on top of the page.
+            - On the Add Vacancy page I can fill in all fields for a new vacancy.
+            - I also select a picture which will be the header of the vacancy card.
+            - On the Add Vacancy page I can either:
+                - Save, this will add the new vacancy and go back to the Vacancies page.
+                - Cancel, this will ignore my input and go back to the Vacancies page.
+        - By navigating to the Vacancies page I can use the 'Edit' button on a specific vacancy.
+            - On the Edit Vacancy page I can change the vacancy info and either:
+                - Save, this will save changes and go back to the Vacancies page.
+                - Update, this will save changes and stay on this page.
+                - Cancel, this will ignore my changes and go back to the Vacancies page.
+        - By navigating to the Vacancies page I can use the 'Close' button on a specific vacancy.
+            - I will see the vacancy moved to the Closed Vacancies section at the bottom of the page.
+        - By navigating to the Vacancies page I can use the 'Delete' button on a specific vacancy.
+            - I will see the vacancy removed from the page.
+    4. As the admin, I want to be able to add, close, edit and delete applications for candidates and vacancies so that they are available for the candidate user:
+        - I can create an application the same as a user can from a vacancy, only the button the vacancy has the name 'Application' (see user storie user)
+        - By navigating to the Application page I can use the 'Add Application' button on top of the page.
+            - On the Add Application page I can fill in all fields for a new application.
+            - On the Add Application page I can either:
+                - Save, this will add the new application and go back to the Applications page.
+                - Cancel, this will ignore my input and go back to the Applications page.
+        - By navigating to the Applications page I can use the 'Edit' button on a specific application.
+            - On the Edit Application page I can change the application info and either:
+                - Save, this will save changes and go back to the Applications page.
+                - Cancel, this will ignore my changes and go back to the Applications page.
+        - By navigating to the Applications page I can use the 'Close' button on a specific application.
+            - I will see the application moved to the Closed Applications section at the bottom of the page.
+        - By navigating to the Applications page I can use the 'Delete' button on a specific application.
+            - I will see the application removed from the page.
+    5. As the admin, I want to be able to add, deactivate, edit and delete users so that I can give candidates login credentials:
+        - By navigating to the Users page I can use the 'Add User' button on the page.
+            - On the Add User page I can fill in all fields for a new user.
+            - On the Add User page I can either:
+                - Save, this will add the new user and go back to the Users page.
+                - Cancel, this will ignore my input and go back to the Users page.
+        - By navigating to the Users page I can use the 'Edit' button on a specific user if the user is active.
+            - On the Edit User page I can change the user info and either:
+                - Save, this will save changes and go back to the Users page.
+                - Cancel, this will ignore my changes and go back to the Users page.
+        - By navigating to the Users page I can use the 'Deactivate' button on a specific user if the user is active.
+            - I will see the user moved to the Inactive Users section at the bottom of the page.
+        - By navigating to the Users page I can use the 'Delete' button on a specific user.
+            - I will see the user removed from the page.
+    6. As the admin, I want to be able to approve new registrations so no one can get access without permission/controle:
+        - By navigating to the Users page I can use the 'Approve' button on a specific user in the Users asking for approval section.
+            - I will see the user moved to the Active Users section.
+
+    7. As the admin, I don't want other profiles to be able to use pages from where important changes to the database can be made:
+        - As a user or visitor I can try to open the 
 
 ### Login-Register Validation
 There are some login checks with error message shown, you will get redirected to the index page and the message is shown in the top off the page. The error with message:
@@ -375,6 +476,7 @@ For deployment on Heroku I've used the following steps:
 Create a MongoDB database with the tables(collections):
 - applications
 - candidates
+- photos
 - profiles
 - status
 - vacancies
@@ -435,6 +537,8 @@ git filter-branch --tree-filter 'rm -f __Pycache__/*' -- --all
 git push force
 ```
 
+Also I want to point out that more atomic commits are not possible for me with the use of Gitpod. During the course I experienced some 20+ issues thus far regarding 503 errors. 
+
 ## Credits
 ### Content
 The idea, content and development for this project was written or designed by myself.
@@ -455,7 +559,7 @@ Thanks to:
 ### Acknowledgements
 Thanks to [Tim (Justim)](https://github.com/justim) for some deeper explanation about Python views and decorators. Helped me with the login view decorator.
 
-Specail thanks to [Paul Friel](https://github.com/Spagettileg) who repeatedly and thoroughly gave me feedback on my site during the project.
+Special thanks to [Paul Friel](https://github.com/Spagettileg) who repeatedly and thoroughly gave me feedback on my site during the project.
 
 And a thanks to my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) who gave me honest and good feedback on my site/code and helped me te complete this project.
 
