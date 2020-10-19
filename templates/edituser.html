@@ -50,7 +50,10 @@
                                 <label for="profile">
                                     Profile
                                 </label>
-                                <select class="form-control" id="profile" name="profile" {% if g.user['profile'] == 'admin' %}required {% else %}disabled{% endif%}>
+                            {% if g.user['profile'] != 'admin' %}
+                                <input value="{{ user.profile }}" type="string" class="form-control" id="profile" name="profile" readonly>
+                            {% else %}
+                                <select class="form-control" id="profile" name="profile" required>
                                     <option disabled>
                                         Choose Profile
                                     </option>
@@ -62,6 +65,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 </select>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
@@ -73,7 +77,10 @@
                                 <label for="status">
                                     Status
                                 </label>
-                                <select class="form-control" id="status" name="status" {% if g.user['profile'] == 'admin' %}required {% else %}disabled{% endif%}>
+                            {% if g.user['profile'] != 'admin' %}
+                                <input value="{{ user.status }}" type="string" class="form-control" id="status" name="status" readonly>
+                            {% else %}
+                                <select class="form-control" id="status" name="status" required>
                                     <option disabled>
                                         Choose Status
                                     </option>
@@ -83,12 +90,13 @@
                                     </option>
                                 {% endfor %}
                                 </select>
+                            {% endif %}
                             </div>
                             <div class="col-6">
                                 <label for="user_id">
                                     User Id
                                 </label>
-                                <input value="{{user.user_id}}" type="number" class="form-control" id="user_id" name="user_id" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
+                                <input value="{{user.user_id}}" type="number" class="form-control" id="user_id" name="user_id" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif %}>
                             </div>
                         </div>
                     </div>
