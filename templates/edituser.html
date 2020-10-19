@@ -17,7 +17,9 @@
 
 <!--    Add a profile pisture url and load the url with the button    -->
                         <div class="col-6 display-grid">
+                        {% if user.image_url != '' %}
                             <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
+                        {% endif %}
                             <label for="image_url">
                                 Url for profile photo
                             </label>
@@ -48,7 +50,7 @@
                                 <label for="profile">
                                     Profile
                                 </label>
-                                <select class="form-control" id="profile" name="profile" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
+                                <select class="form-control" id="profile" name="profile" {% if g.user['profile'] == 'admin' %}required {% else %}disabled{% endif%}>
                                     <option disabled>
                                         Choose Profile
                                     </option>
@@ -71,7 +73,7 @@
                                 <label for="status">
                                     Status
                                 </label>
-                                <select class="form-control" id="status" name="status" {% if g.user['profile'] == 'admin' %}required {% else %}readonly{% endif%}>
+                                <select class="form-control" id="status" name="status" {% if g.user['profile'] == 'admin' %}required {% else %}disabled{% endif%}>
                                     <option disabled>
                                         Choose Status
                                     </option>
@@ -118,16 +120,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <label for="email">
+                                <label for="email_address">
                                     Email
                                 </label>
-                                <input value="{{user.email}}" type="email" class="form-control" id="email" name="email">
+                                <input value="{{user.email}}" type="email" class="form-control" id="email_address" name="email_address">
                             </div>
                             <div class="col-6">
-                                <label for="email">
+                                <label for="phone">
                                     Phone
                                 </label>
-                                <input value="{{user.phone}}" type="phone" class="form-control" id="phone" name="phone">
+                                <input value="{{user.phone}}" type="tel" class="form-control" id="phone" name="phone">
                             </div>
                         </div>
                     </div>
@@ -304,7 +306,7 @@
                         <button type="submit" class="btn btn-primary" name="save">
                             Save
                         </button>
-                        <a href="{{ url_for('profile', userid=g.user['_id']) }}" id="cancel" name="cancel" class="btn btn-danger">
+                        <a href="{{ url_for('profile', userid=g.user['_id']) }}" id="cancel" class="btn btn-danger">
                             Cancel
                         </a>
                     </div>

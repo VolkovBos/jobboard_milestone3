@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-8">
-                                <label for="vacancy_job_title">
+                                <label for="vacancy_id">
                                     Job Title
                                 </label>
 
@@ -107,7 +107,7 @@
                                 <input class="form-control" type="date" id="availability_date" name="availability_date">
                             </div>
                             <div class="input-field col s6">
-                                <label for="candidate_name">
+                                <label for="candidate_id">
                                     Candidate name
                                 </label>
 
@@ -170,7 +170,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <label for="hours">
+                                <label for="vacancy_hours">
                                     Hours
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
@@ -180,7 +180,7 @@
                             {% endif %}
                             </div>
                             <div class="col-6">
-                                <label for="salary">
+                                <label for="vacancy_salary">
                                     Salary
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
@@ -200,9 +200,9 @@
                                     Url for the Photo
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
-                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ vacancy.photo_url }}">
+                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url">
                             {% else%}
-                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ vacancy.photo_url }}" readonly>
+                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" disabled>
                             {% endif %}
                                 {% if vacancy.photo_url == '' %}
                                     <option disabled selected>
@@ -225,7 +225,7 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label for="location">
+                                <label for="vacancy_location">
                                     Location
                                 </label>
                             {% if g.user['profile'] == 'admin' %}
@@ -256,11 +256,11 @@
                             Save
                         </button>
                     {% if g.user['profile'] == 'admin' %}
-                        <a href="{{ url_for('applications') }}" id="cancel" name="cancel" class="btn btn-danger">
+                        <a href="{{ url_for('applications') }}" id="cancel" class="btn btn-danger">
                             Cancel
                         </a>
                     {% else %}
-                        <a href="{{ url_for('myapplications') }}" id="cancel" name="cancel" class="btn btn-danger">
+                        <a href="{{ url_for('myapplications') }}" id="cancel" class="btn btn-danger">
                             Cancel
                         </a>
                     {% endif %}

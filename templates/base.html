@@ -26,7 +26,7 @@
 	<script>
 		(function(){
             emailjs.init("user_VWTMl2a56d4w3kUKpKAyq");
-        })();
+            })();
 	</script>
 
 	<title>BOS UP</title>
@@ -42,10 +42,10 @@
 
 <!--    Brand logo       -->
 			<a class="navbar-brand" href="{{ url_for('index') }}">
-				<h1>
+				<h2>
                     <img src="{{ url_for('static', filename='img/bos-up-logo.png') }}" width="50" height="50" alt="Logo BOS UP">
                     BOS UP
-                </h1>
+                </h2>
             </a>
             
 <!--    Hamburger menu       -->
@@ -56,7 +56,7 @@
 <!--    Full website menu       -->
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <form action="{{url_for('search_vacancy')}}" class="d-flex active-pink-2 search-form">
-                    <input class="form-control form-control-sm" type="text" placeholder="Search for vacancies" id="search0" type="search" name="search" aria-label="Search">
+                    <input class="form-control form-control-sm" placeholder="Search for vacancies" id="search0" type="search" name="search" aria-label="Search">
                     <button class="btn" id="submit" type="submit" name="action"><i class="fas fa-search" aria-hidden="true"></i></button>
                 </form>
 				<ul class="navbar-nav ml-auto">
@@ -473,8 +473,8 @@
                                 </label>
                             </div>
                             <select class="custom-select" id="subject" name="subject" required>
-                                <option selected>
-                                    Choose...
+                                <option value="" selected disabled>
+                                    Choose subject
                                 </option>
                                 <option value="Interested in a vacancy">
                                     Interested in a vacancy

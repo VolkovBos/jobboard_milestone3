@@ -34,7 +34,7 @@ body {
 }
 
 /*-----      Navbar      -----*/
-.navbar-brand h1 {
+.navbar-brand h2 {
     color: CadetBlue;
     font-weight: 900;
     line-height: inherit;

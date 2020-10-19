@@ -444,7 +444,7 @@ def update_user(userid):
             'user_id': user_id,
             'first_name': request.form.get('given-name'),
             'last_name': request.form.get('family-name'),
-            'email': request.form.get('email'),
+            'email': request.form.get('email_address'),
             'phone': request.form.get('phone'),
             'street': request.form.get('street'),
             'house_nr': request.form.get('address-line2'),
