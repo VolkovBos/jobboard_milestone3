@@ -481,7 +481,7 @@ Create a MongoDB database with the tables(collections):
 - status
 - vacancies
 
-Then you can use below code to create the first admin user. From there on, you can use the site to add, modify or delete users.
+Then you can use below code to create the first setup. The profiles are needed for a check on autorisation level and the statuses are needed for querying the database. Users and statuses can later be added by an admin user to use in selection fields, but not mandatory. As of yet profiles are static managed.
 
 ```
 import os
@@ -490,27 +490,63 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-MONGO_URI = "mongodb+srv://root:<PASSWORD_MONGODB>@myfirstcluster.vwkuk.mongodb.net/<NAME_MONGODB>?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://root:bos77@myfirstcluster.vwkuk.mongodb.net/jobboard_milestone3?retryWrites=true&w=majority"
 app.config["MONGO_DBNAME"] = '<NAME_MONGODB>'
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
-username = 'TESTROBBERT'
-user_password = 'TESTROBBERT'
-email = 'bos@bos.bos'
-hash_pass = generate_password_hash(user_password)
+username_admin = '<TEST_USER_ADMIN>'
+password_admin = '<TEST_PASSWORD_ADMIN>'
+username_user = '<TEST_USER_USER>'
+password_user = '<TEST_PASSWORD_USER>'
 
-mongo.db.candidates.insert_one(
+hash_pass_admin = generate_password_hash(password_admin)
+hash_pass_user = generate_password_hash(password_user)
+
+mongo.db.candidates.insert_many([
     {
-        'user_name': username,
-        'email': email,
-        'password': hash_pass,
+        'user_name': username_admin,
+        'password': hash_pass_admin,
         'approved': True,
         'status': 'active',
         'profile': 'admin',
-        'user_id': 1
+        'user_id': 11
+    },
+    {
+        'user_name': username_user,
+        'password': hash_pass_user,
+        'approved': True,
+        'status': 'active',
+        'profile': 'user',
+        'user_id': 12
+    },
+])
+mongo.db.profiles.insert_many([
+    {
+        'name': 'admin'
+    },
+    {
+        'name': 'user'
     }
-)
+])
+mongo.db.statuses.insert_many([
+    {
+        'status_name': 'closed',
+        'type': 'application'
+    },
+    {
+        'status_name': 'closed',
+        'type':'vacancy'
+    },
+    {
+        'status_name': 'active',
+        'type':'user'
+    },
+    {
+        'status_name': 'inactive',
+        'type':'user'
+    }
+])
 ```
 
 ### Env.py
