@@ -96,7 +96,7 @@
                     <tr>
 
 <!--    Candidate info behind collapsible menu  -->
-                        <td colspan="6" class="hiddenRow">
+                        <td colspan="7" class="hiddenRow">
                             <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>
@@ -129,7 +129,7 @@
 <!--    Buttons to approve or delete new user    -->
                                 <div class="center user-collapse">
                                 {% if user.image_url != '' %}
-                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
+                                    <img class="rounded-circle" src="{{user.image_url}}" alt="Profile Image" />
                                 {% endif %}
                                     <a href="{{url_for('approve_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
                                         Approve
@@ -213,7 +213,7 @@
                     <tr>
 
 <!--    Candidate info behind collapsible menu  -->
-                        <td colspan="6" class="hiddenRow">
+                        <td colspan="7" class="hiddenRow">
                             <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>
@@ -246,7 +246,7 @@
 <!--    Buttons to edit, deactive or delete user    -->
                                 <div class="center user-collapse">
                                 {% if user.image_url != '' %}
-                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
+                                    <img class="rounded-circle" src="{{user.image_url}}" alt="Profile Image" />
                                 {% endif %}
                                     <a href="{{url_for('edit_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
                                         Edit
@@ -334,7 +334,7 @@
                     <tr>
 
 <!--    Candidate info behind collapsible menu  -->
-                        <td colspan="6" class="hiddenRow">
+                        <td colspan="7" class="hiddenRow">
                             <div class="accordion-body collapse row" id="demo{{user.user_id}}">
                                 <table class="user-collapse">
                                     <tr>

@@ -49,30 +49,30 @@
                         <div class="col-lg-5 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm7">
+                                    <span class="input-group-text" id="inputGroup-sizing-{{stat.status_name}}">
                                         Status Name
                                     </span>
                                 </div>
 
 <!--    inactive and closed statusses are mandatory due to app.py queries    -->
                             {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
-                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm7" id="status_name" name="status_name" readonly>
+                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{stat.status_name}}" id="status_name" name="status_name" readonly>
                             {% else %}
-                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm7"  id="status_name" name="status_name">
+                                <input value="{{stat.status_name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{stat.status_name}}" id="status_name" name="status_name">
                             {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm6">
+                                    <span class="input-group-text" id="inputGroup-sizing-{{stat.status_name}}-1">
                                         Type
                                     </span>
                                 </div>
                             {% if stat.status_name == 'closed' or stat.status_name == 'inactive' %}
-                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm6" id="type" name="type" readonly>
+                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{stat.status_name}}-1" id="type" name="type" readonly>
                             {% else %}
-                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm6" id="type" name="type">
+                                <input value="{{stat.type}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{stat.status_name}}-1" id="type" name="type">
                             {% endif %}
                             </div>
                         </div>
@@ -157,11 +157,11 @@
                         <div class="col-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm1">
+                                    <span class="input-group-text" id="inputGroup-sizing-{{prof.name}}">
                                         Profile Name
                                     </span>
                                 </div>
-                                <input value="{{profile.name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm1" id="name" name="name" readonly>
+                                <input value="{{profile.name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{prof.name}}" id="name" name="name" readonly>
                             </div>
                         </div>
                     </li>
@@ -196,21 +196,21 @@
                         <div class="col-lg-3 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"2>
+                                    <span class="input-group-text" id="inputGroup-sizing-{{image.name}}">
                                         Name
                                     </span>
                                 </div>
-                                <input value="{{image.name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm2" id="name" name="name">
+                                <input value="{{image.name}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{image.name}}" id="name" name="name">
                             </div>
                         </div>
                         <div class="col-lg-7 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm3">
+                                    <span class="input-group-text" id="inputGroup-sizing-{{image.name}}-1">
                                         URL
                                     </span>
                                 </div>
-                                <input value="{{image.photo_url}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm3" id="photo_url" name="type">
+                                <input value="{{image.photo_url}}" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-{{image.name}}-1" id="photo_url" name="type">
                             </div>
                         </div>
                         <div class="col-lg-2 col-sm-12 center-button">
