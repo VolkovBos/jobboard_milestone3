@@ -458,33 +458,6 @@ div.accordion-body {
         margin: auto;
     }
 
-    /*
-    footer {
-        padding-bottom: 40px;
-    }
-
-    .footer-spacing {
-        margin-bottom: 5px;
-    }
-
-    footer h5 {
-        display: block;
-    }
-
-    #footer-mid {
-        text-align: right;
-    }
-
-    #footer-right h5 {
-        text-align: left;
-    }
-
-    .social-links {
-        padding: 0;
-        margin-top: 20px;
-        position: absolute;
-    }*/
-
     .mobile-hidden {
         display: none;
     }
