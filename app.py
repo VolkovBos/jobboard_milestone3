@@ -927,8 +927,8 @@ def insert_application():
             'availability_date': request.form.get('availability_date'),
             'comments': request.form.get('comments'),
             'candidate_id': candidate_id,
-            'candidate_name': the_candidate.get('first_name')
-            + ' ' + the_candidate.get('last_name'),
+            'candidate_name': the_candidate.get('first_name') +
+            ' ' + the_candidate.get('last_name'),
             'vacancy_id': vacancy_id,
             'vacancy_job_title': the_vacancy.get('job_title'),
             'vacancy_hours': vacancy_hours,
@@ -1004,8 +1004,8 @@ def update_application(application_id):
             'availability_date': request.form.get('availability_date'),
             'comments': request.form.get('comments'),
             'candidate_id': candidate_id,
-            'candidate_name': the_candidate.get('first_name')
-            + the_candidate.get('last_name')
+            'candidate_name': the_candidate.get('first_name') +
+            the_candidate.get('last_name')
         }})
 
     the_application = mongo.db.applications.find_one(
