@@ -38,15 +38,6 @@ class LoadsVisitorAvailable(unittest.TestCase):
     testClass for all page loads for a visitor of the site
     which are available for a visitor
     '''
-    # Ensure that the contact page loads correctly
-    def test_contact_loads(self):
-        tester = app.test_client()
-        response = tester.get(
-            '/contact',
-            content_type='html/text'
-        )
-        self.assertTrue(b'Contact us' in response.data)
-
     # Ensure that the index page loads correctly
     def test_index_loads(self):
         tester = app.test_client()
@@ -54,7 +45,7 @@ class LoadsVisitorAvailable(unittest.TestCase):
             '/index',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+        self.assertTrue(b'Welcome to BOS UP' in response.data)
 
     # Ensure that the vacancies page loads correctly
     def test_vacancies_loads(self):
@@ -63,7 +54,7 @@ class LoadsVisitorAvailable(unittest.TestCase):
             '/vacancies',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
+        self.assertTrue(b'Open Vacancies' in response.data)
 
 
 class LoadsVisitorUnvailable(unittest.TestCase):
@@ -78,7 +69,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addapplication_loads(self):
@@ -87,7 +78,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/add_application/',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addapplicationRandomId_loads(self):
@@ -96,7 +87,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/add_application/abcdefg',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addapplicationFromApplicationPage(self):
@@ -105,7 +96,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/add_application/admin',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_adduser(self):
@@ -114,7 +105,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/add_user',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addvacancy(self):
@@ -123,7 +114,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/add_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_applications(self):
@@ -132,7 +123,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/applications',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_changepassword(self):
@@ -141,7 +132,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/change_password/',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_changepasswordRandomId(self):
@@ -150,7 +141,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/change_password/abcdefg',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_changepasswordId(self):
@@ -159,7 +150,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/change_password/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplication(self):
@@ -168,7 +159,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_application',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplicationRandomId(self):
@@ -177,7 +168,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_application/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplicationId(self):
@@ -186,7 +177,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/edit_application/{APPLICATION_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_edituser(self):
@@ -195,7 +186,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_user',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_edituserRandomId(self):
@@ -204,7 +195,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_user/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_edituserId(self):
@@ -213,7 +204,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancy(self):
@@ -222,7 +213,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancyRandomId(self):
@@ -231,7 +222,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/edit_vacancy/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancyId(self):
@@ -240,7 +231,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/edit_vacancy/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_profile(self):
@@ -249,7 +240,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/profile',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_profileRandomdId(self):
@@ -258,7 +249,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/profile/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_profileId(self):
@@ -267,7 +258,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             f'/profile/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_users(self):
@@ -276,7 +267,7 @@ class LoadsVisitorUnvailable(unittest.TestCase):
             '/users',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
 
 # To run the test app

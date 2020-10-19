@@ -45,7 +45,7 @@ class LoginUserTests(unittest.TestCase):
             data=dict(username=USERNAME_USER, password=SPW_TWO),
             follow_redirects=True
         )
-        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
+        self.assertIn(b'Welcome to BOS UP', response.data)
 
     # Test for login by user with incorrect username
     def test_incorrect_username_user(self):
@@ -87,7 +87,7 @@ class LoginUserTests(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get('/logout', follow_redirects=True)
-        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+        self.assertTrue(b'Welcome to BOS UP' in response.data)
 
 
 class LoginAdminTests(unittest.TestCase):
@@ -102,7 +102,7 @@ class LoginAdminTests(unittest.TestCase):
             data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
             follow_redirects=True
         )
-        self.assertIn(b'<h1>Welcome to BOS UP</h1>', response.data)
+        self.assertIn(b'Welcome to BOS UP', response.data)
 
     # Test for login by admin with incorrect username
     def test_incorrect_username_admin(self):
@@ -133,7 +133,7 @@ class LoginAdminTests(unittest.TestCase):
             follow_redirects=True
         )
         response = tester.get('/logout', follow_redirects=True)
-        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+        self.assertTrue(b'Welcome to BOS UP' in response.data)
 
 
 # To run the test app

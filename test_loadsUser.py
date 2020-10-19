@@ -50,7 +50,7 @@ class LoadsUserAvailable(unittest.TestCase):
             f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Application</h1>' in response.data)
+        self.assertTrue(b'Application' in response.data)
 
     # Ensure that route opens my applications page
     def test_applications(self):
@@ -64,21 +64,7 @@ class LoadsUserAvailable(unittest.TestCase):
             '/myapplications',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>My Applications</h1>' in response.data)
-
-    # Ensure that route opens change password page
-    def test_changepassword(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            f'/change_password/{CANDIDATE_ID_USER}',
-            content_type='html/text'
-        )
-        self.assertTrue(b'<h1>Change password</h1>' in response.data)
+        self.assertTrue(b'My Applications' in response.data)
 
     # Ensure that a visitor gets the message that this page cannot be found
     def test_edituser(self):
@@ -92,7 +78,7 @@ class LoadsUserAvailable(unittest.TestCase):
             f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Edit User</h1>' in response.data)
+        self.assertTrue(b'Edit Profile' in response.data)
 
     # Ensure that route opens profile page
     def test_profile(self):
@@ -106,7 +92,7 @@ class LoadsUserAvailable(unittest.TestCase):
             f'/profile/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'A form to see your user profile' in response.data)
+        self.assertTrue(b'A page to see your user/candidate profile' in response.data)
 
 
 class LoadsUserUnavailable(unittest.TestCase):
@@ -126,7 +112,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/add_application/abcdefg',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addapplicationFromApplicationPage(self):
@@ -140,7 +126,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/add_application/admin',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'Error 500' in response.data)
 
     # Ensure that the error page loads correctly
     def test_adduser(self):
@@ -154,7 +140,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/add_user',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_addvacancy(self):
@@ -168,7 +154,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/add_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_applications(self):
@@ -182,21 +168,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/applications',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
-
-    # Ensure that the error page loads correctly
-    def test_changepasswordRandomId(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/change_password/abcdef',
-            content_type='html/text'
-        )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplicationId(self):
@@ -210,7 +182,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             f'/edit_application/{APPLICATION_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplication(self):
@@ -224,7 +196,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/edit_application',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editapplicationRandomId(self):
@@ -238,7 +210,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/edit_application/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_edituserRandomId(self):
@@ -252,7 +224,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/edit_user/abcdef',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancy(self):
@@ -266,7 +238,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/edit_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancyId(self):
@@ -280,7 +252,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             f'/edit_vacancy/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_editvacancyRandomId(self):
@@ -294,7 +266,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/edit_vacancy/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_profile(self):
@@ -308,7 +280,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/profile',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_profileRandomId(self):
@@ -322,7 +294,21 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/profile/adbcdef',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertTrue(b'Error 500, Server error' in response.data)
+
+    # Ensure that route opens setup page
+    def test_setup(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/setup',
+            content_type='html/text'
+        )
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that the error page loads correctly
     def test_users(self):
@@ -336,7 +322,7 @@ class LoadsUserUnavailable(unittest.TestCase):
             '/users',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
 
 # To run the test app

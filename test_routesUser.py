@@ -66,20 +66,6 @@ class RoutesUserAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that route opens change password page
-    def test_changepassword(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            f'/change_password/{CANDIDATE_ID_USER}',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
     # Ensure that a visitor gets the message that this page cannot be found
     def test_edituser(self):
         tester = app.test_client()
@@ -168,7 +154,7 @@ class RoutesUserUnavailable(unittest.TestCase):
             '/add_application/admin',
             content_type='html/text'
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 500)
 
     # Ensure that a user gets the message that this page cannot be found
     def test_adduser(self):
@@ -211,20 +197,6 @@ class RoutesUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 404)
-
-    # Ensure that a user gets the message that this page cannot be found
-    def test_changepasswordRandomId(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_USER, password=SPW_TWO),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/change_password/abcdef',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 500)
 
     # Ensure that a user gets the message that this page cannot be found
     def test_editapplicationId(self):
@@ -351,6 +323,20 @@ class RoutesUserUnavailable(unittest.TestCase):
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 500)
+
+    # Ensure that route opens setup page
+    def test_setup(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_USER, password=SPW_TWO),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/setup',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 404)
 
     # Ensure that a user gets the message that this page cannot be found
     def test_users(self):

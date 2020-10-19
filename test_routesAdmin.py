@@ -108,20 +108,6 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # Ensure that route opens change password page
-    def test_changepassword(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
-            follow_redirects=True
-        )
-        response = tester.get(
-            f'/change_password/{CANDIDATE_ID_USER}',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 200)
-
     # Ensure that route opens edit application page
     def test_editapplicationId(self):
         tester = app.test_client()
@@ -206,6 +192,20 @@ class RoutesAdminAvailable(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    # Ensure that route opens setup page
+    def test_setup(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/setup',
+            content_type='html/text'
+        )
+        self.assertEqual(response.status_code, 200)
+
     # Ensure that route opens users page
     def test_users(self):
         tester = app.test_client()
@@ -250,20 +250,6 @@ class RoutesAdminUnavailable(unittest.TestCase):
         )
         response = tester.get(
             '/add_application/abcdefg',
-            content_type='html/text'
-        )
-        self.assertEqual(response.status_code, 500)
-
-    # Ensure that a admin gets the server error message
-    def test_changepasswordRandomId(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/change_password/abcdef',
             content_type='html/text'
         )
         self.assertEqual(response.status_code, 500)

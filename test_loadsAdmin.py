@@ -50,7 +50,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             f'/add_application/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Add Application</h1>' in response.data)
+        self.assertTrue(b'Add Application' in response.data)
 
     # Ensure that route opens add application page
     def test_addapplicationFromApplicationPage(self):
@@ -64,7 +64,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/add_application/admin',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Add Application</h1>' in response.data)
+        self.assertTrue(b'Add Application' in response.data)
 
     # Ensure that route opens add user page
     def test_adduser(self):
@@ -78,7 +78,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/add_user',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Add User</h1>' in response.data)
+        self.assertTrue(b'Add User' in response.data)
 
     # Ensure that route opens add vacancy page
     def test_addvacancy(self):
@@ -92,7 +92,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/add_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Add Vacancy</h1>' in response.data)
+        self.assertTrue(b'Add Vacancy' in response.data)
 
     # Ensure that route opens applications page
     def test_applications(self):
@@ -106,21 +106,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/applications',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Open Applications</h1>' in response.data)
-
-    # Ensure that route opens change password page
-    def test_changepassword(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
-            follow_redirects=True
-        )
-        response = tester.get(
-            f'/change_password/{CANDIDATE_ID_USER}',
-            content_type='html/text'
-        )
-        self.assertTrue(b'<h1>Change password</h1>' in response.data)
+        self.assertTrue(b'Open Applications' in response.data)
 
     # Ensure that route opens edit application page
     def test_editapplicationId(self):
@@ -134,7 +120,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             f'/edit_application/{APPLICATION_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Edit Application</h1>' in response.data)
+        self.assertTrue(b'Edit Application' in response.data)
 
     # Ensure that route opens edit user page
     def test_edituser(self):
@@ -148,7 +134,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             f'/edit_user/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Edit User</h1>' in response.data)
+        self.assertTrue(b'Edit Profile' in response.data)
 
     # Ensure that route opens edit vacancy page
     def test_editvacancyId(self):
@@ -162,7 +148,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             f'/edit_vacancy/{VACANCY_ID}',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Edit Vacancy</h1>' in response.data)
+        self.assertTrue(b'Edit Vacancy' in response.data)
 
     # Ensure that route opens index page
     def test_index(self):
@@ -176,7 +162,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/index',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Welcome to BOS UP</h1>' in response.data)
+        self.assertTrue(b'Welcome to BOS UP' in response.data)
 
     # Ensure that route opens profile page
     def test_profile(self):
@@ -190,7 +176,21 @@ class LoadsAdminAvailable(unittest.TestCase):
             f'/profile/{CANDIDATE_ID_USER}',
             content_type='html/text'
         )
-        self.assertTrue(b'A form to see your user profile' in response.data)
+        self.assertTrue(b'A page to see your user/candidate profile' in response.data)
+
+    # Ensure that route opens setup page
+    def test_setup(self):
+        tester = app.test_client()
+        tester.post(
+            '/login',
+            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
+            follow_redirects=True
+        )
+        response = tester.get(
+            f'/setup',
+            content_type='html/text'
+        )
+        self.assertTrue(b'SETUP section' in response.data)
 
     # Ensure that route opens users page
     def test_users(self):
@@ -204,7 +204,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/users',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Users to approve</h1>' in response.data)
+        self.assertTrue(b'Users asking for approval' in response.data)
 
     # Ensure that route opens vacancies page
     def test_vacancies(self):
@@ -218,7 +218,7 @@ class LoadsAdminAvailable(unittest.TestCase):
             '/vacancies',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Open Vacancies</h1>' in response.data)
+        self.assertTrue(b'Open Vacancies' in response.data)
 
 
 class LoadsAdminUnavailable(unittest.TestCase):
@@ -238,21 +238,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/add_application/abcdefg',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
-
-    # Ensure that a admin gets the server error message
-    def test_changepasswordRandomId(self):
-        tester = app.test_client()
-        tester.post(
-            '/login',
-            data=dict(username=USERNAME_ADMIN, password=SPW_ONE),
-            follow_redirects=True
-        )
-        response = tester.get(
-            '/change_password/abcdef',
-            content_type='html/text'
-        )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that a admin gets the message that this page cannot be found
     def test_editapplication(self):
@@ -266,7 +252,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/edit_application',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that a admin gets the server error message
     def test_editapplicationRandomId(self):
@@ -280,7 +266,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/edit_application/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that a admin gets the server error message
     def test_edituserRandomId(self):
@@ -294,7 +280,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/edit_user/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that a admin gets the message that this page cannot be found
     def test_editvacancy(self):
@@ -308,7 +294,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/edit_vacancy',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that a admin gets the server error message
     def test_editvacancyRandomId(self):
@@ -322,7 +308,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/edit_vacancy/abcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
     # Ensure that a admin gets the message that this page cannot be found
     def test_profile(self):
@@ -336,7 +322,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/profile',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>404 Seems you got lost</h1>' in response.data)
+        self.assertTrue(b'404 Seems you got lost' in response.data)
 
     # Ensure that a admin gets the server error message
     def test_profileRandomId(self):
@@ -350,7 +336,7 @@ class LoadsAdminUnavailable(unittest.TestCase):
             '/profile/adbcdef',
             content_type='html/text'
         )
-        self.assertTrue(b'<h1>Error 500, Server error</h1>' in response.data)
+        self.assertTrue(b'Error 500, Server error' in response.data)
 
 
 # To run the test app
