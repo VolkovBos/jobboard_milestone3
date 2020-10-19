@@ -8,9 +8,31 @@
 <!--    Title section     -->
             <div class="col">
                 <form action="{{url_for('insert_vacancy')}}" method="POST">
-                    <h1>
-                        Add Vacancy
-                    </h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <h1>
+                                Add Vacancy
+                            </h1>
+                        </div>
+
+<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
+<!--    Add a picture url and load the url when changing the select options   -->
+                        <div class="col-6 display-grid" id="add-image">
+                            <label for="photo_url">
+                                Select Photo
+                            </label>
+                            <select class="form-control render-image" id="photo_url" name="photo_url">
+                                <option disabled selected>
+                                    Choose Image
+                                </option>
+                            {% for photo in photos %}
+                                <option value="{{ photo.photo_url }}">
+                                    {{ photo.name }}
+                                </option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
 
 <!--    Name of the vacancy, function title of the job    -->
                     <div class="form-group">
@@ -79,23 +101,6 @@
                                 <input class="form-control" type="date" id="end_date" name="end_date">
                             </div>
                         </div>
-                    </div>
-
-<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
-                    <div class="form-group">
-                        <label for="photo_url">
-                            Url for the Photo
-                        </label>
-                        <select class="form-control" id="photo_url" name="photo_url">
-                            <option disabled selected>
-                                Choose Image
-                            </option>
-                        {% for photo in photos %}
-                            <option value="{{ photo.photo_url }}">
-                                {{ photo.name }}
-                            </option>
-                        {% endfor %}
-                        </select>
                     </div>
 
 <!--    Vacancy text, line break can be used in this textarea    -->

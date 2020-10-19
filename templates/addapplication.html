@@ -7,15 +7,46 @@
 <!--    Title section     -->
             <div class="col">
                 <form action="{{url_for('insert_application')}}" method="POST">
-                {% if g.user['profile'] == 'admin' %}
-                    <h1>
-                        Add Application
-                    </h1>
-                {% else %}
-                    <h1>
-                        Application
-                    </h1>
-                {% endif %}
+                    <div class="row">
+                        <div class="col-6">
+                        {% if g.user['profile'] == 'admin' %}
+                            <h1>
+                                Add Application
+                            </h1>
+                        {% else %}
+                            <h1>
+                                Application
+                            </h1>
+                        {% endif %}
+                    </div>
+
+<!--    Add a picture url and load the url when changing the select options   -->
+                        <div class="col-6 display-grid" id="add-image">
+                            <label for="photo_url">
+                                Select Photo
+                            </label>
+                        {% if g.user['profile'] == 'admin' %}
+                            <select class="form-control render-image" id="vacancy_photo_url" name="vacancy_photo_url">
+                        {% else %}
+                            <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" disabled>
+                        {% endif %}
+                                <option disabled selected>
+                                    Choose Image
+                                </option>
+                            {% for photo in photos %}
+                            {% if photo.photo_url == vacancy.photo_url %}
+                                <option value="{{ photo.photo_url }}" selected>
+                                    {{ photo.name }}
+                                </option>
+                            {% else %}
+                                <option value="{{ photo.photo_url }}">
+                                    {{ photo.name }}
+                                </option>
+                            {% endif %}
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
 
 <!--    Name of the vacancy, function title of the job    -->
 <!--    Prefilled when creating from a vacancy   -->
@@ -192,38 +223,9 @@
                         </div>
                     </div>
 
-<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
+<!--    Location   -->
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-6">
-                                <label for="vacancy_photo_url">
-                                    Url for the Photo
-                                </label>
-                            {% if g.user['profile'] == 'admin' %}
-                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url">
-                            {% else%}
-                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" disabled>
-                            {% endif %}
-                                {% if vacancy.photo_url == '' %}
-                                    <option disabled selected>
-                                {% else %}
-                                    <option disabled>
-                                {% endif %}
-                                        Choose Image
-                                    </option>
-                                {% for photo in photos %}
-                                    {% if photo.photo_url == vacancy.photo_url %}
-                                    <option value="{{ photo.photo_url }}" selected>
-                                        {{ photo.name }}
-                                    </option>
-                                    {% else %}
-                                    <option value="{{ photo.photo_url }}">
-                                        {{ photo.name }}
-                                    </option>
-                                    {% endif %}
-                                {% endfor %}
-                                </select>
-                            </div>
                             <div class="col-6">
                                 <label for="vacancy_location">
                                     Location

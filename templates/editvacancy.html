@@ -10,9 +10,11 @@
                 <h1>
                     Vacancy : {{vacancy.job_title }}
                 </h1>
-            {% if vacancy.photo_url != '' and vacancy.photo_url != null %}
-                <img class="card-img-top" src="{{vacancy.photo_url}}" alt="Vacancy image">
-            {% endif %}
+                <div id="add-image">
+                {% if vacancy.photo_url != '' and vacancy.photo_url != null %}
+                    <img class="card-img-top" src="{{vacancy.photo_url}}" alt="Vacancy image">
+                {% endif %}
+                </div>
             </div>
             <div class="col">
                 <form action="{{url_for('update_vacancy', vacancy_id=vacancy._id)}}" method="POST">
@@ -98,9 +100,9 @@
 <!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
                     <div class="form-group">
                         <label for="photo_url">
-                            Url for the Photo
+                            Select Photo
                         </label>
-                        <select class="form-control" id="photo_url" name="photo_url">
+                        <select class="form-control render-image" id="photo_url" name="photo_url">
                             <option disabled>
                                 Choose Image
                             </option>

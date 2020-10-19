@@ -7,9 +7,40 @@
 <!--    Title section     -->
             <div class="col">
                 <form action="{{url_for('update_application', application_id=application._id)}}" method="POST">
-                    <h1>
-                        Edit Application
-                    </h1>
+                    <div class="row">
+                        <div class="col-6">
+                            <h1>
+                                Edit Application
+                            </h1>
+                        </div>
+
+<!--    Add a picture url and load the url when changing the select options   -->
+                        <div class="col-6 display-grid" id="add-image">
+                            <label for="photo_url">
+                                Select Photo
+                            </label>
+                        {% if g.user['profile'] == 'admin' %}
+                            <select class="form-control render-image" id="vacancy_photo_url" name="vacancy_photo_url">
+                        {% else %}
+                            <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" disabled>
+                        {% endif %}
+                                <option disabled selected>
+                                    Choose Image
+                                </option>
+                            {% for photo in photos %}
+                            {% if photo.photo_url == application.vacancy_photo_url %}
+                                <option value="{{ photo.photo_url }}" selected>
+                                    {{ photo.name }}
+                                </option>
+                            {% else %}
+                                <option value="{{ photo.photo_url }}">
+                                    {{ photo.name }}
+                                </option>
+                            {% endif %}
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
 
 <!--    Name of the vacancy, function title of the job    -->
 <!--    Prefilled when creating from a vacancy   -->
@@ -180,30 +211,9 @@
                         </div>
                     </div>
 
-<!--    URL for the phote for the vacancy. Is displayed on edit on on global vacancies page    -->
+<!--    Location   -->
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-6">
-                                <label for="vacancy_photo_url">
-                                    Url for the Photo
-                                </label>
-                                <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ application.vacancy_photo_url }}">
-                                    <option disabled>
-                                        Choose Image
-                                    </option>
-                                {% for photo in photos %}
-                                    {% if photo.photo_url == application.vacancy_photo %}
-                                    <option value="{{ application.vacancy_photo_url }}" selected>
-                                        {{ photo.name }}
-                                    </option>
-                                    {% else %}
-                                    <option value="{{ application.vacancy_photo_url }}">
-                                        {{ photo.name }}
-                                    </option>
-                                    {% endif %}
-                                {% endfor %}
-                                </select>
-                            </div>
                             <div class="col-6">
                                 <label for="vacancy_location">
                                     Location
