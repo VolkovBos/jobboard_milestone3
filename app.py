@@ -173,7 +173,7 @@ def register():
                     # if saved message that the registration is being processed
                     if user_in_db:
                         flash("Your registration is saved, \
-                            we will get in touch with you.", 'category2')
+                            we will get in touch with you.", 'category4')
 
                     # if not saved refer to the contact page
                     else:
@@ -304,7 +304,7 @@ def update_password(user_id):
                 users.update(
                     {'_id': ObjectId(user_id)},
                     {'$set': {'password': hash_pass}})
-                flash("Your password is changed", 'category3')
+                flash("Your password is changed", 'category4')
 
             # Old password is incorrect
             else:

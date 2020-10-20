@@ -262,6 +262,10 @@ svg {
     width: 100%;
 }
 
+.succes-message {
+    color: #777777;
+}
+
 /*-----      Vacancies & Applications      -----*/
 .intro-text {
     font-size: larger;

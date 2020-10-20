@@ -534,6 +534,36 @@
         </div>
     </div>
 
+<!--    Confirmation message Modal     -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+<!--    Modal body     -->
+                <div class="modal-body">
+                    <div>
+                {% with messages = get_flashed_messages(category_filter=["category4"])%}
+                    {% if messages %}
+                        <ul class="flashes">
+                        {% for message in messages %}
+                            <p class="succes-message">{{ message }}</p>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+                    </div>
+
+<!--    Close Button     -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<!--    jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -555,6 +585,7 @@
             var loginError = "{{ get_flashed_messages(category_filter=['category1']) }}";
             var registrationError = "{{ get_flashed_messages(category_filter=['category2']) }}";
             var changePassword = "{{ get_flashed_messages(category_filter=['category3']) }}";
+            var succes = "{{ get_flashed_messages(category_filter=['category4']) }}";
 
             if (typeof loginError != 'undefined' && loginError != '[]') {
                 $("#signInModal").modal();
@@ -564,6 +595,9 @@
             };
             if (typeof changePassword != 'undefined' && changePassword != '[]') {
                 $("#changePasswordModal").modal();
+            };
+            if (typeof succes != 'undefined' && succes != '[]') {
+                $("#confirmationModal").modal();
             };
         });
     </script>
