@@ -550,7 +550,6 @@
 	<script src="{{ url_for('static', filename='js/loadImage.js') }}"></script>
     
     <!--    Error flashes on modals  -->
-    <!--<script src="{{ url_for('static', filename='js/modalErrors.js') }}">-->
     <script>
         $(document).ready(function() {
             var loginError = "{{ get_flashed_messages(category_filter=['category1']) }}";
