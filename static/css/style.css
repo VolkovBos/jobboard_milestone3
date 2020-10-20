@@ -251,7 +251,7 @@ svg {
 .blink_me {
     animation: blinker 2s;
     animation-iteration-count: 2;
-    color: #777777;
+    color: #ff0000;
 }
 
 @keyframes blinker {  
@@ -260,14 +260,6 @@ svg {
 
 .flashes {
     width: 100%;
-    margin: auto;
-    margin-top: 80px;
-    padding-top: 10px;
-    font-size: x-large;
-    text-align: center;
-    z-index: 100;
-    display: inline-table;
-    background-color: yellow;
 }
 
 /*-----      Vacancies & Applications      -----*/

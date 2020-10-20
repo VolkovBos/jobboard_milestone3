@@ -133,8 +133,7 @@ def register():
 
         # Check if the username is at least 8 characters
         if len(username1) < 8:
-            flash("Username should be at least 8 characters")
-            return redirect(url_for('index'))
+            flash("Username should be at least 8 characters", 'category2')
 
         else:
             # Check if the password and password actually match
@@ -144,8 +143,7 @@ def register():
                 # Check if the user exist in the database
                 if user:
                     flash(f"{username1} already exists! \
-                        Please choose a different username.")
-                    return redirect(url_for('index'))
+                        Please choose a different username.", 'category2')
 
                 # If the user does not exist register new user
                 else:
@@ -175,20 +173,19 @@ def register():
                     # if saved message that the registration is being processed
                     if user_in_db:
                         flash("Your registration is saved, \
-                            we will get in touch with you.")
-                        return redirect(url_for('index'))
+                            we will get in touch with you.", 'category2')
 
                     # if not saved refer to the contact page
                     else:
                         flash("There was a problem saving your registration. \
                             If this happens again, please use the contactform \
-                                to contact the administrator of the website.")
-                        return redirect(url_for('index'))
+                                to contact the administrator of the website.",
+                              'category2')
 
             # If the passwords don't match
             else:
-                flash("Passwords are not identical. Please try again.")
-                return redirect(url_for('index'))
+                flash("Passwords are not identical. Please try again.",
+                      'category2')
 
     return redirect(url_for('index'))
 
@@ -238,20 +235,21 @@ def login():
 
                     # Incorrect password
                     else:
-                        flash('Your password is incorrect')
+                        flash('Your password is incorrect', 'category1')
 
                 # User is not approved yet
                 else:
-                    flash('Your registration is not processed yet.')
+                    flash('Your registration is not processed yet.',
+                          'category1')
 
             # Inactive user
             else:
                 flash('This user is inactive, \
-                    please contact the administrator')
+                    please contact the administrator', 'category1')
 
         # Unknown user
         else:
-            flash('The username provided is not known')
+            flash('The username provided is not known', 'category1')
 
     return redirect(url_for('index'))
 
@@ -297,7 +295,6 @@ def update_password(user_id):
         users = mongo.db.candidates
         form = request.form.to_dict()
         hash_pass = generate_password_hash(form['password_new'])
-        print(form)
 
         # Check if the new passwords actually match
         if form['password_new'] == form['password_new_confirm']:
@@ -307,15 +304,15 @@ def update_password(user_id):
                 users.update(
                     {'_id': ObjectId(user_id)},
                     {'$set': {'password': hash_pass}})
-                flash("Your password is changed")
+                flash("Your password is changed", 'category3')
 
             # Old password is incorrect
             else:
-                flash("Your current password is incorrect")
+                flash("Your current password is incorrect", 'category3')
 
         # Confirm and new password are not the same
         else:
-            flash("The new passwords do not match")
+            flash("The new passwords do not match", 'category3')
 
     return render_template(
         'profile.html',

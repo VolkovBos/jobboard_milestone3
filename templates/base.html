@@ -153,17 +153,7 @@
 	</header>
 
 <!--    Error messages for login and register modal    -->
-    <div class="row">
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class="flashes">
-        {% for message in messages %}
-            <p class="blink_me center">{{ message }}</p>
-        {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
-    </div>
+    
 
     <div class="min-height-div">
 {% block content %}
@@ -277,13 +267,24 @@
                 </div>
                 <div class="modal-body">
                     <form action="/login" method="POST">
+                        <div>
+                    {% with messages = get_flashed_messages(category_filter=["category1"])%}
+                        {% if messages %}
+                            <ul class="flashes">
+                            {% for message in messages %}
+                                <p class="blink_me center">{{ message }}</p>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                        </div>
                         <div class="form-group">
 
 <!--    Login Username     -->
                             <label id="userLabel" class="col-form-label">
                                 Username
                             </label>
-                            <input class="form-control" type="text" id="username" name="username" required>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Fill in your username" required>
                         </div>
                         <div class="form-group">
 
@@ -291,7 +292,7 @@
                             <label id="passwordLabel" class="col-form-label">
                                 Password
                             </label>
-                            <input class="form-control" type="password" id="password" name="password" required>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Fill in your password" required>
                         </div>
 
 <!--    Modal Buttons     -->
@@ -303,7 +304,6 @@
                         </div>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -326,13 +326,24 @@
                 </div>
                 <div class="modal-body">
                     <form action="/register" method="POST">
+                        <div>
+                    {% with messages = get_flashed_messages(category_filter=["category2"])%}
+                        {% if messages %}
+                            <ul class="flashes">
+                            {% for message in messages %}
+                                <p class="blink_me center">{{ message }}</p>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                        </div>
                         <div class="form-group">
 
 <!--    Login Username     -->
                             <label id="userLabelSu" class="col-form-label">
                                 Username
                             </label>
-                            <input class="form-control" type="text" id="username1" name="username1" required>
+                            <input class="form-control" type="text" id="username1" name="username1" placeholder="Choose a username of at least 8 characters" required>
                         </div>
                         <div class="form-group">
 
@@ -340,7 +351,7 @@
                             <label id="emailLabel" class="col-form-label">
                                 Email address
                             </label>
-                            <input class="form-control" type="email" id="emailAdress" name="emailAdress" required>
+                            <input class="form-control" type="email" id="emailAdress" name="emailAdress" placeholder="Fill in your email" required>
                         </div>
                         <div class="form-group">
 
@@ -348,7 +359,7 @@
                             <label id="passwordLabelSu" class="col-form-label">
                                 Password
                             </label>
-                            <input class="form-control" type="password" id="user_password1" name="user_password1" required>
+                            <input class="form-control" type="password" id="user_password1" name="user_password1" placeholder="Fill in your password" required>
                         </div>
                         <div class="form-group">
 
@@ -356,7 +367,7 @@
                             <label id="passwordLabelSuConfirm" class="col-form-label">
                                 Confirm Password
                             </label>
-                            <input class="form-control" type="password" id="user_password2" name="user_password2" required>
+                            <input class="form-control" type="password" id="user_password2" name="user_password2" placeholder="Fill in your password" required>
                         </div>
 
 <!--    Modal Buttons     -->
@@ -368,7 +379,6 @@
                         </div>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -391,13 +401,24 @@
                 </div>
                 <div class="modal-body">
                     <form action="/update_password/{{g.user['_id']}}" method="POST">
+                        <div>
+                    {% with messages = get_flashed_messages(category_filter=["category3"])%}
+                        {% if messages %}
+                            <ul class="flashes">
+                            {% for message in messages %}
+                                <p class="blink_me center">{{ message }}</p>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                        </div>
                         <div class="form-group">
 
 <!--    Login Old Password     -->
                             <label for="password_old" class="col-form-label">
                                 Old Password
                             </label>
-                            <input class="form-control" type="password" id="password_old" name="password_old" required>
+                            <input class="form-control" type="password" id="password_old" name="password_old" placeholder="Fill in your password" required>
                         </div>
 
 <!--    New Password     -->
@@ -405,7 +426,7 @@
                             <label for="password_new" class="col-form-label">
                                 New Password
                             </label>
-                            <input class="form-control" type="password" id="password_new" name="password_new" required>
+                            <input class="form-control" type="password" id="password_new" name="password_new" placeholder="Choose a new password" required>
                         </div>
                     
 <!--    Confirm New Password     -->
@@ -413,7 +434,7 @@
                             <label for="password_new_confirm" class="col-form-label">
                                 Confirm New Password
                             </label>
-                            <input class="form-control" type="password" id="password_new_confirm" name="password_new_confirm" required>
+                            <input class="form-control" type="password" id="password_new_confirm" name="password_new_confirm" placeholder="Confirm your new password" required>
                         </div>
 
 <!--    Modal Buttons     -->
@@ -421,11 +442,10 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                 Close
                             </button>
-                            <input type="submit" class="btn btn-primary" value="Save">
+                            <input type="submit" class="btn btn-primary" id="submitModal" value="Save">
                         </div>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -510,7 +530,6 @@
                         </div>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -528,6 +547,26 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!--    Loads image on button click -->
-	<script src="{{ url_for('static', filename='js/loadImage.js') }}"></script>   
+	<script src="{{ url_for('static', filename='js/loadImage.js') }}"></script>
+    
+    <!--    Error flashes on modals  -->
+    <!--<script src="{{ url_for('static', filename='js/modalErrors.js') }}">-->
+    <script>
+        $(document).ready(function() {
+            var loginError = "{{ get_flashed_messages(category_filter=['category1']) }}";
+            var registrationError = "{{ get_flashed_messages(category_filter=['category2']) }}";
+            var changePassword = "{{ get_flashed_messages(category_filter=['category3']) }}";
+
+            if (typeof loginError != 'undefined' && loginError != '[]') {
+                $("#signInModal").modal();
+            };
+            if (typeof registrationError != 'undefined' && registrationError != '[]') {
+                $("#signUpModal").modal();
+            };
+            if (typeof changePassword != 'undefined' && changePassword != '[]') {
+                $("#changePasswordModal").modal();
+            };
+        });
+    </script>
 </body>
 </html>
