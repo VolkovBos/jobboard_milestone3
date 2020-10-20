@@ -232,22 +232,87 @@ The most tables are self explanatory, but I consciously chose to use one table f
 ![Tables overview](static/img/tables.jpg)
 
 ## Features
+All the features were developed with dynamic user content with appropriate restrictions. Features like create, update, delete, approve are hidden behind a registration wall or login portal, but this do not hinder visitors from viewing the overall content.
 
 ### Existing Features
-- [x] Vacancies on site
+
+#### Home Page + Footer (all users)
+The Home page includes login and registration menu at the very top, you can see the general info about the company. In the navigation menu you have an option to search through all vacancies, this search will check the text, job title and location of all vacancies.
+In the footer you'll find a contact option which gives you the option to send a email to the admin of the website. Also you'll find social links of the company and a link to the github page of the admin who created this website.
+
+#### Vacancies
+##### Vistors
+The Vacancies page shows all vacancies which are not closed on cards with a nice header image. The page and vacancies are created based on call-2-action, so you'll find buttons to the contact modal.
+
+##### User (logged in)
+In stead off the contact buttons on vacancies on the visitor side of the site, users have the option to apply to a vacancy.
+
+##### Admin (logged in)
+Admins have the availability to add, edit or delete vacancies by using one of the buttons. They also have a button to direct 'Close' a vacancy and move this to the closed section. The button for creating a application is called application for an admin because they don't apply do the vacancies not as a candidate user.
+
+
+#### Add & Edit Vacancy
+##### Admin (logged in)
+From the Vacancies page admins can add a new vacancy. On the Add Vacancy page the status and select photo fields are filled with records of setup tables. When changing the photo option, a preview of the photo will load on the page.
+
+#### Applications
+##### User (logged in)
+The My Applications page shows all application of the candidate user on cards with a nice header image.
+
+##### Admin (logged in)
+Admins have the availability to add, edit or delete application by using one of the buttons. They also have a button to direct 'Close' a application and move this to the closed section. On the cards there is an extra header with the candidate name for the admins available.
+
+#### Add & Edit Application
+##### User (logged in)
+From the Vacancies page users can apply to a vacancy. On the Add Application page the data of the vacancy is not changeable by the user only his availability date and comments can be changed. The Edit Application page is not available for candidate users.
+
+##### Admin (logged in)
+From the Vacancies page admins can add a new vacancy. On the Add Application page all the fields which were available on the Vacancy are prefilled. An admin can change these fields however on the appication, depending on which agreements were made with the candidate.
+The status and select photo fields are filled with records of setup tables. When changing the photo option, a preview of the photo will load on the page. The job title and candidate name fields are filled with all options in those respectively tables. Closed and inactive records however are shown on the bottom of the selection with a seperator.
+<br>
+From the Applications page there is no vacancy data available from the start, so those fields aren't set or available yet. This is more a quick action for the admin.
+<br>
+When changing the vacancy on a application the data from the vacancy will be loaded to the application.
+
+#### Profile
+##### User & Admin(logged in)
+Clicking on the name in the navigation menu, a user can open his user profile. On the Profile page you get sevral blocks of information, each designed for a specific goal. On the generic card are buttons for edit and change password and if available a profile photo of the candidate.
+
+
+#### Edit user
+##### User (logged in)
+
+##### Admin (logged in)
+
+
+#### Add user
+##### Admin (logged in)
+
+
+#### Change password
+##### User & Admin (logged in)
+
+
+#### Users
+##### Admin (logged in)
+
+
+#### Setup
+##### Admin (logged in)
+
+
+#### Error handling pages
+##### All users
+
+
 - [x] Registration form
 - [x] Login form
 - [x] Hashed passwords
 - [x] Contact form
-- [x] Login for candidates
-- [x] Admin environment
-- [x] CRUD Vacancies
-- [x] CRUD Applications
 - [x] Approve new registrated users
 - [x] Close Vacancies and/or Applications
 - [x] Change password
 - [x] Profile section
-- [x] Quick action menu
 - [x] 403, 404, 500 Error handling (and pages)
 - [x] CRUD Users/candidates
 - [x] Manual search option
