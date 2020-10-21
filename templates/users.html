@@ -59,88 +59,9 @@
 
 <!--    User list with to approve status    -->
                 {% for user in users_to_approve %}
-
-<!--    User info   -->
-                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                        <td>{{user.user_id}}</td>
-                        <td>
-                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
-                                {{user.user_name}}
-                            </a>
-                        </td>
-                        <td class="mobile-hidden">
-                            {{user.first_name}} {{user.last_name}}
-                        </td>
-                        <td>{{user.profile}}</td>
-                    {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% endif %} {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% endif %}
-                        <td>
-                            <i class="material-icons text-info mr-2">arrow_downward</i>
-                        </td>
-                    </tr>
-                    <tr>
-
-<!--    Candidate info behind collapsible menu  -->
-                        <td colspan="7" class="hiddenRow">
-                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
-                                <table class="user-collapse">
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>:</td>
-                                        <td>{{user.email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>street</td>
-                                        <td>:</td>
-                                        <td>{{user.street}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>House Nr</td>
-                                        <td>:</td>
-                                        <td>{{user.house_nr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>City</td>
-                                        <td>:</td>
-                                        <td>{{user.city}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Zip Code</td>
-                                        <td>:</td>
-                                        <td>{{user.zip_code}}</td>
-                                    </tr>
-                                </table>
-
-<!--    Buttons to approve or delete new user    -->
-                                <div class="center user-collapse">
-                                {% if user.image_url != '' %}
-                                    <img class="rounded-circle" src="{{user.image_url}}" alt="Profile Image" />
-                                {% endif %}
-                                    <a href="{{url_for('approve_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
-                                        Approve
-                                    </a>
-                                    <a href="{{url_for('delete_user', userid=user._id)}}" class="btn btn-outline-danger button-margin">
-                                        Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                    {% with listtype='approval' %}
+                        {% include 'userlist.html' %}
+                    {% endwith %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -174,93 +95,9 @@
 
 <!--    User list with active status    -->
                     {% for user in users %}
-
-<!--    User info   -->
-                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                        <td>{{user.user_id}}</td>
-                        <td>
-                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
-                                {{user.user_name}}
-                            </a>
-                        </td>
-                        <td class="mobile-hidden">
-                            {{user.first_name}} {{user.last_name}}
-                        </td>
-                        <td>{{user.profile}}
-                    </td>
-                    {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% endif %} 
-                    {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% endif %}
-                        <td>
-                            <i class="material-icons text-info mr-2">arrow_downward</i>
-                        </td>
-                    </tr>
-                    <tr>
-
-<!--    Candidate info behind collapsible menu  -->
-                        <td colspan="7" class="hiddenRow">
-                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
-                                <table class="user-collapse">
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>:</td>
-                                        <td>{{user.email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>street</td>
-                                        <td>:</td>
-                                        <td>{{user.street}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>House Nr</td>
-                                        <td>:</td>
-                                        <td>{{user.house_nr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>City</td>
-                                        <td>:</td>
-                                        <td>{{user.city}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Zip Code</td>
-                                        <td>:</td>
-                                        <td>{{user.zip_code}}</td>
-                                    </tr>
-                                </table>
-
-<!--    Buttons to edit, deactive or delete user    -->
-                                <div class="center user-collapse">
-                                {% if user.image_url != '' %}
-                                    <img class="rounded-circle" src="{{user.image_url}}" alt="Profile Image" />
-                                {% endif %}
-                                    <a href="{{url_for('edit_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
-                                        Edit
-                                    </a>
-                                    <a href="{{url_for('deactivate_user', userid=user._id)}}" class="btn btn-outline-danger button-margin">
-                                        Deactivate
-                                    </a>
-                                    <a href="{{url_for('delete_user', userid=user._id)}}" class="btn btn-outline-danger button-margin">
-                                        Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                        {% with listtype='active' %}
+                            {% include 'userlist.html' %}
+                        {% endwith %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -296,89 +133,9 @@
 
 <!--    User list with inactive status    -->
                     {% for user in users_inactive %}
-
-<!--    User info   -->
-                    <tr data-toggle="collapse" data-target="#demo{{user.user_id}}" class="accordion-toggle">
-                        <td>{{user.user_id}}</td>
-                        <td>
-                            <a  href="{{ url_for('profile', userid=user['_id']) }}">
-                                {{user.user_name}}
-                            </a>
-                        </td>
-                        <td class="mobile-hidden">
-                            {{user.first_name}} {{user.last_name}}
-                        </td>
-                        <td>{{user.profile}}</td>
-                    {% if user.status == 'active' %}
-                        <td class="text-success mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.status}}
-                        </td>
-                    {% endif %} 
-                    {% if user.approved == True %}
-                        <td class="text-success mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% else %}
-                        <td class="text-danger mobile-hidden">
-                            {{user.approved}}
-                        </td>
-                    {% endif %}
-                        <td>
-                            <i class="material-icons text-info mr-2">arrow_downward</i>
-                        </td>
-                    </tr>
-                    <tr>
-
-<!--    Candidate info behind collapsible menu  -->
-                        <td colspan="7" class="hiddenRow">
-                            <div class="accordion-body collapse row" id="demo{{user.user_id}}">
-                                <table class="user-collapse">
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>:</td>
-                                        <td>{{user.email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>street</td>
-                                        <td>:</td>
-                                        <td>{{user.street}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>House Nr</td>
-                                        <td>:</td>
-                                        <td>{{user.house_nr}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>City</td>
-                                        <td>:</td>
-                                        <td>{{user.city}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Zip Code</td>
-                                        <td>:</td>
-                                        <td>{{user.zip_code}}</td>
-                                    </tr>
-                                </table>
-
-<!--    Buttons to active or delete user    -->
-                                <div class="center user-collapse">
-                                {% if user.image_url != '' %}
-                                    <img class="rounded-circle" id="blah" src="{{user.image_url}}" alt="your image" />
-                                {% endif %}
-                                    <a href="{{url_for('activate_user', userid=user._id)}}" class="btn btn-outline-success button-margin">
-                                        Activate
-                                    </a>
-                                    <a href="{{url_for('delete_user', userid=user._id)}}" class="btn btn-outline-danger button-margin">
-                                        Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                        {% with listtype='inactive' %}
+                            {% include 'userlist.html' %}
+                        {% endwith %}
                     {% endfor %}
                 </tbody>
             </table>
