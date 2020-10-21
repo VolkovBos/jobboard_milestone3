@@ -513,7 +513,7 @@ Registration; the error with message:
 If the registration is a succes you will get the message:"Your registration is saved, we will get in touch with you."
 
 ### Unittesting
-For the Unittests I focussed mostly on authorisation, page loads and the error pages. Besides this I also tested the login, logout and register functionality. Because of time I chose to do test the button, actions, queries and database modifiers in the user storie testing. 
+For the Unittests I focussed mostly on authorisation, page loads and the error pages. Besides this I also tested the login and logout functionality. Because of time I chose to do test the button, actions, queries and database modifiers in the user storie testing. This also applies for the JavaScript I used, the errors and success messages I tested on the website.
 
 ### Further testing
 * Tested this website on laptop and mobile.
