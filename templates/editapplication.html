@@ -62,7 +62,7 @@
 
 <!-- Open vacancies shown in dropdown menu -->
                                 {% for vac in open_vacancies %}
-                                    {% if vac.job_title == application.job_title %}
+                                    {% if vac.job_title == application.vacancy_job_title %}
                                     <option value="{{ vac._id }}" selected>
                                         {{ vac.job_title }}
                                     </option>
@@ -147,7 +147,7 @@
 
 <!-- Active candidates shown in dropdown menu -->
                                 {% for can in active_candidates %}
-                                    {% if can._id == application.candidate_id %}
+                                    {% if can._id|string == application.candidate_id %}
                                     <option value="{{ can._id }}" selected>
                                         {{ can.first_name }} {{ can.last_name }}
                                     </option>

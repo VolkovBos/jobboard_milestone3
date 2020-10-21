@@ -988,7 +988,7 @@ def update_application(application_id):
     the_candidate = mongo.db.candidates.find_one(
             {"_id": ObjectId(candidate_id)})
     applications = mongo.db.applications
-
+    # user_id = str(g.user['_id'])
     applications.update_one(
         {'_id': ObjectId(application_id)},
         {'$set': {
@@ -997,7 +997,7 @@ def update_application(application_id):
             'comments': request.form.get('comments'),
             'candidate_id': candidate_id,
             'candidate_name': the_candidate.get('first_name') +
-            the_candidate.get('last_name')
+            ' ' + the_candidate.get('last_name')
         }})
 
     the_application = mongo.db.applications.find_one(
@@ -1018,6 +1018,16 @@ def update_application(application_id):
                 'vacancy_photo_url': the_vacancy.get('photo_url'),
                 'vacancy_location': the_vacancy.get('location'),
                 'vacancy_text': the_vacancy.get('text')
+            }})
+    else:
+        applications.update_one(
+            {'_id': ObjectId(application_id)},
+            {'$set': {
+                'vacancy_hours': request.form.get('vacancy_hours'),
+                'vacancy_salary': request.form.get('vacancy_salary'),
+                'vacancy_photo_url': request.form.get('vacancy_photo_url'),
+                'vacancy_location': request.form.get('vacancy_location'),
+                'vacancy_text': request.form.get('vacancy_text')
             }})
 
     return redirect(url_for('applications'))
@@ -1077,4 +1087,4 @@ if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=False)
+        debug=True)
