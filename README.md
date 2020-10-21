@@ -240,6 +240,18 @@ All the features were developed with dynamic user content with appropriate restr
 The Home page includes login and registration menu at the very top, you can see the general info about the company. In the navigation menu you have an option to search through all vacancies, this search will check the text, job title and location of all vacancies.
 In the footer you'll find a contact option which gives you the option to send a email to the admin of the website. Also you'll find social links of the company and a link to the github page of the admin who created this website.
 
+#### Contact
+In the footer and on several places in the website there are links which open a contact modal. From here you can send an email to the owner of the website. The user wil receive a confirmation email that the message is sent.
+
+#### Register
+A visitor of the site can use the 'Register' option in the navigation menu to register for a login. This will open a modal where he can input some required fields and submit. Errorsmessages are shown when the visitor triggers an error and he'll get a success message if the registration is successful.
+
+#### Login
+A visitor of the site can use the 'Login' option in the navigation menu to login the website. This will open a modal where he can input some required fields and login with his credentials. Errorsmessages are shown when the visitor triggers an error.
+
+#### Passwords
+All use of passwords are secure and hashed. This is used for login, register and change password functions.
+
 #### Vacancies
 ##### Vistors
 The Vacancies page shows all vacancies which are not closed on cards with a nice header image. The page and vacancies are created based on call-2-action, so you'll find buttons to the contact modal.
@@ -278,51 +290,47 @@ When changing the vacancy on a application the data from the vacancy will be loa
 ##### User & Admin(logged in)
 Clicking on the name in the navigation menu, a user can open his user profile. On the Profile page you get sevral blocks of information, each designed for a specific goal. On the generic card are buttons for edit and change password and if available a profile photo of the candidate.
 
+#### Users
+##### Admin (logged in)
+In the navigation menu the admin has the option 'Users'. On this page the admin can control who has access to the website. There is a button to manually add an user and there are three sections of users:
+1. Users asking for approval; these are user which have registrated themselves on the wesite. A admin can either choose to approve or delete them using the buttons. Approving will set the user to the active users section.
+2. Active user; these users can log on to the website. Either with admin or user privileges.
+3. Inactive users; these users are set on inactive and cannot log on to the website anymore.
 
 #### Edit user
 ##### User (logged in)
+From the userprofile a user can click on the 'Edit' button to open the 'Edit Profile' page. Here he can change al his data except for the user account and save. He can also fill in a url for a profile photo and if he wants use the 'Load image' button for a preview.
 
 ##### Admin (logged in)
-
+From the 'Users' page a admin can open a userprofile by clicking on the username or use the 'Edit' button, which is only available with active users. From both he opens the 'Edit Profile' page of that specific user. An admin can in addition to a user also change the user account info.
 
 #### Add user
 ##### Admin (logged in)
+From the users page an admin can use the 'Add User' button to open the 'Add User' page. Here he can fill in al his data. He can also fill in a url for a profile photo and if he wants use the 'Load image' button for a preview.
 
 
 #### Change password
 ##### User & Admin (logged in)
-
-
-#### Users
-##### Admin (logged in)
+From the profile page a user can change his password by using the 'Change Password' button. This opens a modal in which he can fill in his current password and a new one. A confirmation of the new password is required to prevent typos.
 
 
 #### Setup
 ##### Admin (logged in)
-
+In the navigation menu the admin has the option 'Setup'. On the 'Setup' page the admin can control fields or rather processes on the website. He can add, change or delete statusses and images as long as they are not required for running the website. A section for profiles is also added but additional functionality behind this is not yet added.
 
 #### Error handling pages
 ##### All users
+When stumbling on a 403, 404 or 500 error a visitor or user will be redirected to an error page. These pages are also used when some profile is trying to open a view for which he doesn't have the access rights for.
 
-
-- [x] Registration form
-- [x] Login form
-- [x] Hashed passwords
-- [x] Contact form
-- [x] Approve new registrated users
-- [x] Close Vacancies and/or Applications
-- [x] Change password
-- [x] Profile section
-- [x] 403, 404, 500 Error handling (and pages)
-- [x] CRUD Users/candidates
-- [x] Manual search option
-- [x] Setup page for admin
+#### Logout
+##### User & Admin (logged in)
+A logged in user of the site can use the logout icon in the navigation menu to logout the site. When clicking on the icon the user (becomes a visitor and) gets redirected to the homepage.
 
 ### Features Left to Implement
-- [ ] Trashbin
-- [ ] Cloning of records
-- [ ] Forgot password
-- [ ] Userprofile: office employee
+- Trashbin; before finally deleting items I would like to implement a trash bin for admins.
+- Cloning of records; a quick action which allows for fast duplication a record and changing some fields.
+- Forgot password
+- New/Other userprofiles; more selections on user level rights and delegating processes. For instance a office employee who can manage the vacancies and applications sections of the website.
 
 ## Technologies Used
 I have used the following technologys for this project:
