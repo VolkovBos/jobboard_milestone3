@@ -1,0 +1,103 @@
+        <div class="card col-sm-5 col-md-5">
+
+<!--    Show the candidate name for the admin on application cards   -->
+        {%  if g.user['profile'] == 'admin' and listtype == 'applications' %}
+            <h5 class="card-title center">
+                {{apl.candidate_name}}
+            </h5>
+        {% endif %}
+
+<!--    Only shows image when its available     -->
+    {% if listtype == 'applications' %}
+        {% if apl.vacancy_photo_url != '' and apl.vacancy_photo_url != null %}
+            <img class="card-img-top" src="{{apl.vacancy_photo_url}}" alt="Vacancy image">
+        {% endif %}
+
+    {% elif listtype == 'vacancies' %}
+        {% if vac.photo_url != '' and vac.photo_url != null %}
+            <img class="card-img-top" src="{{vac.photo_url}}" alt="Vacancy image"> 
+        {% endif %}
+    {% endif %}
+            <div class="card-body">
+                <div class="row center-button">
+
+<!--    Button section, only availlable for admin   -->
+            {% if listtype == 'applications' %}
+                {%  if g.user['profile'] == 'admin' %}
+                    <a href="{{url_for('edit_application', application_id=apl._id)}}" class="btn btn-outline-info button-margin">
+                        Edit
+                    </a>
+                {% if liststatus == 'open' %}
+                    <a href="{{url_for('close_application', application_id=apl._id)}}" class="btn btn-outline-warning button-margin">
+                        Close
+                    </a>
+                {% endif %}
+                    <a href="{{url_for('delete_application', application_id=apl._id)}}" class="btn btn-outline-danger button-margin">
+                        Delete
+                    </a>
+                {% endif %}
+
+            {% elif listtype == 'vacancies' %}
+                {% if g.user['profile'] == 'admin' %}
+                    <a href="{{url_for('edit_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
+                        Edit
+                    </a>
+                    <a href="{{url_for('add_application', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
+                        Application
+                    </a>
+                {% if liststatus == 'open' %}
+                    <a href="{{url_for('close_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-warning button-margin">
+                        Close
+                    </a>
+                {% endif %}
+                    <a href="{{url_for('delete_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-danger button-margin">
+                        Delete
+                    </a>
+                {% elif g.user['profile'] == 'user' %}
+                    <a href="{{url_for('add_application', vacancy_id=vac._id)}}" class="btn btn-outline-info">
+                        Apply to this vacancy!
+                    </a>
+                {% else %}
+                    <a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal" class="btn btn-outline-info button-margin">
+                        Contact us
+                    </a>
+                {% endif %}
+            {% endif %}
+                </div>
+
+<!--    Vacancy information     -->
+                <h5 class="card-title center">
+                {% if listtype == 'applications' %}
+                    {{apl.vacancy_job_title}}
+
+                {% elif listtype == 'vacancies' %}
+                    {{vac.job_title}}
+                {% endif %}
+                </h5>
+                <hr class="hr-vacancy">
+                <p class="card-text center">
+                {% if listtype == 'applications' %}
+                    {% if apl.vacancy_hours != null and apl.vacancy_hours != '' %}Hours : {{apl.vacancy_hours}} {% endif %}<br>
+                    {% if apl.vacancy_salary != null and apl.vacancy_salary != '' %}Salary : {{apl.vacancy_salary}} {% endif %}<br>
+                    {% if apl.vacancy_location != null and apl.vacancy_location != '' %}Location : {{apl.vacancy_location}} {% endif %}
+
+                {% elif listtype == 'vacancies' %}
+                    {% if vac.hours != null and vac.hours != '' %}Hours : {{vac.hours}} {% endif %}<br> 
+                    {% if vac.salary != null and vac.salary != '' %}Salary : {{vac.salary}} {% endif %}<br>
+                    {% if vac.location != null and vac.location != '' %}Location :{{vac.location}} {% endif %}
+                {% endif %}
+                </p>
+                <hr class="hr-vacancy">
+            {% if listtype == 'applications' %}
+                <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
+
+            {% elif listtype == 'vacancies' %}
+                <p class="card-text textarea-breaks">{{vac.text}}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        closes on {{vac.end_date}}
+                    </small>
+                </p>
+            {% endif %}
+            </div>
+        </div>

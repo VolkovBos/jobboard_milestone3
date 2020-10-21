@@ -42,60 +42,10 @@
     <hr>
     <div class="card-deck">
     {% for vac in vacancies_open %}
-        <div class="card col-sm-5 col-md-5">
-
-<!--    Only shows image when its available     -->
-        {% if vac.photo_url != '' and vac.photo_url != null %}
-            <img class="card-img-top" src="{{vac.photo_url}}" alt="Vacancy image"> 
-        {% endif %}
-            <div class="card-body">
-                <div class="row center-button">
-
-<!--    Button section, only availlable when logged in     -->
-                {% if g.user['profile'] == 'admin' %}
-                    <a href="{{url_for('edit_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
-                        Edit
-                    </a>
-                    <a href="{{url_for('add_application', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
-                        Application
-                    </a>
-                    <a href="{{url_for('close_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-warning button-margin">
-                        Close
-                    </a>
-                    <a href="{{url_for('delete_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-danger button-margin">
-                        Delete
-                    </a>
-                {% elif g.user['profile'] == 'user' %}
-                    <a href="{{url_for('add_application', vacancy_id=vac._id)}}" class="btn btn-outline-info">
-                        Apply to this vacancy!
-                    </a>
-                {% else %}
-                    <a title="Contact us" href="#" data-toggle="modal" data-target="#contactModal" class="btn btn-outline-info button-margin">
-                        Contact us
-                    </a>
-                {% endif %}
-                </div>
-
-<!--    Vacancy information      -->
-                <h5 class="card-title center">
-                    {{vac.job_title}}
-                </h5>
-                <hr class="hr-vacancy">
-                <p class="card-text center">
-                    {% if vac.hours != null and vac.hours != '' %}Hours : {{vac.hours}} {% endif %}<br> 
-                    {% if vac.salary != null and vac.salary != '' %}Salary : {{vac.salary}} {% endif %}<br>
-                    {% if vac.location != null and vac.location != '' %}Location :{{vac.location}} {% endif %}
-                </p>
-                <hr class="hr-vacancy">
-                <p class="card-text textarea-breaks">{{vac.text}}</p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        closes on {{vac.end_date}}
-                    </small>
-                </p>
-            </div>
-        </div>
-        {% endfor %}
+        {% with listtype='vacancies', liststatus='open' %}
+            {% include 'cards.html' %}
+        {% endwith %}
+    {% endfor %}
     </div>
 
 <!--    This section shows the closed vacancies, only available for the admin     -->
@@ -116,48 +66,9 @@
 <!--    Carddeck of closed vacancies      -->
     <div class="card-deck">
         {% for vac in vacancies_closed %}
-        <div class="card col-sm-5 col-md-5">
-
-<!--    Only shows image when its available     -->
-        {% if vac.photo_url != '' and vac.photo_url != null %}
-            <img class="card-img-top" src="{{vac.photo_url}}" alt="Vacancy image">
-        {% endif %}
-            <div class="card-body">
-
-<!--    Button section     -->
-                <div class="row center-button">
-                    <a href="{{url_for('edit_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
-                        Edit
-                    </a>
-                    <a href="{{url_for('add_application', vacancy_id=vac._id)}}" class="btn btn-outline-info button-margin">
-                        Application
-                    </a>
-                    <a href="{{url_for('delete_vacancy', vacancy_id=vac._id)}}" class="btn btn-outline-danger button-margin">
-                        Delete
-                    </a>
-                </div>
-
-<!--    Vacancy information      -->
-                <h5 class="card-title center">
-                    {{vac.job_title}}
-                </h5>
-                <hr class="hr-vacancy">
-                <p class="card-text center">
-                    {% if vac.hours != null and vac.hours != '' %}Hours : {{vac.hours}} {% endif %}<br> 
-                    {% if vac.salary != null and vac.salary != '' %}Salary : {{vac.salary}} {% endif %}<br>
-                    {% if vac.location != null and vac.location != '' %}Location :{{vac.location}} {% endif %}
-                </p>
-                <hr class="hr-vacancy">
-                <p class="card-text textarea-breaks">
-                    {{vac.text}}
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        closes on {{vac.end_date}}
-                    </small>
-                </p>
-            </div>
-        </div>
+            {% with listtype='vacancies', liststatus='closed' %}
+                {% include 'cards.html' %}
+            {% endwith %}
         {% endfor %}
     </div>
 {% endif %}
