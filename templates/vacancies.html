@@ -9,7 +9,11 @@
 <!--    Title open section     -->
             <div class="col">
                 <h1>
+                {% if g.user['profile'] == 'admin' %}
                     Open Vacancies
+                {% else %}
+                    Vacancies
+                {% endif %}
                 </h1>
             </div>
         </div>
@@ -41,15 +45,22 @@
 <!--    Carddeck of vacancies      -->
     <hr>
     <div class="card-deck">
-    {% for vac in vacancies_open %}
-        {% with listtype='vacancies', liststatus='open' %}
-            {% include 'cards.html' %}
-        {% endwith %}
-    {% endfor %}
+    {% if nr_vacancies_open > 0 %}
+        {% for vac in vacancies_open %}
+            {% with listtype='vacancies', liststatus='open' %}
+                {% include 'cards.html' %}
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        <h2> 
+            No vacancies found 
+        </h2>
+    {% endif %}
     </div>
 
 <!--    This section shows the closed vacancies, only available for the admin     -->
 {% if g.user['profile'] == 'admin' %}
+    {% if nr_vacancies_closed > 0 %}
     <hr>
     <div class="container second-container">
         <div class="row">
@@ -71,6 +82,7 @@
             {% endwith %}
         {% endfor %}
     </div>
+    {% endif %}
 {% endif %}
     
 {% endblock %}

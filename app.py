@@ -642,7 +642,9 @@ def vacancies():
     return render_template(
         "vacancies.html",
         vacancies_open=vacancies_open,
-        vacancies_closed=vacancies_closed
+        nr_vacancies_open=vacancies_open.count(),
+        vacancies_closed=vacancies_closed,
+        nr_vacancies_closed=vacancies_closed.count()
     )
 
 
