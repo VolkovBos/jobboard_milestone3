@@ -495,13 +495,13 @@ The logo was designed en made by myself.
 I used images from [Unsplash](https://unsplash.com/) throughout my site.
 
 Thanks to:
-[Albert Dera](https://unsplash.com/@albertdera), for a profile image
-[Clem Onojeghuo](https://unsplash.com/@clemono), for a vacancy image
-[Florian Olivio](https://unsplash.com/@florianolv), for a vacancy image
-[Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters), for a vacancy image
-[Jimmy Fermin](https://unsplash.com/@jimmyferminphotography), for a profile image
-[Marvin Meyer](https://unsplash.com/@marvelous), for the main index background image
-[Shahadat Rahman](https://unsplash.com/@hishahadat), for a vacancy image
+<br>- [Albert Dera](https://unsplash.com/@albertdera), for a profile image
+<br>- [Clem Onojeghuo](https://unsplash.com/@clemono), for a vacancy image
+<br>- [Florian Olivio](https://unsplash.com/@florianolv), for a vacancy image
+<br>- [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters), for a vacancy image
+<br>- [Jimmy Fermin](https://unsplash.com/@jimmyferminphotography), for a profile image
+<br>- [Marvin Meyer](https://unsplash.com/@marvelous), for the main index background image
+<br>- [Shahadat Rahman](https://unsplash.com/@hishahadat), for a vacancy image
 
 ### Acknowledgements
 Thanks to [Tim (Justim)](https://github.com/justim) for some deeper explanation about Python views and decorators. Helped me with the login view decorator.
