@@ -178,12 +178,32 @@
                         </div>
                     </div>
 
+<!--    Why is the candidate applicable for this vacancy   -->
+                    <div class="form-group">
+                        <label for="why_match">
+                            {% if g.user['profile'] != 'admin' %}
+                                Why are you interested ?
+                            {% else %}
+                                Why is this candidate interested ?
+                            {% endif %}
+                        </label>
+                        <textarea id="why_match" name="why_match" class="form-control" rows="5">{{ application.why_match }}</textarea>
+                    </div>
+
 <!--    Comments on the application or from candidate    -->
                     <div class="form-group">
                         <label for="comments">
                                 Comments
                             </label>
                         <textarea id="comments" name="comments" class="form-control" rows="5">{{ application.comments }}</textarea>
+                    </div>
+
+<!--    URL for the resume   -->
+                    <div class="form-group">
+                        <label for="url_resume">
+                            URL for a resume
+                        </label>
+                        <input type="text" class="form-control" id="url_resume" name="url_resume" value="{{ application.url_resume }}">
                     </div>
 
 <!--    More info about the vacancy   -->
