@@ -324,6 +324,8 @@ A logged in user of the site can use the logout icon in the navigation menu to l
 - Cloning of records; a quick action which allows for fast duplication a record and changing some fields.
 - Forgot password
 - New/Other userprofiles; more selections on user level rights and delegating processes. For instance a office employee who can manage the vacancies and applications sections of the website.
+- More specific form validation; not the main goal for the project but necessary for a live website.
+- More automated testing; for example for the registrating and contacting modals.
 
 ## Technologies Used
 I have used the following technologys for this project:
@@ -504,8 +506,11 @@ Thanks to:
 ### Acknowledgements
 Thanks to [Tim (Justim)](https://github.com/justim) for some deeper explanation about Python views and decorators. Helped me with the login view decorator.
 
-Special thanks to [Paul Friel](https://github.com/Spagettileg) who repeatedly and thoroughly gave me feedback on my site during the project.
+Special thanks to Slack community:
+<br>- [Paul Friel](https://github.com/Spagettileg) who repeatedly and thoroughly gave me feedback on my site during the project.
+<br>- [Kasia Bogucka](https://github.com/bezebee) who tested my site from a user and admin point of view.
 
-And a thanks to my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) who gave me honest and good feedback on my site/code and helped me te complete this project.
+
+And a thanks to my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) who gave me honest, specific and good feedback on my site/code and helped me te complete this project.
 
 [w3schools](https://www.w3schools.com/) and [StackOverflow](https://stackoverflow.com/) for research.
