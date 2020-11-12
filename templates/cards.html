@@ -1,4 +1,8 @@
-        <div class="card col-sm-5 col-md-5">
+    {% if liststatus == 'closed' %}    
+        <div class="card col-sm-3">
+    {% else %}
+        <div class="card col-sm-5">
+    {% endif %}
 
 <!--    Show the candidate name for the admin on application cards   -->
         {%  if g.user['profile'] == 'admin' and listtype == 'applications' %}
@@ -88,16 +92,20 @@
                 {% endif %}
                 </p>
                 <hr class="hr-vacancy">
-            {% if listtype == 'applications' %}
+        {% if listtype == 'applications' and liststatus == 'open' %}
                 <p class="card-text textarea-breaks">{{apl.vacancy_text}}</p>
 
-            {% elif listtype == 'vacancies' %}
+        {% elif listtype == 'vacancies' %}
+            {% if liststatus == 'open' %}  
                 <p class="card-text textarea-breaks">{{vac.text}}</p>
                 <p class="card-text">
                     <small class="text-muted">
                         closes on {{vac.end_date}}
                     </small>
                 </p>
+            {% else %}
+                <p class="card-text textarea-breaks small-card-text">{{vac.text}}</p>
             {% endif %}
+        {% endif %}
             </div>
         </div>

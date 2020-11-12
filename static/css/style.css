@@ -308,6 +308,10 @@ svg {
     white-space: pre-wrap;
 }
 
+.small-card-text {
+    font-size: 11px;
+}
+
 /*-----      Users      -----*/
 .table .thead-dark th {
     background-color: CadetBlue;
