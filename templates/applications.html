@@ -47,14 +47,21 @@
 <!--    Carddeck of applications      -->
     <hr>
     <div class="card-deck">
-    {% for apl in applications_open %}
-        {% with listtype='applications', liststatus='open' %}
-            {% include 'cards.html' %}
-        {% endwith %}
-    {% endfor %}
+    {% if nr_applications_open > 0 %}
+        {% for apl in applications_open %}
+            {% with listtype='applications', liststatus='open' %}
+                {% include 'cards.html' %}
+            {% endwith %}
+        {% endfor %}
+    {% else %}
+        <h2> 
+            No applications found 
+        </h2>
+    {% endif %}
     </div>
 
 <!--    This section shows the closed/old applications     -->
+{% if nr_applications_closed > 0 %}
     <hr>
     <div class="container second-container">
         <div class="row">
@@ -76,5 +83,6 @@
         {% endwith %}
     {% endfor %}
     </div>
+{% endif %}
 
 {% endblock %}

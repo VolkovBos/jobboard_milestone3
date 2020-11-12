@@ -667,6 +667,7 @@ def search_vacancy():
     return render_template(
         'vacancies.html',
         vacancies_open=vacs,
+        nr_vacancies_open=vacs.count()
     )
 
 
@@ -795,12 +796,17 @@ def applications():
     Admins can CRUD all applications
     """
 
+    applications_open = mongo.db.applications.find(
+            {'status': {'$ne': 'closed'}})
+    applications_closed = mongo.db.applications.find(
+            {'status': 'closed'})
+
     return render_template(
         "applications.html",
-        applications_open=mongo.db.applications.find(
-            {'status': {'$ne': 'closed'}}),
-        applications_closed=mongo.db.applications.find(
-            {'status': 'closed'})
+        applications_open=applications_open,
+        nr_applications_open=applications_open.count(),
+        applications_closed=applications_closed,
+        nr_applications_closed=applications_closed.count()
     )
 
 
@@ -813,21 +819,25 @@ def myapplications():
     users can only check their own applications
     """
     user_id = str(g.user['_id'])
+    applications_open = mongo.db.applications.find(
+        {
+            'candidate_id': user_id,
+            'status': {'$ne': 'closed'}
+        }
+    )
+    applications_closed = mongo.db.applications.find(
+        {
+            'candidate_id': user_id,
+            'status': 'closed'
+        }
+    )
 
     return render_template(
         "applications.html",
-        applications_open=mongo.db.applications.find(
-            {
-                'candidate_id': user_id,
-                'status': {'$ne': 'closed'}
-            }
-        ),
-        applications_closed=mongo.db.applications.find(
-            {
-                'candidate_id': user_id,
-                'status': 'closed'
-            }
-        )
+        applications_open=applications_open,
+        nr_applications_open=applications_open.count(),
+        applications_closed=applications_closed,
+        nr_applications_closed=applications_closed.count()
     )
 
 
