@@ -247,6 +247,10 @@ svg {
     color: #FAFAFA;
 }
 
+.form-inline label {
+    display: inline;
+}
+
 /*-----      Error messages      -----*/
 .blink_me {
     animation: blinker 2s;

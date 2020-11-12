@@ -163,7 +163,9 @@ def register():
                             'approved': False,
                             'status': 'active',
                             'user_id': max_user_id,
-                            'profile': 'user'
+                            'profile': 'user',
+                            'first_name': request.form['firstName'],
+                            'last_name': request.form['lastName']
                         }
                     )
                     # Check if user is actually saved
