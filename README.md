@@ -362,7 +362,7 @@ I have used the following technologys for this project:
 * [Unsplash](https://unsplash.com/), for images
 
 ## Testing
-See the ![Testing MD file](TESTS.md)
+See the [Testing MD file](TESTS.md)
 
 ## Deployment
 This project was created using Github, from there I used Gitpod to write my code.
