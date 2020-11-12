@@ -22,29 +22,29 @@
 
 <!--    Add a picture url and load the url when changing the select options   -->
                         <div class="col-6 display-grid" id="add-image">
+                        {% if g.user['profile'] == 'admin' %}
                             <label for="photo_url">
                                 Select Photo
                             </label>
-                        {% if g.user['profile'] == 'admin' %}
                             <select class="form-control render-image" id="vacancy_photo_url" name="vacancy_photo_url">
-                        {% else %}
-                            <select class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" disabled>
-                        {% endif %}
                                 <option disabled selected>
                                     Choose Image
                                 </option>
                             {% for photo in photos %}
-                            {% if photo.photo_url == vacancy.photo_url %}
-                                <option value="{{ photo.photo_url }}" selected>
-                                    {{ photo.name }}
-                                </option>
-                            {% else %}
-                                <option value="{{ photo.photo_url }}">
-                                    {{ photo.name }}
-                                </option>
-                            {% endif %}
+                                {% if photo.photo_url == vacancy.photo_url %}
+                                    <option value="{{ photo.photo_url }}" selected>
+                                        {{ photo.name }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ photo.photo_url }}">
+                                        {{ photo.name }}
+                                    </option>
+                                {% endif %}
                             {% endfor %}
                             </select>
+                        {% else %}
+                            <input type="hidden" class="form-control" id="vacancy_photo_url" name="vacancy_photo_url" value="{{ vacancy.photo_url }}">
+                        {% endif %}   
                         </div>
                     </div>
 
@@ -59,11 +59,8 @@
 
 <!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
-                                <select id="vacancy_id" name="vacancy_id" class="form-control">
-                                    <option value="{{ vacancy._id }}" selected>
-                                        {{ vacancy.job_title }}
-                                    </option>
-                                </select>
+                                <input type="text" class="form-control" id="vacancy_job_title" name="vacancy_job_title" value="{{ vacancy.job_title }}" readonly>
+                                <input type="hidden" class="form-control" id="vacancy_id" name="vacancy_id" value="{{ vacancy._id }}">
                             {% else %}
                                 <select id="vacancy_id" name="vacancy_id" class="form-control">
                                     <option disabled selected>
@@ -144,11 +141,8 @@
 
 <!--    Prefilled and readonly for a regular user  -->
                             {% if g.user['profile'] != 'admin' %}
-                                <select id="candidate_id" name="candidate_id" class="form-control">
-                                    <option value="{{ g.user['_id']  }}" selected>
-                                        {{ g.user['first_name']  }}&nbsp;{{ g.user['last_name']  }}
-                                    </option>
-                                </select>
+                                <input type="text" class="form-control" id="candidate_name" name="candidate_name" value="{{ g.user['first_name']  }}&nbsp;{{ g.user['last_name']  }}" readonly>
+                                <input type="hidden" class="form-control" id="candidate_id" name="candidate_id" value="{{ g.user['_id']  }}">
                             {% else %}
                                 <select id="candidate_id" name="candidate_id" class="form-control">
                                     <option disabled selected>
