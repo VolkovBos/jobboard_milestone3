@@ -229,7 +229,7 @@ This website has a [MongoDB](https://www.mongodb.com) databases called jobboard_
 The most tables are self explanatory, but I consciously chose to use one table for candidates and users due to the size of the project and the simplicity of the current business processes. I allready created a profiles table, this simplifies editing or creating a new user by the admin and prevents a typo but also this anticipates on the possibility of implementing new user profiles. 
 
 #### Tables design
-![Tables overview](static/img/tables.jpg)
+![Tables overview](schema/tables.jpg)
 
 ## Features
 All the features were developed with dynamic user content with appropriate restrictions. Features like create, update, delete, approve are hidden behind a registration wall or login portal, but this do not hinder visitors from viewing the overall content.
