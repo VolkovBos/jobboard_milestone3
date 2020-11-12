@@ -336,12 +336,18 @@ def users():
         {'approved': False, 'status': 'active'})
     users_inactive = mongo.db.candidates.find(
         {'status': 'inactive'})
+    nr_users_active = users_active.count()
+    nr_users_to_approve = users_to_approve.count()
+    nr_users_inactive = users_inactive.count()
 
     return render_template(
         "users.html",
         users=users_active,
         users_to_approve=users_to_approve,
-        users_inactive=users_inactive
+        users_inactive=users_inactive,
+        nr_users_active=nr_users_active,
+        nr_users_to_approve=nr_users_to_approve,
+        nr_users_inactive=nr_users_inactive
     )
 
 

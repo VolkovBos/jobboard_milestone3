@@ -26,6 +26,7 @@
             </div>
         </div>
         <hr>
+    {% if nr_users_to_approve > 0 %}
         <div class="row">
 
 <!--    Title approve section     -->
@@ -66,9 +67,12 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
 
 <!--    Users active section     -->
         <hr>
+
+    {% if nr_users_active > 0 %}
         <div class="row">
 
 <!--    Title active section     -->
@@ -102,9 +106,12 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
 
 <!--    Users inactive section     -->
         <hr>
+
+    {% if nr_users_inactive> 0 %}
         <div class="row">
         
 <!--    Title inactive section     -->
@@ -140,6 +147,7 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
     </div>
 
 {% endblock %}
