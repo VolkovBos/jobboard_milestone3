@@ -947,7 +947,9 @@ def insert_application():
             'vacancy_salary': vacancy_salary,
             'vacancy_photo_url': vacancy_photo_url,
             'vacancy_location': vacancy_location,
-            'vacancy_text': vacancy_text
+            'vacancy_text': vacancy_text,
+            'why_match': request.form.get('why_match'),
+            'url_resume': request.form.get('url_resume')
         })
 
     # User is redirected to My Applications
@@ -1017,7 +1019,9 @@ def update_application(application_id):
             'comments': request.form.get('comments'),
             'candidate_id': candidate_id,
             'candidate_name': the_candidate.get('first_name') +
-            ' ' + the_candidate.get('last_name')
+            ' ' + the_candidate.get('last_name'),
+            'why_match': request.form.get('why_match'),
+            'url_resume': request.form.get('url_resume')
         }})
 
     the_application = mongo.db.applications.find_one(
